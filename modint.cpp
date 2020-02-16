@@ -1,6 +1,6 @@
-
 class modint;
 constexpr modint pow(modint, size_t);
+constexpr ll MOD = 998244353;
 
 class modint {
 public:
@@ -10,33 +10,39 @@ public:
     value %= MOD;
     if (value < 0) value += MOD;
   }
-  constexpr modint operator+(const modint rhs) const {
+  constexpr bool operator==(const modint& rhs) {
+    return value == rhs.value;
+  }
+  constexpr bool operator!=(const modint& rhs) {
+    return value != rhs.value;
+  }
+  constexpr modint operator+(const modint& rhs) const {
     return modint(*this) += rhs;
   }
-  constexpr modint operator-(const modint rhs) const {
+  constexpr modint operator-(const modint& rhs) const {
     return modint(*this) -= rhs;
   }
-  constexpr modint operator*(const modint rhs) const {
+  constexpr modint operator*(const modint& rhs) const {
     return modint(*this) *= rhs;
   }
-  constexpr modint operator/(const modint rhs) const {
+  constexpr modint operator/(const modint& rhs) const {
     return modint(*this) /= rhs;
   }
-  constexpr modint &operator+=(const modint rhs) {
+  constexpr modint &operator+=(const modint& rhs) {
     value += rhs.value;
     if (value >= MOD) value -= MOD;
     return *this;
   }
-  constexpr modint &operator-=(const modint rhs) {
+  constexpr modint &operator-=(const modint& rhs) {
     if (value < rhs.value) value += MOD;
     value -= rhs.value;
     return *this;
   }
-  constexpr modint &operator*=(const modint rhs) {
+  constexpr modint &operator*=(const modint& rhs) {
     value = value * rhs.value % MOD;
     return *this;
   }
-  constexpr modint &operator/=(modint rhs) {
+  constexpr modint &operator/=(const modint& rhs) {
     return *this *= pow(rhs, MOD - 2);
   }
   constexpr modint &operator++() {
@@ -66,6 +72,10 @@ public:
 
 MyPrinter& operator<<(MyPrinter& out, modint n) {
   out << n.value;
+  return out;
+}
+DebugPrint& operator<<(DebugPrint& out, modint n) {
+  OUT << n.value;
   return out;
 }
 

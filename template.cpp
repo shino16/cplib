@@ -32,7 +32,6 @@ using PII = pair<int, int>;
 template <typename T>
 using minheap = priority_queue<T, vector<T>, greater<T>>;
 const int INF = 1e9 + 7;
-const int MOD = INF;
 const ll INF_LL = 1e18 + 7;
 
 #define __overload3(_1, _2, _3, name,...) name
