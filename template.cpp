@@ -94,6 +94,12 @@ auto make_v(size_t a, Ts... ts){
   return vector<decltype(make_v(ts...))>(a, make_v(ts...));
 }
 
+string operator*(const string& s, int times) {
+  string res = "";
+  rep(times) res += s;
+  return res;
+}
+
 class DebugPrint {
 public:
   template <typename T>
