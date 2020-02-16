@@ -6,19 +6,20 @@ struct lazy_segtree {
   const Cmb cmb;
   const ECmb ecmb;
   const Upd upd;
-  vector<T> data, lazy;
+  vector<T> data;
+  vector<U> lazy;
   const int h;
   // eunit need not be a unit
-  segtree(int n, T unit = T(), U eunit = U(), Cmb cmb = Cmb(),
+  lazy_segtree(int n, T unit = T(), U eunit = U(), Cmb cmb = Cmb(),
           ECmb ecmb = ECmb(), Upd upd = Upd())
       : n(n), unit(unit), eunit(eunit), cmb(cmb), ecmb(ecmb), upd(upd),
         data(n<<1, unit), lazy(n, eunit), h(32 - __builtin_clz(n)) {
-    build();
+    build(0, n);
   }
   // eunit need not be a unit
   template <typename Iter>
-  segtree(Iter first, Iter last, int n,
-          T unit = T(), Cmb cmb = Cmb(),
+  lazy_segtree(Iter first, Iter last, int n,
+          T unit = T(), U eunit = U(), Cmb cmb = Cmb(),
           ECmb ecmb = ECmb(), Upd upd = Upd())
       : n(n), unit(unit), eunit(eunit), cmb(cmb), ecmb(ecmb), upd(upd),
         data(n<<1), lazy(n, eunit), h(32 - __builtin_clz(n)) {
@@ -38,20 +39,20 @@ struct lazy_segtree {
     apply(p<<1|1, lazy[p], sz>>1);
     lazy[p] = eunit;
   }
-  void pushup(int p) {
+  void pushup(int p, int k) {
     if (p >= n) return;
     data[p] = cmb(data[p<<1], data[p<<1|1]);
-    if (lazy[p] != eunit) data[p] = ecmb(data[p], lazy[p]);
+    if (lazy[p] != eunit) data[p] = upd(data[p], lazy[p], k);
   }
-  void flush(int l, r) {
+  void flush(int l, int r) {
     int s = h, k = 1 << h;
     for (l += n, r += n-1; s > 0; s--, k >>= 1)
       for (int p = l >> s; p <= r >> s; p++)
         pushdown(p, k);
   }
-  void build(int l = 0, int r = n) {
+  void build(int l, int r) {
     int k = 2;
-    for (l += n, r += n-1; l < r; k <<= 1) {
+    for (l += n, r += n-1; l > 1; k <<= 1) {
       l >>= 1, r >>= 1;
       for (int p = l; p <= r; p++)
         pushup(p, k);
@@ -60,10 +61,10 @@ struct lazy_segtree {
   template <typename Iter>
   void assign(Iter first, Iter last) {
     copy(first, last, data.begin()+n);
-    build();
+    build(0, n);
   }
   void modify(int l, int r, U e) {
-    if (e == unit) return;
+    if (e == eunit) return;
     flush(l, l+1); flush(r-1, r);
     int l0 = l, r0 = r, k = 1;
     for (l += n, r += n; l < r; l >>= 1, r >>= 1, k <<= 1) {
@@ -74,6 +75,7 @@ struct lazy_segtree {
     build(r0-1, r0);
   }
   T query(int l, int r) {
+    flush(l, l+1); flush(r-1, r);
     T resl = unit, resr = unit;
     for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
       if (l&1) resl = cmb(resl, data[l++]);
