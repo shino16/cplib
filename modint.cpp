@@ -1,6 +1,6 @@
 class modint;
 constexpr modint pow(modint, size_t);
-constexpr ll MOD = 998244353;
+constexpr ll MOD = ll(1e9)+7;
 
 class modint {
 public:
@@ -89,6 +89,7 @@ constexpr modint pow(modint base, size_t exp) {
   return res;
 }
 
+// O(r + log MOD)
 modint choose(int n, int r) {
   chmin(r, n-r);
   if (r < 0) return modint(0);
