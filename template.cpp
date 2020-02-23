@@ -100,17 +100,6 @@ string operator*(const string& s, int times) {
   return res;
 }
 
-class DebugPrint {
-public:
-  template <typename T>
-  DebugPrint& operator <<(const T& v) {
-#ifdef LOCAL
-    cerr << v;
-#endif
-    return *this;
-  }
-} debugos;
-
 class MyScanner {
 public:
   template <typename T> void input_integer(T& var) {
@@ -234,21 +223,21 @@ public:
     this->operator()(xs...);
   }
   template <typename T, typename U>
-  MyPrinter& operator<<(pair<T, U>& var) {
+  MyPrinter& operator<<(pair<T, U> var) {
     return *this << var.first << " " << var.second;
   }
   template <typename... Ts>
-  MyPrinter& operator<<(tuple<Ts...>& var) {
+  MyPrinter& operator<<(tuple<Ts...> var) {
     return tuple_impl<tuple<Ts...>, 0, sizeof...(Ts)>(var);
   }
   template <typename Tuple, size_t I, size_t N,
             enable_if_t<I == N>* = nullptr>
-  MyPrinter& tuple_impl(Tuple& var) {
+  MyPrinter& tuple_impl(Tuple var) {
     return *this;
   }
   template <typename Tuple, size_t I, size_t N,
             enable_if_t<I != N>* = nullptr>
-  MyPrinter& tuple_impl(Tuple& var) {
+  MyPrinter& tuple_impl(Tuple var) {
     *this << get<I>(var) << " ";
     return tuple_impl<Tuple, I+1, N>(var);
   }
@@ -266,6 +255,17 @@ public:
     iter(begin(r), end(r));
   }
 } OUT;
+
+class DebugPrint {
+public:
+  template <typename T>
+  DebugPrint& operator <<(const T& v) {
+#ifdef LOCAL
+    cerr << v;
+#endif
+    return *this;
+  }
+} debugos;
 
 
 int main() {
