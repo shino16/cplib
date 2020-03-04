@@ -1,6 +1,7 @@
 template <typename T, typename Compare = less<T>>
 struct heap {
   vector<T> data;
+  heap(): data() { }
   heap(const vector<T>& data) : data(data) {
     build();
   }
@@ -9,6 +10,9 @@ struct heap {
   }
   void build() {
     make_heap(all(data), comp);
+  }
+  size_t size() {
+    return data.size();
   }
   void push(const T& value) {
     data.push_back(value);

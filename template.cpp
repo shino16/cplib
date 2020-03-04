@@ -32,7 +32,7 @@ using PII = pair<int, int>;
 template <typename T>
 using minheap = priority_queue<T, vector<T>, greater<T>>;
 const int INF = 1e9 + 7;
-const ll INF_LL = 1e18 + 7;
+const ll INF_LL = (ll)1e18 + 7;
 
 #define __overload3(_1, _2, _3, name,...) name
 #define rep(...) __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
@@ -78,12 +78,21 @@ template <typename T> bool chmax(T& var, T x) {
   } else return false;
 }
 
-template <typename T> T divceil(T m, T d) {
-  return (m+d-1)/d;
-}
-
 template <typename T> int sgn(T val) {
   return (T(0) < val) - (val < T(0));
+}
+
+template <typename T> T divceil(T, T);
+
+template <typename T> T divfloor(T m, T d) {
+  if (sgn(m) * sgn(d) >= 0) return m / d;
+  else return -divceil(abs(m), abs(d));
+}
+
+template <typename T> T divceil(T m, T d) {
+  if (m >= 0 and d > 0) return (m+d-1)/d;
+  else if (m < 0 and d < 0) return divceil(-m, -d);
+  else return -divfloor(abs(m), abs(d));
 }
 
 template<typename T>
@@ -261,7 +270,7 @@ public:
   template <typename T>
   DebugPrint& operator <<(const T& v) {
 #ifdef LOCAL
-    cerr << v;
+    OUT << v;
 #endif
     return *this;
   }
