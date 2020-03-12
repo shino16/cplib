@@ -2,8 +2,6 @@
 #pragma GCC optimize ("O0")
 #else
 #pragma GCC optimize ("O3")
-#pragma GCC optimize ("unroll-loops")
-#pragma GCC target ("avx")
 #endif
 
 #include <vector>
@@ -12,7 +10,6 @@
 #include <tuple>
 #include <queue>
 #include <stack>
-#include <bitset>
 #include <functional>
 #include <algorithm>
 #include <utility>
@@ -25,8 +22,10 @@ using namespace std;
 using ll = long long;
 using VI = vector<int>;
 using VVI = vector<vector<int>>;
+using VVVI = vector<vector<vector<int>>>;
 using VLL = vector<ll>;
 using VVLL = vector<vector<ll>>;
+using VVVLL = vector<vector<vector<ll>>>;
 using VB = vector<bool>;
 using VVB = vector<vector<bool>>;
 using PII = pair<int, int>;
@@ -72,20 +71,11 @@ template <typename T> bool chmin(T& var, T x) {
     return true;
   } else return false;
 }
-
 template <typename T> bool chmax(T& var, T x) {
   if (var < x) {
     var = x;
     return true;
   } else return false;
-}
-
-template <typename T> T minT(T a, T b) {
-  return min(a, b);
-}
-
-template <typename T> T maxT(T a, T b) {
-  return max(a, b);
 }
 
 template <typename T> int sgn(T val) {
@@ -184,14 +174,19 @@ public:
     iter(all(res));
     return res;
   }
+  VVI vvi(int n, int m) {
+    VVI res(n);
+    rep(i, n) res[i] = vi(m);
+    return res;
+  }
   VLL vll(int n) {
     VLL res(n);
     iter(all(res));
     return res;
   }
-  VVI vvi(int h, int w) {
-    VVI res(h);
-    rep(i, h) res[i] = this->vi(w);
+  VVLL vvll(int n, int m) {
+    VVLL res(n);
+    rep(i, n) res[i] = vll(m);
     return res;
   }
   template <typename T>
@@ -287,6 +282,65 @@ public:
 } debugos;
 
 
-int main() {
+// C++ Implementation for random
+// tree generator using Prufer Sequence
 
+// Prints edges of tree
+// represented by give Prufer code
+VVI makeGraph(int prufer[], int m) {
+  int n = m + 2;
+  VI vertex_set(n);
+  vector<PII> edges;
+
+  rep(i, m) vertex_set[prufer[i]-1]++;
+
+  // Find the smallest label not present in
+  // prufer[].
+  rep(i, m) {
+    rep(j, n) if (vertex_set[j] == 0) {
+      vertex_set[j] = -1;
+      edges.emplace_back(j, prufer[i]-1);
+      vertex_set[prufer[i]-1]--;
+      break;
+    }
+  }
+
+  VI rest;
+  rep(i, n) if (vertex_set[i] == 0) rest.push_back(i);
+  edges.emplace_back(rest[0], rest[1]);
+
+  VVI graph(n);
+  for (auto p : edges)
+    graph[p._1].push_back(p._2),
+    graph[p._2].push_back(p._1);
+
+  return graph;
 }
+
+// generate random numbers in between l an r
+int ran(int l, int r)
+{
+  debug(l);
+  debug(r);
+  int res = l + (rand() % (r - l + 1));
+  debug(res);
+  return res;
+}
+
+// Function to Generate Random Tree
+VVI generateRandomTree(int n)
+{
+
+  int length = n - 2;
+  int arr[length];
+
+  // Loop to Generate Random Array
+  for (int i = 0; i < length; i++)
+  {
+    arr[i] = ran(0, pow(2, i)) + 1;
+  }
+  return makeGraph(arr, length);
+}
+
+// This code is contributed by Arnab Kundu
+// and me

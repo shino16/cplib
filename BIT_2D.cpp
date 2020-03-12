@@ -1,7 +1,7 @@
 struct BIT_2D {
   const int h, w;
   vector<vector<ll>> data;
-  BIT_2D(int h, int w): h(h), w(w), data(h+1, vector<ll>(w+1)) { }
+  BIT_2D(int h = 0, int w = 0): h(h), w(w), data(h+1, vector<ll>(w+1)) { }
   void add(int r, int c, ll v) {
     r++; c++;
     for (; r <= h; r += r & -r)

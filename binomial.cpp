@@ -1,5 +1,3 @@
-// initialization: O(n)
-// query: O(1)
 struct binomial {
   vector<modint> fact, invfact;
   // O(n)

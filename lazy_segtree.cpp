@@ -10,7 +10,7 @@ struct lazy_segtree {
   vector<U> lazy;
   const int h;
   // eunit need not be a unit
-  lazy_segtree(int n, T unit = T(), U eunit = U(), Cmb cmb = Cmb(),
+  lazy_segtree(int n = 0, T unit = T(), U eunit = U(), Cmb cmb = Cmb(),
           ECmb ecmb = ECmb(), Upd upd = Upd())
       : n(n), unit(unit), eunit(eunit), cmb(cmb), ecmb(ecmb), upd(upd),
         data(n<<1, unit), lazy(n, eunit), h(32 - __builtin_clz(n)) {

@@ -1,7 +1,7 @@
 struct BIT {
   const int n;
   vector<ll> data;
-  BIT(int n): n(n), data(n+1) { }
+  BIT(int n = 0): n(n), data(n+1) { }
   void add(int p, ll v) {
     p++;
     while (p <= n) {
@@ -11,7 +11,6 @@ struct BIT {
   }
   // sum over [0, p)
   ll sum(int p) {
-    p++;
     ll res = 0;
     while (p) {
       res += data[p];

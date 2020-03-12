@@ -265,13 +265,13 @@ public:
 
 typedef vector<vector<int>> graph;
 
-struct lca {
+struct lca_ {
   const int n = 0;
   const int log2_n = 0;
   vector<vector<int>> parent;
   vector<int> depth;
 
-  lca(const graph &g, int root)
+  lca_(const graph &g, int root)
       : n(g.size()), log2_n(32 - __builtin_clz(n) + 1),
         parent(log2_n, vector<int>(n)), depth(n) {
     dfs(g, root, -1, 0);
@@ -293,7 +293,7 @@ struct lca {
     }
   }
 
-  int get(int u, int v) {
+  int operator()(int u, int v) {
     if (depth[u] > depth[v]) swap(u, v);
     for (int k = 0; k < log2_n; k++) {
       if ((depth[v] - depth[u]) >> k & 1) {

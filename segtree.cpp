@@ -5,7 +5,7 @@ struct segtree {
   const Cmb cmb;
   const Upd upd;
   vector<T> data;
-  segtree(int n, T unit = T(), Cmb cmb = Cmb(), Upd upd = Upd())
+  segtree(int n = 0, T unit = T(), Cmb cmb = Cmb(), Upd upd = Upd())
       : n(n), unit(unit), cmb(cmb), upd(upd), data(n<<1, unit) {
     build();
   }
