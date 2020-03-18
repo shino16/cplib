@@ -1,6 +1,4 @@
-using Graph = vector<vector<int>>;
-
-vector<int> dijkstra(const Graph& graph, int start) {
+vector<int> dijkstra(const VVI& graph, int start) {
   using P = pair<int, int>;
   priority_queue<P, vector<P>, greater<P>> q;
   vector<int> dist(graph.size(), numeric_limits<int>::max());

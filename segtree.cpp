@@ -1,3 +1,4 @@
+#pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename Cmb, typename Upd>
 struct segtree {
   const int n;
@@ -37,3 +38,4 @@ struct segtree {
     return cmb(resl, resr);
   }
 };
+#pragma GCC diagnostic warning "-Wshadow"

@@ -40,13 +40,11 @@ const ll INF_LL = (ll)1e18 + 7;
 #define repeat(times) repFromUntil(__name, 0, times)
 #define repUntil(name, times) repFromUntil(name, 0, times)
 #define repFromUntil(name, from, until) for (int name = from, name##__until = (until); name < name##__until; name++)
-#define repFromTo(name, from, to) repFromUntil(name, from, to + 1)
 #define repr(...) __overload3(__VA_ARGS__, reprFromUntil, reprUntil, repeat)(__VA_ARGS__)
 #define reprUntil(name, times) reprFromUntil(name, 0, times)
 #define reprFromUntil(name, from, until) for (int name = until - 1, name##__from = (from); name >= name##__from; name--)
-#define reprFromTo(name, from, to) reprFromUntil(name, from, to + 1)
 
-#define EXIT(out) do { OUT(out); exit(0); } while (false)
+#define EXIT(out) do { OUT(out); exit(0); } while (0)
 
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
@@ -80,16 +78,32 @@ template <typename T> bool chmax(T& var, T x) {
   } else return false;
 }
 
-template <typename T> T minT(T a, T b) {
-  return min(a, b);
-}
+template <typename T>
+struct minT {
+  T operator()(T a, T b) {
+    return min(a, b);
+  }
+};
 
-template <typename T> T maxT(T a, T b) {
-  return max(a, b);
-}
+template <typename T>
+struct maxT {
+  T operator()(T a, T b) {
+    return max(a, b);
+  }
+};
 
 template <typename T> int sgn(T val) {
   return (T(0) < val) - (val < T(0));
+}
+
+ll power(ll e, int t, ll mod = INF_LL) {
+  ll res = 1;
+  while (t) {
+    if (t&1) res = (res * e) % mod;
+    t >>= 1;
+    e = (e * e) % mod;
+  }
+  return res;
 }
 
 template <typename T> T divceil(T, T);
@@ -141,25 +155,6 @@ public:
       var.push_back(cc);
     return *this;
   }
-  template <typename T, typename U>
-  MyScanner& operator>>(pair<T, U>& var) {
-    return *this >> var.first >> var.second;
-  }
-  template <typename... Ts>
-  MyScanner& operator>>(tuple<Ts...>& var) {
-    return tuple_impl<tuple<Ts...>, 0, sizeof...(Ts)>(var);
-  }
-  template <typename Tuple, size_t I, size_t N,
-            enable_if_t<I == N>* = nullptr>
-  MyScanner& tuple_impl(Tuple& var) {
-    return *this;
-  }
-  template <typename Tuple, size_t I, size_t N,
-            enable_if_t<I != N>* = nullptr>
-  MyScanner& tuple_impl(Tuple& var) {
-    *this >> get<I>(var);
-    return tuple_impl<Tuple, I+1, N>(var);
-  }
   template <typename T>
   operator T() {
     T x;
@@ -184,14 +179,19 @@ public:
     iter(all(res));
     return res;
   }
+  VVI vvi(int n, int m) {
+    VVI res(n);
+    rep(i, n) res[i] = vi(m);
+    return res;
+  }
   VLL vll(int n) {
     VLL res(n);
     iter(all(res));
     return res;
   }
-  VVI vvi(int h, int w) {
-    VVI res(h);
-    rep(i, h) res[i] = this->vi(w);
+  VVLL vvll(int n, int m) {
+    VVLL res(n);
+    rep(i, n) res[i] = vll(m);
     return res;
   }
   template <typename T>
@@ -241,25 +241,6 @@ public:
     *this << x << " ";
     this->operator()(xs...);
   }
-  template <typename T, typename U>
-  MyPrinter& operator<<(pair<T, U> var) {
-    return *this << var.first << " " << var.second;
-  }
-  template <typename... Ts>
-  MyPrinter& operator<<(tuple<Ts...> var) {
-    return tuple_impl<tuple<Ts...>, 0, sizeof...(Ts)>(var);
-  }
-  template <typename Tuple, size_t I, size_t N,
-            enable_if_t<I == N>* = nullptr>
-  MyPrinter& tuple_impl(Tuple var) {
-    return *this;
-  }
-  template <typename Tuple, size_t I, size_t N,
-            enable_if_t<I != N>* = nullptr>
-  MyPrinter& tuple_impl(Tuple var) {
-    *this << get<I>(var) << " ";
-    return tuple_impl<Tuple, I+1, N>(var);
-  }
   template <typename Iter>
   void iter(Iter s, Iter t) {
     if (s == t) *this << "\n";
@@ -280,7 +261,7 @@ public:
   template <typename T>
   DebugPrint& operator <<(const T& v) {
 #ifdef LOCAL
-    OUT << v;
+    cerr << v;
 #endif
     return *this;
   }

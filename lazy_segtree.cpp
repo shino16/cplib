@@ -1,3 +1,4 @@
+#pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename U, typename Cmb, typename ECmb, typename Upd>
 struct lazy_segtree {
   const int n;
@@ -84,3 +85,4 @@ struct lazy_segtree {
     return cmb(resl, resr);
   }
 };
+#pragma GCC diagnostic warning "-Wshadow"
