@@ -75,7 +75,7 @@ MyPrinter& operator<<(MyPrinter& out, modint n) {
   return out;
 }
 DebugPrint& operator<<(DebugPrint& out, modint n) {
-  OUT << n.value;
+  out << n.value;
   return out;
 }
 
