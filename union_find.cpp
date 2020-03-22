@@ -1,3 +1,4 @@
+#pragma GCC diagnostic ignore "-Wshadow"
 struct union_find {
   int n;
   vector<int> par, rank, sz;
@@ -23,3 +24,4 @@ struct union_find {
     return sz[root(x)];
   }
 };
+#pragma GCC diagnostic warning "-Wshadow"

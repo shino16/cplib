@@ -135,6 +135,7 @@ string operator*(const string& s, int times) {
 
 class MyScanner {
 public:
+  int offset = 0;
   template <typename T> void input_integer(T& var) {
     var = 0; T sign = 1;
     int cc = getchar();
@@ -142,7 +143,7 @@ public:
       if (cc == '-') sign = -1;
     for (; '0' <= cc && cc <= '9'; cc = getchar())
       var = (var << 3) + (var << 1) + cc - '0';
-    var = var * sign;
+    var = var * sign; var += offset;
   }
   int c() { char c; while (c = getchar(), c == ' ' or c == '\n'); return c; }
   MyScanner& operator>>(char& var) { var = c(); return *this; }
@@ -157,8 +158,7 @@ public:
   }
   template <typename T>
   operator T() {
-    T x;
-    *this >> x;
+    T x; *this >> x;
     return x;
   }
   template <typename T>
@@ -204,7 +204,7 @@ private:
   int isvisiblechar(int c) {
     return 0x21 <= c && c <= 0x7E;
   }
-} IN;
+} IN, IN1{-1};
 
 class MyPrinter {
 public:
@@ -222,6 +222,7 @@ public:
       putchar(stack[--stack_p]);
   }
   MyPrinter& operator<<(char c) { putchar(c); return *this; }
+  MyPrinter& operator<<(double x) { printf("%.10f\n", x); return *this; }
   template <typename T> MyPrinter& operator<<(T var) { output_integer<T>(var); return *this; }
   MyPrinter& operator<<(char* str_p) { while (*str_p) putchar(*(str_p++)); return *this; }
   MyPrinter& operator<<(const char* str_p) { while (*str_p) putchar(*(str_p++)); return *this; }
@@ -231,7 +232,6 @@ public:
     while (p < l) putchar(*p++);
     return *this;
   }
-  // MyPrinter& operator<<(const modint& var) { output_integer<ll>(var.value); return *this; }
   template <typename T>
   void operator()(T x) {
     *this << x << newl;
