@@ -57,7 +57,7 @@ const ll INF_LL = (ll)1e18 + 7;
 #define debugaa(m,h,w) do {debugos << "L" << __LINE__ << " " << #m << " > \n";for(int y=0;y<(h);y++){for(int x=0;x<(w);x++){debugos<<(m)[y][x]<<" ";}debugos<<newl;}} while (0)
 
 #define newl "\n"
-constexpr int dr[] = {1,-1,0,0};  // LRUD
+constexpr int dr[] = {1,-1,0,0};
 constexpr int dc[] = {0,0,1,-1};
 
 bool inside(int r, int c, int H, int W) {
@@ -136,33 +136,30 @@ string operator*(const string& s, int times) {
 class MyScanner {
 public:
   int offset = 0;
-  char nc(){
-    static char buf[100000],*L=buf,*R=buf;
-    return L==R&&(R=(L=buf)+fread(buf,1,100000,stdin),L==R)?EOF:*L++;
-  }
   template <typename T> void input_integer(T& var) {
     var = 0; T sign = 1;
-    int cc = nc();
-    for (; cc<'0' || '9'<cc; cc = nc())
+    int cc = getchar();
+    for (; cc<'0' || '9'<cc; cc = getchar())
       if (cc == '-') sign = -1;
-    for (; '0' <= cc && cc <= '9'; cc = nc())
+    for (; '0' <= cc && cc <= '9'; cc = getchar())
       var = (var << 3) + (var << 1) + cc - '0';
     var = var * sign; var += offset;
   }
-  int c() { char c; while (c = nc(), c == ' ' or c == '\n'); return c; }
+  int c() { char c; while (c = getchar(), c == ' ' or c == '\n'); return c; }
   MyScanner& operator>>(char& var) { var = c(); return *this; }
   MyScanner& operator>>(int& var) { input_integer<int>(var); return *this; }
   MyScanner& operator>>(ll& var) { input_integer<ll>(var); return *this; }
   MyScanner& operator>>(string& var) {
-    var = ""; int cc = nc();
-    for (; !isvisiblechar(cc); cc = nc());
-    for (; isvisiblechar(cc); cc = nc())
+    var = ""; int cc = getchar();
+    for (; !isvisiblechar(cc); cc = getchar());
+    for (; isvisiblechar(cc); cc = getchar())
       var.push_back(cc);
     return *this;
   }
   template <typename T>
   operator T() {
-    T x; *this >> x;
+    T x;
+    *this >> x;
     return x;
   }
   template <typename T>
@@ -226,7 +223,7 @@ public:
       putchar(stack[--stack_p]);
   }
   MyPrinter& operator<<(char c) { putchar(c); return *this; }
-  MyPrinter& operator<<(double x) { printf("%.10f\n", x); return *this; }
+MyPrinter& operator<<(double x) { printf("%.10f\n", x); return *this; }
   template <typename T> MyPrinter& operator<<(T var) { output_integer<T>(var); return *this; }
   MyPrinter& operator<<(char* str_p) { while (*str_p) putchar(*(str_p++)); return *this; }
   MyPrinter& operator<<(const char* str_p) { while (*str_p) putchar(*(str_p++)); return *this; }
@@ -272,6 +269,9 @@ public:
 } debugos;
 
 
-int main() {
-
+template <typename T>
+vector<pair<T, int>> enumerate(const vector<T>& vec) {
+  vector<pair<T, int>> res(vec.size());
+  rep(i, vec.size()) res[i] = make_pair(vec[i], i);
+  return res;
 }

@@ -16,6 +16,9 @@ public:
   constexpr bool operator!=(const modint& rhs) {
     return value != rhs.value;
   }
+  constexpr modint operator-() const {
+    return modint(0) - *this;
+  }
   constexpr modint operator+(const modint& rhs) const {
     return modint(*this) += rhs;
   }
