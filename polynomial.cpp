@@ -1,5 +1,5 @@
+template <typename T = ll>
 struct polynomial {
-  using T = ll;
   vector<T> coef;
 
   polynomial(int sz = 1) noexcept : coef(sz) { }
