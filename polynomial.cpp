@@ -55,10 +55,11 @@ struct polynomial {
     return *this = *this - rhs;
   }
 
+  // O(deg(*this) * (num of nonzero coef in rhs))
   polynomial operator*(const polynomial& rhs) const {
     polynomial res(size() + rhs.size());
-    rep(i, size()) rep(j, rhs.size())
-      res[i+j] += coef[i] * rhs[j];
+    rep(i, rhs.size()) if (rhs[i]) rep(j, size())
+      res[i+j] += rhs[i] * coef[j];
     res.shrink();
     return res;
   }

@@ -1,8 +1,8 @@
 struct BIT {
   const int n;
   vector<ll> data;
-  BIT(int n = 0): n(n), data(n+1) { }
-  void add(int p, ll v) {
+  BIT(int _n = 0): n(_n), data(_n+1) { }
+  void add(int p, ll v = 1) {
     p++;
     while (p <= n) {
       data[p] += v;

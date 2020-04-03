@@ -30,12 +30,45 @@ struct segtree {
     for (; l > 1; l >>= 1) data[l>>1] = cmb(data[l&(~1)], data[l|1]);
   }
   T query(int l, int r) {
-    T resl = unit, resr = unit;
-    for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+    if (l == r) return unit;
+    if (l+1 == r) return data[l+n];
+    T resl = data[l+=n], resr = data[(r+=n)-1];
+    for (l++, r--; l < r; l >>= 1, r >>= 1) {
       if (l&1) resl = cmb(resl, data[l++]);
       if (r&1) resr = cmb(data[--r], resr);
     }
     return cmb(resl, resr);
   }
+  T query(int l) { return query(l, n); }
 };
 #pragma GCC diagnostic warning "-Wshadow"
+
+template <typename T>
+struct minT {
+  T operator()(T a, T b) const {
+    return min(a, b);
+  }
+};
+
+template <typename T>
+struct maxT {
+  T operator()(T a, T b) const {
+    return max(a, b);
+  }
+};
+
+template <typename T>
+struct assign {
+  T operator()(T a, T b) const {
+    return b;
+  }
+};
+
+template <typename T, typename Upd = assign<T>>
+using RangeMin = segtree<T, minT<T>, Upd>;
+
+template <typename T, typename Upd = assign<T>>
+using RangeMax = segtree<T, maxT<T>, Upd>;
+
+template <typename T, typename Upd = assign<T>>
+using RangeSum = segtree<T, plus<T>, Upd>;

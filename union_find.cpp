@@ -1,8 +1,7 @@
-#pragma GCC diagnostic ignore "-Wshadow"
 struct union_find {
   int n;
   vector<int> par, rank, sz;
-  union_find(int n): n(n), par(n), rank(n), sz(n) {
+  union_find(int _n): n(_n), par(_n), rank(_n), sz(_n) {
     iota(all(par), 0);
     fill(all(sz), 1);
   }
@@ -24,4 +23,3 @@ struct union_find {
     return sz[root(x)];
   }
 };
-#pragma GCC diagnostic warning "-Wshadow"

@@ -73,13 +73,16 @@ public:
 };
 
 
-MyPrinter& operator<<(MyPrinter& out, modint n) {
+template <typename OutStream>
+OutStream& operator<<(OutStream& out, modint n) {
   out << n.value;
   return out;
 }
-DebugPrint& operator<<(DebugPrint& out, modint n) {
-  out << n.value;
-  return out;
+
+template <typename InStream>
+InStream& operator>>(InStream& in, modint& n) {
+  ll var; in >> var; n = modint(var);
+  return in;
 }
 
 constexpr modint pow(modint base, size_t exp) {
