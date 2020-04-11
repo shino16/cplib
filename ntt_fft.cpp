@@ -102,10 +102,12 @@ constexpr int brts(int x) { // primitive roots
   return v[x];
 }
 template <int X>
-struct NTT {
+class NTT {
+public:
   static constexpr int md = bmds(X);
   static constexpr int rt = brts(X);
   using M = modint<md>;
+private:
   vector<vector<M> > rts, rrts;
 
   void ensure_base(int n) {
@@ -126,7 +128,7 @@ struct NTT {
       }
     }
   }
-
+public:
   void ntt(vector<M>& as, bool f) {
     int n = as.size();
     assert((n & (n - 1)) == 0);

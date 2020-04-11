@@ -1,6 +1,4 @@
-#ifdef LOCAL
-#pragma GCC optimize ("O0")
-#else
+#ifndef LOCAL
 #pragma GCC optimize ("O3")
 #pragma GCC optimize ("unroll-loops")
 #pragma GCC target ("avx")
@@ -20,6 +18,7 @@
 #include <iostream>
 #include <cmath>
 #include <cassert>
+#include <cstring>
 
 using namespace std;
 
@@ -38,7 +37,7 @@ const ll INF_LL = 1'000'000'000'000'000'007;
 
 #define __overload3(_1, _2, _3, name,...) name
 #define rep(...) __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
-#define repeat(times) repFromUntil(__name##__LINE__, 0, times)
+#define repeat(times) repFromUntil(_name##__LINE__, 0, times)
 #define repUntil(name, times) repFromUntil(name, 0, times)
 #define repFromUntil(name, from, until) for (int name = from, name##__until = (until); name < name##__until; name++)
 #define repr(...) __overload3(__VA_ARGS__, reprFromUntil, reprUntil, repeat)(__VA_ARGS__)
@@ -49,8 +48,8 @@ const ll INF_LL = 1'000'000'000'000'000'007;
 
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
-#define _1 first
-#define _2 second
+#define fs first
+#define sn second
 
 #ifdef LOCAL
 #define debug(v) do {debugos << "L" << __LINE__ << " " << #v << " > ";debugos<<(v)<<newl;} while (0)
@@ -98,17 +97,9 @@ ll power(ll e, int t, ll mod = INF_LL) {
   return res;
 }
 
-template <typename T> T divceil(T, T);
-
-template <typename T> T divfloor(T m, T d) {
-  if (sgn(m) * sgn(d) >= 0) return m / d;
-  else return -divceil(abs(m), abs(d));
-}
-
 template <typename T> T divceil(T m, T d) {
-  if (m >= 0 and d > 0) return (m+d-1)/d;
-  else if (m < 0 and d < 0) return divceil(-m, -d);
-  else return -divfloor(abs(m), abs(d));
+  assert(m >= 0 and d > 0);
+  return (m+d-1)/d;
 }
 
 template<typename T>
@@ -129,8 +120,12 @@ class MyScanner {
 public:
   int offset = 0;
   char nc(){
+#ifdef LOCAL
+    return getchar();
+#else
     static char buf[100000],*L=buf,*R=buf;
     return L==R&&(R=(L=buf)+fread(buf,1,100000,stdin),L==R)?EOF:*L++;
+#endif
   }
   template <typename T> void input_integer(T& var) {
     var = 0; T sign = 1;
@@ -220,31 +215,27 @@ public:
 } debugos;
 
 template <typename OutStream, typename T, typename U>
-OutStream& operator<<(OutStream& out, pair<T, U> var) {
+OutStream& operator<<(OutStream& out, const pair<T, U>& var) {
   return out << var.first << " " << var.second;
 }
 template <typename OutStream, typename Tuple, size_t I, size_t N,
           enable_if_t<I == N>* = nullptr>
-OutStream& tuple_impl(OutStream& out, Tuple var) {
+OutStream& tuple_impl(OutStream& out, const Tuple& var) {
   return out;
 }
 template <typename OutStream, typename Tuple, size_t I, size_t N,
           enable_if_t<I != N>* = nullptr>
-OutStream& tuple_impl(OutStream& out, Tuple var) {
+OutStream& tuple_impl(OutStream& out, const Tuple& var) {
   out << get<I>(var) << " ";
-  return tuple_impl<Tuple, I+1, N>(out, var);
+  return tuple_impl<OutStream, Tuple, I+1, N>(out, var);
 }
 template <typename OutStream, typename... Ts>
-OutStream& operator<<(OutStream& out, tuple<Ts...> var) {
-  return tuple_impl<tuple<Ts...>, 0, sizeof...(Ts)>(out, var);
+OutStream& operator<<(OutStream& out, const tuple<Ts...>& var) {
+  return tuple_impl<OutStream, tuple<Ts...>, 0, sizeof...(Ts)>(out, var);
 }
 template <typename InStream, typename T, typename U>
 InStream& operator>>(InStream& in, pair<T, U>& var) {
   return in >> var.first >> var.second;
-}
-template <typename InStream, typename... Ts>
-InStream& operator>>(InStream& in, tuple<Ts...>& var) {
-  return tuple_impl<tuple<Ts...>, 0, sizeof...(Ts)>(in, var);
 }
 template <typename InStream, typename Tuple, size_t I, size_t N,
           enable_if_t<I == N>* = nullptr>
@@ -255,7 +246,11 @@ template <typename InStream, typename Tuple, size_t I, size_t N,
           enable_if_t<I != N>* = nullptr>
 InStream& tuple_impl(InStream& in, Tuple& var) {
   in >> get<I>(var);
-  return tuple_impl<Tuple, I+1, N>(in, var);
+  return tuple_impl<InStream, Tuple, I+1, N>(in, var);
+}
+template <typename InStream, typename... Ts>
+InStream& operator>>(InStream& in, tuple<Ts...>& var) {
+  return tuple_impl<InStream, tuple<Ts...>, 0, sizeof...(Ts)>(in, var);
 }
 
 

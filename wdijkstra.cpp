@@ -1,3 +1,4 @@
+
 template <typename Weight>
 using Graph = vector<vector<pair<int, Weight>>>;
 

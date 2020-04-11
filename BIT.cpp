@@ -1,6 +1,8 @@
-struct BIT {
+class BIT {
+private:
   const int n;
   vector<ll> data;
+public:
   BIT(int _n = 0): n(_n), data(_n+1) { }
   void add(int p, ll v = 1) {
     p++;

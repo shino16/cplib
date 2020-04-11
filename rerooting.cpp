@@ -1,6 +1,8 @@
+
 #pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename Edge, typename Apply, typename Merge>
-struct ReRooting {
+class ReRooting {
+public:
   struct Node {
     int to, rev;
     Edge data;
@@ -8,6 +10,7 @@ struct ReRooting {
     bool operator<(const Node &v) const { return to < v.to; };
   };
 
+private:
   vector<vector<Node>> G;
   vector<vector<T>> ld, rd;
   vector<int> lp, rp;
@@ -16,6 +19,7 @@ struct ReRooting {
   const Apply apply;
   const Merge merge;
 
+public:
   ReRooting(int n, T id, const Apply &apply = Apply(),
             const Merge &merge = Merge())
       : G(n), ld(n), rd(n), lp(n), rp(n), id(id), apply(apply), merge(merge) {}
@@ -28,6 +32,7 @@ struct ReRooting {
 
   void add_edge(int u, int v, Edge d) { add_edge(u, v, d, d); }
 
+private:
   // k: idx for edge (not vertex)
   T dfs(int v, int k) {
     while (lp[v] != k and lp[v] < (int)G[v].size()) {
@@ -48,6 +53,7 @@ struct ReRooting {
     return lower_bound(all(vs), Node(idx, vs[0].data)) - vs.begin();
   }
 
+public:
   vector<T> build() {
     int n = G.size();
     for (int i = 0; i < n; i++) {

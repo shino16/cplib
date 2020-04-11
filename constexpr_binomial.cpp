@@ -1,6 +1,7 @@
 template <size_t N>
-struct binomial {
-  modint fact[N+1], invfact[N+1];
+class binomial {
+public:
+  array<modint, N+1> fact, invfact;
   constexpr binomial() {
     fact[0] = 1;
     rep(i, N) fact[i+1] = fact[i] * modint(i+1);

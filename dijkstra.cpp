@@ -1,7 +1,6 @@
 vector<int> dijkstra(const VVI& graph, int start) {
-  using P = pair<int, int>;
-  priority_queue<P, vector<P>, greater<P>> q;
-  vector<int> dist(graph.size(), numeric_limits<int>::max());
+  minheap<pair<int, int>> q;
+  vector<int> dist(graph.size(), INF);
   dist[start] = 0;
   q.emplace(0, start);
 
