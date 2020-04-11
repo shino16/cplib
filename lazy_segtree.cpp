@@ -1,7 +1,9 @@
+
 #pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename U, typename Merge, typename EMerge, typename Upd>
 struct lazy_segtree {
-  const int n;
+private:
+  const int n, h;
   const T unit;
   const U eunit;
   const Merge merge;
@@ -9,47 +11,34 @@ struct lazy_segtree {
   const Upd upd;
   vector<T> data;
   vector<U> lazy;
-  const int h;
 
+public:
   // eunit need not be a unit
-  lazy_segtree(int n = 0, T unit = T(), U eunit = U(), Merge merge = Merge(),
+  lazy_segtree(int n_ = 0, T unit = T(), U eunit = U(), Merge merge = Merge(),
                EMerge emerge = EMerge(), Upd upd = Upd())
-      : n(n),
-        unit(unit),
-        eunit(eunit),
-        merge(merge),
-        emerge(emerge),
-        upd(upd),
-        data(n << 1, unit),
-        lazy(n, eunit),
-        h(32 - __builtin_clz(n)) {
+      : n(n_), h(32 - __builtin_clz(n_)), unit(unit), eunit(eunit),
+        merge(merge), emerge(emerge), upd(upd),
+        data(n_ << 1, unit), lazy(n_, eunit) {
     build(0, n);
   }
 
   // eunit need not be a unit
   template <typename Iter>
-  lazy_segtree(Iter first, Iter last, int n, T unit = T(), U eunit = U(),
+  lazy_segtree(Iter first, Iter last, int n_, T unit = T(), U eunit = U(),
                Merge merge = Merge(), EMerge emerge = EMerge(), Upd upd = Upd())
-      : n(n),
-        unit(unit),
-        eunit(eunit),
-        merge(merge),
-        emerge(emerge),
-        upd(upd),
-        data(n << 1),
-        lazy(n, eunit),
-        h(32 - __builtin_clz(n)) {
+      : n(n_), h(32 - __builtin_clz(n_)), unit(unit), eunit(eunit),
+        merge(merge), emerge(emerge), upd(upd),
+        data(n_ << 1, unit), lazy(n_, eunit) {
     assign(first, last);
   }
 
+private:
   void apply(int p, U e, int sz) {
     if (e == eunit) return;
     data[p] = upd(data[p], e, sz);
     if (p < n) {
-      if (lazy[p] == eunit)
-        lazy[p] = e;
-      else
-        lazy[p] = emerge(lazy[p], e);
+      if (lazy[p] == eunit) lazy[p] = e;
+      else lazy[p] = emerge(lazy[p], e);
     }
   }
 
@@ -60,23 +49,24 @@ struct lazy_segtree {
     lazy[p] = eunit;
   }
 
-  void pushup(int p, int k) {
+  void pushup(int p, int sz) {
     if (p >= n) return;
     data[p] = merge(data[p << 1], data[p << 1 | 1]);
-    if (lazy[p] != eunit) data[p] = upd(data[p], lazy[p], k);
+    if (lazy[p] != eunit) data[p] = upd(data[p], lazy[p], sz);
   }
 
   void flush(int l, int r) {
     int s = h, k = 1 << h;
     for (l += n, r += n - 1; s > 0; s--, k >>= 1)
-      for (int p = l >> s; p <= r >> s; p++) pushdown(p, k);
+      for (int p = l >> s; p <= r >> s; p++)
+        pushdown(p, k);
   }
 
   void build(int l, int r) {
-    int k = 2;
-    for (l += n, r += n - 1; l > 1; k <<= 1) {
+    int sz = 2;
+    for (l += n, r += n - 1; l > 1; sz <<= 1) {
       l >>= 1, r >>= 1;
-      for (int p = l; p <= r; p++) pushup(p, k);
+      for (int p = l; p <= r; p++) pushup(p, sz);
     }
   }
 
@@ -86,6 +76,7 @@ struct lazy_segtree {
     build(0, n);
   }
 
+public:
   void modify(int l, int r, U e) {
     if (e == eunit) return;
     flush(l, l + 1);
@@ -99,7 +90,7 @@ struct lazy_segtree {
     build(r0 - 1, r0);
   }
 
-  T query(int l, int r) const {
+  T query(int l, int r) {
     flush(l, l + 1);
     flush(r - 1, r);
     T resl = unit, resr = unit;
@@ -128,7 +119,7 @@ struct assign {
 };
 
 template <typename T>
-struct plus {
+struct plusT {
   T operator()(T a, T b, int k) const {
     return a + b * k;
   }
