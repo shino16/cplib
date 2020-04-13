@@ -1,6 +1,6 @@
 class modint;
 constexpr modint pow(modint, size_t);
-constexpr ll MOD = ll(1e9)+7;
+constexpr ll MOD = 1000000007;
 
 class modint {
 public:

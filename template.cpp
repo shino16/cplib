@@ -71,14 +71,14 @@ bool inside(int r, int c, int H, int W) {
   return 0 <= r and r < H and 0 <= c and c < W;
 }
 
-template <typename T> bool chmin(T& var, T x) {
+template <typename T, typename U> bool chmin(T& var, U x) {
   if (var > x) {
     var = x;
     return true;
   } else return false;
 }
 
-template <typename T> bool chmax(T& var, T x) {
+template <typename T, typename U> bool chmax(T& var, U x) {
   if (var < x) {
     var = x;
     return true;

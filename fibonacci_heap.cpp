@@ -233,7 +233,7 @@ public:
       M_top = other.M_top;
   }
 
-  void prioritize(node_handle& nh, mapped_type const& key) {
+  void prioritize(node_handle& nh, key_type const& key) {
     pointer cur(nh.M_node);
     // assert(M_comp(cur->M_value.first, key));
     cur->M_value.first = key;
