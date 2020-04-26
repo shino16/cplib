@@ -1,4 +1,7 @@
-[shion_](https://codeforces.com/profile/shion_)の競技プログラミング用ライブラリです。
-めったに使わないものはバグが混入している可能性があります。
+[![Actions Status](https://github.com/shino-sky/cp-lib/workflows/verify/badge.svg)](https://github.com/shino-sky/cp-lib/actions)
+
+[しの](https://twitter.com/shino_skycrew)の競技プログラミング用ライブラリです。
+
+現在[online-judge-verify-helper](https://github.com/kmyk/online-judge-verify-helper)導入の作業中です。まだverify済みでないものもあります。
 
 本作品はCC0ライセンスによって許諾されています。ライセンスの内容を知りたい方は https://creativecommons.org/publicdomain/zero/1.0/deed.ja でご確認ください。
