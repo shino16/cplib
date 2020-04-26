@@ -1,6 +1,6 @@
 template <typename T = ll>
 class polynomial {
- private:
+ public:
   vector<T> coef;
 
  public:
@@ -72,6 +72,3 @@ class polynomial {
   polynomial operator%(const polynomial& a) const { return divide(a).second; }
   polynomial operator%(const polynomial& a) { return *this = *this / a; }
 };
-
-// as for gcd refer to
-// https://github.com/beet-aizu/library/blob/master/polynomial/polynomial.cpp

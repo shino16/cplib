@@ -2,7 +2,7 @@
 typedef vector<vector<int>> Graph;
 
 // O(V+E)
-// if not DAG return empty vec
+// DAG <==> res.size() == graph.size()
 vector<int> topological_sort(const Graph& graph) {
   int n = graph.size();
   vector<int> in(n);
@@ -18,5 +18,5 @@ vector<int> topological_sort(const Graph& graph) {
       if (in[to] == 0) st.push(to);
     }
   }
-  return res.size() == n ? res : vector<int>{};
+  return res;
 }

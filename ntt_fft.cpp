@@ -4,7 +4,6 @@ template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, size_t);
 template <ll MOD> class modint {
  public:
   ll value;
-  static constexpr ll mod = MOD;
 
   constexpr modint(const ll x = 0) noexcept : value(x) {
     value %= MOD;
@@ -62,15 +61,18 @@ template <ll MOD> class modint {
   constexpr operator ll() const { return value; }
 };
 
-template <ll MOD>
-MyPrinter& operator<<(MyPrinter& out, modint<MOD> n) {
+template <typename OutStream, ll MOD>
+OutStream& operator<<(OutStream& out, modint<MOD> n) {
   out << n.value;
   return out;
 }
-template <ll MOD>
-DebugPrint& operator<<(DebugPrint& out, modint<MOD> n) {
-  out << n.value;
-  return out;
+
+template <typename InStream, ll MOD>
+InStream& operator>>(InStream& in, modint<MOD>& n) {
+  ll var;
+  in >> var;
+  n = modint<MOD>(var);
+  return in;
 }
 
 template <ll MOD>
@@ -93,22 +95,24 @@ modint<MOD> choose(int n, int r) {
   rep(i, r) nu *= n - i, de *= i + 1;
   return nu / de;
 }
+
 constexpr ll bmds(int x) {
   const ll v[] = {1012924417, 924844033, 998244353, 897581057, 645922817};
   return v[x];
 }
-constexpr int brts(int x) { // primitive roots
+constexpr int brts(int x) {  // primitive roots
   const int v[] = {5, 5, 3, 3, 3};
   return v[x];
 }
 template <int X>
 class NTT {
-public:
+ public:
   static constexpr int md = bmds(X);
   static constexpr int rt = brts(X);
   using M = modint<md>;
-private:
-  vector<vector<M> > rts, rrts;
+
+ private:
+  vector<vector<M>> rts, rrts;
 
   void ensure_base(int n) {
     if ((int)rts.size() >= n) return;
@@ -128,7 +132,8 @@ private:
       }
     }
   }
-public:
+
+ public:
   void ntt(vector<M>& as, bool f) {
     int n = as.size();
     assert((n & (n - 1)) == 0);
@@ -182,4 +187,4 @@ public:
     return cs;
   }
 };
-NTT<2> ntt; // mod 998244353
+NTT<2> ntt;  // mod 998244353

@@ -1,9 +1,9 @@
 
 #pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename U, typename Merge, typename EMerge, typename Upd>
-struct lazy_segtree {
-private:
-  const int n, h;
+struct LazySegmentTree {
+ private:
+  const size_t n, h;
   const T unit;
   const U eunit;
   const Merge merge;
@@ -12,27 +12,43 @@ private:
   vector<T> data;
   vector<U> lazy;
 
-public:
-  // eunit need not be a unit
-  lazy_segtree(int n_ = 0, T unit = T(), U eunit = U(), Merge merge = Merge(),
-               EMerge emerge = EMerge(), Upd upd = Upd())
-      : n(n_), h(32 - __builtin_clz(n_)), unit(unit), eunit(eunit),
-        merge(merge), emerge(emerge), upd(upd),
-        data(n_ << 1, unit), lazy(n_, eunit) {
+ public:
+  LazySegmentTree(size_t n = 0, T unit = T(), U eunit = U(),
+                  Merge merge = Merge(), EMerge emerge = EMerge(),
+                  Upd upd = Upd())
+      : n(n), h(32 - __builtin_clz(n)), unit(unit), eunit(eunit), merge(merge),
+        emerge(emerge), upd(upd), data(n << 1, unit), lazy(n, eunit) {
     build(0, n);
   }
 
-  // eunit need not be a unit
-  template <typename Iter>
-  lazy_segtree(Iter first, Iter last, int n_, T unit = T(), U eunit = U(),
-               Merge merge = Merge(), EMerge emerge = EMerge(), Upd upd = Upd())
-      : n(n_), h(32 - __builtin_clz(n_)), unit(unit), eunit(eunit),
-        merge(merge), emerge(emerge), upd(upd),
-        data(n_ << 1, unit), lazy(n_, eunit) {
+  template <typename Iter,
+            enable_if_t<is_same_v<typename Iter::value_type, T>>* = nullptr>
+  LazySegmentTree(Iter first, Iter last, size_t n, T unit = T(), U eunit = U(),
+                  Merge merge = Merge(), EMerge emerge = EMerge(),
+                  Upd upd = Upd())
+      : n(n), h(32 - __builtin_clz(n)), unit(unit), eunit(eunit), merge(merge),
+        emerge(emerge), upd(upd), data(n << 1, unit), lazy(n, eunit) {
     assign(first, last);
   }
 
-private:
+  template <typename Iter,
+            enable_if_t<!is_same_v<typename Iter::value_type, T>>* = nullptr>
+  [[deprecated]] LazySegmentTree(Iter first, Iter last, size_t n, T unit = T(),
+                                 U eunit = U(), Merge merge = Merge(),
+                                 EMerge emerge = EMerge(), Upd upd = Upd())
+      : n(n), h(32 - __builtin_clz(n)), unit(unit), eunit(eunit), merge(merge),
+        emerge(emerge), upd(upd), data(n << 1, unit), lazy(n, eunit) {
+    assign(first, last);
+  }
+
+  template <typename Iter>
+  LazySegmentTree(Iter first, Iter last, T unit = T(), U eunit = U(),
+                  Merge merge = Merge(), EMerge emerge = EMerge(),
+                  Upd upd = Upd())
+      : LazySegmentTree(first, last, distance(first, last), unit, eunit, merge,
+                        emerge, upd) {}
+
+ private:
   void apply(int p, U e, int sz) {
     if (e == eunit) return;
     data[p] = upd(data[p], e, sz);
@@ -76,7 +92,7 @@ private:
     build(0, n);
   }
 
-public:
+ public:
   void modify(int l, int r, U e) {
     if (e == eunit) return;
     flush(l, l + 1);
@@ -103,24 +119,24 @@ public:
 };
 #pragma GCC diagnostic warning "-Wshadow"
 
-template <typename T>
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 struct minT {
+  template <typename T>
   T operator()(T a, T b) const { return min(a, b); }
 };
 
-template <typename T>
 struct maxT {
+  template <typename T>
   T operator()(T a, T b) const { return max(a, b); }
 };
 
-template <typename T>
-struct assign {
+struct assignT {
+  template <typename T>
   T operator()(T a, T b, int k = 0) const { return b; }
 };
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 
-template <typename T>
 struct plusT {
-  T operator()(T a, T b, int k) const {
-    return a + b * k;
-  }
+  template <typename T>
+  T operator()(T a, T b, int k) const { return a + b * k; }
 };

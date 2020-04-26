@@ -23,6 +23,7 @@
 using namespace std;
 
 using ll = long long;
+using ull = unsigned long long;
 using VI = vector<int>;
 using VVI = vector<vector<int>>;
 using VLL = vector<ll>;
@@ -42,14 +43,12 @@ const ll INF_LL = 1'000'000'000'000'000'007;
 #define repFromUntil(name, from, until) for (int name = from, name##__until = (until); name < name##__until; name++)
 #define repr(...) __overload3(__VA_ARGS__, reprFromUntil, reprUntil, repeat)(__VA_ARGS__)
 #define reprUntil(name, times) reprFromUntil(name, 0, times)
-#define reprFromUntil(name, from, until) for (int name = until - 1, name##__from = (from); name >= name##__from; name--)
+#define reprFromUntil(name, from, until) for (int name = (until) - 1, name##__from = (from); name >= name##__from; name--)
 
 #define EXIT(out) do { OUT(out); exit(0); } while (0)
 
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
-#define fs first
-#define sn second
 
 #ifdef LOCAL
 #define debug(v) do {debugos << "L" << __LINE__ << " " << #v << " > ";debugos<<(v)<<newl;} while (0)
@@ -64,12 +63,6 @@ const ll INF_LL = 1'000'000'000'000'000'007;
 #endif
 
 #define newl "\n"
-constexpr int dr[] = {1,-1,0,0};  // LRUD
-constexpr int dc[] = {0,0,1,-1};
-
-bool inside(int r, int c, int H, int W) {
-  return 0 <= r and r < H and 0 <= c and c < W;
-}
 
 template <typename T, typename U> bool chmin(T& var, U x) {
   if (var > x) {
@@ -116,6 +109,15 @@ string operator*(const string& s, int times) {
   return res;
 }
 
+struct Edge {
+  int to; ll cost;
+  Edge(int _to): to(_to), cost(1) {}
+  Edge(int _to, ll _cost): to(_to), cost(_cost) {}
+  operator int() { return to; }
+};
+
+using Graph = vector<vector<Edge>>;
+
 class MyScanner {
 public:
   int offset = 0;
@@ -123,8 +125,7 @@ public:
 #ifdef LOCAL
     return getchar();
 #else
-    static char buf[100000],*L=buf,*R=buf;
-    return L==R&&(R=(L=buf)+fread(buf,1,100000,stdin),L==R)?EOF:*L++;
+    return getchar_unlocked();
 #endif
   }
   template <typename T> void input_integer(T& var) {
@@ -167,8 +168,10 @@ private:
 
 class MyPrinter {
 public:
+  int offset = 0;
   template <typename T>
   void output_integer(T var) {
+    var += offset;
     if (var == 0) { putchar('0'); return; }
     if (var < 0) putchar('-'), var = -var;
     char stack[32]; int stack_p = 0;
@@ -176,7 +179,7 @@ public:
     while (stack_p) putchar(stack[--stack_p]);
   }
   MyPrinter& operator<<(char c) { putchar(c); return *this; }
-  MyPrinter& operator<<(double x) { printf("%.10f\n", x); return *this; }
+  MyPrinter& operator<<(double x) { printf("%.10f", x); return *this; }
   template <typename T> MyPrinter& operator<<(T var) { output_integer<T>(var); return *this; }
   MyPrinter& operator<<(char* str_p) { while (*str_p) putchar(*(str_p++)); return *this; }
   MyPrinter& operator<<(const char* str_p) { while (*str_p) putchar(*(str_p++)); return *this; }
@@ -193,15 +196,11 @@ public:
   template <typename Iter>
   void iter(Iter s, Iter t) {
     if (s == t) *this << "\n";
-    else {
-      for (; s != t; s++) {
-        *this << *s << " \n"[next(s, 1) == t];
-      }
-    }
+    else for (; s != t; s++) *this << *s << " \n"[next(s, 1) == t];
   }
   template <typename Range>
   void range(const Range& r) { iter(begin(r), end(r)); }
-} OUT;
+} OUT, OUT1{1};
 
 class DebugPrint {
 public:

@@ -25,4 +25,13 @@ public:
   ll sum(int r1, int c1, int r2, int c2) {
     return sum(r1, c1) + sum(r2, c2) - sum(r1, c2) - sum(r2, c1);
   }
+  void assign(int r, int c, ll v) {
+    add(r, c, v - sum(r, c, r+1, c+1));
+  }
+  bool chmax(int r, int c, ll v) {
+    if (sum(r, c, r+1, c+1) < v) {
+      assign(r, c, v);
+      return true;
+    } else return false;
+  }
 };

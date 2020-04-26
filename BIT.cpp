@@ -1,6 +1,7 @@
 class BIT {
-private:
+public:
   const int n;
+private:
   vector<ll> data;
 public:
   BIT(int _n = 0): n(_n), data(_n+1) { }
@@ -23,5 +24,14 @@ public:
   // sum over [l, r)
   ll sum(int l, int r) {
     return sum(r) - sum(l);
+  }
+  void assign(int p, ll v) {
+    add(p, v - sum(p, p+1));
+  }
+  bool chmax(int p, ll v) {
+    if (sum(p, p+1) < v) {
+      assign(p, v);
+      return true;
+    } else return false;
   }
 };
