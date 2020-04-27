@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: util/compress.cpp
+# :x: util/compress.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/verify/BIT_compress.test.cpp.html">verify/BIT_compress.test.cpp</a>
+* :x: <a href="../../verify/verify/BIT_compress.test.cpp.html">verify/BIT_compress.test.cpp</a>
 
 
 ## Code

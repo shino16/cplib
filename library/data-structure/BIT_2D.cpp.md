@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: data-structure/BIT_2D.cpp
+# :x: data-structure/BIT_2D.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/verify/BIT_2D.test.cpp.html">verify/BIT_2D.test.cpp</a>
+* :x: <a href="../../verify/verify/BIT_2D.test.cpp.html">verify/BIT_2D.test.cpp</a>
 
 
 ## Code
