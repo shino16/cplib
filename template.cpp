@@ -121,13 +121,7 @@ using Graph = vector<vector<Edge>>;
 class MyScanner {
 public:
   int offset = 0;
-  char nc(){
-#ifdef LOCAL
-    return getchar();
-#else
-    return getchar_unlocked();
-#endif
-  }
+  char nc(){ return getchar(); }
   template <typename T> void input_integer(T& var) {
     var = 0; T sign = 1;
     int cc = nc();
@@ -253,6 +247,3 @@ InStream& operator>>(InStream& in, tuple<Ts...>& var) {
 }
 
 
-int main() {
-
-}
