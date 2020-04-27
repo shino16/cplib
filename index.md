@@ -79,12 +79,12 @@ layout: default
 * :warning: <a href="library/segtree.cpp.html">segtree.cpp</a>
 * :warning: <a href="library/squarematrix.cpp.html">squarematrix.cpp</a>
 * :warning: <a href="library/swag.cpp.html">swag.cpp</a>
-* :warning: <a href="library/template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="library/template.cpp.html">template.cpp</a>
 * :warning: <a href="library/topological_sort.cpp.html">topological_sort.cpp</a>
 * :warning: <a href="library/totient.cpp.html">totient.cpp</a>
 * :warning: <a href="library/tree_diameter.cpp.html">tree_diameter.cpp</a>
 * :warning: <a href="library/two-edge-connected-components.cpp.html">two-edge-connected-components.cpp</a>
-* :warning: <a href="library/union_find.cpp.html">union_find.cpp</a>
+* :heavy_check_mark: <a href="library/union_find.cpp.html">union_find.cpp</a>
 * :warning: <a href="library/wdijkstra.cpp.html">wdijkstra.cpp</a>
 * :warning: <a href="library/wunion_find.cpp.html">wunion_find.cpp</a>
 
@@ -94,5 +94,10 @@ layout: default
 ### verify
 
 * :warning: <a href="library/verify/test.cpp.html">verify/test.cpp</a>
+
+
+## Verify Files
+
+* :heavy_check_mark: <a href="verify/verify/union_find.test.cpp.html">verify/union_find.test.cpp</a>
 
 

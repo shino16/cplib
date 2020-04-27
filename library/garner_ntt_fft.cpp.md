@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/garner_ntt_fft.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-03 16:51:41+09:00
+    - Last commit date: 2020-04-27 12:43:03+09:00
 
 
 
@@ -52,10 +52,10 @@ template <ll MOD> class modint {
     value %= MOD;
     if (value < 0) value += MOD;
   }
-  constexpr bool operator==(const modint<MOD>& rhs) {
+  constexpr bool operator==(const modint<MOD>& rhs) const {
     return value == rhs.value;
   }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
+  constexpr bool operator!=(const modint<MOD>& rhs) const {
     return value != rhs.value;
   }
   constexpr modint<MOD> operator-() const { return modint<MOD>(0) - *this; }
@@ -311,10 +311,10 @@ template <ll MOD> class modint {
     value %= MOD;
     if (value < 0) value += MOD;
   }
-  constexpr bool operator==(const modint<MOD>& rhs) {
+  constexpr bool operator==(const modint<MOD>& rhs) const {
     return value == rhs.value;
   }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
+  constexpr bool operator!=(const modint<MOD>& rhs) const {
     return value != rhs.value;
   }
   constexpr modint<MOD> operator-() const { return modint<MOD>(0) - *this; }

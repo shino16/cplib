@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../assets/css/copy-button.css" />
 
 
-# :warning: union_find.cpp
+# :heavy_check_mark: union_find.cpp
 
 <a href="../index.html">Back to top page</a>
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/union_find.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-11 15:35:53+09:00
+    - Last commit date: 2020-04-27 12:44:29+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../verify/verify/union_find.test.cpp.html">verify/union_find.test.cpp</a>
 
 
 ## Code
@@ -48,9 +53,8 @@ class union_find {
   vector<int> par, rank, sz;
 
  public:
-  union_find(int _n) : n(_n), cnt(n), par(_n), rank(_n), sz(_n) {
+  union_find(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
     iota(all(par), 0);
-    fill(all(sz), 1);
   }
   int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }
   void merge(int x, int y) {
@@ -82,9 +86,8 @@ class union_find {
   vector<int> par, rank, sz;
 
  public:
-  union_find(int _n) : n(_n), cnt(n), par(_n), rank(_n), sz(_n) {
+  union_find(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
     iota(all(par), 0);
-    fill(all(sz), 1);
   }
   int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }
   void merge(int x, int y) {
