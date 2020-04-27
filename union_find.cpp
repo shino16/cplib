@@ -5,9 +5,8 @@ class union_find {
   vector<int> par, rank, sz;
 
  public:
-  union_find(int _n) : n(_n), cnt(n), par(_n), rank(_n), sz(_n) {
+  union_find(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
     iota(all(par), 0);
-    fill(all(sz), 1);
   }
   int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }
   void merge(int x, int y) {
