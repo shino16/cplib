@@ -9,10 +9,10 @@ template <ll MOD> class modint {
     value %= MOD;
     if (value < 0) value += MOD;
   }
-  constexpr bool operator==(const modint<MOD>& rhs) {
+  constexpr bool operator==(const modint<MOD>& rhs) const {
     return value == rhs.value;
   }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
+  constexpr bool operator!=(const modint<MOD>& rhs) const {
     return value != rhs.value;
   }
   constexpr modint<MOD> operator-() const { return modint<MOD>(0) - *this; }
