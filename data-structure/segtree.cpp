@@ -49,7 +49,7 @@ class SegmentTree {
     for (; l > 1; l >>= 1) data[l >> 1] = merge(data[l & (~1)], data[l | 1]);
   }
 
-  T query(int l, int r) const {
+  T fold(int l, int r) const {
     if (l == r) return unit;
     if (l + 1 == r) return data[l + n];
     T resl = data[l += n], resr = data[(r += n) - 1];

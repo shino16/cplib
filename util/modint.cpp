@@ -1,6 +1,10 @@
+
+constexpr ll Mod = 10000007;
+
 template <ll> class modint;
 template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, size_t);
-template <ll MOD>
+
+template <ll MOD = Mod>
 class modint {
 public:
   ll value;

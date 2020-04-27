@@ -1,4 +1,4 @@
-template <typename T, typename Compare = less<T>>
+template <typename T, typename Compare = less<>>
 class heap {
  private:
   Compare comp;

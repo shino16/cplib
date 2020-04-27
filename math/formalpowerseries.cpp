@@ -1,30 +1,10 @@
 
-template <typename M>
-class binomial {
-public:
-  vector<M> fact, invfact;
-  binomial(int n) : fact(n+1), invfact(n+1) {
-    fact[0] = 1;
-    rep(i, n) fact[i+1] = fact[i] * M(i+1);
-    invfact[n] = M(1) / fact[n];
-    repr(i, n) invfact[i] = invfact[i+1] * M(i+1);
-  }
-  M operator()(int n, int r) {
-    chmin(r, n-r);
-    if (r < 0) return M(0);
-    return fact[n] * invfact[r] * invfact[n-r];
-  }
-};
-
 // originally written by @beet-aizu
-template <typename M_>
+template <typename M, typename Conv>
 struct FormalPowerSeries {
-  using M = M_;
-
   using Poly = vector<M>;
-  using Conv = function<Poly(Poly, Poly)>;
   const Conv conv;
-  FormalPowerSeries(Conv _conv) : conv(_conv) {}
+  FormalPowerSeries(const Conv& _conv) : conv(_conv) {}
 
   Poly pre(const Poly& as, int deg) {
     return Poly(as.begin(), as.begin() + min((int)as.size(), deg));

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef LOCAL
 #pragma GCC optimize ("O3")
 #pragma GCC optimize ("unroll-loops")
@@ -192,8 +194,6 @@ public:
     if (s == t) *this << "\n";
     else for (; s != t; s++) *this << *s << " \n"[next(s, 1) == t];
   }
-  template <typename Range>
-  void range(const Range& r) { iter(begin(r), end(r)); }
 } OUT, OUT1{1};
 
 class DebugPrint {
@@ -245,5 +245,3 @@ template <typename InStream, typename... Ts>
 InStream& operator>>(InStream& in, tuple<Ts...>& var) {
   return tuple_impl<InStream, tuple<Ts...>, 0, sizeof...(Ts)>(in, var);
 }
-
-

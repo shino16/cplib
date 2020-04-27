@@ -1,3 +1,4 @@
+
 struct Node {
   Node *left, *right;
   ll v;
@@ -10,7 +11,7 @@ class SegmentTree {
   Node *root;
   int n, n0;
 
-  ll query(int a, int b, Node *n, int l, int r) {
+  ll fold(int a, int b, Node *n, int l, int r) {
     if(a <= l && r <= b) {
       return n->v;
     }
@@ -18,8 +19,8 @@ class SegmentTree {
       return 0;
     }
 
-    ll lv = n->left ? query(a, b, n->left, l, (l + r) >> 1) : 0;
-    ll rv = n->right ? query(a, b, n->right, (l + r) >> 1, r) : 0;
+    ll lv = n->left ? fold(a, b, n->left, l, (l + r) >> 1) : 0;
+    ll rv = n->right ? fold(a, b, n->right, (l + r) >> 1, r) : 0;
     return lv + rv;
   }
 
@@ -54,15 +55,7 @@ public:
     }
   }
 
-  ll query(int a, int b) {
-    return query(a, b, root, 0, n0);
-  }
-
-  ll lquery(int b) {
-    return query(0, b, root, 0, n0);
-  }
-
-  ll rquery(int a) {
-    return query(a, n0, root, 0, n0);
+  ll fold(int a, int b) {
+    return fold(a, b, root, 0, n0);
   }
 };

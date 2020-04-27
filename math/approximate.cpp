@@ -1,37 +1,4 @@
 
-template <typename F>
-class
-#if defined(__has_cpp_attribute) && __has_cpp_attribute(nodiscard)
-[[nodiscard]]
-#elif defined(__GNUC__) && (__GNUC__ > 3 || __GNUC__ == 3 && __GNUC_MINOR__ >= 4)
-__attribute__((warn_unused_result))
-#endif
-FixPoint : private F
-{
-public:
-explicit constexpr FixPoint(F&& f) noexcept
-: F(std::forward<F>(f))
-{}
-
-template<typename... Args>
-constexpr decltype(auto)
-operator()(Args&&... args) const
-#if !defined(__GNUC__) || defined(__clang__) || __GNUC__ >= 9
-noexcept(noexcept(F::operator()(std::declval<FixPoint>(), std::declval<Args>()...)))
-#endif
-{
-return F::operator()(*this, std::forward<Args>(args)...);
-}
-};
-
-
-template<typename F>
-static inline constexpr decltype(auto)
-fix(F&& f) noexcept
-{
-return FixPoint<F>{std::forward<F>(f)};
-}
-
 bool operator <(PLL x, PLL y) {
   return x.first * y.second < x.second * y.first;
 }

@@ -1,3 +1,5 @@
+
+// originally written by @beet-aizu
 namespace FFT {
 using dbl = double;
 

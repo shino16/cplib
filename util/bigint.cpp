@@ -1,3 +1,5 @@
+
+// credit to @square1001
 struct bigint {
   using ll = long long;
   using vll = vector<ll>;

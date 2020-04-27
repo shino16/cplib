@@ -1,4 +1,5 @@
 
+// originally written by @beet-aizu
 class HLD {
  private:
   VI index, sz, par;
@@ -7,10 +8,8 @@ class HLD {
 
  public:
   HLD(Graph& graph)
-      : index(graph.size()),
-        sz(graph.size(), 1),
-        par(graph.size(), -1),
-        nxt(graph.size()) {
+      : index(graph.size()), sz(graph.size(), 1),
+        par(graph.size(), -1), nxt(graph.size()) {
     dfs_sz(graph, 0);
     dfs_hld(graph, 0);
   }

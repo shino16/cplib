@@ -106,7 +106,7 @@ struct LazySegmentTree {
     build(r0 - 1, r0);
   }
 
-  T query(int l, int r) {
+  T fold(int l, int r) {
     flush(l, l + 1);
     flush(r - 1, r);
     T resl = unit, resr = unit;

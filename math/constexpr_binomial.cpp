@@ -1,3 +1,4 @@
+
 template <size_t N>
 class binomial {
 public:
