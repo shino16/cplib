@@ -1,6 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
 #include "template.cpp"
-#include "union_find.cpp"
+#include "data-structure/union_find.cpp"
 
 
 int main() {
