@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: verify/union_find.test.cpp
+# :heavy_check_mark: verify/BIT_2D.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#e8418d1d706cd73548f9f16f1d55ad6e">verify</a>
-* <a href="{{ site.github.repository_url }}/blob/master/verify/union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:47:00+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/verify/BIT_2D.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-27 18:46:46+09:00
 
 
-* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A</a>
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
+* :heavy_check_mark: <a href="../../library/data-structure/BIT_2D.cpp.html">data-structure/BIT_2D.cpp</a>
 * :heavy_check_mark: <a href="../../library/template.cpp.html">template.cpp</a>
 
 
@@ -48,29 +48,47 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
-#include "template.cpp"
-#include "data-structure/union_find.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842"
 
+#include "template.cpp"
+#include "data-structure/BIT_2D.cpp"
 
 int main() {
-  int n = IN, q = IN;
-  union_find uf(n);
+  int h = IN, w = IN, T = IN, q = IN;
+
+  queue<pair<int, PII>> trans;
+  BIT_2D A(h, w), B(h, w);
+
   rep(q) {
-    int c = IN, x = IN, y = IN;
-    if (c == 0) uf.merge(x, y);
-    else OUT((int)uf.same(x, y));
+    int t = IN, cmd = IN, r = IN1, c = IN1;
+
+    while (not trans.empty() and trans.front().first <= t) {
+      PII p; tie(ignore, p) = trans.front(); trans.pop();
+      A.add(p.first, p.second, -1);
+      B.add(p.first, p.second, +1);
+    }
+
+    if (cmd == 0) {
+      A.add(r, c, +1);
+      trans.emplace(t+T, PII{r, c});
+    } else if (cmd == 1) {
+      if (B.sum(r, c, r+1, c+1))
+        B.add(r, c, -1);
+    } else {
+      int r2 = IN, c2 = IN;
+      OUT(B.sum(r, c, r2, c2), A.sum(r, c, r2, c2));
+    }
   }
 }
-
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "verify/union_find.test.cpp"
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
+#line 1 "verify/BIT_2D.test.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842"
+
 #line 2 "template.cpp"
 
 #ifndef LOCAL
@@ -318,42 +336,71 @@ template <typename InStream, typename... Ts>
 InStream& operator>>(InStream& in, tuple<Ts...>& var) {
   return tuple_impl<InStream, tuple<Ts...>, 0, sizeof...(Ts)>(in, var);
 }
-#line 1 "data-structure/union_find.cpp"
+#line 1 "data-structure/BIT_2D.cpp"
 
-class union_find {
- private:
-  int n, cnt;
-  vector<int> par, rank, sz;
-
- public:
-  union_find(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
-    iota(all(par), 0);
+class BIT_2D {
+private:
+  const int h, w;
+  vector<vector<ll>> data;
+public:
+  BIT_2D(int h, int w): h(h), w(w), data(h+1, vector<ll>(w+1)) { }
+  void add(int r, int c, ll v) {
+    r++; c++;
+    int c0 = c;
+    for (; r <= h; r += r & -r)
+      for (c = c0; c <= w; c += c & -c)
+        data[r][c] += v;
   }
-  int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }
-  void merge(int x, int y) {
-    x = root(x);
-    y = root(y);
-    if (x == y) return;
-    if (rank[x] < rank[y]) swap(x, y);
-    par[y] = x;
-    if (rank[x] == rank[y]) rank[x]++;
-    sz[x] += sz[y];
-    cnt--;
+  // sum over [(0, 0), (r, c))
+  ll sum(int r, int c) {
+    ll res = 0;
+    int c0 = c;
+    for (; r > 0; r -= r & -r)
+      for (c = c0; c > 0; c -= c & -c)
+        res += data[r][c];
+    return res;
   }
-  bool same(int x, int y) { return root(x) == root(y); }
-  int size(int x) { return sz[root(x)]; }
-  int count() { return cnt; }
+  // sum over [(r1, c1), (r2, c2))
+  ll sum(int r1, int c1, int r2, int c2) {
+    return sum(r1, c1) + sum(r2, c2) - sum(r1, c2) - sum(r2, c1);
+  }
+  void assign(int r, int c, ll v) {
+    add(r, c, v - sum(r, c, r+1, c+1));
+  }
+  bool chmax(int r, int c, ll v) {
+    if (sum(r, c, r+1, c+1) < v) {
+      assign(r, c, v);
+      return true;
+    } else return false;
+  }
 };
-#line 4 "verify/union_find.test.cpp"
-
+#line 5 "verify/BIT_2D.test.cpp"
 
 int main() {
-  int n = IN, q = IN;
-  union_find uf(n);
+  int h = IN, w = IN, T = IN, q = IN;
+
+  queue<pair<int, PII>> trans;
+  BIT_2D A(h, w), B(h, w);
+
   rep(q) {
-    int c = IN, x = IN, y = IN;
-    if (c == 0) uf.merge(x, y);
-    else OUT((int)uf.same(x, y));
+    int t = IN, cmd = IN, r = IN1, c = IN1;
+
+    while (not trans.empty() and trans.front().first <= t) {
+      PII p; tie(ignore, p) = trans.front(); trans.pop();
+      A.add(p.first, p.second, -1);
+      B.add(p.first, p.second, +1);
+    }
+
+    if (cmd == 0) {
+      A.add(r, c, +1);
+      trans.emplace(t+T, PII{r, c});
+    } else if (cmd == 1) {
+      if (B.sum(r, c, r+1, c+1))
+        B.add(r, c, -1);
+    } else {
+      int r2 = IN, c2 = IN;
+      OUT(B.sum(r, c, r2, c2), A.sum(r, c, r2, c2));
+    }
   }
 }
 

@@ -31,13 +31,15 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 12:43:31+09:00
+    - Last commit date: 2020-04-27 18:46:30+09:00
 
 
 
 
 ## Verified with
 
+* :heavy_check_mark: <a href="../verify/verify/BIT_2D.test.cpp.html">verify/BIT_2D.test.cpp</a>
+* :heavy_check_mark: <a href="../verify/verify/BIT_compress.test.cpp.html">verify/BIT_compress.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/union_find.test.cpp.html">verify/union_find.test.cpp</a>
 
 
@@ -46,6 +48,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
+
 #ifndef LOCAL
 #pragma GCC optimize ("O3")
 #pragma GCC optimize ("unroll-loops")
@@ -240,8 +244,6 @@ public:
     if (s == t) *this << "\n";
     else for (; s != t; s++) *this << *s << " \n"[next(s, 1) == t];
   }
-  template <typename Range>
-  void range(const Range& r) { iter(begin(r), end(r)); }
 } OUT, OUT1{1};
 
 class DebugPrint {
@@ -294,16 +296,15 @@ InStream& operator>>(InStream& in, tuple<Ts...>& var) {
   return tuple_impl<InStream, tuple<Ts...>, 0, sizeof...(Ts)>(in, var);
 }
 
-
-
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "template.cpp"
+#line 2 "template.cpp"
 
+#ifndef LOCAL
 #pragma GCC optimize ("O3")
 #pragma GCC optimize ("unroll-loops")
 #pragma GCC target ("avx")
@@ -497,8 +498,6 @@ public:
     if (s == t) *this << "\n";
     else for (; s != t; s++) *this << *s << " \n"[next(s, 1) == t];
   }
-  template <typename Range>
-  void range(const Range& r) { iter(begin(r), end(r)); }
 } OUT, OUT1{1};
 
 class DebugPrint {
@@ -550,8 +549,6 @@ template <typename InStream, typename... Ts>
 InStream& operator>>(InStream& in, tuple<Ts...>& var) {
   return tuple_impl<InStream, tuple<Ts...>, 0, sizeof...(Ts)>(in, var);
 }
-
-
 
 ```
 {% endraw %}

@@ -25,22 +25,23 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: verify/union_find.test.cpp
+# :heavy_check_mark: verify/BIT_compress.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#e8418d1d706cd73548f9f16f1d55ad6e">verify</a>
-* <a href="{{ site.github.repository_url }}/blob/master/verify/union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:47:00+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/verify/BIT_compress.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-27 18:46:46+09:00
 
 
-* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A</a>
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0343">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0343</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
+* :heavy_check_mark: <a href="../../library/data-structure/BIT.cpp.html">data-structure/BIT.cpp</a>
 * :heavy_check_mark: <a href="../../library/template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../../library/util/compress.cpp.html">util/compress.cpp</a>
 
 
 ## Code
@@ -48,18 +49,43 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
-#include "template.cpp"
-#include "data-structure/union_find.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0343"
 
+#include "template.cpp"
+#include "util/compress.cpp"
+#include "data-structure/BIT.cpp"
+
+#define D_GLIBCXX_DEBUG
 
 int main() {
-  int n = IN, q = IN;
-  union_find uf(n);
-  rep(q) {
-    int c = IN, x = IN, y = IN;
-    if (c == 0) uf.merge(x, y);
-    else OUT((int)uf.same(x, y));
+  int n = IN, c = IN;
+
+  VI cs(c), ts(c); VLL ps(c);
+  rep(i, c) {
+    cs[i] = IN, ts[i] = IN;
+    if (cs[i] == 0) ts[i]--, ps[i] = IN;
+  }
+
+  VLL scores(n);
+  Compress<pair<ll, int>> comp;
+
+  rep(i, n) comp.emplace(scores[i], -i);
+  rep(i, c) if (cs[i] == 0)
+      comp.emplace(scores[ts[i]] += ps[i], -ts[i]);
+
+  fill(all(scores), 0);
+
+  BIT bit(comp.size());
+  rep(i, n) bit.add(comp[make_pair(0, -i)], 1);
+
+  rep(i, c) {
+    if (cs[i] == 0) {
+      bit.add(comp[make_pair(scores[ts[i]], -ts[i])], -1);
+      bit.add(comp[make_pair(scores[ts[i]] += ps[i], -ts[i])], 1);
+    } else {
+      int s = bit.upper_bound(n - ts[i]);
+      OUT(-comp.rev(s).second+1, comp.rev(s).first);
+    }
   }
 }
 
@@ -69,8 +95,9 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "verify/union_find.test.cpp"
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
+#line 1 "verify/BIT_compress.test.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0343"
+
 #line 2 "template.cpp"
 
 #ifndef LOCAL
@@ -318,42 +345,144 @@ template <typename InStream, typename... Ts>
 InStream& operator>>(InStream& in, tuple<Ts...>& var) {
   return tuple_impl<InStream, tuple<Ts...>, 0, sizeof...(Ts)>(in, var);
 }
-#line 1 "data-structure/union_find.cpp"
+#line 1 "util/compress.cpp"
 
-class union_find {
+template <typename T = ll>
+class Compress {
  private:
-  int n, cnt;
-  vector<int> par, rank, sz;
+  vector<T> data;
+  bool built;
 
  public:
-  union_find(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
-    iota(all(par), 0);
+  Compress() { build(); }
+  template <typename Iter>
+  Compress(Iter first, Iter last) : data(first, last) {
+    build();
   }
-  int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }
-  void merge(int x, int y) {
-    x = root(x);
-    y = root(y);
-    if (x == y) return;
-    if (rank[x] < rank[y]) swap(x, y);
-    par[y] = x;
-    if (rank[x] == rank[y]) rank[x]++;
-    sz[x] += sz[y];
-    cnt--;
-  }
-  bool same(int x, int y) { return root(x) == root(y); }
-  int size(int x) { return sz[root(x)]; }
-  int count() { return cnt; }
-};
-#line 4 "verify/union_find.test.cpp"
 
+ private:
+  void build() {
+    if (not built) {
+      sort(all(data));
+      data.erase(unique(all(data)), data.end());
+      built = true;
+    }
+  }
+
+ public:
+  void insert(T v) {
+    built = false;
+    data.push_back(v);
+  }
+  template <typename... Args>
+  void emplace(Args&&... args) {
+    built = false;
+    data.emplace_back(forward<Args>(args)...);
+  }
+  int size() {
+    build();
+    return data.size();
+  }
+  int operator[](T v) {
+    build();
+    assert(binary_search(all(data), v));
+    return std::lower_bound(all(data), v) - data.begin();
+  }
+  T rev(int i) {
+    build();
+    return data[i];
+  }
+  int lower_bound(T v) {
+    build();
+    return std::lower_bound(all(data), v) - data.begin();
+  }
+  int upper_bound(T v) {
+    build();
+    return std::upper_bound(all(data), v) - data.begin();
+  }
+};
+#line 1 "data-structure/BIT.cpp"
+class BIT {
+ public:
+  const int n;
+
+ private:
+  vector<ll> data;
+
+ public:
+  BIT(int _n = 0) : n(_n), data(_n + 1) {}
+  void add(int p, ll v = 1) {
+    p++;
+    while (p <= n) {
+      data[p] += v;
+      p += p & -p;
+    }
+  }
+  // sum over [0, p)
+  ll sum(int p) {
+    ll res = 0;
+    while (p) {
+      res += data[p];
+      p -= p & -p;
+    }
+    return res;
+  }
+  // sum over [l, r)
+  ll sum(int l, int r) { return sum(r) - sum(l); }
+  void assign(int p, ll v) { add(p, v - sum(p, p + 1)); }
+  bool chmax(int p, ll v) {
+    if (sum(p, p + 1) < v) {
+      assign(p, v);
+      return true;
+    } else
+      return false;
+  }
+  // min i s.t. sum over [0, i] >= v
+  // requires data[i] >= 0 for any i
+  int lower_bound(ll v) {
+    if (v <= 0) return 0;
+    int l = 0;
+    for (int k = 1 << (32 - __builtin_clz(n) - 1); k; k >>= 1)
+      if (l + k <= n and data[l + k] < v) v -= data[l += k];
+    return l;
+  }
+  // min i s.t. sum over [0, i] > v
+  // requires data[i] >= 0 for any i
+  int upper_bound(ll v) { return lower_bound(v + 1); }
+};
+#line 6 "verify/BIT_compress.test.cpp"
+
+#define D_GLIBCXX_DEBUG
 
 int main() {
-  int n = IN, q = IN;
-  union_find uf(n);
-  rep(q) {
-    int c = IN, x = IN, y = IN;
-    if (c == 0) uf.merge(x, y);
-    else OUT((int)uf.same(x, y));
+  int n = IN, c = IN;
+
+  VI cs(c), ts(c); VLL ps(c);
+  rep(i, c) {
+    cs[i] = IN, ts[i] = IN;
+    if (cs[i] == 0) ts[i]--, ps[i] = IN;
+  }
+
+  VLL scores(n);
+  Compress<pair<ll, int>> comp;
+
+  rep(i, n) comp.emplace(scores[i], -i);
+  rep(i, c) if (cs[i] == 0)
+      comp.emplace(scores[ts[i]] += ps[i], -ts[i]);
+
+  fill(all(scores), 0);
+
+  BIT bit(comp.size());
+  rep(i, n) bit.add(comp[make_pair(0, -i)], 1);
+
+  rep(i, c) {
+    if (cs[i] == 0) {
+      bit.add(comp[make_pair(scores[ts[i]], -ts[i])], -1);
+      bit.add(comp[make_pair(scores[ts[i]] += ps[i], -ts[i])], 1);
+    } else {
+      int s = bit.upper_bound(n - ts[i]);
+      OUT(-comp.rev(s).second+1, comp.rev(s).first);
+    }
   }
 }
 

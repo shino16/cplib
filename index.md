@@ -38,55 +38,94 @@ layout: default
 
 ### .
 
-* :warning: <a href="library/BIT.cpp.html">BIT.cpp</a>
-* :warning: <a href="library/BIT_2D.cpp.html">BIT_2D.cpp</a>
-* :warning: <a href="library/Pt.cpp.html">Pt.cpp</a>
-* :warning: <a href="library/acc_2d.cpp.html">acc_2d.cpp</a>
-* :warning: <a href="library/approximate.cpp.html">approximate.cpp</a>
-* :warning: <a href="library/bfs.cpp.html">bfs.cpp</a>
-* :warning: <a href="library/bigint.cpp.html">bigint.cpp</a>
-* :warning: <a href="library/binomial.cpp.html">binomial.cpp</a>
-* :warning: <a href="library/choose.cpp.html">choose.cpp</a>
-* :warning: <a href="library/constexpr_binomial.cpp.html">constexpr_binomial.cpp</a>
-* :warning: <a href="library/dfs.cpp.html">dfs.cpp</a>
-* :warning: <a href="library/dijkstra.cpp.html">dijkstra.cpp</a>
-* :warning: <a href="library/dijkstra_fib_heap.cpp.html">dijkstra_fib_heap.cpp</a>
-* :warning: <a href="library/doubling.cpp.html">doubling.cpp</a>
-* :warning: <a href="library/dynamic_segtree.cpp.html">dynamic_segtree.cpp</a>
-* :warning: <a href="library/euler_tour.cpp.html">euler_tour.cpp</a>
-* :warning: <a href="library/factorize.cpp.html">factorize.cpp</a>
-* :warning: <a href="library/fft.cpp.html">fft.cpp</a>
-* :warning: <a href="library/fibonacci_heap.cpp.html">fibonacci_heap.cpp</a>
-* :warning: <a href="library/formalpowerseries.cpp.html">formalpowerseries.cpp</a>
-* :warning: <a href="library/garner_ntt_fft.cpp.html">garner_ntt_fft.cpp</a>
-* :warning: <a href="library/hack_pque.cpp.html">hack_pque.cpp</a>
-* :warning: <a href="library/hash_monoid.cpp.html">hash_monoid.cpp</a>
-* :warning: <a href="library/heap.cpp.html">heap.cpp</a>
-* :warning: <a href="library/hld.cpp.html">hld.cpp</a>
-* :warning: <a href="library/inverse.cpp.html">inverse.cpp</a>
-* :warning: <a href="library/lazy_segtree.cpp.html">lazy_segtree.cpp</a>
-* :warning: <a href="library/lca.cpp.html">lca.cpp</a>
-* :warning: <a href="library/modint.cpp.html">modint.cpp</a>
-* :warning: <a href="library/modintT.cpp.html">modintT.cpp</a>
-* :warning: <a href="library/ntt_fft.cpp.html">ntt_fft.cpp</a>
-* :warning: <a href="library/polynomial.cpp.html">polynomial.cpp</a>
-* :warning: <a href="library/pow.cpp.html">pow.cpp</a>
-* :warning: <a href="library/prim.cpp.html">prim.cpp</a>
-* :warning: <a href="library/random_tree.cpp.html">random_tree.cpp</a>
-* :warning: <a href="library/rangeadd_pointsum_segtree.cpp.html">rangeadd_pointsum_segtree.cpp</a>
-* :warning: <a href="library/rerooting.cpp.html">rerooting.cpp</a>
-* :warning: <a href="library/rolling_hash.cpp.html">rolling_hash.cpp</a>
-* :warning: <a href="library/segtree.cpp.html">segtree.cpp</a>
-* :warning: <a href="library/squarematrix.cpp.html">squarematrix.cpp</a>
-* :warning: <a href="library/swag.cpp.html">swag.cpp</a>
 * :heavy_check_mark: <a href="library/template.cpp.html">template.cpp</a>
-* :warning: <a href="library/topological_sort.cpp.html">topological_sort.cpp</a>
-* :warning: <a href="library/totient.cpp.html">totient.cpp</a>
-* :warning: <a href="library/tree_diameter.cpp.html">tree_diameter.cpp</a>
-* :warning: <a href="library/two-edge-connected-components.cpp.html">two-edge-connected-components.cpp</a>
-* :heavy_check_mark: <a href="library/union_find.cpp.html">union_find.cpp</a>
-* :warning: <a href="library/wdijkstra.cpp.html">wdijkstra.cpp</a>
-* :warning: <a href="library/wunion_find.cpp.html">wunion_find.cpp</a>
+
+
+<div id="36397fe12f935090ad150c6ce0c258d4"></div>
+
+### data-structure
+
+* :heavy_check_mark: <a href="library/data-structure/BIT.cpp.html">data-structure/BIT.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/BIT_2D.cpp.html">data-structure/BIT_2D.cpp</a>
+* :warning: <a href="library/data-structure/dynamic_segtree.cpp.html">data-structure/dynamic_segtree.cpp</a>
+* :warning: <a href="library/data-structure/fibonacci_heap.cpp.html">data-structure/fibonacci_heap.cpp</a>
+* :warning: <a href="library/data-structure/heap.cpp.html">data-structure/heap.cpp</a>
+* :warning: <a href="library/data-structure/lazy_segtree.cpp.html">data-structure/lazy_segtree.cpp</a>
+* :warning: <a href="library/data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
+* :warning: <a href="library/data-structure/swag.cpp.html">data-structure/swag.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
+* :warning: <a href="library/data-structure/weighted_union_find.cpp.html">data-structure/weighted_union_find.cpp</a>
+
+
+<div id="ed7daeb157cd9b31e53896ad3c771a26"></div>
+
+### geometry
+
+* :warning: <a href="library/geometry/Pt.cpp.html">geometry/Pt.cpp</a>
+
+
+<div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>
+
+### graph
+
+* :warning: <a href="library/graph/bfs.cpp.html">graph/bfs.cpp</a>
+* :warning: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :warning: <a href="library/graph/dijkstra_fib_heap.cpp.html">graph/dijkstra_fib_heap.cpp</a>
+* :warning: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
+* :warning: <a href="library/graph/topological_sort.cpp.html">graph/topological_sort.cpp</a>
+* :warning: <a href="library/graph/two-edge-connected-components.cpp.html">graph/two-edge-connected-components.cpp</a>
+
+
+<div id="7e676e9e663beb40fd133f5ee24487c2"></div>
+
+### math
+
+* :warning: <a href="library/math/approximate.cpp.html">math/approximate.cpp</a>
+* :warning: <a href="library/math/binomial.cpp.html">math/binomial.cpp</a>
+* :warning: <a href="library/math/choose.cpp.html">math/choose.cpp</a>
+* :warning: <a href="library/math/constexpr_binomial.cpp.html">math/constexpr_binomial.cpp</a>
+* :warning: <a href="library/math/factorize.cpp.html">math/factorize.cpp</a>
+* :warning: <a href="library/math/fft.cpp.html">math/fft.cpp</a>
+* :warning: <a href="library/math/formalpowerseries.cpp.html">math/formalpowerseries.cpp</a>
+* :warning: <a href="library/math/garner_ntt_fft.cpp.html">math/garner_ntt_fft.cpp</a>
+* :warning: <a href="library/math/ntt.cpp.html">math/ntt.cpp</a>
+* :warning: <a href="library/math/polynomial.cpp.html">math/polynomial.cpp</a>
+* :warning: <a href="library/math/squarematrix.cpp.html">math/squarematrix.cpp</a>
+* :warning: <a href="library/math/totient.cpp.html">math/totient.cpp</a>
+
+
+<div id="b45cffe084dd3d20d928bee85e7b0f21"></div>
+
+### string
+
+* :warning: <a href="library/string/hash_monoid.cpp.html">string/hash_monoid.cpp</a>
+* :warning: <a href="library/string/rolling_hash.cpp.html">string/rolling_hash.cpp</a>
+
+
+<div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
+
+### tree
+
+* :warning: <a href="library/tree/dfs.cpp.html">tree/dfs.cpp</a>
+* :warning: <a href="library/tree/euler_tour.cpp.html">tree/euler_tour.cpp</a>
+* :warning: <a href="library/tree/hld.cpp.html">tree/hld.cpp</a>
+* :warning: <a href="library/tree/lca.cpp.html">tree/lca.cpp</a>
+* :warning: <a href="library/tree/rerooting.cpp.html">tree/rerooting.cpp</a>
+* :warning: <a href="library/tree/tree_diameter.cpp.html">tree/tree_diameter.cpp</a>
+
+
+<div id="05c7e24700502a079cdd88012b5a76d3"></div>
+
+### util
+
+* :warning: <a href="library/util/acc_2d.cpp.html">util/acc_2d.cpp</a>
+* :warning: <a href="library/util/bigint.cpp.html">util/bigint.cpp</a>
+* :heavy_check_mark: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
+* :warning: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
+* :warning: <a href="library/util/hack_pque.cpp.html">util/hack_pque.cpp</a>
+* :warning: <a href="library/util/inversions.cpp.html">util/inversions.cpp</a>
+* :warning: <a href="library/util/modint.cpp.html">util/modint.cpp</a>
+* :warning: <a href="library/util/random_tree.cpp.html">util/random_tree.cpp</a>
 
 
 <div id="e8418d1d706cd73548f9f16f1d55ad6e"></div>
@@ -98,6 +137,8 @@ layout: default
 
 ## Verify Files
 
+* :heavy_check_mark: <a href="verify/verify/BIT_2D.test.cpp.html">verify/BIT_2D.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/BIT_compress.test.cpp.html">verify/BIT_compress.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/union_find.test.cpp.html">verify/union_find.test.cpp</a>
 
 
