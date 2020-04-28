@@ -39,22 +39,22 @@ layout: default
 ### .
 
 * :warning: <a href="library/template-raw.cpp.html">template-raw.cpp</a>
-* :x: <a href="library/template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="library/template.cpp.html">template.cpp</a>
 
 
 <div id="36397fe12f935090ad150c6ce0c258d4"></div>
 
 ### data-structure
 
-* :x: <a href="library/data-structure/BIT.cpp.html">data-structure/BIT.cpp</a>
-* :x: <a href="library/data-structure/BIT_2D.cpp.html">data-structure/BIT_2D.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/bit.cpp.html">data-structure/bit.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/bit_2d.cpp.html">data-structure/bit_2d.cpp</a>
 * :warning: <a href="library/data-structure/dynamic_segtree.cpp.html">data-structure/dynamic_segtree.cpp</a>
 * :warning: <a href="library/data-structure/fibonacci_heap.cpp.html">data-structure/fibonacci_heap.cpp</a>
 * :warning: <a href="library/data-structure/heap.cpp.html">data-structure/heap.cpp</a>
 * :warning: <a href="library/data-structure/lazy_segtree.cpp.html">data-structure/lazy_segtree.cpp</a>
-* :warning: <a href="library/data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :warning: <a href="library/data-structure/swag.cpp.html">data-structure/swag.cpp</a>
-* :x: <a href="library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
 * :warning: <a href="library/data-structure/weighted_union_find.cpp.html">data-structure/weighted_union_find.cpp</a>
 
 
@@ -109,7 +109,7 @@ layout: default
 
 * :warning: <a href="library/tree/dfs.cpp.html">tree/dfs.cpp</a>
 * :warning: <a href="library/tree/euler_tour.cpp.html">tree/euler_tour.cpp</a>
-* :warning: <a href="library/tree/hld.cpp.html">tree/hld.cpp</a>
+* :heavy_check_mark: <a href="library/tree/hld.cpp.html">tree/hld.cpp</a>
 * :warning: <a href="library/tree/lca.cpp.html">tree/lca.cpp</a>
 * :warning: <a href="library/tree/rerooting.cpp.html">tree/rerooting.cpp</a>
 * :warning: <a href="library/tree/tree_diameter.cpp.html">tree/tree_diameter.cpp</a>
@@ -121,12 +121,13 @@ layout: default
 
 * :warning: <a href="library/util/acc_2d.cpp.html">util/acc_2d.cpp</a>
 * :warning: <a href="library/util/bigint.cpp.html">util/bigint.cpp</a>
-* :x: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
+* :heavy_check_mark: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
 * :warning: <a href="library/util/hack_pque.cpp.html">util/hack_pque.cpp</a>
 * :warning: <a href="library/util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="library/util/modint.cpp.html">util/modint.cpp</a>
 * :warning: <a href="library/util/random_tree.cpp.html">util/random_tree.cpp</a>
+* :warning: <a href="library/util/triple.cpp.html">util/triple.cpp</a>
 
 
 <div id="e8418d1d706cd73548f9f16f1d55ad6e"></div>
@@ -138,8 +139,9 @@ layout: default
 
 ## Verify Files
 
-* :x: <a href="verify/verify/BIT_2D.test.cpp.html">verify/BIT_2D.test.cpp</a>
-* :x: <a href="verify/verify/BIT_compress.test.cpp.html">verify/BIT_compress.test.cpp</a>
-* :x: <a href="verify/verify/union_find.test.cpp.html">verify/union_find.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/BIT_2D.test.cpp.html">verify/BIT_2D.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/BIT_compress.test.cpp.html">verify/BIT_compress.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/union_find.test.cpp.html">verify/union_find.test.cpp</a>
 
 

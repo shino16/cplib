@@ -25,20 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: util/compress.cpp
+# :heavy_check_mark: util/compress.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/compress.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-28 15:58:20+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/verify/BIT_compress.test.cpp.html">verify/BIT_compress.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/BIT_compress.test.cpp.html">verify/BIT_compress.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 
 
 ## Code
@@ -88,7 +89,7 @@ class Compress {
     assert(binary_search(all(data), v));
     return std::lower_bound(all(data), v) - data.begin();
   }
-  T rev(int i) {
+  T restore(int i) {
     build();
     return data[i];
   }
@@ -99,6 +100,10 @@ class Compress {
   int upper_bound(T v) {
     build();
     return std::upper_bound(all(data), v) - data.begin();
+  }
+  bool count(T v) {
+    build();
+    return std::binary_search(all(data), v);
   }
 };
 
@@ -151,7 +156,7 @@ class Compress {
     assert(binary_search(all(data), v));
     return std::lower_bound(all(data), v) - data.begin();
   }
-  T rev(int i) {
+  T restore(int i) {
     build();
     return data[i];
   }
@@ -162,6 +167,10 @@ class Compress {
   int upper_bound(T v) {
     build();
     return std::upper_bound(all(data), v) - data.begin();
+  }
+  bool count(T v) {
+    build();
+    return std::binary_search(all(data), v);
   }
 };
 

@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: tree/hld.cpp
+# :heavy_check_mark: tree/hld.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/hld.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-28 15:58:20+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 
 
 ## Code
@@ -45,14 +50,14 @@ layout: default
 // originally written by @beet-aizu
 class HLD {
  private:
-  VI index, sz, par;
+  VI index, sz, par, rev;
   // last vertex in ascending heavy path
   VI nxt;
 
  public:
   HLD(Graph& graph)
       : index(graph.size()), sz(graph.size(), 1),
-        par(graph.size(), -1), nxt(graph.size()) {
+        par(graph.size(), -1), rev(graph.size()), nxt(graph.size()) {
     dfs_sz(graph, 0);
     dfs_hld(graph, 0);
   }
@@ -73,9 +78,10 @@ class HLD {
   void dfs_hld(const Graph& graph, int v) {
     static int t = 0;
     index[v] = t++;
+    rev[index[v]] = v;
     for (auto c : graph[v])
       if (c != par[v]) {
-        nxt[c] = (c == graph[v][0] ? nxt[v] : c);
+        nxt[c] = (c.to == graph[v][0].to ? nxt[v] : c.to);
         dfs_hld(graph, c);
       }
     assert(sz[v] == t - index[v]);
@@ -111,13 +117,13 @@ class HLD {
   }
 
   template <typename F>
-  void subtree_vertex(int u, F f) {
-    f(index[u], index[u] + sz[u]);
+  void subtree_vertex(int v, F f) {
+    f(index[v], index[v] + sz[v]);
   }
 
   template <typename F>
-  void subtree_edge(int u, F f) {
-    f(index[u] + 1, index[u] + sz[u]);
+  void subtree_edge(int v, F f) {
+    f(index[v] + 1, index[v] + sz[v]);
   }
 
   int lca(int u, int v) {
@@ -130,9 +136,12 @@ class HLD {
 
   int subtree_size(int v) { return sz[v]; }
 
-  int vertex(int u) { return index[u]; }
-};
+  int vertex(int v) { return index[v]; }
 
+  int parent(int v) { return par[v]; }
+
+  int restore(int ix) { return rev[ix]; }
+};
 ```
 {% endraw %}
 
@@ -144,14 +153,14 @@ class HLD {
 // originally written by @beet-aizu
 class HLD {
  private:
-  VI index, sz, par;
+  VI index, sz, par, rev;
   // last vertex in ascending heavy path
   VI nxt;
 
  public:
   HLD(Graph& graph)
       : index(graph.size()), sz(graph.size(), 1),
-        par(graph.size(), -1), nxt(graph.size()) {
+        par(graph.size(), -1), rev(graph.size()), nxt(graph.size()) {
     dfs_sz(graph, 0);
     dfs_hld(graph, 0);
   }
@@ -172,9 +181,10 @@ class HLD {
   void dfs_hld(const Graph& graph, int v) {
     static int t = 0;
     index[v] = t++;
+    rev[index[v]] = v;
     for (auto c : graph[v])
       if (c != par[v]) {
-        nxt[c] = (c == graph[v][0] ? nxt[v] : c);
+        nxt[c] = (c.to == graph[v][0].to ? nxt[v] : c.to);
         dfs_hld(graph, c);
       }
     assert(sz[v] == t - index[v]);
@@ -210,13 +220,13 @@ class HLD {
   }
 
   template <typename F>
-  void subtree_vertex(int u, F f) {
-    f(index[u], index[u] + sz[u]);
+  void subtree_vertex(int v, F f) {
+    f(index[v], index[v] + sz[v]);
   }
 
   template <typename F>
-  void subtree_edge(int u, F f) {
-    f(index[u] + 1, index[u] + sz[u]);
+  void subtree_edge(int v, F f) {
+    f(index[v] + 1, index[v] + sz[v]);
   }
 
   int lca(int u, int v) {
@@ -229,7 +239,11 @@ class HLD {
 
   int subtree_size(int v) { return sz[v]; }
 
-  int vertex(int u) { return index[u]; }
+  int vertex(int v) { return index[v]; }
+
+  int parent(int v) { return par[v]; }
+
+  int restore(int ix) { return rev[ix]; }
 };
 
 ```

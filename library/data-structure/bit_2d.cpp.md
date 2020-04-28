@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: data-structure/BIT_2D.cpp
+# :heavy_check_mark: data-structure/bit_2d.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
-* <a href="{{ site.github.repository_url }}/blob/master/data-structure/BIT_2D.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/data-structure/bit_2d.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-28 16:11:36+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/verify/BIT_2D.test.cpp.html">verify/BIT_2D.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/BIT_2D.test.cpp.html">verify/BIT_2D.test.cpp</a>
 
 
 ## Code
@@ -90,7 +90,7 @@ public:
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "data-structure/BIT_2D.cpp"
+#line 1 "data-structure/bit_2d.cpp"
 
 class BIT_2D {
 private:

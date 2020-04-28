@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: data-structure/segtree.cpp
+# :heavy_check_mark: data-structure/segtree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/segtree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-28 15:57:22+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 
 
 ## Code
@@ -60,7 +65,7 @@ class SegmentTree {
   }
 
   template <typename Iter,
-            enable_if_t<is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
   SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
               Merge merge = Merge(), Upd upd = Upd())
       : n(n), unit(unit), merge(merge), upd(upd), data(n << 1) {
@@ -69,7 +74,7 @@ class SegmentTree {
   }
 
   template <typename Iter,
-            enable_if_t<!is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
   [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
                              Merge merge = Merge(), Upd upd = Upd())
       : n(n), unit(unit), merge(merge), upd(upd), data(n << 1) {
@@ -154,7 +159,7 @@ class SegmentTree {
   }
 
   template <typename Iter,
-            enable_if_t<is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
   SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
               Merge merge = Merge(), Upd upd = Upd())
       : n(n), unit(unit), merge(merge), upd(upd), data(n << 1) {
@@ -163,7 +168,7 @@ class SegmentTree {
   }
 
   template <typename Iter,
-            enable_if_t<!is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
   [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
                              Merge merge = Merge(), Upd upd = Upd())
       : n(n), unit(unit), merge(merge), upd(upd), data(n << 1) {
