@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/formatted_template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-28 16:19:34+09:00
+    - Last commit date: 2020-04-28 16:34:23+09:00
 
 
 
@@ -74,8 +74,13 @@ using PII = pair<int, int>;
 using PLL = pair<ll, ll>;
 template <typename T>
 using minheap = priority_queue<T, vector<T>, greater<T>>;
-const int INF = 1000000007;
-const ll INF_LL = 1'000'000'000'000'000'007;
+constexpr int INF = 1000000007;
+constexpr ll INF_LL = 1'000'000'000'000'000'007;
+#define EXIT(out) \
+  do {            \
+    OUT(out);     \
+    exit(0);      \
+  } while (0)
 #define __overload3(_1, _2, _3, name, ...) name
 #define rep(...) \
   __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
@@ -93,15 +98,9 @@ __LINE__,             \
   for (int name = (until)-1, name##__from = (from); name >= name##__from; \
        name--)
 #define repi(itr, ds) for (auto itr = ds.begin(); itr != ds.end(); itr++)
-#define EXIT(out) \
-  do {            \
-    OUT(out);     \
-    exit(0);      \
-  } while (0)
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl "\n"
-#pragma GCC diagnostic ignored "-Wmisleading-indentation"
 template <typename T, typename U>
 bool chmin(T& var, U x) {
   if (var > x) {
@@ -157,6 +156,10 @@ struct Edge {
   operator int() { return to; }
 };
 using Graph = vector<vector<Edge>>;
+// IO
+// formatted version of following is at
+// https://shino-sky.github.io/cp-lib/library/formatted_template.cpp.html
+#pragma GCC diagnostic ignored "-Wmisleading-indentation"
 class MyScanner {
  public:
   int offset = 0;
@@ -439,8 +442,13 @@ using PII = pair<int, int>;
 using PLL = pair<ll, ll>;
 template <typename T>
 using minheap = priority_queue<T, vector<T>, greater<T>>;
-const int INF = 1000000007;
-const ll INF_LL = 1'000'000'000'000'000'007;
+constexpr int INF = 1000000007;
+constexpr ll INF_LL = 1'000'000'000'000'000'007;
+#define EXIT(out) \
+  do {            \
+    OUT(out);     \
+    exit(0);      \
+  } while (0)
 #define __overload3(_1, _2, _3, name, ...) name
 #define rep(...) \
   __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
@@ -458,15 +466,9 @@ __LINE__,             \
   for (int name = (until)-1, name##__from = (from); name >= name##__from; \
        name--)
 #define repi(itr, ds) for (auto itr = ds.begin(); itr != ds.end(); itr++)
-#define EXIT(out) \
-  do {            \
-    OUT(out);     \
-    exit(0);      \
-  } while (0)
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl "\n"
-#pragma GCC diagnostic ignored "-Wmisleading-indentation"
 template <typename T, typename U>
 bool chmin(T& var, U x) {
   if (var > x) {
@@ -522,6 +524,10 @@ struct Edge {
   operator int() { return to; }
 };
 using Graph = vector<vector<Edge>>;
+// IO
+// formatted version of following is at
+// https://shino-sky.github.io/cp-lib/library/formatted_template.cpp.html
+#pragma GCC diagnostic ignored "-Wmisleading-indentation"
 class MyScanner {
  public:
   int offset = 0;
