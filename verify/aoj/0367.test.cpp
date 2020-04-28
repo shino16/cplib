@@ -3,7 +3,7 @@
 
 #include "template.cpp"
 #include "data-structure/segtree.cpp"
-#include "tree/HLD.cpp"
+#include "tree/hld.cpp"
 #include "util/compress.cpp"
 
 struct Path {

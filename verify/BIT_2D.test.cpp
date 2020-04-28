@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842"
 
 #include "template.cpp"
-#include "data-structure/BIT_2D.cpp"
+#include "data-structure/bit_2d.cpp"
 
 int main() {
   int h = IN, w = IN, T = IN, q = IN;
