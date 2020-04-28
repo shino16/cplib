@@ -1,6 +1,8 @@
 {
-"verify/BIT_2D.test.cpp": "2020-04-28 16:34:23 +0900",
-"verify/BIT_compress.test.cpp": "2020-04-28 16:34:23 +0900",
-"verify/aoj/0367.test.cpp": "2020-04-28 16:34:23 +0900",
-"verify/union_find.test.cpp": "2020-04-28 16:34:23 +0900"
+"verify/aoj/0343.test.cpp": "2020-04-29 00:04:22 +0900",
+"verify/aoj/0367.test.cpp": "2020-04-29 00:04:22 +0900",
+"verify/aoj/2842.test.cpp": "2020-04-29 00:04:22 +0900",
+"verify/aoj/DSL_1_A.test.cpp": "2020-04-29 00:04:22 +0900",
+"verify/aoj/GRL_1_A.test.cpp": "2020-04-29 00:04:22 +0900",
+"verify/aoj/GRL_1_A_fh.test.cpp": "2020-04-29 00:04:22 +0900"
 }
