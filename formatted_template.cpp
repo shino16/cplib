@@ -1,3 +1,4 @@
+
 #ifndef LOCAL
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
