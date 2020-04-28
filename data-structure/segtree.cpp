@@ -17,7 +17,7 @@ class SegmentTree {
   }
 
   template <typename Iter,
-            enable_if_t<is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
   SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
               Merge merge = Merge(), Upd upd = Upd())
       : n(n), unit(unit), merge(merge), upd(upd), data(n << 1) {
@@ -26,7 +26,7 @@ class SegmentTree {
   }
 
   template <typename Iter,
-            enable_if_t<!is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
   [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
                              Merge merge = Merge(), Upd upd = Upd())
       : n(n), unit(unit), merge(merge), upd(upd), data(n << 1) {
