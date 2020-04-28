@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../assets/css/copy-button.css" />
 
 
-# :warning: template-raw.cpp
+# :warning: formatted_template.cpp
 
 <a href="../index.html">Back to top page</a>
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
-* <a href="{{ site.github.repository_url }}/blob/master/template-raw.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-28 02:34:33+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/formatted_template.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-28 16:19:34+09:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+
 #ifndef LOCAL
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
@@ -404,8 +405,9 @@ void dump_func(Head&& head, Tail&&... tail) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "template-raw.cpp"
+#line 1 "formatted_template.cpp"
 
+#ifndef LOCAL
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("avx")

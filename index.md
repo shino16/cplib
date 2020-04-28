@@ -38,7 +38,7 @@ layout: default
 
 ### .
 
-* :warning: <a href="library/template-raw.cpp.html">template-raw.cpp</a>
+* :warning: <a href="library/formatted_template.cpp.html">formatted_template.cpp</a>
 * :heavy_check_mark: <a href="library/template.cpp.html">template.cpp</a>
 
 
