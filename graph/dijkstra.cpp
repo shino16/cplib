@@ -6,7 +6,8 @@ vector<ll> dijkstra(const Graph& graph, int start) {
   q.emplace(0, start);
 
   while (not q.empty()) {
-    auto [d, v] = q.top(); q.pop();
+    ll d; int v;
+    tie(d, v) = q.top(); q.pop();
     if (dist[v] < d) continue;
     for (auto e : graph[v]) {
       if (chmin(dist[e.to], dist[v] + e.cost)) q.emplace(dist[e.to], e.to);

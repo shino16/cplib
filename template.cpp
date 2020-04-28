@@ -75,11 +75,11 @@ using Graph = vector<vector<Edge>>;
 #pragma GCC diagnostic ignored "-Wmisleading-indentation"
 class MyScanner { public: int offset = 0; char nc(){ return getchar(); }
 template <typename T> void input_integer(T& var) { var = 0; T sign = 1; int cc = nc(); for (;
-cc<'0' || '9'<cc; cc = nc()) if (cc == '-') sign = -1; for (; '0' <= cc && cc <= '9'; cc = nc(
-)) var = (var << 3) + (var << 1) + cc - '0'; var = var * sign; var += offset; } int c() { char
-c; while (c = nc(), c == ' ' or c == '\n'); return c; } MyScanner& operator>>(char& var) { var
-= c(); return *this; } MyScanner& operator>>(int& var) { input_integer<int>(var); return *this
-; } MyScanner& operator>>(ll& var) { input_integer<ll>(var); return *this; } MyScanner&
+cc < '0' || '9' < cc; cc = nc()) if (cc == '-') sign = -1; for (; '0' <= cc && cc <= '9'; cc =
+nc()) var = (var << 3) + (var << 1) + cc - '0'; var = var * sign; var += offset; } int c() {
+char c; while (c = nc(), c == ' ' or c == '\n'); return c; } MyScanner& operator>>(char& var)
+{ var = c(); return *this; } MyScanner& operator>>(int& var) { input_integer<int>(var); return
+*this; } MyScanner& operator>>(ll& var) { input_integer<ll>(var); return *this; } MyScanner&
 operator>>(string& var) { var = ""; int cc = nc(); for (; !isvisiblechar(cc); cc = nc()); for
 (; isvisiblechar(cc); cc = nc()) var.push_back(cc); return *this; } template <typename T>
 operator T() { T x; *this >> x; return x; } template <typename T> void operator()(T &t) { *
