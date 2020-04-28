@@ -2,9 +2,7 @@
 
 #include "template.cpp"
 #include "util/compress.cpp"
-#include "data-structure/BIT.cpp"
-
-#define D_GLIBCXX_DEBUG
+#include "data-structure/bit.cpp"
 
 int main() {
   int n = IN, c = IN;
