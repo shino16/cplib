@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: data-structure/fibonacci_heap.cpp
+# :heavy_check_mark: data-structure/fibonacci_heap.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/fibonacci_heap.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 00:04:22+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/verify/aoj/GRL_1_A_fh.test.cpp.html">verify/aoj/GRL_1_A_fh.test.cpp</a>
 
 
 ## Code
@@ -57,7 +62,7 @@ namespace bit {
 template <typename Tp>
 int log2p1(Tp n) {
   if (n == 0) return 0;
-  return (CHAR_BIT * sizeof(long long)) - __builtin_clzll(n);
+  return (8 * sizeof(long long)) - __builtin_clzll(n);
 }
 }  // bit::
 
@@ -232,7 +237,7 @@ public:
   fibonacci_heap(std::initializer_list<value_type> il) { assign(il); }
 
   size_type size() const noexcept { return M_size; }
-  [[nodiscard]] bool empty() const noexcept { return M_size == 0; }
+  bool empty() const noexcept { return M_size == 0; }
 
   const_reference const& top() const { return M_top->M_value; }
   void pop() {
@@ -317,7 +322,7 @@ namespace bit {
 template <typename Tp>
 int log2p1(Tp n) {
   if (n == 0) return 0;
-  return (CHAR_BIT * sizeof(long long)) - __builtin_clzll(n);
+  return (8 * sizeof(long long)) - __builtin_clzll(n);
 }
 }  // bit::
 
@@ -492,7 +497,7 @@ public:
   fibonacci_heap(std::initializer_list<value_type> il) { assign(il); }
 
   size_type size() const noexcept { return M_size; }
-  [[nodiscard]] bool empty() const noexcept { return M_size == 0; }
+  bool empty() const noexcept { return M_size == 0; }
 
   const_reference const& top() const { return M_top->M_value; }
   void pop() {

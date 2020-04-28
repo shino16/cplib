@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: graph/dijkstra.cpp
+# :heavy_check_mark: graph/dijkstra.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 00:04:22+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
 
 
 ## Code
@@ -49,7 +54,8 @@ vector<ll> dijkstra(const Graph& graph, int start) {
   q.emplace(0, start);
 
   while (not q.empty()) {
-    auto [d, v] = q.top(); q.pop();
+    ll d; int v;
+    tie(d, v) = q.top(); q.pop();
     if (dist[v] < d) continue;
     for (auto e : graph[v]) {
       if (chmin(dist[e.to], dist[v] + e.cost)) q.emplace(dist[e.to], e.to);
@@ -73,7 +79,8 @@ vector<ll> dijkstra(const Graph& graph, int start) {
   q.emplace(0, start);
 
   while (not q.empty()) {
-    auto [d, v] = q.top(); q.pop();
+    ll d; int v;
+    tie(d, v) = q.top(); q.pop();
     if (dist[v] < d) continue;
     for (auto e : graph[v]) {
       if (chmin(dist[e.to], dist[v] + e.cost)) q.emplace(dist[e.to], e.to);

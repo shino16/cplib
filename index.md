@@ -40,6 +40,7 @@ layout: default
 
 * :warning: <a href="library/formatted_template.cpp.html">formatted_template.cpp</a>
 * :heavy_check_mark: <a href="library/template.cpp.html">template.cpp</a>
+* :warning: <a href="library/test.cpp.html">test.cpp</a>
 
 
 <div id="36397fe12f935090ad150c6ce0c258d4"></div>
@@ -49,7 +50,7 @@ layout: default
 * :heavy_check_mark: <a href="library/data-structure/bit.cpp.html">data-structure/bit.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/bit_2d.cpp.html">data-structure/bit_2d.cpp</a>
 * :warning: <a href="library/data-structure/dynamic_segtree.cpp.html">data-structure/dynamic_segtree.cpp</a>
-* :warning: <a href="library/data-structure/fibonacci_heap.cpp.html">data-structure/fibonacci_heap.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/fibonacci_heap.cpp.html">data-structure/fibonacci_heap.cpp</a>
 * :warning: <a href="library/data-structure/heap.cpp.html">data-structure/heap.cpp</a>
 * :warning: <a href="library/data-structure/lazy_segtree.cpp.html">data-structure/lazy_segtree.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
@@ -70,8 +71,8 @@ layout: default
 ### graph
 
 * :warning: <a href="library/graph/bfs.cpp.html">graph/bfs.cpp</a>
-* :warning: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
-* :warning: <a href="library/graph/dijkstra_fib_heap.cpp.html">graph/dijkstra_fib_heap.cpp</a>
+* :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="library/graph/dijkstra_fib_heap.cpp.html">graph/dijkstra_fib_heap.cpp</a>
 * :warning: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
 * :warning: <a href="library/graph/topological_sort.cpp.html">graph/topological_sort.cpp</a>
 * :warning: <a href="library/graph/two-edge-connected-components.cpp.html">graph/two-edge-connected-components.cpp</a>
@@ -130,18 +131,13 @@ layout: default
 * :warning: <a href="library/util/triple.cpp.html">util/triple.cpp</a>
 
 
-<div id="e8418d1d706cd73548f9f16f1d55ad6e"></div>
-
-### verify
-
-* :warning: <a href="library/verify/test.cpp.html">verify/test.cpp</a>
-
-
 ## Verify Files
 
-* :heavy_check_mark: <a href="verify/verify/BIT_2D.test.cpp.html">verify/BIT_2D.test.cpp</a>
-* :heavy_check_mark: <a href="verify/verify/BIT_compress.test.cpp.html">verify/BIT_compress.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
-* :heavy_check_mark: <a href="verify/verify/union_find.test.cpp.html">verify/union_find.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/GRL_1_A_fh.test.cpp.html">verify/aoj/GRL_1_A_fh.test.cpp</a>
 
 

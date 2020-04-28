@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: graph/dijkstra_fib_heap.cpp
+# :heavy_check_mark: graph/dijkstra_fib_heap.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/dijkstra_fib_heap.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 00:04:22+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/verify/aoj/GRL_1_A_fh.test.cpp.html">verify/aoj/GRL_1_A_fh.test.cpp</a>
 
 
 ## Code
@@ -42,26 +47,26 @@ layout: default
 {% raw %}
 ```cpp
 
-vector<int> dijkstra(const VVI& graph, int start) {
-  fibonacci_heap<int, int, greater<>> q;
-  vector<int> dist(graph.size(), INF);
+vector<ll> dijkstra(const Graph& graph, int start) {
+  fibonacci_heap<ll, int, greater<>> q;
+  vector<ll> dist(graph.size(), INF);
   dist[start] = 0;
   q.push(0, start);
   vector<decltype(q)::node_handle> handles(graph.size());
   while (not q.empty()) {
-    auto [d, v] = q.top(); q.pop();
+    ll d; int v;
+    tie(d, v) = q.top(); q.pop();
     if (dist[v] < d) continue;
-    for (auto to : graph[v]) {
-      int d2 = d + 1;
-      if (chmin(dist[v], d2)) {
-        if (handles[to].expired()) handles[to] = q.push(d2, to);
-        else q.prioritize(handles[to], d2);
+    for (auto e : graph[v]) {
+      ll d2 = d + e.cost;
+      if (chmin(dist[e.to], d2)) {
+        if (handles[e.to].expired()) handles[e.to] = q.push(d2, e.to);
+        else q.prioritize(handles[e.to], d2);
       }
     }
   }
   return dist;
 }
-
 ```
 {% endraw %}
 
@@ -70,20 +75,21 @@ vector<int> dijkstra(const VVI& graph, int start) {
 ```cpp
 #line 1 "graph/dijkstra_fib_heap.cpp"
 
-vector<int> dijkstra(const VVI& graph, int start) {
-  fibonacci_heap<int, int, greater<>> q;
-  vector<int> dist(graph.size(), INF);
+vector<ll> dijkstra(const Graph& graph, int start) {
+  fibonacci_heap<ll, int, greater<>> q;
+  vector<ll> dist(graph.size(), INF);
   dist[start] = 0;
   q.push(0, start);
   vector<decltype(q)::node_handle> handles(graph.size());
   while (not q.empty()) {
-    auto [d, v] = q.top(); q.pop();
+    ll d; int v;
+    tie(d, v) = q.top(); q.pop();
     if (dist[v] < d) continue;
-    for (auto to : graph[v]) {
-      int d2 = d + 1;
-      if (chmin(dist[v], d2)) {
-        if (handles[to].expired()) handles[to] = q.push(d2, to);
-        else q.prioritize(handles[to], d2);
+    for (auto e : graph[v]) {
+      ll d2 = d + e.cost;
+      if (chmin(dist[e.to], d2)) {
+        if (handles[e.to].expired()) handles[e.to] = q.push(d2, e.to);
+        else q.prioritize(handles[e.to], d2);
       }
     }
   }

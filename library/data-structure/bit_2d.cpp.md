@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/verify/BIT_2D.test.cpp.html">verify/BIT_2D.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
 
 
 ## Code

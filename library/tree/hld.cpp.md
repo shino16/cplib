@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/hld.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-28 15:58:20+09:00
+    - Last commit date: 2020-04-29 00:04:22+09:00
 
 
 
@@ -142,6 +142,7 @@ class HLD {
 
   int restore(int ix) { return rev[ix]; }
 };
+
 ```
 {% endraw %}
 
