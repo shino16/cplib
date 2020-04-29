@@ -74,6 +74,7 @@ layout: default
 * :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="library/graph/dijkstra_fib_heap.cpp.html">graph/dijkstra_fib_heap.cpp</a>
 * :warning: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
+* :heavy_check_mark: <a href="library/graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
 * :warning: <a href="library/graph/topological_sort.cpp.html">graph/topological_sort.cpp</a>
 * :warning: <a href="library/graph/two-edge-connected-components.cpp.html">graph/two-edge-connected-components.cpp</a>
 
@@ -123,7 +124,7 @@ layout: default
 * :warning: <a href="library/util/acc_2d.cpp.html">util/acc_2d.cpp</a>
 * :warning: <a href="library/util/bigint.cpp.html">util/bigint.cpp</a>
 * :heavy_check_mark: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
-* :warning: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
+* :heavy_check_mark: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
 * :warning: <a href="library/util/hack_pque.cpp.html">util/hack_pque.cpp</a>
 * :warning: <a href="library/util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="library/util/modint.cpp.html">util/modint.cpp</a>
@@ -134,6 +135,7 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>

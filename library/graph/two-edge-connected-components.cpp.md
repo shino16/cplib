@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/two-edge-connected-components.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 10:43:15+09:00
 
 
 
@@ -47,15 +47,16 @@ class TwoEdgeConnectedComponents {
 private:
   VI ord, low, par, index, sz;
 public:
-  VVI components, c_graph;
+  VVI components; Graph c_graph;
 
 public:
+  TwoEdgeConnectedComponents() {}
   TwoEdgeConnectedComponents(const Graph& graph)
       : ord(graph.size(), -1), low(graph.size()), par(graph.size(), -1), index(graph.size(), -1), sz(graph.size(), 1) {
     int n = graph.size();
     rep(i, n) if (ord[i] == -1) dfs(i, graph);
     rep(i, n) if (index[i] == -1) add_component(i, graph);
-    c_graph = VVI(components.size());
+    c_graph = Graph(components.size());
     rep(v, n) for (int u : graph[v])
         if (index[v] != index[u]) c_graph[index[v]].emplace_back(index[u]);
   }
@@ -92,10 +93,12 @@ private:
   }
 
 public:
-  bool is_bridge(int u, int v) {
+  bool is_bridge(int u, int v) const {
     if (ord[u] > ord[v]) swap(u, v);
     return ord[u] < low[v];
   }
+
+  int operator[](int v) const { return index[v]; }
 };
 
 ```
@@ -111,15 +114,16 @@ class TwoEdgeConnectedComponents {
 private:
   VI ord, low, par, index, sz;
 public:
-  VVI components, c_graph;
+  VVI components; Graph c_graph;
 
 public:
+  TwoEdgeConnectedComponents() {}
   TwoEdgeConnectedComponents(const Graph& graph)
       : ord(graph.size(), -1), low(graph.size()), par(graph.size(), -1), index(graph.size(), -1), sz(graph.size(), 1) {
     int n = graph.size();
     rep(i, n) if (ord[i] == -1) dfs(i, graph);
     rep(i, n) if (index[i] == -1) add_component(i, graph);
-    c_graph = VVI(components.size());
+    c_graph = Graph(components.size());
     rep(v, n) for (int u : graph[v])
         if (index[v] != index[u]) c_graph[index[v]].emplace_back(index[u]);
   }
@@ -156,10 +160,12 @@ private:
   }
 
 public:
-  bool is_bridge(int u, int v) {
+  bool is_bridge(int u, int v) const {
     if (ord[u] > ord[v]) swap(u, v);
     return ord[u] < low[v];
   }
+
+  int operator[](int v) const { return index[v]; }
 };
 
 ```

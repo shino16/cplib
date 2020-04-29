@@ -25,15 +25,25 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: util/fix.cpp
+# :heavy_check_mark: util/fix.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/fix.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 10:43:15+09:00
 
 
+
+
+## Required by
+
+* :heavy_check_mark: <a href="../graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 
 
 ## Code
@@ -41,6 +51,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 template <typename F>
 class FixPoint : private F {
@@ -63,7 +74,7 @@ template <typename F> decltype(auto) fix(F&& f) noexcept {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "util/fix.cpp"
+#line 2 "util/fix.cpp"
 
 template <typename F>
 class FixPoint : private F {
