@@ -1,3 +1,4 @@
+#pragma once
 
 ll tree_diameter(const Graph& g) {
   auto dfs = fix([&](auto f, int idx, int par)->PLL{

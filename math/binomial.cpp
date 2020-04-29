@@ -1,3 +1,4 @@
+#pragma once
 
 template <typename M = modint>
 class binomial {

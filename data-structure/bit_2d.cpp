@@ -1,3 +1,4 @@
+#pragma once
 
 class BIT_2D {
 private:

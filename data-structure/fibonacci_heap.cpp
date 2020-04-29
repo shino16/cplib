@@ -1,3 +1,4 @@
+#pragma once
 
 // credit to: rsk0315 (https://atcoder.jp/users/rsk0315)
 // this implementation is from https://atcoder.jp/contests/arc064/submissions/8197391

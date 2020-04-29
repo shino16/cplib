@@ -1,3 +1,5 @@
+#pragma once
+
 class BIT {
  public:
   const int n;

@@ -1,3 +1,4 @@
+#pragma once
 
 template <class T, class S, class C>
 S& hack(priority_queue<T, S, C>& q) {

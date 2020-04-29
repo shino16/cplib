@@ -60,6 +60,13 @@ ll power(ll e, int t, ll mod = INF_LL) {
   }
   return res;
 }
+ll choose(ll n, int r) {
+  chmin(r, n-r);
+  if (r < 0) return 0;
+  ll res = 1;
+  rep(i, r) res *= n-i, res /= i+1;
+  return res;
+}
 template <typename T> T divceil(T m, T d) { assert(m >= 0 and d > 0); return (m + d - 1) / d; }
 template <typename T> vector<T> make_v(size_t a, T b) { return vector<T>(a, b); }
 template <typename... Ts> auto make_v(size_t a, Ts... ts) { return vector<decltype(make_v(ts...))>(a, make_v(ts...)); }

@@ -1,3 +1,4 @@
+#pragma once
 
 map<ll, int> factorize(ll n) {
   map<ll, int> m;

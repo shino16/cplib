@@ -1,3 +1,4 @@
+#pragma once
 
 // originally written by @beet-aizu
 template <typename M = ll>

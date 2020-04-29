@@ -1,3 +1,4 @@
+#pragma once
 
 template <size_t N>
 class binomial {
@@ -15,6 +16,3 @@ public:
     return fact[n] * invfact[r] * invfact[n-r];
   }
 };
-
-constexpr size_t N = 100000;
-constexpr binomial<N> binom;

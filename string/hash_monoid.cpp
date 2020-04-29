@@ -1,3 +1,9 @@
+#pragma once
+
+template <typename T, typename Merge, typename Upd>
+class SegmentTree;
+template <typename T, typename U, typename Merge, typename EMerge, typename Upd>
+struct LazySegmentTree;
 
 namespace hash_monoid {
 
@@ -54,7 +60,7 @@ struct updT {
 };
 #pragma GCC diagnostic warning "-Wunused-parameter"
 
-// using HashSegTree = SegmentTree<Hash, mergeT, updT>;
-// using HashSegTree = LazySegmentTree<Hash, char, mergeT, assignT, updT>;
+using HashSegTree = SegmentTree<Hash, mergeT, updT>;
+using LazyHashSegTree = LazySegmentTree<Hash, char, mergeT, assignT, updT>;
 
 }  // namespace hash_monoid

@@ -1,3 +1,4 @@
+#pragma once
 
 vector<ll> dijkstra(const Graph& graph, int start) {
   minheap<pair<ll, int>> q;

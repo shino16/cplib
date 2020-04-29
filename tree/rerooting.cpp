@@ -1,3 +1,4 @@
+#pragma once
 
 #pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename Edge, typename Apply, typename Merge>

@@ -1,3 +1,4 @@
+#pragma once
 
 struct DFS {
   VI subtree_sz, par;

@@ -1,3 +1,4 @@
+#pragma once
 
 class Acc_2D {
 private:

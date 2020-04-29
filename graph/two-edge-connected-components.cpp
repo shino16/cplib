@@ -1,5 +1,5 @@
+#pragma once
 
-// originally written by @beet-aizu
 class TwoEdgeConnectedComponents {
 private:
   VI ord, low, par, index, sz;

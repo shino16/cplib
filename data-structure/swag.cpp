@@ -1,3 +1,4 @@
+#pragma once
 
 template <typename F, typename T = ll>
 class Swag {

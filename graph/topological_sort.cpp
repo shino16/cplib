@@ -1,3 +1,4 @@
+#pragma once
 
 // O(V+E)
 // DAG <==> res.size() == graph.size()

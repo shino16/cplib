@@ -1,3 +1,5 @@
+#pragma once
+
 struct FEdge {
     int from, to;
     ll cost;

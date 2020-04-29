@@ -1,5 +1,5 @@
+#pragma once
 
-// originally written by @beet-aizu
 class HLD {
  private:
   VI index, sz, par, rev;

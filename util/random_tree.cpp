@@ -1,23 +1,17 @@
+#pragma once
 
-// C++ Implementation for random
-// tree generator using Prufer Sequence
-
-// Prints edges of tree
-// represented by give Prufer code
 VVI makeGraph(int prufer[], int m) {
   int n = m + 2;
   VI vertex_set(n);
   vector<PII> edges;
 
-  rep(i, m) vertex_set[prufer[i]-1]++;
+  rep(i, m) vertex_set[prufer[i] - 1]++;
 
-  // Find the smallest label not present in
-  // prufer[].
   rep(i, m) {
     rep(j, n) if (vertex_set[j] == 0) {
       vertex_set[j] = -1;
-      edges.emplace_back(j, prufer[i]-1);
-      vertex_set[prufer[i]-1]--;
+      edges.emplace_back(j, prufer[i] - 1);
+      vertex_set[prufer[i] - 1]--;
       break;
     }
   }
@@ -27,37 +21,22 @@ VVI makeGraph(int prufer[], int m) {
   edges.emplace_back(rest[0], rest[1]);
 
   VVI graph(n);
-  for (auto p : edges)
-    graph[p._1].push_back(p._2),
-    graph[p._2].push_back(p._1);
+  for (auto p : edges) graph[p._1].push_back(p._2), graph[p._2].push_back(p._1);
 
   return graph;
 }
 
-// generate random numbers in between l an r
-int ran(int l, int r)
-{
-  debug(l);
-  debug(r);
+int ran(int l, int r) {
   int res = l + (rand() % (r - l + 1));
-  debug(res);
   return res;
 }
 
-// Function to Generate Random Tree
-VVI generateRandomTree(int n)
-{
-
+VVI generateRandomTree(int n) {
   int length = n - 2;
   int arr[length];
 
-  // Loop to Generate Random Array
-  for (int i = 0; i < length; i++)
-  {
+  for (int i = 0; i < length; i++) {
     arr[i] = ran(0, pow(2, i)) + 1;
   }
   return makeGraph(arr, length);
 }
-
-// This code is contributed by Arnab Kundu
-// and me

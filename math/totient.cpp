@@ -1,3 +1,4 @@
+#pragma once
 
 ll totient(ll n) {
   auto ps = factorize(n);
