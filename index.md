@@ -40,7 +40,6 @@ layout: default
 
 * :warning: <a href="library/formatted_template.cpp.html">formatted_template.cpp</a>
 * :heavy_check_mark: <a href="library/template.cpp.html">template.cpp</a>
-* :warning: <a href="library/test.cpp.html">test.cpp</a>
 
 
 <div id="36397fe12f935090ad150c6ce0c258d4"></div>
