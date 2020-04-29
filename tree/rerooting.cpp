@@ -1,5 +1,6 @@
 #pragma once
 
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename Edge, typename Apply, typename Merge>
 class ReRooting {
@@ -81,4 +82,4 @@ public:
     return apply(dfs(v, G[p][k].rev), G[p][k].data);
   }
 };
-#pragma GCC diagnostic warning "-Wshadow"
+#pragma GCC diagnostic pop

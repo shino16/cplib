@@ -80,6 +80,7 @@ struct Edge {
 using Graph = vector<vector<Edge>>;
 // IO
 // formatted version of following is at https://shino-sky.github.io/cp-lib/library/formatted_template.cpp.html
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmisleading-indentation"
 class MyScanner { public: int offset = 0; char nc(){ return getchar(); }
 template <typename T> void input_integer(T& var) { var = 0; T sign = 1; int cc = nc(); for (;
@@ -142,4 +143,4 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 << ", "; } dump_func(std::move(tail)...); }
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
-#pragma GCC diagnostic warning "-Wmisleading-indentation"
+#pragma GCC diagnostic pop

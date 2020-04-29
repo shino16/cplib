@@ -1,5 +1,8 @@
 #pragma once
 
+#include "util/function_objects.cpp"
+
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename U, typename Merge, typename EMerge, typename Upd>
 struct LazySegmentTree {
@@ -118,26 +121,4 @@ struct LazySegmentTree {
     return merge(resl, resr);
   }
 };
-#pragma GCC diagnostic warning "-Wshadow"
-
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-struct minT {
-  template <typename T>
-  T operator()(T a, T b) const { return min(a, b); }
-};
-
-struct maxT {
-  template <typename T>
-  T operator()(T a, T b) const { return max(a, b); }
-};
-
-struct assignT {
-  template <typename T>
-  T operator()(T a, T b, int k = 0) const { return b; }
-};
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-
-struct plusT {
-  template <typename T>
-  T operator()(T a, T b, int k) const { return a + b * k; }
-};
+#pragma GCC diagnostic pop

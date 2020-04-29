@@ -1,9 +1,7 @@
 #pragma once
 
-template <typename T, typename Merge, typename Upd>
-class SegmentTree;
-template <typename T, typename U, typename Merge, typename EMerge, typename Upd>
-struct LazySegmentTree;
+#include "data-structure/segtree.cpp"
+#include "data-structure/lazy_segtree.cpp"
 
 namespace hash_monoid {
 
@@ -23,9 +21,10 @@ struct Hash {
   ull value;
   int length;
 
-  Hash() : value(0), length(0) {} // unit
+  Hash() : value(0), length(0) {}  // unit
   Hash(ull _value, int _length) : value(_value), length(_length) {}
-  Hash(char c, int _length = 1) : value(calc_hash(c, _length)), length(_length) {}
+  Hash(char c, int _length = 1)
+      : value(calc_hash(c, _length)), length(_length) {}
 
  private:
   ull calc_hash(char c, int _length) {
@@ -43,24 +42,27 @@ struct Hash {
   }
 };
 
-
 struct mergeT {
   Hash operator()(const Hash &lhs, const Hash &rhs) const {
-    prepare_pows(rhs.length+1);
+    prepare_pows(rhs.length + 1);
     return Hash(mod(mul(lhs.value, pows[rhs.length]) + rhs.value),
                 lhs.length + rhs.length);
   }
 };
 
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 struct updT {
   Hash operator()(const Hash &lhs, char c, int k = 1) const {
     return Hash(c, k);
   }
 };
-#pragma GCC diagnostic warning "-Wunused-parameter"
-
-using HashSegTree = SegmentTree<Hash, mergeT, updT>;
-using LazyHashSegTree = LazySegmentTree<Hash, char, mergeT, assignT, updT>;
+#pragma GCC diagnostic pop
 
 }  // namespace hash_monoid
+
+using HashSegTree =
+    SegmentTree<hash_monoid::Hash, hash_monoid::mergeT, hash_monoid::updT>;
+using LazyHashSegTree =
+    LazySegmentTree<hash_monoid::Hash, char, hash_monoid::mergeT, assignT,
+                    hash_monoid::updT>;

@@ -1,5 +1,6 @@
 
 #ifndef LOCAL
+#pragma GCC diagnostic warning "-w"
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("avx")
@@ -87,6 +88,13 @@ ll power(ll e, int t, ll mod = INF_LL) {
   }
   return res;
 }
+ll choose(ll n, int r) {
+  chmin(r, n - r);
+  if (r < 0) return 0;
+  ll res = 1;
+  rep(i, r) res *= n - i, res /= i + 1;
+  return res;
+}
 template <typename T>
 T divceil(T m, T d) {
   assert(m >= 0 and d > 0);
@@ -116,6 +124,7 @@ using Graph = vector<vector<Edge>>;
 // IO
 // formatted version of following is at
 // https://shino-sky.github.io/cp-lib/library/formatted_template.cpp.html
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmisleading-indentation"
 class MyScanner {
  public:
@@ -357,4 +366,4 @@ void dump_func(Head&& head, Tail&&... tail) {
           << "[" << to_string(__LINE__) << ":" << __FUNCTION__ << "]" << newl \
           << "    ",                                                          \
       dump_func(__VA_ARGS__)
-#pragma GCC diagnostic warning "-Wmisleading-indentation"
+#pragma GCC diagnostic pop
