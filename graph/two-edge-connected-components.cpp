@@ -4,15 +4,16 @@ class TwoEdgeConnectedComponents {
 private:
   VI ord, low, par, index, sz;
 public:
-  VVI components, c_graph;
+  VVI components; Graph c_graph;
 
 public:
+  TwoEdgeConnectedComponents() {}
   TwoEdgeConnectedComponents(const Graph& graph)
       : ord(graph.size(), -1), low(graph.size()), par(graph.size(), -1), index(graph.size(), -1), sz(graph.size(), 1) {
     int n = graph.size();
     rep(i, n) if (ord[i] == -1) dfs(i, graph);
     rep(i, n) if (index[i] == -1) add_component(i, graph);
-    c_graph = VVI(components.size());
+    c_graph = Graph(components.size());
     rep(v, n) for (int u : graph[v])
         if (index[v] != index[u]) c_graph[index[v]].emplace_back(index[u]);
   }
@@ -49,8 +50,10 @@ private:
   }
 
 public:
-  bool is_bridge(int u, int v) {
+  bool is_bridge(int u, int v) const {
     if (ord[u] > ord[v]) swap(u, v);
     return ord[u] < low[v];
   }
+
+  int operator[](int v) const { return index[v]; }
 };
