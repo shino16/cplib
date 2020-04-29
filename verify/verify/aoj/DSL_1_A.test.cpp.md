@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#74053cc99b0559ce9aeee19793c084e1">verify/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/verify/aoj/DSL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-29 10:44:16+09:00
+    - Last commit date: 2020-04-29 23:43:23+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A</a>
@@ -134,6 +134,13 @@ ll power(ll e, int t, ll mod = INF_LL) {
   }
   return res;
 }
+ll choose(ll n, int r) {
+  chmin(r, n-r);
+  if (r < 0) return 0;
+  ll res = 1;
+  rep(i, r) res *= n-i, res /= i+1;
+  return res;
+}
 template <typename T> T divceil(T m, T d) { assert(m >= 0 and d > 0); return (m + d - 1) / d; }
 template <typename T> vector<T> make_v(size_t a, T b) { return vector<T>(a, b); }
 template <typename... Ts> auto make_v(size_t a, Ts... ts) { return vector<decltype(make_v(ts...))>(a, make_v(ts...)); }
@@ -147,6 +154,7 @@ struct Edge {
 using Graph = vector<vector<Edge>>;
 // IO
 // formatted version of following is at https://shino-sky.github.io/cp-lib/library/formatted_template.cpp.html
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmisleading-indentation"
 class MyScanner { public: int offset = 0; char nc(){ return getchar(); }
 template <typename T> void input_integer(T& var) { var = 0; T sign = 1; int cc = nc(); for (;
@@ -209,8 +217,8 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 << ", "; } dump_func(std::move(tail)...); }
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
-#pragma GCC diagnostic warning "-Wmisleading-indentation"
-#line 1 "data-structure/union_find.cpp"
+#pragma GCC diagnostic pop
+#line 2 "data-structure/union_find.cpp"
 
 class union_find {
  private:

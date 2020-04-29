@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/union_find.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -46,6 +46,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 class union_find {
  private:
@@ -78,7 +79,7 @@ class union_find {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "data-structure/union_find.cpp"
+#line 2 "data-structure/union_find.cpp"
 
 class union_find {
  private:

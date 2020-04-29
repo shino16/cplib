@@ -25,15 +25,30 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: data-structure/lazy_segtree.cpp
+# :heavy_check_mark: data-structure/lazy_segtree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/lazy_segtree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:43:23+09:00
 
 
+
+
+## Depends on
+
+* :heavy_check_mark: <a href="../util/function_objects.cpp.html">util/function_objects.cpp</a>
+
+
+## Required by
+
+* :heavy_check_mark: <a href="../string/hash_monoid.cpp.html">string/hash_monoid.cpp</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 
 
 ## Code
@@ -41,7 +56,11 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
+#include "util/function_objects.cpp"
+
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename U, typename Merge, typename EMerge, typename Upd>
 struct LazySegmentTree {
@@ -160,37 +179,47 @@ struct LazySegmentTree {
     return merge(resl, resr);
   }
 };
-#pragma GCC diagnostic warning "-Wshadow"
+#pragma GCC diagnostic pop
 
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-struct minT {
-  template <typename T>
-  T operator()(T a, T b) const { return min(a, b); }
-};
-
-struct maxT {
-  template <typename T>
-  T operator()(T a, T b) const { return max(a, b); }
-};
-
-struct assignT {
-  template <typename T>
-  T operator()(T a, T b, int k = 0) const { return b; }
-};
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-
-struct plusT {
-  template <typename T>
-  T operator()(T a, T b, int k) const { return a + b * k; }
-};
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "data-structure/lazy_segtree.cpp"
+#line 2 "data-structure/lazy_segtree.cpp"
 
+#line 2 "util/function_objects.cpp"
+
+struct minT {
+  template <typename T>
+  T operator()(T a, T b) const {
+    return min(a, b);
+  }
+};
+
+struct maxT {
+  template <typename T>
+  T operator()(T a, T b) const {
+    return max(a, b);
+  }
+};
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+struct assignT {
+  template <typename T>
+  T operator()(T a, T b, int k = 0) const { return b; }
+};
+#pragma GCC diagnostic pop
+
+struct plusT {
+  template <typename T>
+  T operator()(T a, T b, int k) const { return a + b * k; }
+};
+#line 4 "data-structure/lazy_segtree.cpp"
+
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename U, typename Merge, typename EMerge, typename Upd>
 struct LazySegmentTree {
@@ -309,29 +338,7 @@ struct LazySegmentTree {
     return merge(resl, resr);
   }
 };
-#pragma GCC diagnostic warning "-Wshadow"
-
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-struct minT {
-  template <typename T>
-  T operator()(T a, T b) const { return min(a, b); }
-};
-
-struct maxT {
-  template <typename T>
-  T operator()(T a, T b) const { return max(a, b); }
-};
-
-struct assignT {
-  template <typename T>
-  T operator()(T a, T b, int k = 0) const { return b; }
-};
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-
-struct plusT {
-  template <typename T>
-  T operator()(T a, T b, int k) const { return a + b * k; }
-};
+#pragma GCC diagnostic pop
 
 ```
 {% endraw %}

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/topological_sort.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 // O(V+E)
 // DAG <==> res.size() == graph.size()
@@ -68,7 +69,7 @@ vector<int> topological_sort(const Graph& graph) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "graph/topological_sort.cpp"
+#line 2 "graph/topological_sort.cpp"
 
 // O(V+E)
 // DAG <==> res.size() == graph.size()

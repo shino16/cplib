@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/lca.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -41,21 +41,21 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-typedef vector<vector<int>> graph;
+#pragma once
 
 struct lca {
 private:
-  const int n = 0;
-  const int log2_n = 0;
+  const int n;
+  const int log2_n;
 public:
   vector<vector<int>> parent;
   vector<int> depth;
-  lca(const graph &g, int root)
+  lca(const Graph &g, int root)
       : n(g.size()), log2_n(32 - __builtin_clz(n) + 1),
         parent(log2_n, vector<int>(n)), depth(n) {
     dfs(g, root, -1, 0);
-    for (int k = 0; k + 1 < log2_n; k++) {
-      for (int v = 0; v < (int)g.size(); v++) {
+    rep(k, log2_n) {
+      rep(v, n) {
         if (parent[k][v] < 0)
           parent[k + 1][v] = -1;
         else
@@ -64,7 +64,7 @@ public:
     }
   }
 private:
-  void dfs(const graph &g, int v, int p, int d) {
+  void dfs(const Graph &g, int v, int p, int d) {
     parent[0][v] = p;
     depth[v] = d;
     for (auto &e : g[v]) {
@@ -95,22 +95,21 @@ public:
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "tree/lca.cpp"
-typedef vector<vector<int>> graph;
+#line 2 "tree/lca.cpp"
 
 struct lca {
 private:
-  const int n = 0;
-  const int log2_n = 0;
+  const int n;
+  const int log2_n;
 public:
   vector<vector<int>> parent;
   vector<int> depth;
-  lca(const graph &g, int root)
+  lca(const Graph &g, int root)
       : n(g.size()), log2_n(32 - __builtin_clz(n) + 1),
         parent(log2_n, vector<int>(n)), depth(n) {
     dfs(g, root, -1, 0);
-    for (int k = 0; k + 1 < log2_n; k++) {
-      for (int v = 0; v < (int)g.size(); v++) {
+    rep(k, log2_n) {
+      rep(v, n) {
         if (parent[k][v] < 0)
           parent[k + 1][v] = -1;
         else
@@ -119,7 +118,7 @@ public:
     }
   }
 private:
-  void dfs(const graph &g, int v, int p, int d) {
+  void dfs(const Graph &g, int v, int p, int d) {
     parent[0][v] = p;
     depth[v] = d;
     for (auto &e : g[v]) {

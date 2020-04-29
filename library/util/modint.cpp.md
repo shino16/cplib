@@ -31,9 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/modint.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="../math/garner_ntt.cpp.html">math/garner_ntt.cpp</a>
 
 
 ## Code
@@ -41,13 +46,12 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-
-constexpr ll Mod = 10000007;
+#pragma once
 
 template <ll> class modint;
 template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, size_t);
 
-template <ll MOD = Mod>
+template <ll MOD = 10000007>
 class modint {
 public:
   ll value;
@@ -158,14 +162,12 @@ modint<MOD> choose(int n, int r) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "util/modint.cpp"
-
-constexpr ll Mod = 10000007;
+#line 2 "util/modint.cpp"
 
 template <ll> class modint;
 template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, size_t);
 
-template <ll MOD = Mod>
+template <ll MOD = 10000007>
 class modint {
 public:
   ll value;

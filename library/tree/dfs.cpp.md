@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/dfs.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 struct DFS {
   VI subtree_sz, par;
@@ -74,7 +75,7 @@ void _dfs_impl(const Graph& graph, int v, DFS& res) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "tree/dfs.cpp"
+#line 2 "tree/dfs.cpp"
 
 struct DFS {
   VI subtree_sz, par;

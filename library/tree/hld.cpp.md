@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/hld.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-29 00:04:22+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -46,8 +46,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
-// originally written by @beet-aizu
 class HLD {
  private:
   VI index, sz, par, rev;
@@ -149,9 +149,8 @@ class HLD {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "tree/hld.cpp"
+#line 2 "tree/hld.cpp"
 
-// originally written by @beet-aizu
 class HLD {
  private:
   VI index, sz, par, rev;

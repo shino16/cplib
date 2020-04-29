@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/euler_tour.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 void euler_tour(const VVI& graph, VI& tour, VI& left, VI& right,
                 int v = 0, int par = -1) {
@@ -58,7 +59,7 @@ void euler_tour(const VVI& graph, VI& tour, VI& left, VI& right,
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "tree/euler_tour.cpp"
+#line 2 "tree/euler_tour.cpp"
 
 void euler_tour(const VVI& graph, VI& tour, VI& left, VI& right,
                 int v = 0, int par = -1) {

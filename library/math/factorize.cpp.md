@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/factorize.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 map<ll, int> factorize(ll n) {
   map<ll, int> m;
@@ -62,7 +63,7 @@ map<ll, int> factorize(ll n) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "math/factorize.cpp"
+#line 2 "math/factorize.cpp"
 
 map<ll, int> factorize(ll n) {
   map<ll, int> m;

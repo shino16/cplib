@@ -31,9 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/fibonacci_heap.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-29 00:04:22+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
+
+
+## Required by
+
+* :heavy_check_mark: <a href="../graph/dijkstra_fib_heap.cpp.html">graph/dijkstra_fib_heap.cpp</a>
 
 
 ## Verified with
@@ -46,6 +51,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 // credit to: rsk0315 (https://atcoder.jp/users/rsk0315)
 // this implementation is from https://atcoder.jp/contests/arc064/submissions/8197391
@@ -305,7 +311,7 @@ public:
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "data-structure/fibonacci_heap.cpp"
+#line 2 "data-structure/fibonacci_heap.cpp"
 
 // credit to: rsk0315 (https://atcoder.jp/users/rsk0315)
 // this implementation is from https://atcoder.jp/contests/arc064/submissions/8197391

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/prim.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -41,6 +41,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
+
 struct FEdge {
     int from, to;
     ll cost;
@@ -71,7 +73,8 @@ pair<ll, vector<FEdge>> prim(const Graph &g, int r = 0) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "graph/prim.cpp"
+#line 2 "graph/prim.cpp"
+
 struct FEdge {
     int from, to;
     ll cost;

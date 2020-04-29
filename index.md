@@ -50,8 +50,7 @@ layout: default
 * :heavy_check_mark: <a href="library/data-structure/bit_2d.cpp.html">data-structure/bit_2d.cpp</a>
 * :warning: <a href="library/data-structure/dynamic_segtree.cpp.html">data-structure/dynamic_segtree.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/fibonacci_heap.cpp.html">data-structure/fibonacci_heap.cpp</a>
-* :warning: <a href="library/data-structure/heap.cpp.html">data-structure/heap.cpp</a>
-* :warning: <a href="library/data-structure/lazy_segtree.cpp.html">data-structure/lazy_segtree.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/lazy_segtree.cpp.html">data-structure/lazy_segtree.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :warning: <a href="library/data-structure/swag.cpp.html">data-structure/swag.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
@@ -84,13 +83,11 @@ layout: default
 
 * :warning: <a href="library/math/approximate.cpp.html">math/approximate.cpp</a>
 * :warning: <a href="library/math/binomial.cpp.html">math/binomial.cpp</a>
-* :warning: <a href="library/math/choose.cpp.html">math/choose.cpp</a>
 * :warning: <a href="library/math/constexpr_binomial.cpp.html">math/constexpr_binomial.cpp</a>
 * :warning: <a href="library/math/factorize.cpp.html">math/factorize.cpp</a>
 * :warning: <a href="library/math/fft.cpp.html">math/fft.cpp</a>
 * :warning: <a href="library/math/formalpowerseries.cpp.html">math/formalpowerseries.cpp</a>
 * :warning: <a href="library/math/garner_ntt.cpp.html">math/garner_ntt.cpp</a>
-* :warning: <a href="library/math/garner_ntt_fft.cpp.html">math/garner_ntt_fft.cpp</a>
 * :warning: <a href="library/math/ntt.cpp.html">math/ntt.cpp</a>
 * :warning: <a href="library/math/polynomial.cpp.html">math/polynomial.cpp</a>
 * :warning: <a href="library/math/squarematrix.cpp.html">math/squarematrix.cpp</a>
@@ -101,8 +98,8 @@ layout: default
 
 ### string
 
-* :warning: <a href="library/string/hash_monoid.cpp.html">string/hash_monoid.cpp</a>
-* :warning: <a href="library/string/rolling_hash.cpp.html">string/rolling_hash.cpp</a>
+* :heavy_check_mark: <a href="library/string/hash_monoid.cpp.html">string/hash_monoid.cpp</a>
+* :heavy_check_mark: <a href="library/string/rolling_hash.cpp.html">string/rolling_hash.cpp</a>
 
 
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
@@ -122,9 +119,9 @@ layout: default
 ### util
 
 * :warning: <a href="library/util/acc_2d.cpp.html">util/acc_2d.cpp</a>
-* :warning: <a href="library/util/bigint.cpp.html">util/bigint.cpp</a>
 * :heavy_check_mark: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
 * :heavy_check_mark: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
+* :heavy_check_mark: <a href="library/util/function_objects.cpp.html">util/function_objects.cpp</a>
 * :warning: <a href="library/util/hack_pque.cpp.html">util/hack_pque.cpp</a>
 * :warning: <a href="library/util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="library/util/modint.cpp.html">util/modint.cpp</a>
@@ -135,6 +132,7 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>

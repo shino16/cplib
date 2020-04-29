@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/compress.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-28 15:58:20+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -47,6 +47,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 template <typename T = ll>
 class Compress {
@@ -113,7 +114,7 @@ class Compress {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "util/compress.cpp"
+#line 2 "util/compress.cpp"
 
 template <typename T = ll>
 class Compress {

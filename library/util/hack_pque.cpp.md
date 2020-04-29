@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/hack_pque.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 template <class T, class S, class C>
 S& hack(priority_queue<T, S, C>& q) {
@@ -58,7 +59,7 @@ S& hack(priority_queue<T, S, C>& q) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "util/hack_pque.cpp"
+#line 2 "util/hack_pque.cpp"
 
 template <class T, class S, class C>
 S& hack(priority_queue<T, S, C>& q) {

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/formatted_template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-28 16:34:23+09:00
+    - Last commit date: 2020-04-29 23:43:23+09:00
 
 
 
@@ -43,6 +43,7 @@ layout: default
 ```cpp
 
 #ifndef LOCAL
+#pragma GCC diagnostic warning "-w"
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("avx")
@@ -130,6 +131,13 @@ ll power(ll e, int t, ll mod = INF_LL) {
   }
   return res;
 }
+ll choose(ll n, int r) {
+  chmin(r, n - r);
+  if (r < 0) return 0;
+  ll res = 1;
+  rep(i, r) res *= n - i, res /= i + 1;
+  return res;
+}
 template <typename T>
 T divceil(T m, T d) {
   assert(m >= 0 and d > 0);
@@ -159,6 +167,7 @@ using Graph = vector<vector<Edge>>;
 // IO
 // formatted version of following is at
 // https://shino-sky.github.io/cp-lib/library/formatted_template.cpp.html
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmisleading-indentation"
 class MyScanner {
  public:
@@ -400,7 +409,7 @@ void dump_func(Head&& head, Tail&&... tail) {
           << "[" << to_string(__LINE__) << ":" << __FUNCTION__ << "]" << newl \
           << "    ",                                                          \
       dump_func(__VA_ARGS__)
-#pragma GCC diagnostic warning "-Wmisleading-indentation"
+#pragma GCC diagnostic pop
 
 ```
 {% endraw %}
@@ -411,6 +420,7 @@ void dump_func(Head&& head, Tail&&... tail) {
 #line 1 "formatted_template.cpp"
 
 #ifndef LOCAL
+#pragma GCC diagnostic warning "-w"
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("avx")
@@ -498,6 +508,13 @@ ll power(ll e, int t, ll mod = INF_LL) {
   }
   return res;
 }
+ll choose(ll n, int r) {
+  chmin(r, n - r);
+  if (r < 0) return 0;
+  ll res = 1;
+  rep(i, r) res *= n - i, res /= i + 1;
+  return res;
+}
 template <typename T>
 T divceil(T m, T d) {
   assert(m >= 0 and d > 0);
@@ -527,6 +544,7 @@ using Graph = vector<vector<Edge>>;
 // IO
 // formatted version of following is at
 // https://shino-sky.github.io/cp-lib/library/formatted_template.cpp.html
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmisleading-indentation"
 class MyScanner {
  public:
@@ -768,7 +786,7 @@ void dump_func(Head&& head, Tail&&... tail) {
           << "[" << to_string(__LINE__) << ":" << __FUNCTION__ << "]" << newl \
           << "    ",                                                          \
       dump_func(__VA_ARGS__)
-#pragma GCC diagnostic warning "-Wmisleading-indentation"
+#pragma GCC diagnostic pop
 
 ```
 {% endraw %}

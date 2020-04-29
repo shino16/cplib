@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#ed7daeb157cd9b31e53896ad3c771a26">geometry</a>
 * <a href="{{ site.github.repository_url }}/blob/master/geometry/Pt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 template <typename T = int>
 struct Pt {
@@ -109,7 +110,7 @@ InStream& operator>>(InStream& in, Pt<T>& var) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "geometry/Pt.cpp"
+#line 2 "geometry/Pt.cpp"
 
 template <typename T = int>
 struct Pt {

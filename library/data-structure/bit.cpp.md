@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/bit.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-28 16:11:36+09:00
+    - Last commit date: 2020-04-29 23:28:13+09:00
 
 
 
@@ -46,6 +46,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
+
 class BIT {
  public:
   const int n;
@@ -101,7 +103,8 @@ class BIT {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "data-structure/bit.cpp"
+#line 2 "data-structure/bit.cpp"
+
 class BIT {
  public:
   const int n;
