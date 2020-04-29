@@ -89,6 +89,7 @@ layout: default
 * :warning: <a href="library/math/factorize.cpp.html">math/factorize.cpp</a>
 * :warning: <a href="library/math/fft.cpp.html">math/fft.cpp</a>
 * :warning: <a href="library/math/formalpowerseries.cpp.html">math/formalpowerseries.cpp</a>
+* :warning: <a href="library/math/garner_ntt.cpp.html">math/garner_ntt.cpp</a>
 * :warning: <a href="library/math/garner_ntt_fft.cpp.html">math/garner_ntt_fft.cpp</a>
 * :warning: <a href="library/math/ntt.cpp.html">math/ntt.cpp</a>
 * :warning: <a href="library/math/polynomial.cpp.html">math/polynomial.cpp</a>
