@@ -1,9 +1,9 @@
 #pragma once
 
 template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, size_t);
+template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
 
-template <ll MOD = 10000007>
+template <ll MOD = 1000000007>
 class modint {
 public:
   ll value;
@@ -33,24 +33,24 @@ public:
   constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
     return modint<MOD>(*this) /= rhs;
   }
-  constexpr modint<MOD> &operator+=(const modint<MOD>& rhs) {
+  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
     value += rhs.value;
     if (value >= MOD) value -= MOD;
     return *this;
   }
-  constexpr modint<MOD> &operator-=(const modint<MOD>& rhs) {
+  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
     if (value < rhs.value) value += MOD;
     value -= rhs.value;
     return *this;
   }
-  constexpr modint<MOD> &operator*=(const modint<MOD>& rhs) {
+  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
     value = value * rhs.value % MOD;
     return *this;
   }
-  constexpr modint<MOD> &operator/=(const modint<MOD>& rhs) {
+  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
     return *this *= pow(rhs, MOD - 2);
   }
-  constexpr modint<MOD> &operator++() {
+  constexpr modint<MOD>& operator++() {
     return *this += 1;
   }
   constexpr modint<MOD> operator++(int) {
@@ -58,7 +58,7 @@ public:
     ++(*this);
     return tmp;
   }
-  constexpr modint<MOD> &operator--() {
+  constexpr modint<MOD>& operator--() {
     return *this -= 1;
   }
   constexpr modint<MOD> operator--(int) {
@@ -88,7 +88,7 @@ InStream& operator>>(InStream& in, modint<MOD>& n) {
 }
 
 template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, size_t exp) {
+constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
   modint<MOD> res = 1;
   while (exp) {
     if (exp % 2) res *= base;

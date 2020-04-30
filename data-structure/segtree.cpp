@@ -25,7 +25,7 @@ class SegmentTree {
   SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
               Merge merge = Merge(), Upd upd = Upd())
       : n(n), unit(unit), merge(merge), upd(upd), data(n << 1) {
-    copy(first, last, data.begin() + n);
+    move(first, last, data.begin() + n);
     build();
   }
 
@@ -34,7 +34,7 @@ class SegmentTree {
   [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
                              Merge merge = Merge(), Upd upd = Upd())
       : n(n), unit(unit), merge(merge), upd(upd), data(n << 1) {
-    copy(first, last, data.begin() + n);
+    move(first, last, data.begin() + n);
     build();
   }
 

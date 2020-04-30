@@ -26,23 +26,25 @@ struct LazySegmentTree {
   }
 
   template <typename Iter,
-            enable_if_t<is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
   LazySegmentTree(Iter first, Iter last, size_t n, T unit = T(), U eunit = U(),
                   Merge merge = Merge(), EMerge emerge = EMerge(),
                   Upd upd = Upd())
       : n(n), h(32 - __builtin_clz(n)), unit(unit), eunit(eunit), merge(merge),
         emerge(emerge), upd(upd), data(n << 1, unit), lazy(n, eunit) {
-    assign(first, last);
+    move(first, last, data.begin() + n);
+    build(0, n);
   }
 
   template <typename Iter,
-            enable_if_t<!is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
   [[deprecated]] LazySegmentTree(Iter first, Iter last, size_t n, T unit = T(),
                                  U eunit = U(), Merge merge = Merge(),
                                  EMerge emerge = EMerge(), Upd upd = Upd())
       : n(n), h(32 - __builtin_clz(n)), unit(unit), eunit(eunit), merge(merge),
         emerge(emerge), upd(upd), data(n << 1, unit), lazy(n, eunit) {
-    assign(first, last);
+    move(first, last, data.begin() + n);
+    build(0, n);
   }
 
   template <typename Iter>
@@ -88,12 +90,6 @@ struct LazySegmentTree {
       l >>= 1, r >>= 1;
       for (int p = l; p <= r; p++) pushup(p, sz);
     }
-  }
-
-  template <typename Iter>
-  void assign(Iter first, Iter last) {
-    copy(first, last, data.begin() + n);
-    build(0, n);
   }
 
  public:

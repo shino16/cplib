@@ -52,7 +52,7 @@ bool chmin(T& var, U x) { if (var > x) { var = x; return true; } else return fal
 template <typename T, typename U>
 bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return false; }
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
-ll power(ll e, int t, ll mod = INF_LL) {
+ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1;
   while (t) {
     if (t & 1) res = (res * e) % mod;
