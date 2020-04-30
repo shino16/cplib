@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/formatted_template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-29 23:43:23+09:00
+    - Last commit date: 2020-05-01 00:36:38+09:00
 
 
 
@@ -82,13 +82,15 @@ constexpr ll INF_LL = 1'000'000'000'000'000'007;
     OUT(out);     \
     exit(0);      \
   } while (0)
+#define all(x) begin(x), end(x)
+#define rall(x) rbegin(x), rend(x)
+#define newl "\n"
 #define __overload3(_1, _2, _3, name, ...) name
 #define rep(...) \
   __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
-#define repeat(times) \
-  repFromUntil(_repeat\
-__LINE__,             \
-               0, times)
+#define repeat(times) _repeat(_repeat, __COUNTER__, times)
+#define _repeat(_repeat, cnt, times) _repeat2(_repeat, cnt, times)
+#define _repeat2(_repeat, cnt, times) repFromUntil(_repeat##cnt, 0, times)
 #define repUntil(name, times) repFromUntil(name, 0, times)
 #define repFromUntil(name, from, until) \
   for (int name = from, name##__until = (until); name < name##__until; name++)
@@ -98,10 +100,7 @@ __LINE__,             \
 #define reprFromUntil(name, from, until)                                  \
   for (int name = (until)-1, name##__from = (from); name >= name##__from; \
        name--)
-#define repi(itr, ds) for (auto itr = ds.begin(); itr != ds.end(); itr++)
-#define all(x) begin(x), end(x)
-#define rall(x) rbegin(x), rend(x)
-#define newl "\n"
+#define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
 template <typename T, typename U>
 bool chmin(T& var, U x) {
   if (var > x) {
@@ -122,7 +121,7 @@ template <typename T>
 int sgn(T val) {
   return (T(0) < val) - (val < T(0));
 }
-ll power(ll e, int t, ll mod = INF_LL) {
+ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1;
   while (t) {
     if (t & 1) res = (res * e) % mod;
@@ -459,13 +458,15 @@ constexpr ll INF_LL = 1'000'000'000'000'000'007;
     OUT(out);     \
     exit(0);      \
   } while (0)
+#define all(x) begin(x), end(x)
+#define rall(x) rbegin(x), rend(x)
+#define newl "\n"
 #define __overload3(_1, _2, _3, name, ...) name
 #define rep(...) \
   __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
-#define repeat(times) \
-  repFromUntil(_repeat\
-__LINE__,             \
-               0, times)
+#define repeat(times) _repeat(_repeat, __COUNTER__, times)
+#define _repeat(_repeat, cnt, times) _repeat2(_repeat, cnt, times)
+#define _repeat2(_repeat, cnt, times) repFromUntil(_repeat##cnt, 0, times)
 #define repUntil(name, times) repFromUntil(name, 0, times)
 #define repFromUntil(name, from, until) \
   for (int name = from, name##__until = (until); name < name##__until; name++)
@@ -475,10 +476,7 @@ __LINE__,             \
 #define reprFromUntil(name, from, until)                                  \
   for (int name = (until)-1, name##__from = (from); name >= name##__from; \
        name--)
-#define repi(itr, ds) for (auto itr = ds.begin(); itr != ds.end(); itr++)
-#define all(x) begin(x), end(x)
-#define rall(x) rbegin(x), rend(x)
-#define newl "\n"
+#define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
 template <typename T, typename U>
 bool chmin(T& var, U x) {
   if (var > x) {
@@ -499,7 +497,7 @@ template <typename T>
 int sgn(T val) {
   return (T(0) < val) - (val < T(0));
 }
-ll power(ll e, int t, ll mod = INF_LL) {
+ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1;
   while (t) {
     if (t & 1) res = (res * e) % mod;

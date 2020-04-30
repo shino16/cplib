@@ -31,9 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#b45cffe084dd3d20d928bee85e7b0f21">string</a>
 * <a href="{{ site.github.repository_url }}/blob/master/string/rolling_hash.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 18:46:30+09:00
+    - Last commit date: 2020-05-01 00:36:47+09:00
 
 
+
+
+## Required by
+
+* :heavy_check_mark: <a href="hash_monoid.cpp.html">string/hash_monoid.cpp</a>
 
 
 ## Verified with
@@ -46,6 +51,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 namespace rolling_hash {
 
@@ -54,6 +60,7 @@ constexpr ull mask31 = (1ULL << 31) - 1;
 constexpr ull MOD = (1ULL << 61) - 1;
 int base = rand();
 vector<ull> pows{1};
+vector<ull> sum_pows{1};
 
 ull mod(ull val) {
   val = (val & MOD) + (val >> 61);
@@ -78,6 +85,50 @@ void prepare_pows(size_t sz) {
   rep(i, pows.size() - 1, sz - 1) pows.push_back(mod(mul(pows[i], base)));
 }
 
+void prepare_sum_pows(size_t sz) {
+  prepare_pows(sz);
+  rep(i, sum_pows.size() - 1, sz - 1) {
+    sum_pows.push_back(mod(sum_pows[i] + pows[i + 1]));
+  }
+}
+
+ull calc_hash(char c, int _length) {
+  prepare_sum_pows(_length);
+  return mod(mul(sum_pows[_length - 1], c));
+}
+
+template <typename Iter>
+ull calc_hash(Iter first, Iter last) {
+  ull res = 0;
+  rep(i, last - first) res = mod(mul(res, base) + first[i]);
+  return res;
+}
+
+// monoid
+struct Hash {
+  ull value;
+  int length;
+
+  Hash() : value(0), length(0) {}  // unit
+  Hash(ull _value, int _length) : value(_value), length(_length) {}
+  Hash(char c, int _length = 1)
+      : value(calc_hash(c, _length)), length(_length) {}
+  template <typename Iter>
+  Hash(Iter first, Iter last): value(calc_hash(first, last)), length(distance(first, last)) {}
+
+ public:
+  operator ull() const { return value; }
+  bool operator==(const Hash& rhs) const {
+    return value == rhs.value && length == rhs.length;
+  }
+  bool operator!=(const Hash& rhs) const {
+    return value == rhs.value && length == rhs.length;
+  }
+  bool operator<(const Hash& rhs) const {
+    return make_pair(length, value) < make_pair(rhs.length, rhs.value);
+  }
+};
+
 class Calculator {
  private:
   vector<ull> hash;
@@ -94,6 +145,9 @@ class Calculator {
   ull operator()(int l, int r) const {
     static constexpr ull large = MOD * ((1 << 2) - 1);
     return mod(hash[r] + large - mul(hash[l], pows[r - l]));
+  }
+  Hash get_hash(int l, int r) const {
+    return Hash(operator()(l, r), r - l);
   }
 };
 
@@ -105,7 +159,7 @@ class Calculator {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "string/rolling_hash.cpp"
+#line 2 "string/rolling_hash.cpp"
 
 namespace rolling_hash {
 
@@ -114,6 +168,7 @@ constexpr ull mask31 = (1ULL << 31) - 1;
 constexpr ull MOD = (1ULL << 61) - 1;
 int base = rand();
 vector<ull> pows{1};
+vector<ull> sum_pows{1};
 
 ull mod(ull val) {
   val = (val & MOD) + (val >> 61);
@@ -138,6 +193,50 @@ void prepare_pows(size_t sz) {
   rep(i, pows.size() - 1, sz - 1) pows.push_back(mod(mul(pows[i], base)));
 }
 
+void prepare_sum_pows(size_t sz) {
+  prepare_pows(sz);
+  rep(i, sum_pows.size() - 1, sz - 1) {
+    sum_pows.push_back(mod(sum_pows[i] + pows[i + 1]));
+  }
+}
+
+ull calc_hash(char c, int _length) {
+  prepare_sum_pows(_length);
+  return mod(mul(sum_pows[_length - 1], c));
+}
+
+template <typename Iter>
+ull calc_hash(Iter first, Iter last) {
+  ull res = 0;
+  rep(i, last - first) res = mod(mul(res, base) + first[i]);
+  return res;
+}
+
+// monoid
+struct Hash {
+  ull value;
+  int length;
+
+  Hash() : value(0), length(0) {}  // unit
+  Hash(ull _value, int _length) : value(_value), length(_length) {}
+  Hash(char c, int _length = 1)
+      : value(calc_hash(c, _length)), length(_length) {}
+  template <typename Iter>
+  Hash(Iter first, Iter last): value(calc_hash(first, last)), length(distance(first, last)) {}
+
+ public:
+  operator ull() const { return value; }
+  bool operator==(const Hash& rhs) const {
+    return value == rhs.value && length == rhs.length;
+  }
+  bool operator!=(const Hash& rhs) const {
+    return value == rhs.value && length == rhs.length;
+  }
+  bool operator<(const Hash& rhs) const {
+    return make_pair(length, value) < make_pair(rhs.length, rhs.value);
+  }
+};
+
 class Calculator {
  private:
   vector<ull> hash;
@@ -154,6 +253,9 @@ class Calculator {
   ull operator()(int l, int r) const {
     static constexpr ull large = MOD * ((1 << 2) - 1);
     return mod(hash[r] + large - mul(hash[l], pows[r - l]));
+  }
+  Hash get_hash(int l, int r) const {
+    return Hash(operator()(l, r), r - l);
   }
 };
 

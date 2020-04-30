@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-30 16:08:59+09:00
+    - Last commit date: 2020-05-01 00:36:38+09:00
 
 
 
@@ -89,19 +89,20 @@ template <typename T> using minheap = priority_queue<T, vector<T>, greater<T>>;
 constexpr int INF = 1000000007;
 constexpr ll INF_LL = 1'000'000'000'000'000'007;
 #define EXIT(out) do { OUT(out); exit(0); } while (0)
-#define __overload3(_1, _2, _3, name, ...) name
-#define rep(...) __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
-#define repeat(times) repFromUntil(_repeat\
-__LINE__, 0, times)
-#define repUntil(name, times) repFromUntil(name, 0, times)
-#define repFromUntil(name, from, until) for (int name = from, name##__until = (until); name < name##__until; name++)
-#define repr(...) __overload3(__VA_ARGS__, reprFromUntil, reprUntil, repeat)(__VA_ARGS__)
-#define reprUntil(name, times) reprFromUntil(name, 0, times)
-#define reprFromUntil(name, from, until) for (int name = (until)-1, name##__from = (from); name >= name##__from; name--)
-#define repi(itr, ds) for (auto itr = ds.begin(); itr != ds.end(); itr++)
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl "\n"
+#define __overload3(_1, _2, _3, name, ...) name
+#define rep(...) __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
+#define repeat(times) _repeat(_repeat, __COUNTER__, times)
+#define _repeat(_repeat, cnt, times) _repeat2(_repeat, cnt, times)
+#define _repeat2(_repeat, cnt, times) repFromUntil(_repeat ## cnt, 0, times)
+#define repUntil(name, times) repFromUntil(name, 0, times)
+#define repFromUntil(name, from, until) for (int name = from, name ## __until = (until); name < name ## __until; name++)
+#define repr(...) __overload3(__VA_ARGS__, reprFromUntil, reprUntil, repeat)(__VA_ARGS__)
+#define reprUntil(name, times) reprFromUntil(name, 0, times)
+#define reprFromUntil(name, from, until) for (int name = (until)-1, name ## __from = (from); name >= name ## __from; name--)
+#define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
 template <typename T, typename U>
 bool chmin(T& var, U x) { if (var > x) { var = x; return true; } else return false; }
 template <typename T, typename U>
@@ -199,6 +200,8 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
 #pragma GCC diagnostic pop
+
+
 
 ```
 {% endraw %}
@@ -243,19 +246,20 @@ template <typename T> using minheap = priority_queue<T, vector<T>, greater<T>>;
 constexpr int INF = 1000000007;
 constexpr ll INF_LL = 1'000'000'000'000'000'007;
 #define EXIT(out) do { OUT(out); exit(0); } while (0)
-#define __overload3(_1, _2, _3, name, ...) name
-#define rep(...) __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
-#define repeat(times) repFromUntil(_repeat\
-__LINE__, 0, times)
-#define repUntil(name, times) repFromUntil(name, 0, times)
-#define repFromUntil(name, from, until) for (int name = from, name##__until = (until); name < name##__until; name++)
-#define repr(...) __overload3(__VA_ARGS__, reprFromUntil, reprUntil, repeat)(__VA_ARGS__)
-#define reprUntil(name, times) reprFromUntil(name, 0, times)
-#define reprFromUntil(name, from, until) for (int name = (until)-1, name##__from = (from); name >= name##__from; name--)
-#define repi(itr, ds) for (auto itr = ds.begin(); itr != ds.end(); itr++)
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl "\n"
+#define __overload3(_1, _2, _3, name, ...) name
+#define rep(...) __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
+#define repeat(times) _repeat(_repeat, __COUNTER__, times)
+#define _repeat(_repeat, cnt, times) _repeat2(_repeat, cnt, times)
+#define _repeat2(_repeat, cnt, times) repFromUntil(_repeat ## cnt, 0, times)
+#define repUntil(name, times) repFromUntil(name, 0, times)
+#define repFromUntil(name, from, until) for (int name = from, name ## __until = (until); name < name ## __until; name++)
+#define repr(...) __overload3(__VA_ARGS__, reprFromUntil, reprUntil, repeat)(__VA_ARGS__)
+#define reprUntil(name, times) reprFromUntil(name, 0, times)
+#define reprFromUntil(name, from, until) for (int name = (until)-1, name ## __from = (from); name >= name ## __from; name--)
+#define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
 template <typename T, typename U>
 bool chmin(T& var, U x) { if (var > x) { var = x; return true; } else return false; }
 template <typename T, typename U>
@@ -353,6 +357,8 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
 #pragma GCC diagnostic pop
+
+
 
 ```
 {% endraw %}

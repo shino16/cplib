@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b45cffe084dd3d20d928bee85e7b0f21">string</a>
 * <a href="{{ site.github.repository_url }}/blob/master/string/hash_monoid.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-30 16:08:59+09:00
+    - Last commit date: 2020-05-01 00:36:47+09:00
 
 
 
@@ -40,6 +40,7 @@ layout: default
 
 * :heavy_check_mark: <a href="../data-structure/lazy_segtree.cpp.html">data-structure/lazy_segtree.cpp</a>
 * :heavy_check_mark: <a href="../data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
+* :heavy_check_mark: <a href="rolling_hash.cpp.html">string/rolling_hash.cpp</a>
 * :heavy_check_mark: <a href="../util/function_objects.cpp.html">util/function_objects.cpp</a>
 
 
@@ -55,6 +56,7 @@ layout: default
 ```cpp
 #pragma once
 
+#include "string/rolling_hash.cpp"
 #include "data-structure/segtree.cpp"
 #include "data-structure/lazy_segtree.cpp"
 
@@ -62,13 +64,90 @@ namespace hash_monoid {
 
 using namespace rolling_hash;
 
+struct mergeT {
+  Hash operator()(const Hash& lhs, const Hash& rhs) const {
+    prepare_pows(rhs.length + 1);
+    return Hash(mod(mul(lhs.value, pows[rhs.length]) + rhs.value),
+                lhs.length + rhs.length);
+  }
+};
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+struct updT {
+  Hash operator()(const Hash& lhs, char c, int k = 1) const {
+    return Hash(c, k);
+  }
+};
+#pragma GCC diagnostic pop
+
+}  // namespace hash_monoid
+
+using HashSegTree =
+    SegmentTree<rolling_hash::Hash, hash_monoid::mergeT, hash_monoid::updT>;
+using LazyHashSegTree =
+    LazySegmentTree<rolling_hash::Hash, char, hash_monoid::mergeT, assignT,
+                    hash_monoid::updT>;
+
+```
+{% endraw %}
+
+<a id="bundled"></a>
+{% raw %}
+```cpp
+#line 2 "string/hash_monoid.cpp"
+
+#line 2 "string/rolling_hash.cpp"
+
+namespace rolling_hash {
+
+constexpr ull mask30 = (1ULL << 30) - 1;
+constexpr ull mask31 = (1ULL << 31) - 1;
+constexpr ull MOD = (1ULL << 61) - 1;
+int base = rand();
+vector<ull> pows{1};
 vector<ull> sum_pows{1};
+
+ull mod(ull val) {
+  val = (val & MOD) + (val >> 61);
+  return val >= MOD ? val - MOD : val;
+}
+
+ull mul(ull l, ull r) {
+  ull lu = l >> 31, ld = l & mask31;
+  ull ru = r >> 31, rd = r & mask31;
+  ull middle = ld * ru + lu * rd;
+  return ((lu * ru) << 1) + ld * rd + ((middle & mask30) << 31) +
+         (middle >> 30);
+}
+
+ull mul(ull l, int r) {
+  ull lu = l >> 31, ld = l & mask31;
+  ull middle = lu * r;
+  return ld * r + ((middle & mask30) << 31) + (middle >> 30);
+}
+
+void prepare_pows(size_t sz) {
+  rep(i, pows.size() - 1, sz - 1) pows.push_back(mod(mul(pows[i], base)));
+}
 
 void prepare_sum_pows(size_t sz) {
   prepare_pows(sz);
   rep(i, sum_pows.size() - 1, sz - 1) {
     sum_pows.push_back(mod(sum_pows[i] + pows[i + 1]));
   }
+}
+
+ull calc_hash(char c, int _length) {
+  prepare_sum_pows(_length);
+  return mod(mul(sum_pows[_length - 1], c));
+}
+
+template <typename Iter>
+ull calc_hash(Iter first, Iter last) {
+  ull res = 0;
+  rep(i, last - first) res = mod(mul(res, base) + first[i]);
+  return res;
 }
 
 // monoid
@@ -80,56 +159,45 @@ struct Hash {
   Hash(ull _value, int _length) : value(_value), length(_length) {}
   Hash(char c, int _length = 1)
       : value(calc_hash(c, _length)), length(_length) {}
+  template <typename Iter>
+  Hash(Iter first, Iter last): value(calc_hash(first, last)), length(distance(first, last)) {}
 
+ public:
+  operator ull() const { return value; }
+  bool operator==(const Hash& rhs) const {
+    return value == rhs.value && length == rhs.length;
+  }
+  bool operator!=(const Hash& rhs) const {
+    return value == rhs.value && length == rhs.length;
+  }
+  bool operator<(const Hash& rhs) const {
+    return make_pair(length, value) < make_pair(rhs.length, rhs.value);
+  }
+};
+
+class Calculator {
  private:
-  ull calc_hash(char c, int _length) {
-    prepare_sum_pows(_length);
-    return mod(mul(sum_pows[_length - 1], c));
+  vector<ull> hash;
+
+ public:
+  template <typename Iter>
+  Calculator(Iter first, Iter last) : hash(last - first + 1) {
+    prepare_pows(last - first + 1);
+    rep(i, last - first) hash[i + 1] = mod(mul(hash[i], base) + first[i]);
+    // assert(hash[i+1] < (1ULL << 62));
   }
 
  public:
-  operator ull() { return value; }
-  bool operator==(const Hash &rhs) {
-    return value == rhs.value && length == rhs.length;
+  ull operator()(int l, int r) const {
+    static constexpr ull large = MOD * ((1 << 2) - 1);
+    return mod(hash[r] + large - mul(hash[l], pows[r - l]));
   }
-  bool operator!=(const Hash &rhs) {
-    return value == rhs.value && length == rhs.length;
-  }
-};
-
-struct mergeT {
-  Hash operator()(const Hash &lhs, const Hash &rhs) const {
-    prepare_pows(rhs.length + 1);
-    return Hash(mod(mul(lhs.value, pows[rhs.length]) + rhs.value),
-                lhs.length + rhs.length);
+  Hash get_hash(int l, int r) const {
+    return Hash(operator()(l, r), r - l);
   }
 };
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-struct updT {
-  Hash operator()(const Hash &lhs, char c, int k = 1) const {
-    return Hash(c, k);
-  }
-};
-#pragma GCC diagnostic pop
-
-}  // namespace hash_monoid
-
-using HashSegTree =
-    SegmentTree<hash_monoid::Hash, hash_monoid::mergeT, hash_monoid::updT>;
-using LazyHashSegTree =
-    LazySegmentTree<hash_monoid::Hash, char, hash_monoid::mergeT, assignT,
-                    hash_monoid::updT>;
-
-```
-{% endraw %}
-
-<a id="bundled"></a>
-{% raw %}
-```cpp
-#line 2 "string/hash_monoid.cpp"
-
+}  // namespace rolling_hash
 #line 2 "data-structure/segtree.cpp"
 
 #line 2 "util/function_objects.cpp"
@@ -345,49 +413,14 @@ struct LazySegmentTree {
   }
 };
 #pragma GCC diagnostic pop
-#line 5 "string/hash_monoid.cpp"
+#line 6 "string/hash_monoid.cpp"
 
 namespace hash_monoid {
 
 using namespace rolling_hash;
 
-vector<ull> sum_pows{1};
-
-void prepare_sum_pows(size_t sz) {
-  prepare_pows(sz);
-  rep(i, sum_pows.size() - 1, sz - 1) {
-    sum_pows.push_back(mod(sum_pows[i] + pows[i + 1]));
-  }
-}
-
-// monoid
-struct Hash {
-  ull value;
-  int length;
-
-  Hash() : value(0), length(0) {}  // unit
-  Hash(ull _value, int _length) : value(_value), length(_length) {}
-  Hash(char c, int _length = 1)
-      : value(calc_hash(c, _length)), length(_length) {}
-
- private:
-  ull calc_hash(char c, int _length) {
-    prepare_sum_pows(_length);
-    return mod(mul(sum_pows[_length - 1], c));
-  }
-
- public:
-  operator ull() { return value; }
-  bool operator==(const Hash &rhs) {
-    return value == rhs.value && length == rhs.length;
-  }
-  bool operator!=(const Hash &rhs) {
-    return value == rhs.value && length == rhs.length;
-  }
-};
-
 struct mergeT {
-  Hash operator()(const Hash &lhs, const Hash &rhs) const {
+  Hash operator()(const Hash& lhs, const Hash& rhs) const {
     prepare_pows(rhs.length + 1);
     return Hash(mod(mul(lhs.value, pows[rhs.length]) + rhs.value),
                 lhs.length + rhs.length);
@@ -397,7 +430,7 @@ struct mergeT {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 struct updT {
-  Hash operator()(const Hash &lhs, char c, int k = 1) const {
+  Hash operator()(const Hash& lhs, char c, int k = 1) const {
     return Hash(c, k);
   }
 };
@@ -406,9 +439,9 @@ struct updT {
 }  // namespace hash_monoid
 
 using HashSegTree =
-    SegmentTree<hash_monoid::Hash, hash_monoid::mergeT, hash_monoid::updT>;
+    SegmentTree<rolling_hash::Hash, hash_monoid::mergeT, hash_monoid::updT>;
 using LazyHashSegTree =
-    LazySegmentTree<hash_monoid::Hash, char, hash_monoid::mergeT, assignT,
+    LazySegmentTree<rolling_hash::Hash, char, hash_monoid::mergeT, assignT,
                     hash_monoid::updT>;
 
 ```
