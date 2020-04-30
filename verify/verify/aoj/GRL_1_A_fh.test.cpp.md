@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#74053cc99b0559ce9aeee19793c084e1">verify/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/verify/aoj/GRL_1_A_fh.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-29 23:43:23+09:00
+    - Last commit date: 2020-04-30 16:08:59+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja</a>
@@ -130,7 +130,7 @@ bool chmin(T& var, U x) { if (var > x) { var = x; return true; } else return fal
 template <typename T, typename U>
 bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return false; }
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
-ll power(ll e, int t, ll mod = INF_LL) {
+ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1;
   while (t) {
     if (t & 1) res = (res * e) % mod;

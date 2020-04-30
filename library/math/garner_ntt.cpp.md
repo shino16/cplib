@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/garner_ntt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-29 23:28:13+09:00
+    - Last commit date: 2020-04-30 16:08:59+09:00
 
 
 
@@ -219,9 +219,9 @@ NTT<2> Garner::ntt2;
 #line 2 "util/modint.cpp"
 
 template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, size_t);
+template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
 
-template <ll MOD = 10000007>
+template <ll MOD = 1000000007>
 class modint {
 public:
   ll value;
@@ -251,24 +251,24 @@ public:
   constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
     return modint<MOD>(*this) /= rhs;
   }
-  constexpr modint<MOD> &operator+=(const modint<MOD>& rhs) {
+  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
     value += rhs.value;
     if (value >= MOD) value -= MOD;
     return *this;
   }
-  constexpr modint<MOD> &operator-=(const modint<MOD>& rhs) {
+  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
     if (value < rhs.value) value += MOD;
     value -= rhs.value;
     return *this;
   }
-  constexpr modint<MOD> &operator*=(const modint<MOD>& rhs) {
+  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
     value = value * rhs.value % MOD;
     return *this;
   }
-  constexpr modint<MOD> &operator/=(const modint<MOD>& rhs) {
+  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
     return *this *= pow(rhs, MOD - 2);
   }
-  constexpr modint<MOD> &operator++() {
+  constexpr modint<MOD>& operator++() {
     return *this += 1;
   }
   constexpr modint<MOD> operator++(int) {
@@ -276,7 +276,7 @@ public:
     ++(*this);
     return tmp;
   }
-  constexpr modint<MOD> &operator--() {
+  constexpr modint<MOD>& operator--() {
     return *this -= 1;
   }
   constexpr modint<MOD> operator--(int) {
@@ -306,7 +306,7 @@ InStream& operator>>(InStream& in, modint<MOD>& n) {
 }
 
 template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, size_t exp) {
+constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
   modint<MOD> res = 1;
   while (exp) {
     if (exp % 2) res *= base;

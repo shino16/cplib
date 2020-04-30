@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-29 23:43:23+09:00
+    - Last commit date: 2020-04-30 16:08:59+09:00
 
 
 
@@ -107,7 +107,7 @@ bool chmin(T& var, U x) { if (var > x) { var = x; return true; } else return fal
 template <typename T, typename U>
 bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return false; }
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
-ll power(ll e, int t, ll mod = INF_LL) {
+ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1;
   while (t) {
     if (t & 1) res = (res * e) % mod;
@@ -261,7 +261,7 @@ bool chmin(T& var, U x) { if (var > x) { var = x; return true; } else return fal
 template <typename T, typename U>
 bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return false; }
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
-ll power(ll e, int t, ll mod = INF_LL) {
+ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1;
   while (t) {
     if (t & 1) res = (res * e) % mod;

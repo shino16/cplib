@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/lazy_segtree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-29 23:43:23+09:00
+    - Last commit date: 2020-04-30 16:08:59+09:00
 
 
 
@@ -84,23 +84,25 @@ struct LazySegmentTree {
   }
 
   template <typename Iter,
-            enable_if_t<is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
   LazySegmentTree(Iter first, Iter last, size_t n, T unit = T(), U eunit = U(),
                   Merge merge = Merge(), EMerge emerge = EMerge(),
                   Upd upd = Upd())
       : n(n), h(32 - __builtin_clz(n)), unit(unit), eunit(eunit), merge(merge),
         emerge(emerge), upd(upd), data(n << 1, unit), lazy(n, eunit) {
-    assign(first, last);
+    move(first, last, data.begin() + n);
+    build(0, n);
   }
 
   template <typename Iter,
-            enable_if_t<!is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
   [[deprecated]] LazySegmentTree(Iter first, Iter last, size_t n, T unit = T(),
                                  U eunit = U(), Merge merge = Merge(),
                                  EMerge emerge = EMerge(), Upd upd = Upd())
       : n(n), h(32 - __builtin_clz(n)), unit(unit), eunit(eunit), merge(merge),
         emerge(emerge), upd(upd), data(n << 1, unit), lazy(n, eunit) {
-    assign(first, last);
+    move(first, last, data.begin() + n);
+    build(0, n);
   }
 
   template <typename Iter>
@@ -146,12 +148,6 @@ struct LazySegmentTree {
       l >>= 1, r >>= 1;
       for (int p = l; p <= r; p++) pushup(p, sz);
     }
-  }
-
-  template <typename Iter>
-  void assign(Iter first, Iter last) {
-    copy(first, last, data.begin() + n);
-    build(0, n);
   }
 
  public:
@@ -243,23 +239,25 @@ struct LazySegmentTree {
   }
 
   template <typename Iter,
-            enable_if_t<is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
   LazySegmentTree(Iter first, Iter last, size_t n, T unit = T(), U eunit = U(),
                   Merge merge = Merge(), EMerge emerge = EMerge(),
                   Upd upd = Upd())
       : n(n), h(32 - __builtin_clz(n)), unit(unit), eunit(eunit), merge(merge),
         emerge(emerge), upd(upd), data(n << 1, unit), lazy(n, eunit) {
-    assign(first, last);
+    move(first, last, data.begin() + n);
+    build(0, n);
   }
 
   template <typename Iter,
-            enable_if_t<!is_same_v<typename Iter::value_type, T>>* = nullptr>
+            enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
   [[deprecated]] LazySegmentTree(Iter first, Iter last, size_t n, T unit = T(),
                                  U eunit = U(), Merge merge = Merge(),
                                  EMerge emerge = EMerge(), Upd upd = Upd())
       : n(n), h(32 - __builtin_clz(n)), unit(unit), eunit(eunit), merge(merge),
         emerge(emerge), upd(upd), data(n << 1, unit), lazy(n, eunit) {
-    assign(first, last);
+    move(first, last, data.begin() + n);
+    build(0, n);
   }
 
   template <typename Iter>
@@ -305,12 +303,6 @@ struct LazySegmentTree {
       l >>= 1, r >>= 1;
       for (int p = l; p <= r; p++) pushup(p, sz);
     }
-  }
-
-  template <typename Iter>
-  void assign(Iter first, Iter last) {
-    copy(first, last, data.begin() + n);
-    build(0, n);
   }
 
  public:
