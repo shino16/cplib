@@ -1,6 +1,8 @@
 #pragma once
 
-template <typename M = modint>
+#include "template.cpp"
+
+template <typename M>
 class binomial {
 public:
   vector<M> fact, invfact;

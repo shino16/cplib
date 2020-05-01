@@ -1,5 +1,8 @@
 #pragma once
 
+#include "template.cpp"
+#include "data-structure/bit.cpp"
+
 template <typename Iter>
 ll inversions(Iter first, Iter last) {
   int n = distance(first, last);

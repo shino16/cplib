@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"
 template <typename T, typename Edge, typename Apply, typename Merge>

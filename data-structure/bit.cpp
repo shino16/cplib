@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 class BIT {
  public:
   const int n;

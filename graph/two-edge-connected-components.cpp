@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 class TwoEdgeConnectedComponents {
 private:
   VI ord, low, par, index, sz;

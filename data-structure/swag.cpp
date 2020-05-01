@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 template <typename F, typename T = ll>
 class Swag {
  private:

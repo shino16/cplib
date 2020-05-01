@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 // O(V+E)
 // DAG <==> res.size() == graph.size()
 vector<int> topological_sort(const Graph& graph) {

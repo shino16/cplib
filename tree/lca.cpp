@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 struct lca {
 private:
   const int n;

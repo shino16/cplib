@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 struct minT {
   template <typename T>
   T operator()(T a, T b) const {

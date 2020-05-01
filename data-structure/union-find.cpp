@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 class union_find {
  private:
   int n, cnt;

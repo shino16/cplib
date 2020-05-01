@@ -1,8 +1,8 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja"
 
 #include "template.cpp"
-#include "data-structure/fibonacci_heap.cpp"
-#include "graph/dijkstra_fib_heap.cpp"
+#include "data-structure/fibonacci-heap.cpp"
+#include "graph/dijkstra-fib-heap.cpp"
 
 
 int main() {

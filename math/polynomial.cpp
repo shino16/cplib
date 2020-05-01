@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 template <typename T = ll>
 class polynomial {
  public:

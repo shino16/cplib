@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 vector<ll> dijkstra(const Graph& graph, int start) {
   minheap<pair<ll, int>> q;
   vector<ll> dist(graph.size(), INF_LL);

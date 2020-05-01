@@ -1,8 +1,9 @@
 #pragma once
 
+#include "template.cpp"
+
 template <typename T = int>
 struct Pt {
-  using ld = double;
   T x, y;
 
   Pt(T x_ = 0, T y_ = 0): x(x_), y(y_) { }
@@ -40,7 +41,7 @@ struct Pt {
   bool operator !=(const Pt<T>& rhs) const {
     return not (*this == rhs);
   }
-  ld abs() const {
+  dbl abs() const {
     return hypot(x, y);
   }
   T dot(const Pt<T>& rhs) const {

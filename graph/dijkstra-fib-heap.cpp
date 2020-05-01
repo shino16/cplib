@@ -1,6 +1,7 @@
 #pragma once
 
-#include "data-structure/fibonacci_heap.cpp"
+#include "template.cpp"
+#include "data-structure/fibonacci-heap.cpp"
 
 vector<ll> dijkstra(const Graph& graph, int start) {
   fibonacci_heap<ll, int, greater<>> q;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 namespace rolling_hash {
 
 constexpr ull mask30 = (1ULL << 30) - 1;

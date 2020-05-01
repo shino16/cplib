@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 template <typename F>
 class FixPoint : private F {
  public:

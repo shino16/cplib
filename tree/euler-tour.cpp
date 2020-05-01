@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 void euler_tour(const VVI& graph, VI& tour, VI& left, VI& right,
                 int v = 0, int par = -1) {
   left[v] = tour.size();

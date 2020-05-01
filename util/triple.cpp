@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 template <typename T, typename U, typename V>
 struct triple {
   T first;

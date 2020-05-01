@@ -1,9 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0355"
 
 #include "template.cpp"
-#include "string/rolling_hash.cpp"
-#include "data-structure/lazy_segtree.cpp"
-#include "string/hash_monoid.cpp"
+#include "string/rolling-hash.cpp"
+#include "data-structure/lazy-segtree.cpp"
+#include "string/hash-monoid.cpp"
 
 int main() {
   int n = IN;

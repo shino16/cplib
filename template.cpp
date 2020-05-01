@@ -1,3 +1,4 @@
+#pragma once
 
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 bool operator <(PLL x, PLL y) {
   return x.first * y.second < x.second * y.first;
 }

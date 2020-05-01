@@ -1,6 +1,7 @@
 #pragma once
 
-#include "util/function_objects.cpp"
+#include "template.cpp"
+#include "util/function-objects.cpp"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"

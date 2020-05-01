@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 class HLD {
  private:
   VI index, sz, par, rev;

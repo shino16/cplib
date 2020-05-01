@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 ll totient(ll n) {
   auto ps = factorize(n);
   ll res = 1;

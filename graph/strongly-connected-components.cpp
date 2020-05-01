@@ -1,5 +1,6 @@
 #pragma once
 
+#include "template.cpp"
 #include "util/fix.cpp"
 
 class StronglyConnectedComponents {

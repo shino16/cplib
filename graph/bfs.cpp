@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 struct BFS {
   VI par;
   VLL dist;

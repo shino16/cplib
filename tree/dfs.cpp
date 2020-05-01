@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 struct DFS {
   VI subtree_sz, par;
   VLL dist;

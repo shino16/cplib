@@ -1,6 +1,8 @@
 #pragma once
 
-// originally written by @beet-aizu
+#include "template.cpp"
+
+// credit to @beet-aizu
 template <typename M = ll>
 struct SquareMatrix {
   using arr = vector<M>;

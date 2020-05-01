@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 class weighted_union_find {
   int n, cnt;
   vector<int> par, rank, sz, diff_weight;

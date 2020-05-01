@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 VVI makeGraph(int prufer[], int m) {
   int n = m + 2;
   VI vertex_set(n);

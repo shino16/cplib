@@ -1,8 +1,8 @@
 #pragma once
 
-#include "string/rolling_hash.cpp"
+#include "string/rolling-hash.cpp"
 #include "data-structure/segtree.cpp"
-#include "data-structure/lazy_segtree.cpp"
+#include "data-structure/lazy-segtree.cpp"
 
 namespace hash_monoid {
 

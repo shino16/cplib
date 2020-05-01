@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 template <ll> class modint;
 template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
 

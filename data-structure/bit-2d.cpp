@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template.cpp"
+
 class BIT_2D {
 private:
   const int h, w;

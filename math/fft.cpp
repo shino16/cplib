@@ -1,6 +1,8 @@
 #pragma once
 
-// originally written by @beet-aizu
+#include "template.cpp"
+
+// credit to @beet-aizu
 namespace FFT {
 using dbl = double;
 
