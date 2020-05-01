@@ -31,9 +31,58 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-01 00:36:38+09:00
+    - Last commit date: 2020-05-01 11:42:13+09:00
 
 
+
+
+## Required by
+
+* :heavy_check_mark: <a href="data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
+* :heavy_check_mark: <a href="data-structure/bit.cpp.html">data-structure/bit.cpp</a>
+* :warning: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
+* :heavy_check_mark: <a href="data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
+* :heavy_check_mark: <a href="data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
+* :warning: <a href="data-structure/swag.cpp.html">data-structure/swag.cpp</a>
+* :heavy_check_mark: <a href="data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
+* :warning: <a href="data-structure/weighted-union-find.cpp.html">data-structure/weighted-union-find.cpp</a>
+* :warning: <a href="geometry/Pt.cpp.html">geometry/Pt.cpp</a>
+* :warning: <a href="graph/bfs.cpp.html">graph/bfs.cpp</a>
+* :heavy_check_mark: <a href="graph/dijkstra-fib-heap.cpp.html">graph/dijkstra-fib-heap.cpp</a>
+* :heavy_check_mark: <a href="graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :warning: <a href="graph/kruskal.cpp.html">graph/kruskal.cpp</a>
+* :warning: <a href="graph/prim.cpp.html">graph/prim.cpp</a>
+* :heavy_check_mark: <a href="graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
+* :warning: <a href="graph/topological-sort.cpp.html">graph/topological-sort.cpp</a>
+* :warning: <a href="graph/two-edge-connected-components.cpp.html">graph/two-edge-connected-components.cpp</a>
+* :warning: <a href="math/approximate.cpp.html">math/approximate.cpp</a>
+* :warning: <a href="math/binomial.cpp.html">math/binomial.cpp</a>
+* :warning: <a href="math/constexpr-binomial.cpp.html">math/constexpr-binomial.cpp</a>
+* :warning: <a href="math/factorize.cpp.html">math/factorize.cpp</a>
+* :warning: <a href="math/fft.cpp.html">math/fft.cpp</a>
+* :warning: <a href="math/formalpowerseries.cpp.html">math/formalpowerseries.cpp</a>
+* :warning: <a href="math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
+* :warning: <a href="math/ntt.cpp.html">math/ntt.cpp</a>
+* :warning: <a href="math/polynomial.cpp.html">math/polynomial.cpp</a>
+* :warning: <a href="math/squarematrix.cpp.html">math/squarematrix.cpp</a>
+* :warning: <a href="math/totient.cpp.html">math/totient.cpp</a>
+* :heavy_check_mark: <a href="string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
+* :heavy_check_mark: <a href="string/rolling-hash.cpp.html">string/rolling-hash.cpp</a>
+* :warning: <a href="tree/dfs.cpp.html">tree/dfs.cpp</a>
+* :warning: <a href="tree/euler-tour.cpp.html">tree/euler-tour.cpp</a>
+* :heavy_check_mark: <a href="tree/hld.cpp.html">tree/hld.cpp</a>
+* :warning: <a href="tree/lca.cpp.html">tree/lca.cpp</a>
+* :warning: <a href="tree/rerooting.cpp.html">tree/rerooting.cpp</a>
+* :warning: <a href="tree/tree-diameter.cpp.html">tree/tree-diameter.cpp</a>
+* :warning: <a href="util/acc-2d.cpp.html">util/acc-2d.cpp</a>
+* :heavy_check_mark: <a href="util/compress.cpp.html">util/compress.cpp</a>
+* :heavy_check_mark: <a href="util/fix.cpp.html">util/fix.cpp</a>
+* :heavy_check_mark: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
+* :warning: <a href="util/hack-pque.cpp.html">util/hack-pque.cpp</a>
+* :warning: <a href="util/inversions.cpp.html">util/inversions.cpp</a>
+* :warning: <a href="util/modint.cpp.html">util/modint.cpp</a>
+* :warning: <a href="util/random-tree.cpp.html">util/random-tree.cpp</a>
+* :warning: <a href="util/triple.cpp.html">util/triple.cpp</a>
 
 
 ## Verified with
@@ -53,6 +102,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
 
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"
@@ -209,7 +259,7 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "template.cpp"
+#line 2 "template.cpp"
 
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"

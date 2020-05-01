@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: data-structure/dynamic_segtree.cpp
+# :warning: data-structure/dynamic-segtree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
-* <a href="{{ site.github.repository_url }}/blob/master/data-structure/dynamic_segtree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-29 23:28:13+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/data-structure/dynamic-segtree.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-05-01 11:42:13+09:00
 
 
 
@@ -110,7 +110,7 @@ public:
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "data-structure/dynamic_segtree.cpp"
+#line 2 "data-structure/dynamic-segtree.cpp"
 
 struct Node {
   Node *left, *right;

@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: util/modint.cpp
+# :heavy_check_mark: data-structure/bit-2d.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
-* <a href="{{ site.github.repository_url }}/blob/master/util/modint.cpp">View this file on GitHub</a>
+* category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
+* <a href="{{ site.github.repository_url }}/blob/master/data-structure/bit-2d.cpp">View this file on GitHub</a>
     - Last commit date: 2020-05-01 11:42:13+09:00
 
 
@@ -41,9 +41,9 @@ layout: default
 * :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
-## Required by
+## Verified with
 
-* :warning: <a href="../math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
 
 
 ## Code
@@ -55,113 +55,42 @@ layout: default
 
 #include "template.cpp"
 
-template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
-
-template <ll MOD = 1000000007>
-class modint {
+class BIT_2D {
+private:
+  const int h, w;
+  vector<vector<ll>> data;
 public:
-  ll value;
-
-  constexpr modint(const ll x = 0) noexcept : value(x) {
-    value %= MOD;
-    if (value < 0) value += MOD;
+  BIT_2D(int h, int w): h(h), w(w), data(h+1, vector<ll>(w+1)) { }
+  void add(int r, int c, ll v) {
+    r++; c++;
+    int c0 = c;
+    for (; r <= h; r += r & -r)
+      for (c = c0; c <= w; c += c & -c)
+        data[r][c] += v;
   }
-  constexpr bool operator==(const modint<MOD>& rhs) {
-    return value == rhs.value;
+  // sum over [(0, 0), (r, c))
+  ll sum(int r, int c) {
+    ll res = 0;
+    int c0 = c;
+    for (; r > 0; r -= r & -r)
+      for (c = c0; c > 0; c -= c & -c)
+        res += data[r][c];
+    return res;
   }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
-    return value != rhs.value;
+  // sum over [(r1, c1), (r2, c2))
+  ll sum(int r1, int c1, int r2, int c2) {
+    return sum(r1, c1) + sum(r2, c2) - sum(r1, c2) - sum(r2, c1);
   }
-  constexpr modint<MOD> operator-() const {
-    return modint<MOD>(0) - *this;
+  void assign(int r, int c, ll v) {
+    add(r, c, v - sum(r, c, r+1, c+1));
   }
-  constexpr modint<MOD> operator+(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) += rhs;
-  }
-  constexpr modint<MOD> operator-(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) -= rhs;
-  }
-  constexpr modint<MOD> operator*(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) *= rhs;
-  }
-  constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) /= rhs;
-  }
-  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
-    value += rhs.value;
-    if (value >= MOD) value -= MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
-    if (value < rhs.value) value += MOD;
-    value -= rhs.value;
-    return *this;
-  }
-  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
-    value = value * rhs.value % MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
-    return *this *= pow(rhs, MOD - 2);
-  }
-  constexpr modint<MOD>& operator++() {
-    return *this += 1;
-  }
-  constexpr modint<MOD> operator++(int) {
-    modint<MOD> tmp(*this);
-    ++(*this);
-    return tmp;
-  }
-  constexpr modint<MOD>& operator--() {
-    return *this -= 1;
-  }
-  constexpr modint<MOD> operator--(int) {
-    modint<MOD> tmp(*this);
-    --(*this);
-    return tmp;
-  }
-  constexpr operator int() const {
-    return (int)value;
-  }
-  constexpr operator ll() const {
-    return value;
+  bool chmax(int r, int c, ll v) {
+    if (sum(r, c, r+1, c+1) < v) {
+      assign(r, c, v);
+      return true;
+    } else return false;
   }
 };
-
-
-template <typename OutStream, ll MOD>
-OutStream& operator<<(OutStream& out, modint<MOD> n) {
-  out << n.value;
-  return out;
-}
-
-template <typename InStream, ll MOD>
-InStream& operator>>(InStream& in, modint<MOD>& n) {
-  ll var; in >> var; n = modint<MOD>(var);
-  return in;
-}
-
-template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
-  modint<MOD> res = 1;
-  while (exp) {
-    if (exp % 2) res *= base;
-    base *= base;
-    exp /= 2;
-  }
-  return res;
-}
-
-// O(r + log MOD)
-template <ll MOD>
-modint<MOD> choose(int n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return modint<MOD>(0);
-  modint<MOD> nu = 1, de = 1;
-  rep(i, r) nu *= n-i, de *= i+1;
-  return nu / de;
-}
 
 ```
 {% endraw %}
@@ -169,7 +98,7 @@ modint<MOD> choose(int n, int r) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "util/modint.cpp"
+#line 2 "data-structure/bit-2d.cpp"
 
 #line 2 "template.cpp"
 
@@ -321,115 +250,44 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 #pragma GCC diagnostic pop
 
 
-#line 4 "util/modint.cpp"
+#line 4 "data-structure/bit-2d.cpp"
 
-template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
-
-template <ll MOD = 1000000007>
-class modint {
+class BIT_2D {
+private:
+  const int h, w;
+  vector<vector<ll>> data;
 public:
-  ll value;
-
-  constexpr modint(const ll x = 0) noexcept : value(x) {
-    value %= MOD;
-    if (value < 0) value += MOD;
+  BIT_2D(int h, int w): h(h), w(w), data(h+1, vector<ll>(w+1)) { }
+  void add(int r, int c, ll v) {
+    r++; c++;
+    int c0 = c;
+    for (; r <= h; r += r & -r)
+      for (c = c0; c <= w; c += c & -c)
+        data[r][c] += v;
   }
-  constexpr bool operator==(const modint<MOD>& rhs) {
-    return value == rhs.value;
+  // sum over [(0, 0), (r, c))
+  ll sum(int r, int c) {
+    ll res = 0;
+    int c0 = c;
+    for (; r > 0; r -= r & -r)
+      for (c = c0; c > 0; c -= c & -c)
+        res += data[r][c];
+    return res;
   }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
-    return value != rhs.value;
+  // sum over [(r1, c1), (r2, c2))
+  ll sum(int r1, int c1, int r2, int c2) {
+    return sum(r1, c1) + sum(r2, c2) - sum(r1, c2) - sum(r2, c1);
   }
-  constexpr modint<MOD> operator-() const {
-    return modint<MOD>(0) - *this;
+  void assign(int r, int c, ll v) {
+    add(r, c, v - sum(r, c, r+1, c+1));
   }
-  constexpr modint<MOD> operator+(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) += rhs;
-  }
-  constexpr modint<MOD> operator-(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) -= rhs;
-  }
-  constexpr modint<MOD> operator*(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) *= rhs;
-  }
-  constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) /= rhs;
-  }
-  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
-    value += rhs.value;
-    if (value >= MOD) value -= MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
-    if (value < rhs.value) value += MOD;
-    value -= rhs.value;
-    return *this;
-  }
-  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
-    value = value * rhs.value % MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
-    return *this *= pow(rhs, MOD - 2);
-  }
-  constexpr modint<MOD>& operator++() {
-    return *this += 1;
-  }
-  constexpr modint<MOD> operator++(int) {
-    modint<MOD> tmp(*this);
-    ++(*this);
-    return tmp;
-  }
-  constexpr modint<MOD>& operator--() {
-    return *this -= 1;
-  }
-  constexpr modint<MOD> operator--(int) {
-    modint<MOD> tmp(*this);
-    --(*this);
-    return tmp;
-  }
-  constexpr operator int() const {
-    return (int)value;
-  }
-  constexpr operator ll() const {
-    return value;
+  bool chmax(int r, int c, ll v) {
+    if (sum(r, c, r+1, c+1) < v) {
+      assign(r, c, v);
+      return true;
+    } else return false;
   }
 };
-
-
-template <typename OutStream, ll MOD>
-OutStream& operator<<(OutStream& out, modint<MOD> n) {
-  out << n.value;
-  return out;
-}
-
-template <typename InStream, ll MOD>
-InStream& operator>>(InStream& in, modint<MOD>& n) {
-  ll var; in >> var; n = modint<MOD>(var);
-  return in;
-}
-
-template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
-  modint<MOD> res = 1;
-  while (exp) {
-    if (exp % 2) res *= base;
-    base *= base;
-    exp /= 2;
-  }
-  return res;
-}
-
-// O(r + log MOD)
-template <ll MOD>
-modint<MOD> choose(int n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return modint<MOD>(0);
-  modint<MOD> nu = 1, de = 1;
-  rep(i, r) nu *= n-i, de *= i+1;
-  return nu / de;
-}
 
 ```
 {% endraw %}

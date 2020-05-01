@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#74053cc99b0559ce9aeee19793c084e1">verify/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/verify/aoj/GRL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-01 00:36:38+09:00
+    - Last commit date: 2020-05-01 11:42:13+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja</a>
@@ -72,7 +72,7 @@ int main() {
 #line 1 "verify/aoj/GRL_1_A.test.cpp"
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja"
 
-#line 1 "template.cpp"
+#line 2 "template.cpp"
 
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"
@@ -223,6 +223,8 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 
 
 #line 2 "graph/dijkstra.cpp"
+
+#line 4 "graph/dijkstra.cpp"
 
 vector<ll> dijkstra(const Graph& graph, int start) {
   minheap<pair<ll, int>> q;

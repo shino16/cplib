@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: util/modint.cpp
+# :heavy_check_mark: data-structure/union-find.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
-* <a href="{{ site.github.repository_url }}/blob/master/util/modint.cpp">View this file on GitHub</a>
+* category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
+* <a href="{{ site.github.repository_url }}/blob/master/data-structure/union-find.cpp">View this file on GitHub</a>
     - Last commit date: 2020-05-01 11:42:13+09:00
 
 
@@ -43,7 +43,12 @@ layout: default
 
 ## Required by
 
-* :warning: <a href="../math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
+* :warning: <a href="../graph/kruskal.cpp.html">graph/kruskal.cpp</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
 
 
 ## Code
@@ -55,113 +60,30 @@ layout: default
 
 #include "template.cpp"
 
-template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
+class union_find {
+ private:
+  int n, cnt;
+  vector<int> par, rank, sz;
 
-template <ll MOD = 1000000007>
-class modint {
-public:
-  ll value;
-
-  constexpr modint(const ll x = 0) noexcept : value(x) {
-    value %= MOD;
-    if (value < 0) value += MOD;
+ public:
+  union_find(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
+    iota(all(par), 0);
   }
-  constexpr bool operator==(const modint<MOD>& rhs) {
-    return value == rhs.value;
+  int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }
+  void merge(int x, int y) {
+    x = root(x);
+    y = root(y);
+    if (x == y) return;
+    if (rank[x] < rank[y]) swap(x, y);
+    par[y] = x;
+    if (rank[x] == rank[y]) rank[x]++;
+    sz[x] += sz[y];
+    cnt--;
   }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
-    return value != rhs.value;
-  }
-  constexpr modint<MOD> operator-() const {
-    return modint<MOD>(0) - *this;
-  }
-  constexpr modint<MOD> operator+(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) += rhs;
-  }
-  constexpr modint<MOD> operator-(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) -= rhs;
-  }
-  constexpr modint<MOD> operator*(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) *= rhs;
-  }
-  constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) /= rhs;
-  }
-  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
-    value += rhs.value;
-    if (value >= MOD) value -= MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
-    if (value < rhs.value) value += MOD;
-    value -= rhs.value;
-    return *this;
-  }
-  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
-    value = value * rhs.value % MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
-    return *this *= pow(rhs, MOD - 2);
-  }
-  constexpr modint<MOD>& operator++() {
-    return *this += 1;
-  }
-  constexpr modint<MOD> operator++(int) {
-    modint<MOD> tmp(*this);
-    ++(*this);
-    return tmp;
-  }
-  constexpr modint<MOD>& operator--() {
-    return *this -= 1;
-  }
-  constexpr modint<MOD> operator--(int) {
-    modint<MOD> tmp(*this);
-    --(*this);
-    return tmp;
-  }
-  constexpr operator int() const {
-    return (int)value;
-  }
-  constexpr operator ll() const {
-    return value;
-  }
+  bool same(int x, int y) { return root(x) == root(y); }
+  int size(int x) { return sz[root(x)]; }
+  int count() { return cnt; }
 };
-
-
-template <typename OutStream, ll MOD>
-OutStream& operator<<(OutStream& out, modint<MOD> n) {
-  out << n.value;
-  return out;
-}
-
-template <typename InStream, ll MOD>
-InStream& operator>>(InStream& in, modint<MOD>& n) {
-  ll var; in >> var; n = modint<MOD>(var);
-  return in;
-}
-
-template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
-  modint<MOD> res = 1;
-  while (exp) {
-    if (exp % 2) res *= base;
-    base *= base;
-    exp /= 2;
-  }
-  return res;
-}
-
-// O(r + log MOD)
-template <ll MOD>
-modint<MOD> choose(int n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return modint<MOD>(0);
-  modint<MOD> nu = 1, de = 1;
-  rep(i, r) nu *= n-i, de *= i+1;
-  return nu / de;
-}
 
 ```
 {% endraw %}
@@ -169,7 +91,7 @@ modint<MOD> choose(int n, int r) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "util/modint.cpp"
+#line 2 "data-structure/union-find.cpp"
 
 #line 2 "template.cpp"
 
@@ -321,115 +243,32 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 #pragma GCC diagnostic pop
 
 
-#line 4 "util/modint.cpp"
+#line 4 "data-structure/union-find.cpp"
 
-template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
+class union_find {
+ private:
+  int n, cnt;
+  vector<int> par, rank, sz;
 
-template <ll MOD = 1000000007>
-class modint {
-public:
-  ll value;
-
-  constexpr modint(const ll x = 0) noexcept : value(x) {
-    value %= MOD;
-    if (value < 0) value += MOD;
+ public:
+  union_find(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
+    iota(all(par), 0);
   }
-  constexpr bool operator==(const modint<MOD>& rhs) {
-    return value == rhs.value;
+  int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }
+  void merge(int x, int y) {
+    x = root(x);
+    y = root(y);
+    if (x == y) return;
+    if (rank[x] < rank[y]) swap(x, y);
+    par[y] = x;
+    if (rank[x] == rank[y]) rank[x]++;
+    sz[x] += sz[y];
+    cnt--;
   }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
-    return value != rhs.value;
-  }
-  constexpr modint<MOD> operator-() const {
-    return modint<MOD>(0) - *this;
-  }
-  constexpr modint<MOD> operator+(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) += rhs;
-  }
-  constexpr modint<MOD> operator-(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) -= rhs;
-  }
-  constexpr modint<MOD> operator*(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) *= rhs;
-  }
-  constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) /= rhs;
-  }
-  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
-    value += rhs.value;
-    if (value >= MOD) value -= MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
-    if (value < rhs.value) value += MOD;
-    value -= rhs.value;
-    return *this;
-  }
-  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
-    value = value * rhs.value % MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
-    return *this *= pow(rhs, MOD - 2);
-  }
-  constexpr modint<MOD>& operator++() {
-    return *this += 1;
-  }
-  constexpr modint<MOD> operator++(int) {
-    modint<MOD> tmp(*this);
-    ++(*this);
-    return tmp;
-  }
-  constexpr modint<MOD>& operator--() {
-    return *this -= 1;
-  }
-  constexpr modint<MOD> operator--(int) {
-    modint<MOD> tmp(*this);
-    --(*this);
-    return tmp;
-  }
-  constexpr operator int() const {
-    return (int)value;
-  }
-  constexpr operator ll() const {
-    return value;
-  }
+  bool same(int x, int y) { return root(x) == root(y); }
+  int size(int x) { return sz[root(x)]; }
+  int count() { return cnt; }
 };
-
-
-template <typename OutStream, ll MOD>
-OutStream& operator<<(OutStream& out, modint<MOD> n) {
-  out << n.value;
-  return out;
-}
-
-template <typename InStream, ll MOD>
-InStream& operator>>(InStream& in, modint<MOD>& n) {
-  ll var; in >> var; n = modint<MOD>(var);
-  return in;
-}
-
-template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
-  modint<MOD> res = 1;
-  while (exp) {
-    if (exp % 2) res *= base;
-    base *= base;
-    exp /= 2;
-  }
-  return res;
-}
-
-// O(r + log MOD)
-template <ll MOD>
-modint<MOD> choose(int n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return modint<MOD>(0);
-  modint<MOD> nu = 1, de = 1;
-  rep(i, r) nu *= n-i, de *= i+1;
-  return nu / de;
-}
 
 ```
 {% endraw %}

@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: util/modint.cpp
+# :heavy_check_mark: string/rolling-hash.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
-* <a href="{{ site.github.repository_url }}/blob/master/util/modint.cpp">View this file on GitHub</a>
+* category: <a href="../../index.html#b45cffe084dd3d20d928bee85e7b0f21">string</a>
+* <a href="{{ site.github.repository_url }}/blob/master/string/rolling-hash.cpp">View this file on GitHub</a>
     - Last commit date: 2020-05-01 11:42:13+09:00
 
 
@@ -43,7 +43,12 @@ layout: default
 
 ## Required by
 
-* :warning: <a href="../math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
+* :heavy_check_mark: <a href="hash-monoid.cpp.html">string/hash-monoid.cpp</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 
 
 ## Code
@@ -55,113 +60,105 @@ layout: default
 
 #include "template.cpp"
 
-template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
+namespace rolling_hash {
 
-template <ll MOD = 1000000007>
-class modint {
-public:
-  ll value;
+constexpr ull mask30 = (1ULL << 30) - 1;
+constexpr ull mask31 = (1ULL << 31) - 1;
+constexpr ull MOD = (1ULL << 61) - 1;
+int base = rand();
+vector<ull> pows{1};
+vector<ull> sum_pows{1};
 
-  constexpr modint(const ll x = 0) noexcept : value(x) {
-    value %= MOD;
-    if (value < 0) value += MOD;
-  }
-  constexpr bool operator==(const modint<MOD>& rhs) {
-    return value == rhs.value;
-  }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
-    return value != rhs.value;
-  }
-  constexpr modint<MOD> operator-() const {
-    return modint<MOD>(0) - *this;
-  }
-  constexpr modint<MOD> operator+(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) += rhs;
-  }
-  constexpr modint<MOD> operator-(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) -= rhs;
-  }
-  constexpr modint<MOD> operator*(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) *= rhs;
-  }
-  constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) /= rhs;
-  }
-  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
-    value += rhs.value;
-    if (value >= MOD) value -= MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
-    if (value < rhs.value) value += MOD;
-    value -= rhs.value;
-    return *this;
-  }
-  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
-    value = value * rhs.value % MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
-    return *this *= pow(rhs, MOD - 2);
-  }
-  constexpr modint<MOD>& operator++() {
-    return *this += 1;
-  }
-  constexpr modint<MOD> operator++(int) {
-    modint<MOD> tmp(*this);
-    ++(*this);
-    return tmp;
-  }
-  constexpr modint<MOD>& operator--() {
-    return *this -= 1;
-  }
-  constexpr modint<MOD> operator--(int) {
-    modint<MOD> tmp(*this);
-    --(*this);
-    return tmp;
-  }
-  constexpr operator int() const {
-    return (int)value;
-  }
-  constexpr operator ll() const {
-    return value;
-  }
-};
-
-
-template <typename OutStream, ll MOD>
-OutStream& operator<<(OutStream& out, modint<MOD> n) {
-  out << n.value;
-  return out;
+ull mod(ull val) {
+  val = (val & MOD) + (val >> 61);
+  return val >= MOD ? val - MOD : val;
 }
 
-template <typename InStream, ll MOD>
-InStream& operator>>(InStream& in, modint<MOD>& n) {
-  ll var; in >> var; n = modint<MOD>(var);
-  return in;
+ull mul(ull l, ull r) {
+  ull lu = l >> 31, ld = l & mask31;
+  ull ru = r >> 31, rd = r & mask31;
+  ull middle = ld * ru + lu * rd;
+  return ((lu * ru) << 1) + ld * rd + ((middle & mask30) << 31) +
+         (middle >> 30);
 }
 
-template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
-  modint<MOD> res = 1;
-  while (exp) {
-    if (exp % 2) res *= base;
-    base *= base;
-    exp /= 2;
+ull mul(ull l, int r) {
+  ull lu = l >> 31, ld = l & mask31;
+  ull middle = lu * r;
+  return ld * r + ((middle & mask30) << 31) + (middle >> 30);
+}
+
+void prepare_pows(size_t sz) {
+  rep(i, pows.size() - 1, sz - 1) pows.push_back(mod(mul(pows[i], base)));
+}
+
+void prepare_sum_pows(size_t sz) {
+  prepare_pows(sz);
+  rep(i, sum_pows.size() - 1, sz - 1) {
+    sum_pows.push_back(mod(sum_pows[i] + pows[i + 1]));
   }
+}
+
+ull calc_hash(char c, int _length) {
+  prepare_sum_pows(_length);
+  return mod(mul(sum_pows[_length - 1], c));
+}
+
+template <typename Iter>
+ull calc_hash(Iter first, Iter last) {
+  ull res = 0;
+  while (first != last) res = mod(mul(res, base) + *first++);
   return res;
 }
 
-// O(r + log MOD)
-template <ll MOD>
-modint<MOD> choose(int n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return modint<MOD>(0);
-  modint<MOD> nu = 1, de = 1;
-  rep(i, r) nu *= n-i, de *= i+1;
-  return nu / de;
-}
+// monoid
+struct Hash {
+  ull value;
+  int length;
+
+  Hash() : value(0), length(0) {}  // unit
+  Hash(ull _value, int _length) : value(_value), length(_length) {}
+  Hash(char c, int _length = 1)
+      : value(calc_hash(c, _length)), length(_length) {}
+  template <typename Iter>
+  Hash(Iter first, Iter last): value(calc_hash(first, last)), length(distance(first, last)) {}
+
+ public:
+  operator ull() const { return value; }
+  bool operator==(const Hash& rhs) const {
+    return value == rhs.value && length == rhs.length;
+  }
+  bool operator!=(const Hash& rhs) const {
+    return value != rhs.value && length != rhs.length;
+  }
+  bool operator<(const Hash& rhs) const {
+    return make_pair(length, value) < make_pair(rhs.length, rhs.value);
+  }
+};
+
+class Calculator {
+ private:
+  vector<ull> hash;
+
+ public:
+  template <typename Iter>
+  Calculator(Iter first, Iter last) : hash(last - first + 1) {
+    prepare_pows(last - first + 1);
+    rep(i, last - first) hash[i + 1] = mod(mul(hash[i], base) + first[i]);
+    // assert(hash[i+1] < (1ULL << 62));
+  }
+
+ public:
+  ull operator()(int l, int r) const {
+    static constexpr ull large = MOD * ((1 << 2) - 1);
+    return mod(hash[r] + large - mul(hash[l], pows[r - l]));
+  }
+  Hash get_hash(int l, int r) const {
+    return Hash(operator()(l, r), r - l);
+  }
+};
+
+}  // namespace rolling_hash
 
 ```
 {% endraw %}
@@ -169,7 +166,7 @@ modint<MOD> choose(int n, int r) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "util/modint.cpp"
+#line 2 "string/rolling-hash.cpp"
 
 #line 2 "template.cpp"
 
@@ -321,115 +318,107 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 #pragma GCC diagnostic pop
 
 
-#line 4 "util/modint.cpp"
+#line 4 "string/rolling-hash.cpp"
 
-template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
+namespace rolling_hash {
 
-template <ll MOD = 1000000007>
-class modint {
-public:
-  ll value;
+constexpr ull mask30 = (1ULL << 30) - 1;
+constexpr ull mask31 = (1ULL << 31) - 1;
+constexpr ull MOD = (1ULL << 61) - 1;
+int base = rand();
+vector<ull> pows{1};
+vector<ull> sum_pows{1};
 
-  constexpr modint(const ll x = 0) noexcept : value(x) {
-    value %= MOD;
-    if (value < 0) value += MOD;
-  }
-  constexpr bool operator==(const modint<MOD>& rhs) {
-    return value == rhs.value;
-  }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
-    return value != rhs.value;
-  }
-  constexpr modint<MOD> operator-() const {
-    return modint<MOD>(0) - *this;
-  }
-  constexpr modint<MOD> operator+(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) += rhs;
-  }
-  constexpr modint<MOD> operator-(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) -= rhs;
-  }
-  constexpr modint<MOD> operator*(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) *= rhs;
-  }
-  constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) /= rhs;
-  }
-  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
-    value += rhs.value;
-    if (value >= MOD) value -= MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
-    if (value < rhs.value) value += MOD;
-    value -= rhs.value;
-    return *this;
-  }
-  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
-    value = value * rhs.value % MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
-    return *this *= pow(rhs, MOD - 2);
-  }
-  constexpr modint<MOD>& operator++() {
-    return *this += 1;
-  }
-  constexpr modint<MOD> operator++(int) {
-    modint<MOD> tmp(*this);
-    ++(*this);
-    return tmp;
-  }
-  constexpr modint<MOD>& operator--() {
-    return *this -= 1;
-  }
-  constexpr modint<MOD> operator--(int) {
-    modint<MOD> tmp(*this);
-    --(*this);
-    return tmp;
-  }
-  constexpr operator int() const {
-    return (int)value;
-  }
-  constexpr operator ll() const {
-    return value;
-  }
-};
-
-
-template <typename OutStream, ll MOD>
-OutStream& operator<<(OutStream& out, modint<MOD> n) {
-  out << n.value;
-  return out;
+ull mod(ull val) {
+  val = (val & MOD) + (val >> 61);
+  return val >= MOD ? val - MOD : val;
 }
 
-template <typename InStream, ll MOD>
-InStream& operator>>(InStream& in, modint<MOD>& n) {
-  ll var; in >> var; n = modint<MOD>(var);
-  return in;
+ull mul(ull l, ull r) {
+  ull lu = l >> 31, ld = l & mask31;
+  ull ru = r >> 31, rd = r & mask31;
+  ull middle = ld * ru + lu * rd;
+  return ((lu * ru) << 1) + ld * rd + ((middle & mask30) << 31) +
+         (middle >> 30);
 }
 
-template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
-  modint<MOD> res = 1;
-  while (exp) {
-    if (exp % 2) res *= base;
-    base *= base;
-    exp /= 2;
+ull mul(ull l, int r) {
+  ull lu = l >> 31, ld = l & mask31;
+  ull middle = lu * r;
+  return ld * r + ((middle & mask30) << 31) + (middle >> 30);
+}
+
+void prepare_pows(size_t sz) {
+  rep(i, pows.size() - 1, sz - 1) pows.push_back(mod(mul(pows[i], base)));
+}
+
+void prepare_sum_pows(size_t sz) {
+  prepare_pows(sz);
+  rep(i, sum_pows.size() - 1, sz - 1) {
+    sum_pows.push_back(mod(sum_pows[i] + pows[i + 1]));
   }
+}
+
+ull calc_hash(char c, int _length) {
+  prepare_sum_pows(_length);
+  return mod(mul(sum_pows[_length - 1], c));
+}
+
+template <typename Iter>
+ull calc_hash(Iter first, Iter last) {
+  ull res = 0;
+  while (first != last) res = mod(mul(res, base) + *first++);
   return res;
 }
 
-// O(r + log MOD)
-template <ll MOD>
-modint<MOD> choose(int n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return modint<MOD>(0);
-  modint<MOD> nu = 1, de = 1;
-  rep(i, r) nu *= n-i, de *= i+1;
-  return nu / de;
-}
+// monoid
+struct Hash {
+  ull value;
+  int length;
+
+  Hash() : value(0), length(0) {}  // unit
+  Hash(ull _value, int _length) : value(_value), length(_length) {}
+  Hash(char c, int _length = 1)
+      : value(calc_hash(c, _length)), length(_length) {}
+  template <typename Iter>
+  Hash(Iter first, Iter last): value(calc_hash(first, last)), length(distance(first, last)) {}
+
+ public:
+  operator ull() const { return value; }
+  bool operator==(const Hash& rhs) const {
+    return value == rhs.value && length == rhs.length;
+  }
+  bool operator!=(const Hash& rhs) const {
+    return value != rhs.value && length != rhs.length;
+  }
+  bool operator<(const Hash& rhs) const {
+    return make_pair(length, value) < make_pair(rhs.length, rhs.value);
+  }
+};
+
+class Calculator {
+ private:
+  vector<ull> hash;
+
+ public:
+  template <typename Iter>
+  Calculator(Iter first, Iter last) : hash(last - first + 1) {
+    prepare_pows(last - first + 1);
+    rep(i, last - first) hash[i + 1] = mod(mul(hash[i], base) + first[i]);
+    // assert(hash[i+1] < (1ULL << 62));
+  }
+
+ public:
+  ull operator()(int l, int r) const {
+    static constexpr ull large = MOD * ((1 << 2) - 1);
+    return mod(hash[r] + large - mul(hash[l], pows[r - l]));
+  }
+  Hash get_hash(int l, int r) const {
+    return Hash(operator()(l, r), r - l);
+  }
+};
+
+}  // namespace rolling_hash
 
 ```
 {% endraw %}

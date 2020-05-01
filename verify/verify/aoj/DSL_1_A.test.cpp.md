@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#74053cc99b0559ce9aeee19793c084e1">verify/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/verify/aoj/DSL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-01 00:36:38+09:00
+    - Last commit date: 2020-05-01 11:42:13+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
+* :heavy_check_mark: <a href="../../../library/data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :heavy_check_mark: <a href="../../../library/template.cpp.html">template.cpp</a>
 
 
@@ -50,7 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
 #include "template.cpp"
-#include "data-structure/union_find.cpp"
+#include "data-structure/union-find.cpp"
 
 
 int main() {
@@ -71,7 +71,7 @@ int main() {
 ```cpp
 #line 1 "verify/aoj/DSL_1_A.test.cpp"
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
-#line 1 "template.cpp"
+#line 2 "template.cpp"
 
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"
@@ -221,7 +221,9 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 #pragma GCC diagnostic pop
 
 
-#line 2 "data-structure/union_find.cpp"
+#line 2 "data-structure/union-find.cpp"
+
+#line 4 "data-structure/union-find.cpp"
 
 class union_find {
  private:

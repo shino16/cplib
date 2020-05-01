@@ -46,15 +46,16 @@ layout: default
 
 ### data-structure
 
+* :heavy_check_mark: <a href="library/data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/bit.cpp.html">data-structure/bit.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/bit_2d.cpp.html">data-structure/bit_2d.cpp</a>
-* :warning: <a href="library/data-structure/dynamic_segtree.cpp.html">data-structure/dynamic_segtree.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/fibonacci_heap.cpp.html">data-structure/fibonacci_heap.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/lazy_segtree.cpp.html">data-structure/lazy_segtree.cpp</a>
+* :warning: <a href="library/data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
+* :warning: <a href="library/data-structure/dynamic-segtree.cpp.html">data-structure/dynamic-segtree.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/fibonacci-heap.cpp.html">data-structure/fibonacci-heap.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :warning: <a href="library/data-structure/swag.cpp.html">data-structure/swag.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/union_find.cpp.html">data-structure/union_find.cpp</a>
-* :warning: <a href="library/data-structure/weighted_union_find.cpp.html">data-structure/weighted_union_find.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
+* :warning: <a href="library/data-structure/weighted-union-find.cpp.html">data-structure/weighted-union-find.cpp</a>
 
 
 <div id="ed7daeb157cd9b31e53896ad3c771a26"></div>
@@ -69,11 +70,12 @@ layout: default
 ### graph
 
 * :warning: <a href="library/graph/bfs.cpp.html">graph/bfs.cpp</a>
+* :heavy_check_mark: <a href="library/graph/dijkstra-fib-heap.cpp.html">graph/dijkstra-fib-heap.cpp</a>
 * :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
-* :heavy_check_mark: <a href="library/graph/dijkstra_fib_heap.cpp.html">graph/dijkstra_fib_heap.cpp</a>
+* :warning: <a href="library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
 * :warning: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
 * :heavy_check_mark: <a href="library/graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
-* :warning: <a href="library/graph/topological_sort.cpp.html">graph/topological_sort.cpp</a>
+* :warning: <a href="library/graph/topological-sort.cpp.html">graph/topological-sort.cpp</a>
 * :warning: <a href="library/graph/two-edge-connected-components.cpp.html">graph/two-edge-connected-components.cpp</a>
 
 
@@ -83,11 +85,11 @@ layout: default
 
 * :warning: <a href="library/math/approximate.cpp.html">math/approximate.cpp</a>
 * :warning: <a href="library/math/binomial.cpp.html">math/binomial.cpp</a>
-* :warning: <a href="library/math/constexpr_binomial.cpp.html">math/constexpr_binomial.cpp</a>
+* :warning: <a href="library/math/constexpr-binomial.cpp.html">math/constexpr-binomial.cpp</a>
 * :warning: <a href="library/math/factorize.cpp.html">math/factorize.cpp</a>
 * :warning: <a href="library/math/fft.cpp.html">math/fft.cpp</a>
 * :warning: <a href="library/math/formalpowerseries.cpp.html">math/formalpowerseries.cpp</a>
-* :warning: <a href="library/math/garner_ntt.cpp.html">math/garner_ntt.cpp</a>
+* :warning: <a href="library/math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
 * :warning: <a href="library/math/ntt.cpp.html">math/ntt.cpp</a>
 * :warning: <a href="library/math/polynomial.cpp.html">math/polynomial.cpp</a>
 * :warning: <a href="library/math/squarematrix.cpp.html">math/squarematrix.cpp</a>
@@ -98,8 +100,8 @@ layout: default
 
 ### string
 
-* :heavy_check_mark: <a href="library/string/hash_monoid.cpp.html">string/hash_monoid.cpp</a>
-* :heavy_check_mark: <a href="library/string/rolling_hash.cpp.html">string/rolling_hash.cpp</a>
+* :heavy_check_mark: <a href="library/string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
+* :heavy_check_mark: <a href="library/string/rolling-hash.cpp.html">string/rolling-hash.cpp</a>
 
 
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
@@ -107,25 +109,25 @@ layout: default
 ### tree
 
 * :warning: <a href="library/tree/dfs.cpp.html">tree/dfs.cpp</a>
-* :warning: <a href="library/tree/euler_tour.cpp.html">tree/euler_tour.cpp</a>
+* :warning: <a href="library/tree/euler-tour.cpp.html">tree/euler-tour.cpp</a>
 * :heavy_check_mark: <a href="library/tree/hld.cpp.html">tree/hld.cpp</a>
 * :warning: <a href="library/tree/lca.cpp.html">tree/lca.cpp</a>
 * :warning: <a href="library/tree/rerooting.cpp.html">tree/rerooting.cpp</a>
-* :warning: <a href="library/tree/tree_diameter.cpp.html">tree/tree_diameter.cpp</a>
+* :warning: <a href="library/tree/tree-diameter.cpp.html">tree/tree-diameter.cpp</a>
 
 
 <div id="05c7e24700502a079cdd88012b5a76d3"></div>
 
 ### util
 
-* :warning: <a href="library/util/acc_2d.cpp.html">util/acc_2d.cpp</a>
+* :warning: <a href="library/util/acc-2d.cpp.html">util/acc-2d.cpp</a>
 * :heavy_check_mark: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
 * :heavy_check_mark: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
-* :heavy_check_mark: <a href="library/util/function_objects.cpp.html">util/function_objects.cpp</a>
-* :warning: <a href="library/util/hack_pque.cpp.html">util/hack_pque.cpp</a>
+* :heavy_check_mark: <a href="library/util/function-objects.cpp.html">util/function-objects.cpp</a>
+* :warning: <a href="library/util/hack-pque.cpp.html">util/hack-pque.cpp</a>
 * :warning: <a href="library/util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="library/util/modint.cpp.html">util/modint.cpp</a>
-* :warning: <a href="library/util/random_tree.cpp.html">util/random_tree.cpp</a>
+* :warning: <a href="library/util/random-tree.cpp.html">util/random-tree.cpp</a>
 * :warning: <a href="library/util/triple.cpp.html">util/triple.cpp</a>
 
 

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#74053cc99b0559ce9aeee19793c084e1">verify/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/verify/aoj/GRL_1_A_fh.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-01 00:36:38+09:00
+    - Last commit date: 2020-05-01 11:42:13+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data-structure/fibonacci_heap.cpp.html">data-structure/fibonacci_heap.cpp</a>
-* :heavy_check_mark: <a href="../../../library/graph/dijkstra_fib_heap.cpp.html">graph/dijkstra_fib_heap.cpp</a>
+* :heavy_check_mark: <a href="../../../library/data-structure/fibonacci-heap.cpp.html">data-structure/fibonacci-heap.cpp</a>
+* :heavy_check_mark: <a href="../../../library/graph/dijkstra-fib-heap.cpp.html">graph/dijkstra-fib-heap.cpp</a>
 * :heavy_check_mark: <a href="../../../library/template.cpp.html">template.cpp</a>
 
 
@@ -52,8 +52,8 @@ layout: default
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja"
 
 #include "template.cpp"
-#include "data-structure/fibonacci_heap.cpp"
-#include "graph/dijkstra_fib_heap.cpp"
+#include "data-structure/fibonacci-heap.cpp"
+#include "graph/dijkstra-fib-heap.cpp"
 
 
 int main() {
@@ -75,7 +75,7 @@ int main() {
 #line 1 "verify/aoj/GRL_1_A_fh.test.cpp"
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja"
 
-#line 1 "template.cpp"
+#line 2 "template.cpp"
 
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"
@@ -225,7 +225,7 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 #pragma GCC diagnostic pop
 
 
-#line 2 "data-structure/fibonacci_heap.cpp"
+#line 2 "data-structure/fibonacci-heap.cpp"
 
 // credit to: rsk0315 (https://atcoder.jp/users/rsk0315)
 // this implementation is from https://atcoder.jp/contests/arc064/submissions/8197391
@@ -478,9 +478,9 @@ public:
   }
 };
 
-#line 2 "graph/dijkstra_fib_heap.cpp"
+#line 2 "graph/dijkstra-fib-heap.cpp"
 
-#line 4 "graph/dijkstra_fib_heap.cpp"
+#line 5 "graph/dijkstra-fib-heap.cpp"
 
 vector<ll> dijkstra(const Graph& graph, int start) {
   fibonacci_heap<ll, int, greater<>> q;

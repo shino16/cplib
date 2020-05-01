@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: util/modint.cpp
+# :warning: data-structure/disjoint-sparse-table.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
-* <a href="{{ site.github.repository_url }}/blob/master/util/modint.cpp">View this file on GitHub</a>
+* category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
+* <a href="{{ site.github.repository_url }}/blob/master/data-structure/disjoint-sparse-table.cpp">View this file on GitHub</a>
     - Last commit date: 2020-05-01 11:42:13+09:00
 
 
@@ -39,11 +39,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
-
-
-## Required by
-
-* :warning: <a href="../math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
+* :heavy_check_mark: <a href="../util/function-objects.cpp.html">util/function-objects.cpp</a>
 
 
 ## Code
@@ -54,114 +50,51 @@ layout: default
 #pragma once
 
 #include "template.cpp"
+#include "util/function-objects.cpp"
 
-template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
+template <typename T, typename F>
+class DisjointSparseTable {
+ private:
+  const int n, h;
+  vector<vector<T>> table;
+  const F f;
 
-template <ll MOD = 1000000007>
-class modint {
-public:
-  ll value;
+ public:
+  DisjointSparseTable() {}
+  template <typename Iter>
+  DisjointSparseTable(Iter first, Iter last, F _f = F())
+      : n(distance(first, last)),
+        h(32 - __builtin_clz(n)),
+        table(h, vector<T>(n)),
+        f(_f) {
+    move(first, last, table[0].begin());
+    rep(s, 1, h) rep(k, (n + (1 << (s + 1)) - 1) >> (s + 1)) {
+      int l = k << (s + 1);
+      int m = min(n, l + (1 << s));
+      int r = min(n, m + (1 << s));
+      table[s][m - 1] = table[0][m - 1];
+      repr(i, l, m - 1) table[s][i] = f(table[0][i], table[s][i + 1]);
+      if (m != n) {
+        table[s][m] = table[0][m];
+        rep(i, m + 1, r) table[s][i] = f(table[s][i - 1], table[0][i]);
+      }
+    }
+  }
 
-  constexpr modint(const ll x = 0) noexcept : value(x) {
-    value %= MOD;
-    if (value < 0) value += MOD;
-  }
-  constexpr bool operator==(const modint<MOD>& rhs) {
-    return value == rhs.value;
-  }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
-    return value != rhs.value;
-  }
-  constexpr modint<MOD> operator-() const {
-    return modint<MOD>(0) - *this;
-  }
-  constexpr modint<MOD> operator+(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) += rhs;
-  }
-  constexpr modint<MOD> operator-(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) -= rhs;
-  }
-  constexpr modint<MOD> operator*(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) *= rhs;
-  }
-  constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) /= rhs;
-  }
-  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
-    value += rhs.value;
-    if (value >= MOD) value -= MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
-    if (value < rhs.value) value += MOD;
-    value -= rhs.value;
-    return *this;
-  }
-  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
-    value = value * rhs.value % MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
-    return *this *= pow(rhs, MOD - 2);
-  }
-  constexpr modint<MOD>& operator++() {
-    return *this += 1;
-  }
-  constexpr modint<MOD> operator++(int) {
-    modint<MOD> tmp(*this);
-    ++(*this);
-    return tmp;
-  }
-  constexpr modint<MOD>& operator--() {
-    return *this -= 1;
-  }
-  constexpr modint<MOD> operator--(int) {
-    modint<MOD> tmp(*this);
-    --(*this);
-    return tmp;
-  }
-  constexpr operator int() const {
-    return (int)value;
-  }
-  constexpr operator ll() const {
-    return value;
+ public:
+  T fold(int l, int r) {
+    r--;
+    if (l == r) return table[0][l];
+    int s = 32 - __builtin_clz(l ^ r) - 1;
+    return f(table[s][l], table[s][r]);
   }
 };
 
-
-template <typename OutStream, ll MOD>
-OutStream& operator<<(OutStream& out, modint<MOD> n) {
-  out << n.value;
-  return out;
-}
-
-template <typename InStream, ll MOD>
-InStream& operator>>(InStream& in, modint<MOD>& n) {
-  ll var; in >> var; n = modint<MOD>(var);
-  return in;
-}
-
-template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
-  modint<MOD> res = 1;
-  while (exp) {
-    if (exp % 2) res *= base;
-    base *= base;
-    exp /= 2;
-  }
-  return res;
-}
-
-// O(r + log MOD)
-template <ll MOD>
-modint<MOD> choose(int n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return modint<MOD>(0);
-  modint<MOD> nu = 1, de = 1;
-  rep(i, r) nu *= n-i, de *= i+1;
-  return nu / de;
-}
+#ifdef 	__cpp_deduction_guides
+template <typename Iter, typename F>
+DisjointSparseTable(Iter first, Iter last, F _f = F())
+    -> DisjointSparseTable<typename Iter::value_type, F>;
+#endif
 
 ```
 {% endraw %}
@@ -169,7 +102,7 @@ modint<MOD> choose(int n, int r) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "util/modint.cpp"
+#line 2 "data-structure/disjoint-sparse-table.cpp"
 
 #line 2 "template.cpp"
 
@@ -321,115 +254,81 @@ dump_func(Head &&head, Tail &&...tail) { debugos << head; if (sizeof...(Tail) > 
 #pragma GCC diagnostic pop
 
 
-#line 4 "util/modint.cpp"
+#line 2 "util/function-objects.cpp"
 
-template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
+#line 4 "util/function-objects.cpp"
 
-template <ll MOD = 1000000007>
-class modint {
-public:
-  ll value;
-
-  constexpr modint(const ll x = 0) noexcept : value(x) {
-    value %= MOD;
-    if (value < 0) value += MOD;
-  }
-  constexpr bool operator==(const modint<MOD>& rhs) {
-    return value == rhs.value;
-  }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
-    return value != rhs.value;
-  }
-  constexpr modint<MOD> operator-() const {
-    return modint<MOD>(0) - *this;
-  }
-  constexpr modint<MOD> operator+(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) += rhs;
-  }
-  constexpr modint<MOD> operator-(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) -= rhs;
-  }
-  constexpr modint<MOD> operator*(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) *= rhs;
-  }
-  constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) /= rhs;
-  }
-  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
-    value += rhs.value;
-    if (value >= MOD) value -= MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
-    if (value < rhs.value) value += MOD;
-    value -= rhs.value;
-    return *this;
-  }
-  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
-    value = value * rhs.value % MOD;
-    return *this;
-  }
-  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
-    return *this *= pow(rhs, MOD - 2);
-  }
-  constexpr modint<MOD>& operator++() {
-    return *this += 1;
-  }
-  constexpr modint<MOD> operator++(int) {
-    modint<MOD> tmp(*this);
-    ++(*this);
-    return tmp;
-  }
-  constexpr modint<MOD>& operator--() {
-    return *this -= 1;
-  }
-  constexpr modint<MOD> operator--(int) {
-    modint<MOD> tmp(*this);
-    --(*this);
-    return tmp;
-  }
-  constexpr operator int() const {
-    return (int)value;
-  }
-  constexpr operator ll() const {
-    return value;
+struct minT {
+  template <typename T>
+  T operator()(T a, T b) const {
+    return min(a, b);
   }
 };
 
-
-template <typename OutStream, ll MOD>
-OutStream& operator<<(OutStream& out, modint<MOD> n) {
-  out << n.value;
-  return out;
-}
-
-template <typename InStream, ll MOD>
-InStream& operator>>(InStream& in, modint<MOD>& n) {
-  ll var; in >> var; n = modint<MOD>(var);
-  return in;
-}
-
-template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
-  modint<MOD> res = 1;
-  while (exp) {
-    if (exp % 2) res *= base;
-    base *= base;
-    exp /= 2;
+struct maxT {
+  template <typename T>
+  T operator()(T a, T b) const {
+    return max(a, b);
   }
-  return res;
-}
+};
 
-// O(r + log MOD)
-template <ll MOD>
-modint<MOD> choose(int n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return modint<MOD>(0);
-  modint<MOD> nu = 1, de = 1;
-  rep(i, r) nu *= n-i, de *= i+1;
-  return nu / de;
-}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+struct assignT {
+  template <typename T>
+  T operator()(T a, T b, int k = 0) const { return b; }
+};
+#pragma GCC diagnostic pop
+
+struct plusT {
+  template <typename T>
+  T operator()(T a, T b, int k) const { return a + b * k; }
+};
+#line 5 "data-structure/disjoint-sparse-table.cpp"
+
+template <typename T, typename F>
+class DisjointSparseTable {
+ private:
+  const int n, h;
+  vector<vector<T>> table;
+  const F f;
+
+ public:
+  DisjointSparseTable() {}
+  template <typename Iter>
+  DisjointSparseTable(Iter first, Iter last, F _f = F())
+      : n(distance(first, last)),
+        h(32 - __builtin_clz(n)),
+        table(h, vector<T>(n)),
+        f(_f) {
+    move(first, last, table[0].begin());
+    rep(s, 1, h) rep(k, (n + (1 << (s + 1)) - 1) >> (s + 1)) {
+      int l = k << (s + 1);
+      int m = min(n, l + (1 << s));
+      int r = min(n, m + (1 << s));
+      table[s][m - 1] = table[0][m - 1];
+      repr(i, l, m - 1) table[s][i] = f(table[0][i], table[s][i + 1]);
+      if (m != n) {
+        table[s][m] = table[0][m];
+        rep(i, m + 1, r) table[s][i] = f(table[s][i - 1], table[0][i]);
+      }
+    }
+  }
+
+ public:
+  T fold(int l, int r) {
+    r--;
+    if (l == r) return table[0][l];
+    int s = 32 - __builtin_clz(l ^ r) - 1;
+    return f(table[s][l], table[s][r]);
+  }
+};
+
+#ifdef 	__cpp_deduction_guides
+template <typename Iter, typename F>
+DisjointSparseTable(Iter first, Iter last, F _f = F())
+    -> DisjointSparseTable<typename Iter::value_type, F>;
+#endif
 
 ```
 {% endraw %}
