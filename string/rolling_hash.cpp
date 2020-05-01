@@ -47,7 +47,7 @@ ull calc_hash(char c, int _length) {
 template <typename Iter>
 ull calc_hash(Iter first, Iter last) {
   ull res = 0;
-  rep(i, last - first) res = mod(mul(res, base) + first[i]);
+  while (first != last) res = mod(mul(res, base) + *first++);
   return res;
 }
 
@@ -69,7 +69,7 @@ struct Hash {
     return value == rhs.value && length == rhs.length;
   }
   bool operator!=(const Hash& rhs) const {
-    return value == rhs.value && length == rhs.length;
+    return value != rhs.value && length != rhs.length;
   }
   bool operator<(const Hash& rhs) const {
     return make_pair(length, value) < make_pair(rhs.length, rhs.value);
