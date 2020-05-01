@@ -48,7 +48,7 @@ layout: default
 
 * :heavy_check_mark: <a href="library/data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/bit.cpp.html">data-structure/bit.cpp</a>
-* :warning: <a href="library/data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :warning: <a href="library/data-structure/dynamic-segtree.cpp.html">data-structure/dynamic-segtree.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/fibonacci-heap.cpp.html">data-structure/fibonacci-heap.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
@@ -141,5 +141,6 @@ layout: default
 * :heavy_check_mark: <a href="verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/GRL_1_A_fh.test.cpp.html">verify/aoj/GRL_1_A_fh.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
 
 
