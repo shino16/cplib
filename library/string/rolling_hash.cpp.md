@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b45cffe084dd3d20d928bee85e7b0f21">string</a>
 * <a href="{{ site.github.repository_url }}/blob/master/string/rolling_hash.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-01 00:36:47+09:00
+    - Last commit date: 2020-05-01 09:22:50+09:00
 
 
 
@@ -100,7 +100,7 @@ ull calc_hash(char c, int _length) {
 template <typename Iter>
 ull calc_hash(Iter first, Iter last) {
   ull res = 0;
-  rep(i, last - first) res = mod(mul(res, base) + first[i]);
+  while (first != last) res = mod(mul(res, base) + *first++);
   return res;
 }
 
@@ -122,7 +122,7 @@ struct Hash {
     return value == rhs.value && length == rhs.length;
   }
   bool operator!=(const Hash& rhs) const {
-    return value == rhs.value && length == rhs.length;
+    return value != rhs.value && length != rhs.length;
   }
   bool operator<(const Hash& rhs) const {
     return make_pair(length, value) < make_pair(rhs.length, rhs.value);
@@ -208,7 +208,7 @@ ull calc_hash(char c, int _length) {
 template <typename Iter>
 ull calc_hash(Iter first, Iter last) {
   ull res = 0;
-  rep(i, last - first) res = mod(mul(res, base) + first[i]);
+  while (first != last) res = mod(mul(res, base) + *first++);
   return res;
 }
 
@@ -230,7 +230,7 @@ struct Hash {
     return value == rhs.value && length == rhs.length;
   }
   bool operator!=(const Hash& rhs) const {
-    return value == rhs.value && length == rhs.length;
+    return value != rhs.value && length != rhs.length;
   }
   bool operator<(const Hash& rhs) const {
     return make_pair(length, value) < make_pair(rhs.length, rhs.value);
