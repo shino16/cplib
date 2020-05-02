@@ -1,3 +1,4 @@
+#pragma once
 
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"
@@ -41,20 +42,21 @@ constexpr ll INF_LL = 1'000'000'000'000'000'007;
   } while (0)
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
-#define newl "\n"
-#define __overload3(_1, _2, _3, name, ...) name
+#define newl '\n'
+#define OVERLOAD3(_1, _2, _3, name, ...) name
 #define rep(...) \
-  __overload3(__VA_ARGS__, repFromUntil, repUntil, repeat)(__VA_ARGS__)
-#define repeat(times) _repeat(_repeat, __COUNTER__, times)
-#define _repeat(_repeat, cnt, times) _repeat2(_repeat, cnt, times)
-#define _repeat2(_repeat, cnt, times) repFromUntil(_repeat##cnt, 0, times)
-#define repUntil(name, times) repFromUntil(name, 0, times)
-#define repFromUntil(name, from, until) \
+  OVERLOAD3(__VA_ARGS__, REPEAT_FROM_UNTIL, REPEAT_UNTIL, REPEAT)(__VA_ARGS__)
+#define REPEAT(times) REPEAT_CNT(_repeat, __COUNTER__, times)
+#define REPEAT_CNT(_repeat, cnt, times) REPEAT_CNT_CAT(_repeat, cnt, times)
+#define REPEAT_CNT_CAT(_repeat, cnt, times) \
+  REPEAT_FROM_UNTIL(_repeat##cnt, 0, times)
+#define REPEAT_UNTIL(name, times) REPEAT_FROM_UNTIL(name, 0, times)
+#define REPEAT_FROM_UNTIL(name, from, until) \
   for (int name = from, name##__until = (until); name < name##__until; name++)
 #define repr(...) \
-  __overload3(__VA_ARGS__, reprFromUntil, reprUntil, repeat)(__VA_ARGS__)
-#define reprUntil(name, times) reprFromUntil(name, 0, times)
-#define reprFromUntil(name, from, until)                                  \
+  OVERLOAD3(__VA_ARGS__, REPR_FROM_UNTIL, REPR_UNTIL, REPEAT)(__VA_ARGS__)
+#define REPR_UNTIL(name, times) REPR_FROM_UNTIL(name, 0, times)
+#define REPR_FROM_UNTIL(name, from, until)                                \
   for (int name = (until)-1, name##__from = (from); name >= name##__from; \
        name--)
 #define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
@@ -162,9 +164,16 @@ class MyScanner {
   MyScanner& operator>>(string& var) {
     var = "";
     int cc = nc();
-    for (; !isvisiblechar(cc); cc = nc())
+    for (; !isgraph(cc); cc = nc())
       ;
-    for (; isvisiblechar(cc); cc = nc()) var.push_back(cc);
+    for (; isgraph(cc); cc = nc()) var.push_back(cc);
+    return *this;
+  }
+  template <size_t N>
+  MyScanner& operator>>(bitset<N>& var) {
+    ll v;
+    input_integer<ll>(v);
+    var = bitset<N>(v);
     return *this;
   }
   template <typename T>
@@ -212,8 +221,6 @@ class MyScanner {
     iter(all(res));
     return res;
   }
- private:
-  int isvisiblechar(int c) { return 0x21 <= c && c <= 0x7E; }
 } IN, IN1{-1};
 class MyPrinter {
  public:
@@ -349,6 +356,11 @@ DebugPrint& operator<<(DebugPrint& os, set<T>& set_var) {
     itr--;
   }
   os << "}";
+  return os;
+}
+template <typename T, typename U>
+DebugPrint& operator<<(DebugPrint& os, const pair<T, U>& p) {
+  os << "(" << p.first << ", " << p.second << ")";
   return os;
 }
 void dump_func() { debugos << newl; }
