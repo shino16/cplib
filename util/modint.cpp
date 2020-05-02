@@ -14,57 +14,57 @@ public:
     value %= MOD;
     if (value < 0) value += MOD;
   }
-  constexpr bool operator==(const modint<MOD>& rhs) {
+  constexpr bool operator==(const modint& rhs) {
     return value == rhs.value;
   }
-  constexpr bool operator!=(const modint<MOD>& rhs) {
+  constexpr bool operator!=(const modint& rhs) {
     return value != rhs.value;
   }
-  constexpr modint<MOD> operator-() const {
-    return modint<MOD>(0) - *this;
+  constexpr modint operator-() const {
+    return modint(0) - *this;
   }
-  constexpr modint<MOD> operator+(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) += rhs;
+  constexpr modint operator+(const modint& rhs) const {
+    return modint(*this) += rhs;
   }
-  constexpr modint<MOD> operator-(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) -= rhs;
+  constexpr modint operator-(const modint& rhs) const {
+    return modint(*this) -= rhs;
   }
-  constexpr modint<MOD> operator*(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) *= rhs;
+  constexpr modint operator*(const modint& rhs) const {
+    return modint(*this) *= rhs;
   }
-  constexpr modint<MOD> operator/(const modint<MOD>& rhs) const {
-    return modint<MOD>(*this) /= rhs;
+  constexpr modint operator/(const modint& rhs) const {
+    return modint(*this) /= rhs;
   }
-  constexpr modint<MOD>& operator+=(const modint<MOD>& rhs) {
+  constexpr modint& operator+=(const modint& rhs) {
     value += rhs.value;
     if (value >= MOD) value -= MOD;
     return *this;
   }
-  constexpr modint<MOD>& operator-=(const modint<MOD>& rhs) {
+  constexpr modint& operator-=(const modint& rhs) {
     if (value < rhs.value) value += MOD;
     value -= rhs.value;
     return *this;
   }
-  constexpr modint<MOD>& operator*=(const modint<MOD>& rhs) {
+  constexpr modint& operator*=(const modint& rhs) {
     value = value * rhs.value % MOD;
     return *this;
   }
-  constexpr modint<MOD>& operator/=(const modint<MOD>& rhs) {
+  constexpr modint& operator/=(const modint& rhs) {
     return *this *= pow(rhs, MOD - 2);
   }
-  constexpr modint<MOD>& operator++() {
+  constexpr modint& operator++() {
     return *this += 1;
   }
-  constexpr modint<MOD> operator++(int) {
-    modint<MOD> tmp(*this);
+  constexpr modint operator++(int) {
+    modint tmp(*this);
     ++(*this);
     return tmp;
   }
-  constexpr modint<MOD>& operator--() {
+  constexpr modint& operator--() {
     return *this -= 1;
   }
-  constexpr modint<MOD> operator--(int) {
-    modint<MOD> tmp(*this);
+  constexpr modint operator--(int) {
+    modint tmp(*this);
     --(*this);
     return tmp;
   }
