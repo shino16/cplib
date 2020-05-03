@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/modint.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-03 18:46:57+09:00
+    - Last commit date: 2020-05-03 18:51:57+09:00
 
 
 
