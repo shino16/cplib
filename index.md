@@ -127,6 +127,7 @@ layout: default
 * :warning: <a href="library/util/hack-pque.cpp.html">util/hack-pque.cpp</a>
 * :warning: <a href="library/util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="library/util/modint.cpp.html">util/modint.cpp</a>
+* :warning: <a href="library/util/prepare_inv.cpp.html">util/prepare_inv.cpp</a>
 * :warning: <a href="library/util/random-tree.cpp.html">util/random-tree.cpp</a>
 * :warning: <a href="library/util/triple.cpp.html">util/triple.cpp</a>
 

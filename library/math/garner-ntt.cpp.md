@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/garner-ntt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-02 16:18:21+09:00
+    - Last commit date: 2020-05-03 18:46:57+09:00
 
 
 
@@ -382,6 +382,7 @@ template <ll MOD = 1000000007>
 class modint {
 public:
   ll value;
+  static constexpr ll Mod = MOD;
 
   constexpr modint(const ll x = 0) noexcept : value(x) {
     value %= MOD;
