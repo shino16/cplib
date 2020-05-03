@@ -9,6 +9,7 @@ template <ll MOD = 1000000007>
 class modint {
 public:
   ll value;
+  static constexpr ll Mod = MOD;
 
   constexpr modint(const ll x = 0) noexcept : value(x) {
     value %= MOD;
