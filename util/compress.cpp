@@ -6,10 +6,10 @@ template <typename T = ll>
 class Compress {
  private:
   vector<T> data;
-  bool built;
+  bool built = false;
 
  public:
-  Compress() { build(); }
+  Compress() {}
   template <typename Iter>
   Compress(Iter first, Iter last) : data(first, last) {
     build();
