@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/compress.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-02 12:26:25+09:00
+    - Last commit date: 2020-05-04 10:47:16+09:00
 
 
 
@@ -60,10 +60,10 @@ template <typename T = ll>
 class Compress {
  private:
   vector<T> data;
-  bool built;
+  bool built = false;
 
  public:
-  Compress() { build(); }
+  Compress() {}
   template <typename Iter>
   Compress(Iter first, Iter last) : data(first, last) {
     build();
@@ -281,10 +281,10 @@ template <typename T = ll>
 class Compress {
  private:
   vector<T> data;
-  bool built;
+  bool built = false;
 
  public:
-  Compress() { build(); }
+  Compress() {}
   template <typename Iter>
   Compress(Iter first, Iter last) : data(first, last) {
     build();
