@@ -41,7 +41,7 @@ struct Pt {
   bool operator !=(const Pt<T>& rhs) const {
     return not (*this == rhs);
   }
-  dbl abs() const {
+  double abs() const {
     return hypot(x, y);
   }
   T dot(const Pt<T>& rhs) const {
