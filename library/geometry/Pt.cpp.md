@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#ed7daeb157cd9b31e53896ad3c771a26">geometry</a>
 * <a href="{{ site.github.repository_url }}/blob/master/geometry/Pt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-02 12:26:25+09:00
+    - Last commit date: 2020-05-06 20:38:06+09:00
 
 
 
@@ -39,6 +39,11 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
+
+
+## Required by
+
+* :warning: <a href="../math/fft.cpp.html">math/fft.cpp</a>
 
 
 ## Code
@@ -89,7 +94,7 @@ struct Pt {
   bool operator !=(const Pt<T>& rhs) const {
     return not (*this == rhs);
   }
-  dbl abs() const {
+  double abs() const {
     return hypot(x, y);
   }
   T dot(const Pt<T>& rhs) const {
@@ -311,7 +316,7 @@ struct Pt {
   bool operator !=(const Pt<T>& rhs) const {
     return not (*this == rhs);
   }
-  dbl abs() const {
+  double abs() const {
     return hypot(x, y);
   }
   T dot(const Pt<T>& rhs) const {
