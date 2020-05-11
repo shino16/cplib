@@ -4,4 +4,5 @@
 
 現在[online-judge-verify-helper](https://github.com/kmyk/online-judge-verify-helper)導入の作業中です。まだverify済みでないものもあります。
 
-本作品はCC0ライセンスによって許諾されています。ライセンスの内容を知りたい方は https://creativecommons.org/publicdomain/zero/1.0/deed.ja でご確認ください。
+**`credit to`や`@author`がついていないものに限り**、ゼロから私個人のみで書いたものですので、CC0ライセンスによって許諾されているものとします。自由にコピペし自分のものとして公開していただいても構いません。
+ライセンスの内容を知りたい方は https://creativecommons.org/publicdomain/zero/1.0/deed.ja でご確認ください。
