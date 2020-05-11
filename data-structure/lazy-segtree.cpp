@@ -19,9 +19,8 @@ struct LazySegmentTree {
   vector<Actor> lazy;
 
  public:
-  LazySegmentTree(size_t n = 0, T unit = T(), Actor aunit = Actor(),
-                  Combine combine = Combine(), ACombine acombine = ACombine(),
-                  Action upd = Action())
+  LazySegmentTree(size_t n = 0, T unit = {}, Actor aunit = {},
+                  Combine combine = {}, ACombine acombine = {}, Action upd = {})
       : n(n),
         h(32 - __builtin_clz(n)),
         unit(unit),
@@ -37,9 +36,9 @@ struct LazySegmentTree {
   template <
       typename Iter,
       enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
-  LazySegmentTree(Iter first, Iter last, size_t n, T unit = T(),
-                  Actor aunit = Actor(), Combine combine = Combine(),
-                  ACombine acombine = ACombine(), Action upd = Action())
+  LazySegmentTree(Iter first, Iter last, size_t n, T unit = {},
+                  Actor aunit = {}, Combine combine = {},
+                  ACombine acombine = {}, Action upd = {})
       : n(n),
         h(32 - __builtin_clz(n)),
         unit(unit),
@@ -56,11 +55,9 @@ struct LazySegmentTree {
   template <
       typename Iter,
       enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
-  [[deprecated]] LazySegmentTree(Iter first, Iter last, size_t n, T unit = T(),
-                                 Actor aunit = Actor(),
-                                 Combine combine = Combine(),
-                                 ACombine acombine = ACombine(),
-                                 Action upd = Action())
+  [[deprecated]] LazySegmentTree(Iter first, Iter last, size_t n, T unit = {},
+                                 Actor aunit = {}, Combine combine = {},
+                                 ACombine acombine = {}, Action upd = {})
       : n(n),
         h(32 - __builtin_clz(n)),
         unit(unit),
@@ -75,9 +72,8 @@ struct LazySegmentTree {
   }
 
   template <typename Iter>
-  LazySegmentTree(Iter first, Iter last, T unit = T(), Actor aunit = Actor(),
-                  Combine combine = Combine(), ACombine acombine = ACombine(),
-                  Action upd = Action())
+  LazySegmentTree(Iter first, Iter last, T unit = {}, Actor aunit = {},
+                  Combine combine = {}, ACombine acombine = {}, Action upd = {})
       : LazySegmentTree(first, last, distance(first, last), unit, aunit,
                         combine, acombine, upd) {}
 
