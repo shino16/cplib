@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/segtree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 17:30:30+09:00
+    - Last commit date: 2020-05-11 22:27:27+09:00
 
 
 
@@ -87,7 +87,7 @@ class SegmentTree {
   SegmentTree(Iter first, Iter last, size_t n, T unit = {},
               Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build();
   }
 
@@ -97,7 +97,7 @@ class SegmentTree {
   [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = {},
                              Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build();
   }
 
@@ -346,7 +346,7 @@ class SegmentTree {
   SegmentTree(Iter first, Iter last, size_t n, T unit = {},
               Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build();
   }
 
@@ -356,7 +356,7 @@ class SegmentTree {
   [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = {},
                              Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build();
   }
 

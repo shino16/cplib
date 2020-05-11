@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b45cffe084dd3d20d928bee85e7b0f21">string</a>
 * <a href="{{ site.github.repository_url }}/blob/master/string/hash-monoid.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 17:30:30+09:00
+    - Last commit date: 2020-05-11 22:27:27+09:00
 
 
 
@@ -411,7 +411,7 @@ class SegmentTree {
   SegmentTree(Iter first, Iter last, size_t n, T unit = {},
               Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build();
   }
 
@@ -421,7 +421,7 @@ class SegmentTree {
   [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = {},
                              Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build();
   }
 
@@ -502,7 +502,7 @@ struct LazySegmentTree {
         upd(upd),
         data(n << 1, unit),
         lazy(n, aunit) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build(0, n);
   }
 
@@ -521,7 +521,7 @@ struct LazySegmentTree {
         upd(upd),
         data(n << 1, unit),
         lazy(n, aunit) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build(0, n);
   }
 

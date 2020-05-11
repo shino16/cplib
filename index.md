@@ -46,7 +46,7 @@ layout: default
 
 ### data-structure
 
-* :warning: <a href="library/data-structure/binary_heap.cpp.html">data-structure/binary_heap.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/bit.cpp.html">data-structure/bit.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>

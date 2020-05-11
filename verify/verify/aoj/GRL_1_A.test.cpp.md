@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#74053cc99b0559ce9aeee19793c084e1">verify/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/verify/aoj/GRL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 16:02:38+09:00
+    - Last commit date: 2020-05-11 22:27:27+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja</a>
@@ -39,6 +39,7 @@ layout: default
 
 ## Depends on
 
+* :heavy_check_mark: <a href="../../../library/data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
 * :heavy_check_mark: <a href="../../../library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="../../../library/template.cpp.html">template.cpp</a>
 
@@ -226,20 +227,109 @@ tail)...); }
 
 #line 2 "graph/dijkstra.cpp"
 
-#line 4 "graph/dijkstra.cpp"
+#line 2 "data-structure/binary-heap.cpp"
+
+#line 4 "data-structure/binary-heap.cpp"
+
+template <typename T, typename Compare = less<>>
+class BinaryHeap {
+ private:
+  vector<T> data;
+  vector<int> index, handle;
+  const Compare comp;
+
+ public:
+  BinaryHeap(Compare comp_ = {}) : comp(comp_) {}
+  template <typename Iter>
+  BinaryHeap(Iter first, Iter last, Compare comp_ = {}) : comp(comp_) {
+    data.insert(data.end(), first, last);
+    index.resize(data.size());
+    handle.resize(data.size());
+    iota(all(index), 0);
+    iota(all(handle), 0);
+    repr(i, divceil(data.size(), 2)) pushdown(i);
+  }
+
+ private:
+  void rotate(int i, int j) {
+    swap(data[i], data[j]);
+    swap(index[i], index[j]);
+    swap(handle[index[i]], handle[index[j]]);
+  }
+
+  void pushup(int i) {
+    int j;
+    while (j = (i - 1) / 2, comp(data[j], data[i])) rotate(i, j), i = j;
+  }
+
+  void pushdown(int i) {
+    int j;
+    while (j = (i + 1) * 2, j < data.size()) {
+      if (comp(data[j], data[j - 1])) j--;
+      rotate(i, j), i = j;
+    }
+    j = i * 2 + 1;
+    if (j < data.size() and comp(data[i], data[j])) rotate(i, j);
+  }
+
+ public:
+  bool empty() { return data.empty(); }
+
+  void push(int i, const T& v) { emplace(i, v); }
+  void push(int i, T&& v) { emplace(i, move(v)); }
+
+  template <typename... Args>
+  void emplace(int i, Args&&... args) {
+    if (i >= handle.size()) {
+      int s = handle.size();
+      handle.resize(i + 1);
+      fill(handle.begin() + s, handle.end(), -1);
+    }
+    handle[i] = data.size();
+    data.emplace_back(forward<Args>(args)...);
+    index.push_back(i);
+    pushup(handle[i]);
+  }
+
+  T& top() { return data[0]; }
+  int top_index() { return index[0]; }
+
+  void pop() { remove(0); }
+
+  void remove(int i) {
+    if (i != data.size() - 1) rotate(i, data.size() - 1);
+    data.pop_back();
+    handle[index.back()] = -1;
+    index.pop_back();
+    pushdown(i);
+  }
+
+  template <typename... Args>
+  void prioritize(int i, Args&&... args) {
+    if (i >= handle.size() or handle[i] == -1)
+      emplace(i, forward<Args>(args)...);
+    else {
+      data[handle[i]] = T(forward<Args>(args)...);
+      pushup(handle[i]);
+      pushdown(handle[i]);
+    }
+  }
+};
+#line 5 "graph/dijkstra.cpp"
 
 vector<ll> dijkstra(const Graph& graph, int start) {
-  minheap<pair<ll, int>> q;
+  BinaryHeap<ll, greater<>> hp;
   vector<ll> dist(graph.size(), INF_LL);
   dist[start] = 0;
-  q.emplace(0, start);
+  hp.emplace(start, 0);
 
-  while (not q.empty()) {
-    ll d; int v;
-    tie(d, v) = q.top(); q.pop();
+  while (not hp.empty()) {
+    ll d = hp.top();
+    int v = hp.top_index();
+    hp.pop();
     if (dist[v] < d) continue;
     for (auto e : graph[v]) {
-      if (chmin(dist[e.to], dist[v] + e.cost)) q.emplace(dist[e.to], e.to);
+      if (chmin(dist[e.to], dist[v] + e.cost)) hp.prioritize(e.to, dist[e.to]);
     }
   }
   return dist;
