@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/fibonacci-heap.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-01 11:42:13+09:00
+    - Last commit date: 2020-05-11 17:59:22+09:00
 
 
 
@@ -54,7 +54,7 @@ layout: default
 ```cpp
 #pragma once
 
-// credit to: rsk0315 (https://atcoder.jp/users/rsk0315)
+// @author rsk0315 (https://atcoder.jp/users/rsk0315)
 // this implementation is from https://atcoder.jp/contests/arc064/submissions/8197391
 
 #include <list>
@@ -314,7 +314,7 @@ public:
 ```cpp
 #line 2 "data-structure/fibonacci-heap.cpp"
 
-// credit to: rsk0315 (https://atcoder.jp/users/rsk0315)
+// @author rsk0315 (https://atcoder.jp/users/rsk0315)
 // this implementation is from https://atcoder.jp/contests/arc064/submissions/8197391
 
 #include <list>

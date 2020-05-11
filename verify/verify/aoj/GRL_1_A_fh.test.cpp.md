@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#74053cc99b0559ce9aeee19793c084e1">verify/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/verify/aoj/GRL_1_A_fh.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 16:02:38+09:00
+    - Last commit date: 2020-05-11 17:59:22+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A&lang=ja</a>
@@ -229,7 +229,7 @@ tail)...); }
 
 #line 2 "data-structure/fibonacci-heap.cpp"
 
-// credit to: rsk0315 (https://atcoder.jp/users/rsk0315)
+// @author rsk0315 (https://atcoder.jp/users/rsk0315)
 // this implementation is from https://atcoder.jp/contests/arc064/submissions/8197391
 
 #include <list>

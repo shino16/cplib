@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/dijkstra-fib-heap.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 16:02:38+09:00
+    - Last commit date: 2020-05-11 17:59:22+09:00
 
 
 
@@ -244,7 +244,7 @@ tail)...); }
 
 #line 2 "data-structure/fibonacci-heap.cpp"
 
-// credit to: rsk0315 (https://atcoder.jp/users/rsk0315)
+// @author rsk0315 (https://atcoder.jp/users/rsk0315)
 // this implementation is from https://atcoder.jp/contests/arc064/submissions/8197391
 
 #include <list>
