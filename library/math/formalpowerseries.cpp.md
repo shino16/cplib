@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/formalpowerseries.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 16:02:38+09:00
+    - Last commit date: 2020-05-11 19:54:45+09:00
 
 
 
@@ -50,108 +50,110 @@ layout: default
 
 #include "template.cpp"
 
-// credit to @beet-aizu
-template <typename M, typename Conv>
+template <typename T, typename Conv>
 struct FormalPowerSeries {
-  using Poly = vector<M>;
+  using Poly = vector<T>;
   const Conv conv;
   FormalPowerSeries(const Conv& _conv) : conv(_conv) {}
 
-  Poly pre(const Poly& as, int deg) {
-    return Poly(as.begin(), as.begin() + min((int)as.size(), deg));
+  Poly pre(const Poly& A, int deg) {
+    return Poly(A.begin(), A.begin() + min((int)A.size(), deg));
   }
 
-  Poly add(const Poly& as, const Poly& bs) {
-    int sz = max(as.size(), bs.size());
-    Poly cs(sz, M(0));
-    for (int i = 0; i < (int)as.size(); i++) cs[i] += as[i];
-    for (int i = 0; i < (int)bs.size(); i++) cs[i] += bs[i];
+  Poly add(const Poly& A, const Poly& B) {
+    int sz = max(A.size(), B.size());
+    Poly cs(sz, T(0));
+    rep(i, A.size()) cs[i] += A[i];
+    rep(i, B.size()) cs[i] += B[i];
     return cs;
   }
 
-  Poly sub(const Poly& as, const Poly& bs) {
-    int sz = max(as.size(), bs.size());
-    Poly cs(sz, M(0));
-    for (int i = 0; i < (int)as.size(); i++) cs[i] += as[i];
-    for (int i = 0; i < (int)bs.size(); i++) cs[i] -= bs[i];
+  Poly sub(const Poly& A, const Poly& B) {
+    int sz = max(A.size(), B.size());
+    Poly cs(sz, T(0));
+    rep(i, A.size()) cs[i] += A[i];
+    rep(i, B.size()) cs[i] -= B[i];
     return cs;
   }
 
-  Poly mul(Poly as, Poly bs) { return conv(as, bs); }
+  Poly mul(Poly& A, Poly& B) { return conv(A, B); }
 
-  Poly mul(const Poly& as, M k) {
-    Poly res = as;
+  Poly mul(const Poly& A, T k) {
+    Poly res = A;
     for (auto& a : res) a *= k;
     return res;
   }
 
-  // F(0) must not be 0
-  Poly inv(const Poly& as, int deg) {
-    assert(as[0] != M(0));
-    Poly rs({M(1) / as[0]});
+  // A[0] != 0
+  Poly inv(const Poly& A, int deg) {
+    assert(A[0] != T(0));
+    Poly rs({T(1) / A[0]});
     for (int i = 1; i < deg; i <<= 1)
-      rs = pre(sub(add(rs, rs), mul(mul(rs, rs), pre(as, i << 1))), i << 1);
+      rs = pre(sub(add(rs, rs), mul(mul(rs, rs), pre(A, i << 1))), i << 1);
     return rs;
   }
 
-  // not zero
-  Poly div(const Poly& as, const Poly& bs) {
-    while (as.back() == M(0)) as.pop_back();
-    while (bs.back() == M(0)) bs.pop_back();
-    if (bs.size() > as.size()) return Poly();
-    int need = as.size() - bs.size() + 1;
-    Poly ds = pre(mul(Poly(rall(as)), inv(Poly(rall(bs)), need)), need);
-    return rall(ds);
+  // nonzero
+  Poly div(const Poly& A, const Poly& B) {
+    while (not A.empty() and A.back() == T(0)) A.pop_back();
+    while (B.back() == T(0)) B.pop_back();
+    if (B.size() > A.size()) return Poly();
+    int need = A.size() - B.size() + 1;
+    Poly ds = pre(mul(Poly(rall(A)), inv(Poly(rall(B)), need)), need);
+    reverse(all(ds));
+    return ds;
   }
 
-  Poly mod(const Poly& as, const Poly& bs) {
-    if (as == Poly(as.size(), 0)) return Poly({0});
-    Poly res = sub(as, mul(div(as, bs), bs));
-    while (not res.empty() and res.back() == M(0)) res.pop_back();
+  Poly mod(const Poly& A, const Poly& B) {
+    if (A == Poly(A.size(), 0)) return Poly({0});
+    Poly res = sub(A, mul(div(A, B), B));
+    while (not res.empty() and res.back() == T(0)) res.pop_back();
     return res;
   }
 
-  // F(0) must be 1
-  Poly sqrt(const Poly& as, int deg) {
-    assert(as[0] == M(1));
-    M inv2 = M(1) / M(2);
-    Poly ss({M(1)});
+  // A[0] == 1
+  Poly sqrt(const Poly& A, int deg) {
+    assert(A[0] == T(1));
+    T inv2 = T(1) / T(2);
+    Poly ss({T(1)});
     for (int i = 1; i < deg; i <<= 1) {
-      ss = pre(add(ss, mul(pre(as, i << 1), inv(ss, i << 1))), i << 1);
-      for (M& x : ss) x *= inv2;
+      ss = pre(add(ss, mul(pre(A, i << 1), inv(ss, i << 1))), i << 1);
+      for (T& x : ss) x *= inv2;
     }
     return ss;
   }
 
-  Poly derivative(const Poly& as) {
-    int n = as.size();
+  Poly derivative(const Poly& A) {
+    int n = A.size();
     Poly rs(n - 1);
-    for (int i = 1; i < n; i++) rs[i - 1] = as[i] * M(i);
+    for (int i = 1; i < n; i++) rs[i - 1] = A[i] * T(i);
     return rs;
   }
 
-  Poly integral(const Poly& as) {
-    static binomial<M> binom(0);
-    int n = as.size();
+  Poly integral(const Poly& A) {
+    static binomial<T> binom(0);
+    int n = A.size();
     if (binom.invfact.size() <= n)
-      binom = binomial<M>(1 << (32 - __builtin_clz(n) + 1));
+      binom = binomial<T>(1 << (32 - __builtin_clz(n) + 1));
     Poly rs(n + 1);
-    rs[0] = M(0);
-    for (int i = 0; i < n; i++) rs[i + 1] = as[i] * binom.invfact[i + 1] * binom.fact[i];
+    rs[0] = T(0);
+    for (int i = 0; i < n; i++) rs[i + 1] = A[i] * binom.invfact[i + 1] * binom.fact[i];
     return rs;
   }
 
-  // F(0) must be 1
-  Poly log(const Poly& as, int deg) {
-    return pre(integral(mul(derivative(as), inv(as, deg))), deg);
+  // A[0] == 1
+  Poly log(const Poly& A, int deg) {
+    assert(A[0] == 1)
+    return pre(integral(mul(derivative(A), inv(A, deg))), deg);
   }
 
-  // F(0) must be 0
-  Poly exp(Poly as, int deg) {
-    Poly f({M(1)});
-    as[0] += M(1);
+  // A[0] == 0
+  Poly exp(Poly A, int deg) {
+    assert(A[0] == 0);
+    Poly f({T(1)});
+    A[0] += T(1);
     for (int i = 1; i < deg; i <<= 1)
-      f = pre(mul(f, sub(pre(as, i << 1), log(f, i << 1))), i << 1);
+      f = pre(mul(f, sub(pre(A, i << 1), log(f, i << 1))), i << 1);
     return f;
   }
 };
@@ -318,108 +320,110 @@ tail)...); }
 
 #line 4 "math/formalpowerseries.cpp"
 
-// credit to @beet-aizu
-template <typename M, typename Conv>
+template <typename T, typename Conv>
 struct FormalPowerSeries {
-  using Poly = vector<M>;
+  using Poly = vector<T>;
   const Conv conv;
   FormalPowerSeries(const Conv& _conv) : conv(_conv) {}
 
-  Poly pre(const Poly& as, int deg) {
-    return Poly(as.begin(), as.begin() + min((int)as.size(), deg));
+  Poly pre(const Poly& A, int deg) {
+    return Poly(A.begin(), A.begin() + min((int)A.size(), deg));
   }
 
-  Poly add(const Poly& as, const Poly& bs) {
-    int sz = max(as.size(), bs.size());
-    Poly cs(sz, M(0));
-    for (int i = 0; i < (int)as.size(); i++) cs[i] += as[i];
-    for (int i = 0; i < (int)bs.size(); i++) cs[i] += bs[i];
+  Poly add(const Poly& A, const Poly& B) {
+    int sz = max(A.size(), B.size());
+    Poly cs(sz, T(0));
+    rep(i, A.size()) cs[i] += A[i];
+    rep(i, B.size()) cs[i] += B[i];
     return cs;
   }
 
-  Poly sub(const Poly& as, const Poly& bs) {
-    int sz = max(as.size(), bs.size());
-    Poly cs(sz, M(0));
-    for (int i = 0; i < (int)as.size(); i++) cs[i] += as[i];
-    for (int i = 0; i < (int)bs.size(); i++) cs[i] -= bs[i];
+  Poly sub(const Poly& A, const Poly& B) {
+    int sz = max(A.size(), B.size());
+    Poly cs(sz, T(0));
+    rep(i, A.size()) cs[i] += A[i];
+    rep(i, B.size()) cs[i] -= B[i];
     return cs;
   }
 
-  Poly mul(Poly as, Poly bs) { return conv(as, bs); }
+  Poly mul(Poly& A, Poly& B) { return conv(A, B); }
 
-  Poly mul(const Poly& as, M k) {
-    Poly res = as;
+  Poly mul(const Poly& A, T k) {
+    Poly res = A;
     for (auto& a : res) a *= k;
     return res;
   }
 
-  // F(0) must not be 0
-  Poly inv(const Poly& as, int deg) {
-    assert(as[0] != M(0));
-    Poly rs({M(1) / as[0]});
+  // A[0] != 0
+  Poly inv(const Poly& A, int deg) {
+    assert(A[0] != T(0));
+    Poly rs({T(1) / A[0]});
     for (int i = 1; i < deg; i <<= 1)
-      rs = pre(sub(add(rs, rs), mul(mul(rs, rs), pre(as, i << 1))), i << 1);
+      rs = pre(sub(add(rs, rs), mul(mul(rs, rs), pre(A, i << 1))), i << 1);
     return rs;
   }
 
-  // not zero
-  Poly div(const Poly& as, const Poly& bs) {
-    while (as.back() == M(0)) as.pop_back();
-    while (bs.back() == M(0)) bs.pop_back();
-    if (bs.size() > as.size()) return Poly();
-    int need = as.size() - bs.size() + 1;
-    Poly ds = pre(mul(Poly(rall(as)), inv(Poly(rall(bs)), need)), need);
-    return rall(ds);
+  // nonzero
+  Poly div(const Poly& A, const Poly& B) {
+    while (not A.empty() and A.back() == T(0)) A.pop_back();
+    while (B.back() == T(0)) B.pop_back();
+    if (B.size() > A.size()) return Poly();
+    int need = A.size() - B.size() + 1;
+    Poly ds = pre(mul(Poly(rall(A)), inv(Poly(rall(B)), need)), need);
+    reverse(all(ds));
+    return ds;
   }
 
-  Poly mod(const Poly& as, const Poly& bs) {
-    if (as == Poly(as.size(), 0)) return Poly({0});
-    Poly res = sub(as, mul(div(as, bs), bs));
-    while (not res.empty() and res.back() == M(0)) res.pop_back();
+  Poly mod(const Poly& A, const Poly& B) {
+    if (A == Poly(A.size(), 0)) return Poly({0});
+    Poly res = sub(A, mul(div(A, B), B));
+    while (not res.empty() and res.back() == T(0)) res.pop_back();
     return res;
   }
 
-  // F(0) must be 1
-  Poly sqrt(const Poly& as, int deg) {
-    assert(as[0] == M(1));
-    M inv2 = M(1) / M(2);
-    Poly ss({M(1)});
+  // A[0] == 1
+  Poly sqrt(const Poly& A, int deg) {
+    assert(A[0] == T(1));
+    T inv2 = T(1) / T(2);
+    Poly ss({T(1)});
     for (int i = 1; i < deg; i <<= 1) {
-      ss = pre(add(ss, mul(pre(as, i << 1), inv(ss, i << 1))), i << 1);
-      for (M& x : ss) x *= inv2;
+      ss = pre(add(ss, mul(pre(A, i << 1), inv(ss, i << 1))), i << 1);
+      for (T& x : ss) x *= inv2;
     }
     return ss;
   }
 
-  Poly derivative(const Poly& as) {
-    int n = as.size();
+  Poly derivative(const Poly& A) {
+    int n = A.size();
     Poly rs(n - 1);
-    for (int i = 1; i < n; i++) rs[i - 1] = as[i] * M(i);
+    for (int i = 1; i < n; i++) rs[i - 1] = A[i] * T(i);
     return rs;
   }
 
-  Poly integral(const Poly& as) {
-    static binomial<M> binom(0);
-    int n = as.size();
+  Poly integral(const Poly& A) {
+    static binomial<T> binom(0);
+    int n = A.size();
     if (binom.invfact.size() <= n)
-      binom = binomial<M>(1 << (32 - __builtin_clz(n) + 1));
+      binom = binomial<T>(1 << (32 - __builtin_clz(n) + 1));
     Poly rs(n + 1);
-    rs[0] = M(0);
-    for (int i = 0; i < n; i++) rs[i + 1] = as[i] * binom.invfact[i + 1] * binom.fact[i];
+    rs[0] = T(0);
+    for (int i = 0; i < n; i++) rs[i + 1] = A[i] * binom.invfact[i + 1] * binom.fact[i];
     return rs;
   }
 
-  // F(0) must be 1
-  Poly log(const Poly& as, int deg) {
-    return pre(integral(mul(derivative(as), inv(as, deg))), deg);
+  // A[0] == 1
+  Poly log(const Poly& A, int deg) {
+    assert(A[0] == 1)
+    return pre(integral(mul(derivative(A), inv(A, deg))), deg);
   }
 
-  // F(0) must be 0
-  Poly exp(Poly as, int deg) {
-    Poly f({M(1)});
-    as[0] += M(1);
+  // A[0] == 0
+  Poly exp(Poly A, int deg) {
+    assert(A[0] == 0);
+    Poly f({T(1)});
+    A[0] += T(1);
     for (int i = 1; i < deg; i <<= 1)
-      f = pre(mul(f, sub(pre(as, i << 1), log(f, i << 1))), i << 1);
+      f = pre(mul(f, sub(pre(A, i << 1), log(f, i << 1))), i << 1);
     return f;
   }
 };

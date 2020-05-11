@@ -41,11 +41,6 @@ layout: default
 * :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
-## Required by
-
-* :warning: <a href="all-pairs-shortest-path.cpp.html">graph/all-pairs-shortest-path.cpp</a>
-
-
 ## Code
 
 <a id="unbundled"></a>

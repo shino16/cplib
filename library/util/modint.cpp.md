@@ -44,6 +44,7 @@ layout: default
 ## Required by
 
 * :warning: <a href="../math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
+* :warning: <a href="../math/ntt.cpp.html">math/ntt.cpp</a>
 
 
 ## Code

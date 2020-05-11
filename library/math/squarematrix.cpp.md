@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/math/squarematrix.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 16:02:38+09:00
+    - Last commit date: 2020-05-11 19:54:45+09:00
 
 
 
@@ -39,6 +39,8 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
+* :warning: <a href="../util/doubling.cpp.html">util/doubling.cpp</a>
+* :warning: <a href="../util/mapping.cpp.html">util/mapping.cpp</a>
 
 
 ## Code
@@ -49,18 +51,20 @@ layout: default
 #pragma once
 
 #include "template.cpp"
+#include "util/doubling.cpp"
 
-// credit to @beet-aizu
 template <typename M = ll>
-struct SquareMatrix {
+class SquareMatrix {
+ public:
   using arr = vector<M>;
   using mat = vector<arr>;
   int n;
+
+ private:
   mat dat;
 
-  SquareMatrix(int _n) : n(_n), dat(n, arr(n)) {}
-
-  SquareMatrix(const mat& _dat) : n(_dat.size()), dat(_dat) {}
+  SquareMatrix(int n_) : n(n_), dat(n, arr(n)) {}
+  SquareMatrix(const mat& dat_) : n(dat_.size()), dat(dat_) {}
 
   bool operator==(const SquareMatrix& rhs) const { return dat == rhs.dat; }
   bool operator!=(const SquareMatrix& rhs) const { return dat != rhs.dat; }
@@ -69,8 +73,7 @@ struct SquareMatrix {
   arr& operator[](size_t k) { return dat[k]; }
   const arr& operator[](size_t k) const { return dat[k]; }
 
-  SquareMatrix add_identity() const { return SquareMatrix(); }
-  SquareMatrix mul_identity() const {
+  static SquareMatrix mul_unit(int n) {
     SquareMatrix res(n);
     rep(i, n) res[i][i] = M(1);
     return res;
@@ -78,8 +81,7 @@ struct SquareMatrix {
 
   SquareMatrix operator*(const SquareMatrix& rhs) const {
     SquareMatrix res(n);
-    rep(i, n) rep(j, n) rep(k, n)
-      res[i][j] += (dat[i][k] * rhs[k][j]);
+    rep(i, n) rep(j, n) rep(k, n) res[i][j] += (dat[i][k] * rhs[k][j]);
     return res;
   }
 
@@ -92,19 +94,13 @@ struct SquareMatrix {
   SquareMatrix operator+(const SquareMatrix& rhs) const {
     SquareMatrix res(n);
     for (size_t i = 0; i < n; i++)
-      for (size_t j = 0; j < n; j++)
-        res[i][j] = dat[i][j] + rhs[i][j];
+      for (size_t j = 0; j < n; j++) res[i][j] = dat[i][j] + rhs[i][j];
     return res;
   }
 
   SquareMatrix pow(ll exp) const {
-    SquareMatrix a = *this, res = mul_identity();
-    while (exp) {
-      if (exp & 1) res = res * a;
-      a = a * a;
-      exp >>= 1;
-    }
-    return res;
+    using Doubling = Doubling<SquareMatrix, multiplies<SquareMatrix>>;
+    return Doubling::pow(*this, exp, mul_unit(n));
   }
 
   SquareMatrix transpose() const {
@@ -274,19 +270,91 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
-#line 4 "math/squarematrix.cpp"
+#line 2 "util/doubling.cpp"
 
-// credit to @beet-aizu
+#line 2 "util/mapping.cpp"
+
+#line 4 "util/mapping.cpp"
+
+class Mapping {
+ public:
+  struct Combine {
+    Mapping operator()(const Mapping& lhs, const Mapping& rhs) {
+      if (lhs.f.empty()) return rhs;
+      if (rhs.f.empty()) return lhs;
+      assert(lhs.f.size() == rhs.f.size());
+      int n = lhs.f.size();
+      vector<int> f(n);
+      rep(x, n) {
+        int y = rhs.f[x];
+        f[x] = 0 <= y and y < n ? lhs.f[y] : y;
+      }
+      return Mapping(move(f));
+    }
+  };
+
+ private:
+  vector<int> f;
+
+ public:
+  Mapping() = default;
+  Mapping(int n) : f(n) { iota(all(f), 0); }
+  Mapping(const vector<int>& f_) : f(f_) {}
+  Mapping(vector<int>&& f_) : f(move(f_)) {}
+
+  int operator()(int x) { return f[x]; }
+};
+#line 5 "util/doubling.cpp"
+
+template <typename T = Mapping, typename Combine = typename T::Combine>
+class Doubling {
+ private:
+  vector<T> data;
+  const T unit;
+  const Combine combine;
+
+ public:
+  Doubling(T unit_ = {}, Combine combine_ = {})
+      : data({unit_}), unit(unit_), combine(combine_) {}
+
+ private:
+  void prepare(ll n) {
+    if (n <= 1) return;
+    int need = 64 - __builtin_clz(n-1);
+    rep(need - data.size()) data.push_back(combine(data.back(), data.back()));
+  }
+
+ public:
+  T pow(ll exp) {
+    prepare(exp);
+    T res = unit;
+    int i = 0;
+    for (; exp; exp >>= 1, i++)
+      if (exp & 1) res = combine(res, data[i]);
+    return res;
+  }
+
+  static T pow(T base, ll exp, T unit = {}, Combine combine = {}) {
+    T res = unit;
+    for (; exp; exp >>= 1, base = combine(base, base))
+      if (exp & 1) res = combine(res, base);
+    return res;
+  }
+};
+#line 5 "math/squarematrix.cpp"
+
 template <typename M = ll>
-struct SquareMatrix {
+class SquareMatrix {
+ public:
   using arr = vector<M>;
   using mat = vector<arr>;
   int n;
+
+ private:
   mat dat;
 
-  SquareMatrix(int _n) : n(_n), dat(n, arr(n)) {}
-
-  SquareMatrix(const mat& _dat) : n(_dat.size()), dat(_dat) {}
+  SquareMatrix(int n_) : n(n_), dat(n, arr(n)) {}
+  SquareMatrix(const mat& dat_) : n(dat_.size()), dat(dat_) {}
 
   bool operator==(const SquareMatrix& rhs) const { return dat == rhs.dat; }
   bool operator!=(const SquareMatrix& rhs) const { return dat != rhs.dat; }
@@ -295,8 +363,7 @@ struct SquareMatrix {
   arr& operator[](size_t k) { return dat[k]; }
   const arr& operator[](size_t k) const { return dat[k]; }
 
-  SquareMatrix add_identity() const { return SquareMatrix(); }
-  SquareMatrix mul_identity() const {
+  static SquareMatrix mul_unit(int n) {
     SquareMatrix res(n);
     rep(i, n) res[i][i] = M(1);
     return res;
@@ -304,8 +371,7 @@ struct SquareMatrix {
 
   SquareMatrix operator*(const SquareMatrix& rhs) const {
     SquareMatrix res(n);
-    rep(i, n) rep(j, n) rep(k, n)
-      res[i][j] += (dat[i][k] * rhs[k][j]);
+    rep(i, n) rep(j, n) rep(k, n) res[i][j] += (dat[i][k] * rhs[k][j]);
     return res;
   }
 
@@ -318,19 +384,13 @@ struct SquareMatrix {
   SquareMatrix operator+(const SquareMatrix& rhs) const {
     SquareMatrix res(n);
     for (size_t i = 0; i < n; i++)
-      for (size_t j = 0; j < n; j++)
-        res[i][j] = dat[i][j] + rhs[i][j];
+      for (size_t j = 0; j < n; j++) res[i][j] = dat[i][j] + rhs[i][j];
     return res;
   }
 
   SquareMatrix pow(ll exp) const {
-    SquareMatrix a = *this, res = mul_identity();
-    while (exp) {
-      if (exp & 1) res = res * a;
-      a = a * a;
-      exp >>= 1;
-    }
-    return res;
+    using Doubling = Doubling<SquareMatrix, multiplies<SquareMatrix>>;
+    return Doubling::pow(*this, exp, mul_unit(n));
   }
 
   SquareMatrix transpose() const {

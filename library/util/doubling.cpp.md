@@ -42,6 +42,11 @@ layout: default
 * :warning: <a href="mapping.cpp.html">util/mapping.cpp</a>
 
 
+## Required by
+
+* :warning: <a href="../math/squarematrix.cpp.html">math/squarematrix.cpp</a>
+
+
 ## Code
 
 <a id="unbundled"></a>

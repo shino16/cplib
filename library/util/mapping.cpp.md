@@ -43,6 +43,7 @@ layout: default
 
 ## Required by
 
+* :warning: <a href="../math/squarematrix.cpp.html">math/squarematrix.cpp</a>
 * :warning: <a href="doubling.cpp.html">util/doubling.cpp</a>
 
 
