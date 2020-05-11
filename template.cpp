@@ -34,7 +34,9 @@ using PLL = pair<ll, ll>;
 template <typename T> using minheap = priority_queue<T, vector<T>, greater<T>>;
 constexpr int INF = 1000000007;
 constexpr ll INF_LL = 1'000'000'000'000'000'007;
-#define EXIT(out) do { OUT(out); exit(0); } while (0)
+#define EXIT(out) ({ OUT(out); exit(0); })
+#define BREAK ({ break; })
+#define CONTINUE ({ continue; })
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl '\n'
@@ -56,10 +58,8 @@ bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return fal
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
 ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1;
-  while (t) {
-    if (t & 1) res = (res * e) % mod;
-    t >>= 1; e = (e * e) % mod;
-  }
+  for (; t; t >>= 1, (e *= e) %= mod)
+    if (t & 1) (res *= e) %= mod;
   return res;
 }
 ll choose(ll n, int r) {
