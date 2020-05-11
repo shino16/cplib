@@ -3,7 +3,6 @@
 #include "geometry/Pt.cpp"
 #include "template.cpp"
 
-// credit to @beet-aizu
 namespace FFT {
 using dbl = double;
 
@@ -12,27 +11,27 @@ using complex = Pt<dbl>;
 inline complex conj(complex a) { return complex(a.x, -a.y); }
 
 int base = 1;
-vector<complex> rts = {{0, 0}, {1, 0}};
+vector<complex> root = {{0, 0}, {1, 0}};
 vector<int> rev = {0, 1};
 
 const dbl PI = asinl(1) * 2;
 
-void ensure_base(int nbase) {
+void prepare(int nbase) {
   if (nbase <= base) return;
 
   rev.resize(1 << nbase);
   for (int i = 0; i < (1 << nbase); i++)
     rev[i] = (rev[i >> 1] >> 1) + ((i & 1) << (nbase - 1));
 
-  rts.resize(1 << nbase);
-  while (base < nbase) {
-    dbl angle = 2 * PI / (1 << (base + 1));
-    for (int i = 1 << (base - 1); i < (1 << base); i++) {
-      rts[i << 1] = rts[i];
-      dbl angle_i = angle * (2 * i + 1 - (1 << base));
-      rts[(i << 1) + 1] = complex(cos(angle_i), sin(angle_i));
+  root.resize(1 << nbase);
+
+  rep(b, base, nbase) {
+    dbl theta = 2 * PI / (1 << (b + 1));
+    for (int i = 1 << (b - 1); i < (1 << b); i++) {
+      root[i << 1] = root[i];
+      dbl aug = theta * (2 * i + 1 - (1 << b));
+      root[(i << 1) + 1] = complex(cos(aug), sin(aug));
     }
-    base++;
   }
 }
 
@@ -46,37 +45,34 @@ vector<T> cast(const vector<U>& v) {
   return res;
 }
 
-void fft(vector<complex>& as) {
-  int n = as.size();
+void fft(vector<complex>& A) {
+  int n = A.size();
   assert((n & (n - 1)) == 0);
 
   int zeros = __builtin_ctz(n);
-  ensure_base(zeros);
+  prepare(zeros + 1);
   int shift = base - zeros;
-  for (int i = 0; i < n; i++)
-    if (i < (rev[i] >> shift)) swap(as[i], as[rev[i] >> shift]);
+  rep(i, n) if (i < (rev[i] >> shift)) swap(A[i], A[rev[i] >> shift]);
 
   for (int k = 1; k < n; k <<= 1) {
     for (int i = 0; i < n; i += 2 * k) {
       for (int j = 0; j < k; j++) {
-        complex z = as[i + j + k] * rts[j + k];
-        as[i + j + k] = as[i + j] - z;
-        as[i + j] = as[i + j] + z;
+        complex z = A[i + j + k] * root[j + k];
+        A[i + j + k] = A[i + j] - z;
+        A[i + j] += z;
       }
     }
   }
 }
 
 template <typename T>
-vector<T> multiply(const vector<T>& as, const vector<T>& bs) {
-  int need = as.size() + bs.size() - 1;
-  int nbase = need <= 1 ? 0 : 32 - __builtin_clz(need - 1);  // ceil(log2(n))
-  ensure_base(nbase + 1);
+vector<T> multiply(const vector<T>& A, const vector<T>& B) {
+  int need = A.size() + B.size() - 1;
+  int sz = need <= 1 ? 1 : 1 << (32 - __builtin_clz(need - 1));
 
-  int sz = 1 << nbase;
   vector<complex> fa(sz);
-  rep(i, as.size()) fa[i].x = dbl(as[i]);
-  rep(i, bs.size()) fa[i].y = dbl(bs[i]);
+  rep(i, A.size()) fa[i].x = dbl(A[i]);
+  rep(i, B.size()) fa[i].y = dbl(B[i]);
   fft(fa);
 
   complex r(0, -0.25 / sz);
@@ -95,22 +91,22 @@ vector<T> multiply(const vector<T>& as, const vector<T>& bs) {
 }
 
 template <typename T>
-vector<dbl> div(vector<T>& as, vector<T>& bs) {
+vector<dbl> div(vector<T>& A, vector<T>& B) {
   static vector<dbl> q_rev;
-  static vector<vector<dbl>> t;  // t[i] * bs == 0 mod x^2^i
+  static vector<vector<dbl>> t;  // t[i] * B == 0 mod x^2^i
 
-  while (bs.back() == 0) bs.pop_back();
-  if (not equal(all(bs), rall(q_rev))) {
-    q_rev.resize(bs.size());
-    copy(rall(bs), q_rev.begin());
+  while (B.back() == 0) B.pop_back();
+  if (not equal(all(B), rall(q_rev))) {
+    q_rev.resize(B.size());
+    copy(rall(B), q_rev.begin());
     t.clear();
     t.emplace_back(vector<dbl>{1 / q_rev[0]});
   }
 
-  int n = as.size(), m = bs.size();
+  int n = A.size(), m = B.size();
   int k = 32 - __builtin_clz(n - m);  // ceil(log2(n-m+1))
-  rep((1 << k) - n) as.emplace_back(dbl(0));
-  n = as.size();
+  rep((1 << k) - n) A.emplace_back(dbl(0));
+  n = A.size();
 
   rep(k + 1 - t.size()) {
     vector<dbl> next = multiply(multiply(t.back(), t.back()), q_rev);
@@ -120,40 +116,39 @@ vector<dbl> div(vector<T>& as, vector<T>& bs) {
     t.emplace_back(move(next));
   }
 
-  reverse(all(as));
-  vector<dbl> res = multiply(t[k], vector<dbl>(all(as)));
+  reverse(all(A));
+  vector<dbl> res = multiply(t[k], vector<dbl>(all(A)));
   res.resize(n - m + 1);
-  reverse(all(as));
+  reverse(all(A));
   reverse(all(res));
 
   return res;
 }
 
 template <typename Vector>
-vector<dbl> div(Vector&& as, Vector&& bs) {
-  return div(as, bs);
+vector<dbl> div(Vector&& A, Vector&& B) {
+  return div(A, B);
 }
 
 template <typename T>
-pair<vector<dbl>, vector<dbl>> divmod(vector<T>& as, vector<T>& bs,
+pair<vector<dbl>, vector<dbl>> divmod(vector<T>& A, vector<T>& B,
                                       dbl eps = 1e-9) {
-  vector<dbl> q = div(as, bs);
-  vector<dbl> r = multiply(q, cast<dbl>(bs));
-  r.resize(as.size());
-  rep(i, r.size()) r[i] = as[i] - r[i];
+  vector<dbl> q = div(A, B);
+  vector<dbl> r = multiply(q, cast<dbl>(B));
+  r.resize(A.size());
+  rep(i, r.size()) r[i] = A[i] - r[i];
   while (r.size() > 1 and abs(r.back()) < eps) r.pop_back();
   return make_pair(q, r);
 }
 
 template <typename Vector>
-pair<vector<dbl>, vector<dbl>> divmod(Vector&& as, Vector&& bs,
-                                      dbl eps = 1e-9) {
-  return divmod(as, bs, eps);
+pair<vector<dbl>, vector<dbl>> divmod(Vector&& A, Vector&& B, dbl eps = 1e-9) {
+  return divmod(A, B, eps);
 }
 
 template <typename Vector>
-vector<dbl> mod(Vector&& as, Vector&& bs, dbl eps = 1e-9) {
-  return divmod(as, bs, eps).second;
+vector<dbl> mod(Vector&& A, Vector&& B, dbl eps = 1e-9) {
+  return divmod(A, B, eps).second;
 }
 
 };  // namespace FFT

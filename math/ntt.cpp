@@ -1,97 +1,95 @@
 #pragma once
 
 #include "template.cpp"
+#include "util/modint.cpp"
 
-// credit to @beet-aizu
-constexpr ll bmds(int x) {
+constexpr ll mods(int x) {
   const ll v[] = {1012924417, 924844033, 998244353, 897581057, 645922817};
   return v[x];
 }
-constexpr int brts(int x) {  // primitive roots
+
+constexpr int primitive_roots(int x) {
   const int v[] = {5, 5, 3, 3, 3};
   return v[x];
 }
-template <int X>
+
+template <int X = 2>
 class NTT {
  public:
-  static constexpr int md = bmds(X);
-  static constexpr int rt = brts(X);
-  using M = modint<md>;
+  static constexpr int md = mods(X);
+  static constexpr int rt = primitive_roots(X);
+  using mint = modint<md>;
 
  private:
-  vector<vector<M>> rts, rrts;
+  vector<vector<mint>> root, rroot;
 
-  void ensure_base(int n) {
-    if ((int)rts.size() >= n) return;
-    rts.resize(n);
-    rrts.resize(n);
+  void prepare(int n) {
+    if (root.size() >= n) return;
+    root.resize(n);
+    rroot.resize(n);
     for (int i = 1; i < n; i <<= 1) {
-      if (!rts[i].empty()) continue;
-      M w = pow(M(rt), (md - 1) / (i << 1));
-      M rw = M(1) / w;
-      rts[i].resize(i);
-      rrts[i].resize(i);
-      rts[i][0] = M(1);
-      rrts[i][0] = M(1);
-      for (int k = 1; k < i; k++) {
-        rts[i][k] = rts[i][k - 1] * w;
-        rrts[i][k] = rrts[i][k - 1] * rw;
-      }
+      if (!root[i].empty()) continue;
+      mint w = pow(mint(rt), (md - 1) / (i << 1));
+      mint rw = mint(1) / w;
+      root[i].resize(i);
+      rroot[i].resize(i);
+      root[i][0] = mint(1);
+      rroot[i][0] = mint(1);
+      rep(k, 1, i) root[i][k] = root[i][k - 1] * w,
+                   rroot[i][k] = rroot[i][k - 1] * rw;
     }
   }
 
  public:
-  void ntt(vector<M>& as, bool f) {
-    int n = as.size();
+  void ntt(vector<mint>& A, bool reverse) {
+    int n = A.size();
     assert((n & (n - 1)) == 0);
-    ensure_base(n);
+    prepare(n);
 
     for (int i = 0, j = 1; j + 1 < n; j++) {
-      for (int k = n >> 1; k > (i ^= k); k >>= 1)
-        ;
-      if (i > j) swap(as[i], as[j]);
+      for (int k = n >> 1; k > (i ^= k); k >>= 1) {}
+      if (i > j) swap(A[i], A[j]);
     }
 
     for (int i = 1; i < n; i <<= 1) {
       for (int j = 0; j < n; j += i * 2) {
         for (int k = 0; k < i; k++) {
-          M z = as[i + j + k] * (f ? rrts[i][k] : rts[i][k]);
-          as[i + j + k] = as[j + k] - z;
-          as[j + k] += z;
+          mint z = A[i + j + k] * (reverse ? rroot[i][k] : root[i][k]);
+          A[i + j + k] = A[j + k] - z;
+          A[j + k] += z;
         }
       }
     }
 
-    if (f) {
-      M tmp = M(1) / M(n);
-      for (int i = 0; i < n; i++) as[i] *= tmp;
+    if (reverse) {
+      mint tmp = mint(1) / mint(n);
+      rep(i, n) A[i] *= tmp;
     }
   }
 
-  vector<M> multiply(vector<M> as, vector<M> bs) {
-    int need = as.size() + bs.size() - 1;
-    int sz = 1;
-    while (sz < need) sz <<= 1;
-    as.resize(sz, M(0));
-    bs.resize(sz, M(0));
+  vector<mint> multiply(vector<mint> A, vector<mint> B) {
+    int need = A.size() + B.size() - 1;
+    int sz = need <= 1 ? 1 : 1 << (32 - __builtin_clz(need - 1));
 
-    ntt(as, 0);
-    ntt(bs, 0);
-    for (int i = 0; i < sz; i++) as[i] *= bs[i];
-    ntt(as, 1);
+    A.resize(sz, mint(0));
+    B.resize(sz, mint(0));
 
-    as.resize(need);
-    return as;
+    ntt(A, 0);
+    ntt(B, 0);
+    rep(i, sz) A[i] *= B[i];
+    ntt(A, 1);
+
+    A.resize(need);
+    return A;
   }
 
-  vector<int> multiply(vector<int> as, vector<int> bs) {
-    vector<M> am(as.size()), bm(bs.size());
-    for (int i = 0; i < (int)am.size(); i++) am[i] = M(as[i]);
-    for (int i = 0; i < (int)bm.size(); i++) bm[i] = M(bs[i]);
-    vector<M> cm = multiply(am, bm);
-    vector<int> cs(cm.size());
-    for (int i = 0; i < (int)cs.size(); i++) cs[i] = cm[i].value;
+  vector<ll> multiply(vector<ll> A, vector<ll> B) {
+    vector<mint> am(A.size()), bm(B.size());
+    rep(i, am.size()) am[i] = mint(A[i]);
+    rep(i, bm.size()) bm[i] = mint(B[i]);
+    vector<mint> cm = multiply(am, bm);
+    vector<ll> cs(cm.size());
+    rep(i, cs.size()) cs[i] = cm[i].value;
     return cs;
   }
 };
-NTT<2> ntt;  // mod 998244353
