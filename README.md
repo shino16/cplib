@@ -8,6 +8,6 @@
 
 # ライセンス
 
-[![CC0](https://licensebuttons.net/p/zero/1.0/80x15.png "CC0")](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png "CC0")](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 
 To the extent possible under law, the person who associated CC0 with this work has waived all copyright and related or neighboring rights to this work.
