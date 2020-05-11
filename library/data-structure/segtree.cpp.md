@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/segtree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 16:02:38+09:00
+    - Last commit date: 2020-05-11 17:30:30+09:00
 
 
 
@@ -75,8 +75,8 @@ class SegmentTree {
   vector<T> data;
 
  public:
-  SegmentTree(size_t n = 0, T unit = T(), Combine combine = Combine(),
-              Action action = Action())
+  SegmentTree(size_t n = 0, T unit = {}, Combine combine = {},
+              Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1, unit) {
     build();
   }
@@ -84,8 +84,8 @@ class SegmentTree {
   template <
       typename Iter,
       enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
-  SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
-              Combine combine = Combine(), Action action = Action())
+  SegmentTree(Iter first, Iter last, size_t n, T unit = {},
+              Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
     move(first, last, data.begin() + n);
     build();
@@ -94,17 +94,18 @@ class SegmentTree {
   template <
       typename Iter,
       enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
-  [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
-                             Combine combine = Combine(), Action action = Action())
+  [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = {},
+                             Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
     move(first, last, data.begin() + n);
     build();
   }
 
   template <typename Iter>
-  SegmentTree(Iter first, Iter last, T unit = T(), Combine combine = Combine(),
-              Action action = Action())
-      : SegmentTree(first, last, distance(first, last), unit, combine, action) {}
+  SegmentTree(Iter first, Iter last, T unit = {}, Combine combine = {},
+              Action action = {})
+      : SegmentTree(first, last, distance(first, last), unit, combine, action) {
+  }
 
  private:
   void build() { repr(i, n) data[i] = combine(data[i << 1], data[i << 1 | 1]); }
@@ -333,8 +334,8 @@ class SegmentTree {
   vector<T> data;
 
  public:
-  SegmentTree(size_t n = 0, T unit = T(), Combine combine = Combine(),
-              Action action = Action())
+  SegmentTree(size_t n = 0, T unit = {}, Combine combine = {},
+              Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1, unit) {
     build();
   }
@@ -342,8 +343,8 @@ class SegmentTree {
   template <
       typename Iter,
       enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
-  SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
-              Combine combine = Combine(), Action action = Action())
+  SegmentTree(Iter first, Iter last, size_t n, T unit = {},
+              Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
     move(first, last, data.begin() + n);
     build();
@@ -352,17 +353,18 @@ class SegmentTree {
   template <
       typename Iter,
       enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
-  [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = T(),
-                             Combine combine = Combine(), Action action = Action())
+  [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = {},
+                             Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
     move(first, last, data.begin() + n);
     build();
   }
 
   template <typename Iter>
-  SegmentTree(Iter first, Iter last, T unit = T(), Combine combine = Combine(),
-              Action action = Action())
-      : SegmentTree(first, last, distance(first, last), unit, combine, action) {}
+  SegmentTree(Iter first, Iter last, T unit = {}, Combine combine = {},
+              Action action = {})
+      : SegmentTree(first, last, distance(first, last), unit, combine, action) {
+  }
 
  private:
   void build() { repr(i, n) data[i] = combine(data[i << 1], data[i << 1 | 1]); }
