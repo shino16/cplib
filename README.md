@@ -2,7 +2,7 @@
 
 [しの](https://codeforces.com/profile/shion_)の競技プログラミング用ライブラリです。[online-judge-verify-helper](https://github.com/kmyk/online-judge-verify-helper)によって管理されています。
 
-このリポジトリにあるコードはCC0でライセンスされているので、ご自由にコピペして使ったり、自分のものとして公開していただいて構いません。詳細は https://creativecommons.org/publicdomain/zero/1.0/deed.ja でご確認ください。
+このリポジトリにあるコードはCC0でライセンスされているので、自由にコピペして使ったり、自分のものとして公開して構いません。詳細は https://creativecommons.org/publicdomain/zero/1.0/deed.ja でご確認ください。
 
 # ライセンス表示
 
