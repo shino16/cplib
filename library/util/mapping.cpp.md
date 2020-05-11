@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: util/doubling.cpp
+# :warning: util/mapping.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
-* <a href="{{ site.github.repository_url }}/blob/master/util/doubling.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/util/mapping.cpp">View this file on GitHub</a>
     - Last commit date: 2020-05-11 17:57:32+09:00
 
 
@@ -39,7 +39,11 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
-* :warning: <a href="mapping.cpp.html">util/mapping.cpp</a>
+
+
+## Required by
+
+* :warning: <a href="doubling.cpp.html">util/doubling.cpp</a>
 
 
 ## Code
@@ -50,42 +54,34 @@ layout: default
 #pragma once
 
 #include "template.cpp"
-#include "util/mapping.cpp"
 
-template <typename T = Mapping, typename Combine = typename T::Combine>
-class Doubling {
+class Mapping {
+ public:
+  struct Combine {
+    Mapping operator()(const Mapping& lhs, const Mapping& rhs) {
+      if (lhs.f.empty()) return rhs;
+      if (rhs.f.empty()) return lhs;
+      assert(lhs.f.size() == rhs.f.size());
+      int n = lhs.f.size();
+      vector<int> f(n);
+      rep(x, n) {
+        int y = rhs.f[x];
+        f[x] = 0 <= y and y < n ? lhs.f[y] : y;
+      }
+      return Mapping(move(f));
+    }
+  };
+
  private:
-  vector<T> data;
-  const T unit;
-  const Combine combine;
+  vector<int> f;
 
  public:
-  Doubling(T unit_ = {}, Combine combine_ = {})
-      : data({unit_}), unit(unit_), combine(combine_) {}
+  Mapping() = default;
+  Mapping(int n) : f(n) { iota(all(f), 0); }
+  Mapping(const vector<int>& f_) : f(f_) {}
+  Mapping(vector<int>&& f_) : f(move(f_)) {}
 
- private:
-  void prepare(ll n) {
-    if (n <= 1) return;
-    int need = 64 - __builtin_clz(n-1);
-    rep(need - data.size()) data.push_back(combine(data.back(), data.back()));
-  }
-
- public:
-  T pow(ll exp) {
-    prepare(exp);
-    T res = unit;
-    int i = 0;
-    for (; exp; exp >>= 1, i++)
-      if (exp & 1) res = combine(res, data[i]);
-    return res;
-  }
-
-  static T pow(T base, ll exp, T unit = {}, Combine combine = {}) {
-    T res = unit;
-    for (; exp; exp >>= 1, base = combine(base, base))
-      if (exp & 1) res = combine(res, base);
-    return res;
-  }
+  int operator()(int x) { return f[x]; }
 };
 
 ```
@@ -94,7 +90,7 @@ class Doubling {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "util/doubling.cpp"
+#line 2 "util/mapping.cpp"
 
 #line 2 "template.cpp"
 
@@ -248,8 +244,6 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
-#line 2 "util/mapping.cpp"
-
 #line 4 "util/mapping.cpp"
 
 class Mapping {
@@ -279,43 +273,6 @@ class Mapping {
   Mapping(vector<int>&& f_) : f(move(f_)) {}
 
   int operator()(int x) { return f[x]; }
-};
-#line 5 "util/doubling.cpp"
-
-template <typename T = Mapping, typename Combine = typename T::Combine>
-class Doubling {
- private:
-  vector<T> data;
-  const T unit;
-  const Combine combine;
-
- public:
-  Doubling(T unit_ = {}, Combine combine_ = {})
-      : data({unit_}), unit(unit_), combine(combine_) {}
-
- private:
-  void prepare(ll n) {
-    if (n <= 1) return;
-    int need = 64 - __builtin_clz(n-1);
-    rep(need - data.size()) data.push_back(combine(data.back(), data.back()));
-  }
-
- public:
-  T pow(ll exp) {
-    prepare(exp);
-    T res = unit;
-    int i = 0;
-    for (; exp; exp >>= 1, i++)
-      if (exp & 1) res = combine(res, data[i]);
-    return res;
-  }
-
-  static T pow(T base, ll exp, T unit = {}, Combine combine = {}) {
-    T res = unit;
-    for (; exp; exp >>= 1, base = combine(base, base))
-      if (exp & 1) res = combine(res, base);
-    return res;
-  }
 };
 
 ```

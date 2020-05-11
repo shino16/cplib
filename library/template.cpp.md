@@ -86,6 +86,7 @@ layout: default
 * :heavy_check_mark: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
 * :warning: <a href="util/hack-pque.cpp.html">util/hack-pque.cpp</a>
 * :warning: <a href="util/inversions.cpp.html">util/inversions.cpp</a>
+* :warning: <a href="util/mapping.cpp.html">util/mapping.cpp</a>
 * :warning: <a href="util/modint.cpp.html">util/modint.cpp</a>
 * :warning: <a href="util/prepare_inv.cpp.html">util/prepare_inv.cpp</a>
 * :warning: <a href="util/random-tree.cpp.html">util/random-tree.cpp</a>
