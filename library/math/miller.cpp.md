@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: util/hash-table.cpp
+# :warning: math/miller.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
-* <a href="{{ site.github.repository_url }}/blob/master/util/hash-table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-06 17:34:17+09:00
+* category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
+* <a href="{{ site.github.repository_url }}/blob/master/math/miller.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-05-11 16:02:38+09:00
 
 
 
@@ -48,28 +48,55 @@ layout: default
 ```cpp
 #pragma once
 
-#include <chrono>
-#include <ext/pb_ds/assoc_container.hpp>
-
 #include "template.cpp"
-using namespace __gnu_pbds;
 
-struct chash {
-  const ull RANDOM =
-      (ull)std::make_unique<char>().get() ^
-      chrono::high_resolution_clock::now().time_since_epoch().count();
-  template <typename T>
-  ull operator()(T x) const {
-    return x ^ RANDOM;
+ll mulmod(ll a, ll b, ll m) {
+  ll x = 0, y = a % m;
+  while (b > 0) {
+    if (b % 2 == 1) {
+      x = (x + y) % m;
+    }
+    y = (y * 2) % m;
+    b /= 2;
   }
-  template <typename T, typename U>
-  ull operator()(pair<T, U> x) const {
-    return (*this)(x.first) * 31 + (*this)(x.second);
-  }
-};
+  return x % m;
+}
 
-template <typename K, typename V>
-using hash_table = gp_hash_table<K, V, chash>;
+ll modulo(ll base, ll e, ll m) {
+  ll x = 1;
+  ll y = base;
+  while (e > 0) {
+    if (e % 2 == 1) x = (x * y) % m;
+    y = (y * y) % m;
+    e = e / 2;
+  }
+  return x % m;
+}
+
+bool Miller(ll p, int iteration = 10) {
+  if (p < 2) {
+    return false;
+  }
+  if (p != 2 && p % 2 == 0) {
+    return false;
+  }
+  ll s = p - 1;
+  while (s % 2 == 0) {
+    s /= 2;
+  }
+  for (int i = 0; i < iteration; i++) {
+    ll a = rand() % (p - 1) + 1, temp = s;
+    ll mod = modulo(a, temp, p);
+    while (temp != p - 1 && mod != 1 && mod != p - 1) {
+      mod = mulmod(mod, mod, p);
+      temp *= 2;
+    }
+    if (mod != p - 1 && temp % 2 == 0) {
+      return false;
+    }
+  }
+  return true;
+}
 
 ```
 {% endraw %}
@@ -77,10 +104,7 @@ using hash_table = gp_hash_table<K, V, chash>;
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "util/hash-table.cpp"
-
-#include <chrono>
-#include <ext/pb_ds/assoc_container.hpp>
+#line 2 "math/miller.cpp"
 
 #line 2 "template.cpp"
 
@@ -118,7 +142,9 @@ using PLL = pair<ll, ll>;
 template <typename T> using minheap = priority_queue<T, vector<T>, greater<T>>;
 constexpr int INF = 1000000007;
 constexpr ll INF_LL = 1'000'000'000'000'000'007;
-#define EXIT(out) do { OUT(out); exit(0); } while (0)
+#define EXIT(out) ({ OUT(out); exit(0); })
+#define BREAK ({ break; })
+#define CONTINUE ({ continue; })
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl '\n'
@@ -140,10 +166,8 @@ bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return fal
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
 ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1;
-  while (t) {
-    if (t & 1) res = (res * e) % mod;
-    t >>= 1; e = (e * e) % mod;
-  }
+  for (; t; t >>= 1, (e *= e) %= mod)
+    if (t & 1) (res *= e) %= mod;
   return res;
 }
 ll choose(ll n, int r) {
@@ -234,25 +258,55 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
-#line 7 "util/hash-table.cpp"
-using namespace __gnu_pbds;
+#line 4 "math/miller.cpp"
 
-struct chash {
-  const ull RANDOM =
-      (ull)std::make_unique<char>().get() ^
-      chrono::high_resolution_clock::now().time_since_epoch().count();
-  template <typename T>
-  ull operator()(T x) const {
-    return x ^ RANDOM;
+ll mulmod(ll a, ll b, ll m) {
+  ll x = 0, y = a % m;
+  while (b > 0) {
+    if (b % 2 == 1) {
+      x = (x + y) % m;
+    }
+    y = (y * 2) % m;
+    b /= 2;
   }
-  template <typename T, typename U>
-  ull operator()(pair<T, U> x) const {
-    return (*this)(x.first) * 31 + (*this)(x.second);
-  }
-};
+  return x % m;
+}
 
-template <typename K, typename V>
-using hash_table = gp_hash_table<K, V, chash>;
+ll modulo(ll base, ll e, ll m) {
+  ll x = 1;
+  ll y = base;
+  while (e > 0) {
+    if (e % 2 == 1) x = (x * y) % m;
+    y = (y * y) % m;
+    e = e / 2;
+  }
+  return x % m;
+}
+
+bool Miller(ll p, int iteration = 10) {
+  if (p < 2) {
+    return false;
+  }
+  if (p != 2 && p % 2 == 0) {
+    return false;
+  }
+  ll s = p - 1;
+  while (s % 2 == 0) {
+    s /= 2;
+  }
+  for (int i = 0; i < iteration; i++) {
+    ll a = rand() % (p - 1) + 1, temp = s;
+    ll mod = modulo(a, temp, p);
+    while (temp != p - 1 && mod != 1 && mod != p - 1) {
+      mod = mulmod(mod, mod, p);
+      temp *= 2;
+    }
+    if (mod != p - 1 && temp % 2 == 0) {
+      return false;
+    }
+  }
+  return true;
+}
 
 ```
 {% endraw %}

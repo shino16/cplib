@@ -51,6 +51,7 @@ layout: default
 * :heavy_check_mark: <a href="library/data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :warning: <a href="library/data-structure/dynamic-segtree.cpp.html">data-structure/dynamic-segtree.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/fibonacci-heap.cpp.html">data-structure/fibonacci-heap.cpp</a>
+* :warning: <a href="library/data-structure/hash-table.cpp.html">data-structure/hash-table.cpp</a>
 * :warning: <a href="library/data-structure/indexed-map.cpp.html">data-structure/indexed-map.cpp</a>
 * :warning: <a href="library/data-structure/indexed-set.cpp.html">data-structure/indexed-set.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
@@ -71,6 +72,8 @@ layout: default
 
 ### graph
 
+* :warning: <a href="library/graph/all-pairs-shortest-path.cpp.html">graph/all-pairs-shortest-path.cpp</a>
+* :warning: <a href="library/graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
 * :warning: <a href="library/graph/bfs.cpp.html">graph/bfs.cpp</a>
 * :heavy_check_mark: <a href="library/graph/dijkstra-fib-heap.cpp.html">graph/dijkstra-fib-heap.cpp</a>
 * :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
@@ -88,10 +91,13 @@ layout: default
 * :warning: <a href="library/math/approximate.cpp.html">math/approximate.cpp</a>
 * :warning: <a href="library/math/binomial.cpp.html">math/binomial.cpp</a>
 * :warning: <a href="library/math/constexpr-binomial.cpp.html">math/constexpr-binomial.cpp</a>
+* :warning: <a href="library/math/exponentation.cpp.html">math/exponentation.cpp</a>
 * :warning: <a href="library/math/factorize.cpp.html">math/factorize.cpp</a>
 * :warning: <a href="library/math/fft.cpp.html">math/fft.cpp</a>
 * :warning: <a href="library/math/formalpowerseries.cpp.html">math/formalpowerseries.cpp</a>
 * :warning: <a href="library/math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
+* :warning: <a href="library/math/mapping.cpp.html">math/mapping.cpp</a>
+* :warning: <a href="library/math/miller.cpp.html">math/miller.cpp</a>
 * :warning: <a href="library/math/ntt.cpp.html">math/ntt.cpp</a>
 * :warning: <a href="library/math/polynomial.cpp.html">math/polynomial.cpp</a>
 * :warning: <a href="library/math/squarematrix.cpp.html">math/squarematrix.cpp</a>
@@ -124,10 +130,10 @@ layout: default
 
 * :warning: <a href="library/util/acc-2d.cpp.html">util/acc-2d.cpp</a>
 * :heavy_check_mark: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
+* :warning: <a href="library/util/doubling.cpp.html">util/doubling.cpp</a>
 * :heavy_check_mark: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
 * :heavy_check_mark: <a href="library/util/function-objects.cpp.html">util/function-objects.cpp</a>
 * :warning: <a href="library/util/hack-pque.cpp.html">util/hack-pque.cpp</a>
-* :warning: <a href="library/util/hash-table.cpp.html">util/hash-table.cpp</a>
 * :warning: <a href="library/util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="library/util/modint.cpp.html">util/modint.cpp</a>
 * :warning: <a href="library/util/prepare_inv.cpp.html">util/prepare_inv.cpp</a>

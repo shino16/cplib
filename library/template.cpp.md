@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-02 12:26:25+09:00
+    - Last commit date: 2020-05-11 16:02:38+09:00
 
 
 
@@ -41,12 +41,15 @@ layout: default
 * :heavy_check_mark: <a href="data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
 * :heavy_check_mark: <a href="data-structure/bit.cpp.html">data-structure/bit.cpp</a>
 * :heavy_check_mark: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
+* :warning: <a href="data-structure/hash-table.cpp.html">data-structure/hash-table.cpp</a>
 * :heavy_check_mark: <a href="data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
 * :heavy_check_mark: <a href="data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :warning: <a href="data-structure/swag.cpp.html">data-structure/swag.cpp</a>
 * :heavy_check_mark: <a href="data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :warning: <a href="data-structure/weighted-union-find.cpp.html">data-structure/weighted-union-find.cpp</a>
 * :warning: <a href="geometry/Pt.cpp.html">geometry/Pt.cpp</a>
+* :warning: <a href="graph/all-pairs-shortest-path.cpp.html">graph/all-pairs-shortest-path.cpp</a>
+* :warning: <a href="graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
 * :warning: <a href="graph/bfs.cpp.html">graph/bfs.cpp</a>
 * :heavy_check_mark: <a href="graph/dijkstra-fib-heap.cpp.html">graph/dijkstra-fib-heap.cpp</a>
 * :heavy_check_mark: <a href="graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
@@ -62,6 +65,8 @@ layout: default
 * :warning: <a href="math/fft.cpp.html">math/fft.cpp</a>
 * :warning: <a href="math/formalpowerseries.cpp.html">math/formalpowerseries.cpp</a>
 * :warning: <a href="math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
+* :warning: <a href="math/mapping.cpp.html">math/mapping.cpp</a>
+* :warning: <a href="math/miller.cpp.html">math/miller.cpp</a>
 * :warning: <a href="math/ntt.cpp.html">math/ntt.cpp</a>
 * :warning: <a href="math/polynomial.cpp.html">math/polynomial.cpp</a>
 * :warning: <a href="math/squarematrix.cpp.html">math/squarematrix.cpp</a>
@@ -76,10 +81,10 @@ layout: default
 * :warning: <a href="tree/tree-diameter.cpp.html">tree/tree-diameter.cpp</a>
 * :warning: <a href="util/acc-2d.cpp.html">util/acc-2d.cpp</a>
 * :heavy_check_mark: <a href="util/compress.cpp.html">util/compress.cpp</a>
+* :warning: <a href="util/doubling.cpp.html">util/doubling.cpp</a>
 * :heavy_check_mark: <a href="util/fix.cpp.html">util/fix.cpp</a>
 * :heavy_check_mark: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
 * :warning: <a href="util/hack-pque.cpp.html">util/hack-pque.cpp</a>
-* :warning: <a href="util/hash-table.cpp.html">util/hash-table.cpp</a>
 * :warning: <a href="util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="util/modint.cpp.html">util/modint.cpp</a>
 * :warning: <a href="util/prepare_inv.cpp.html">util/prepare_inv.cpp</a>
@@ -141,7 +146,9 @@ using PLL = pair<ll, ll>;
 template <typename T> using minheap = priority_queue<T, vector<T>, greater<T>>;
 constexpr int INF = 1000000007;
 constexpr ll INF_LL = 1'000'000'000'000'000'007;
-#define EXIT(out) do { OUT(out); exit(0); } while (0)
+#define EXIT(out) ({ OUT(out); exit(0); })
+#define BREAK ({ break; })
+#define CONTINUE ({ continue; })
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl '\n'
@@ -163,10 +170,8 @@ bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return fal
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
 ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1;
-  while (t) {
-    if (t & 1) res = (res * e) % mod;
-    t >>= 1; e = (e * e) % mod;
-  }
+  for (; t; t >>= 1, (e *= e) %= mod)
+    if (t & 1) (res *= e) %= mod;
   return res;
 }
 ll choose(ll n, int r) {
@@ -300,7 +305,9 @@ using PLL = pair<ll, ll>;
 template <typename T> using minheap = priority_queue<T, vector<T>, greater<T>>;
 constexpr int INF = 1000000007;
 constexpr ll INF_LL = 1'000'000'000'000'000'007;
-#define EXIT(out) do { OUT(out); exit(0); } while (0)
+#define EXIT(out) ({ OUT(out); exit(0); })
+#define BREAK ({ break; })
+#define CONTINUE ({ continue; })
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl '\n'
@@ -322,10 +329,8 @@ bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return fal
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
 ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1;
-  while (t) {
-    if (t & 1) res = (res * e) % mod;
-    t >>= 1; e = (e * e) % mod;
-  }
+  for (; t; t >>= 1, (e *= e) %= mod)
+    if (t & 1) (res *= e) %= mod;
   return res;
 }
 ll choose(ll n, int r) {

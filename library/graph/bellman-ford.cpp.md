@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: graph/kruskal.cpp
+# :warning: graph/bellman-ford.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/graph/kruskal.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/graph/bellman-ford.cpp">View this file on GitHub</a>
     - Last commit date: 2020-05-11 16:02:38+09:00
 
 
@@ -38,8 +38,12 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
+
+
+## Required by
+
+* :warning: <a href="all-pairs-shortest-path.cpp.html">graph/all-pairs-shortest-path.cpp</a>
 
 
 ## Code
@@ -49,30 +53,19 @@ layout: default
 ```cpp
 #pragma once
 
-#include "data-structure/union-find.cpp"
 #include "template.cpp"
 
-struct FEdge {
-  int from, to;
-  ll cost;
-};
-
-bool operator<(const Edge& e, const Edge& f) { return e.cost < f.cost; }
-bool operator>(const Edge& e, const Edge& f) { return e.cost > f.cost; }
-
-pair<ll, vector<FEdge>> kruskal(const Graph& graph) {
+// empty if the given graph has a negative cycle
+VLL bellman_ford(const Graph& graph, int start) {
   int n = graph.size();
-  vector<FEdge> edges;
-  rep(v, n) for (auto e : graph[v])
-    if (v < e.to) edges.emplace_back(FEdge{v, e.to, e.cost});
-  sort(all(edges));
-
-  ll total = 0;
-  vector<FEdge> res;
-  union_find uf(n);
-  for (auto e : edges) if (not uf.same(e.from, e.to))
-    total += e.cost, uf.merge(e.from, e.to);
-  return make_pair(total, move(res));
+  VLL dist(n, INF_LL);
+  dist[start] = 0;
+  rep(n) {
+    bool upd = false;
+    rep(v, n) for (auto e : graph[v]) upd |= chmin(dist[e.to], dist[v] + e.cost);
+    if (not upd) return dist;
+  }
+  return {};
 }
 ```
 {% endraw %}
@@ -80,9 +73,7 @@ pair<ll, vector<FEdge>> kruskal(const Graph& graph) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "graph/kruskal.cpp"
-
-#line 2 "data-structure/union-find.cpp"
+#line 2 "graph/bellman-ford.cpp"
 
 #line 2 "template.cpp"
 
@@ -236,55 +227,19 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
-#line 4 "data-structure/union-find.cpp"
+#line 4 "graph/bellman-ford.cpp"
 
-class union_find {
- private:
-  int n, cnt;
-  vector<int> par, rank, sz;
-
- public:
-  union_find(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
-    iota(all(par), 0);
-  }
-  int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }
-  void merge(int x, int y) {
-    x = root(x);
-    y = root(y);
-    if (x == y) return;
-    if (rank[x] < rank[y]) swap(x, y);
-    par[y] = x;
-    if (rank[x] == rank[y]) rank[x]++;
-    sz[x] += sz[y];
-    cnt--;
-  }
-  bool same(int x, int y) { return root(x) == root(y); }
-  int size(int x) { return sz[root(x)]; }
-  int count() { return cnt; }
-};
-#line 5 "graph/kruskal.cpp"
-
-struct FEdge {
-  int from, to;
-  ll cost;
-};
-
-bool operator<(const Edge& e, const Edge& f) { return e.cost < f.cost; }
-bool operator>(const Edge& e, const Edge& f) { return e.cost > f.cost; }
-
-pair<ll, vector<FEdge>> kruskal(const Graph& graph) {
+// empty if the given graph has a negative cycle
+VLL bellman_ford(const Graph& graph, int start) {
   int n = graph.size();
-  vector<FEdge> edges;
-  rep(v, n) for (auto e : graph[v])
-    if (v < e.to) edges.emplace_back(FEdge{v, e.to, e.cost});
-  sort(all(edges));
-
-  ll total = 0;
-  vector<FEdge> res;
-  union_find uf(n);
-  for (auto e : edges) if (not uf.same(e.from, e.to))
-    total += e.cost, uf.merge(e.from, e.to);
-  return make_pair(total, move(res));
+  VLL dist(n, INF_LL);
+  dist[start] = 0;
+  rep(n) {
+    bool upd = false;
+    rep(v, n) for (auto e : graph[v]) upd |= chmin(dist[e.to], dist[v] + e.cost);
+    if (not upd) return dist;
+  }
+  return {};
 }
 
 ```

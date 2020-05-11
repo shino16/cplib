@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: graph/kruskal.cpp
+# :warning: data-structure/hash-table.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/graph/kruskal.cpp">View this file on GitHub</a>
+* category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
+* <a href="{{ site.github.repository_url }}/blob/master/data-structure/hash-table.cpp">View this file on GitHub</a>
     - Last commit date: 2020-05-11 16:02:38+09:00
 
 
@@ -38,7 +38,6 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
@@ -49,40 +48,39 @@ layout: default
 ```cpp
 #pragma once
 
-#include "data-structure/union-find.cpp"
-#include "template.cpp"
+#include <chrono>
+#include <ext/pb_ds/assoc_container.hpp>
 
-struct FEdge {
-  int from, to;
-  ll cost;
+#include "template.cpp"
+using namespace __gnu_pbds;
+
+struct chash {
+  const ull RANDOM =
+      (ull)std::make_unique<char>().get() ^
+      chrono::high_resolution_clock::now().time_since_epoch().count();
+  template <typename T>
+  ull operator()(T x) const {
+    return x ^ RANDOM;
+  }
+  template <typename T, typename U>
+  ull operator()(pair<T, U> x) const {
+    return (*this)(x.first) * 31 + (*this)(x.second);
+  }
 };
 
-bool operator<(const Edge& e, const Edge& f) { return e.cost < f.cost; }
-bool operator>(const Edge& e, const Edge& f) { return e.cost > f.cost; }
+template <typename K, typename V>
+using hash_table = gp_hash_table<K, V, chash>;
 
-pair<ll, vector<FEdge>> kruskal(const Graph& graph) {
-  int n = graph.size();
-  vector<FEdge> edges;
-  rep(v, n) for (auto e : graph[v])
-    if (v < e.to) edges.emplace_back(FEdge{v, e.to, e.cost});
-  sort(all(edges));
-
-  ll total = 0;
-  vector<FEdge> res;
-  union_find uf(n);
-  for (auto e : edges) if (not uf.same(e.from, e.to))
-    total += e.cost, uf.merge(e.from, e.to);
-  return make_pair(total, move(res));
-}
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "graph/kruskal.cpp"
+#line 2 "data-structure/hash-table.cpp"
 
-#line 2 "data-structure/union-find.cpp"
+#include <chrono>
+#include <ext/pb_ds/assoc_container.hpp>
 
 #line 2 "template.cpp"
 
@@ -236,56 +234,25 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
-#line 4 "data-structure/union-find.cpp"
+#line 7 "data-structure/hash-table.cpp"
+using namespace __gnu_pbds;
 
-class union_find {
- private:
-  int n, cnt;
-  vector<int> par, rank, sz;
-
- public:
-  union_find(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
-    iota(all(par), 0);
+struct chash {
+  const ull RANDOM =
+      (ull)std::make_unique<char>().get() ^
+      chrono::high_resolution_clock::now().time_since_epoch().count();
+  template <typename T>
+  ull operator()(T x) const {
+    return x ^ RANDOM;
   }
-  int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }
-  void merge(int x, int y) {
-    x = root(x);
-    y = root(y);
-    if (x == y) return;
-    if (rank[x] < rank[y]) swap(x, y);
-    par[y] = x;
-    if (rank[x] == rank[y]) rank[x]++;
-    sz[x] += sz[y];
-    cnt--;
+  template <typename T, typename U>
+  ull operator()(pair<T, U> x) const {
+    return (*this)(x.first) * 31 + (*this)(x.second);
   }
-  bool same(int x, int y) { return root(x) == root(y); }
-  int size(int x) { return sz[root(x)]; }
-  int count() { return cnt; }
-};
-#line 5 "graph/kruskal.cpp"
-
-struct FEdge {
-  int from, to;
-  ll cost;
 };
 
-bool operator<(const Edge& e, const Edge& f) { return e.cost < f.cost; }
-bool operator>(const Edge& e, const Edge& f) { return e.cost > f.cost; }
-
-pair<ll, vector<FEdge>> kruskal(const Graph& graph) {
-  int n = graph.size();
-  vector<FEdge> edges;
-  rep(v, n) for (auto e : graph[v])
-    if (v < e.to) edges.emplace_back(FEdge{v, e.to, e.cost});
-  sort(all(edges));
-
-  ll total = 0;
-  vector<FEdge> res;
-  union_find uf(n);
-  for (auto e : edges) if (not uf.same(e.from, e.to))
-    total += e.cost, uf.merge(e.from, e.to);
-  return make_pair(total, move(res));
-}
+template <typename K, typename V>
+using hash_table = gp_hash_table<K, V, chash>;
 
 ```
 {% endraw %}
