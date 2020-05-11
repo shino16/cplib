@@ -48,7 +48,7 @@ struct LazySegmentTree {
         upd(upd),
         data(n << 1, unit),
         lazy(n, aunit) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build(0, n);
   }
 
@@ -67,7 +67,7 @@ struct LazySegmentTree {
         upd(upd),
         data(n << 1, unit),
         lazy(n, aunit) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build(0, n);
   }
 

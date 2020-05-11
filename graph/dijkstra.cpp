@@ -1,19 +1,21 @@
 #pragma once
 
 #include "template.cpp"
+#include "data-structure/binary-heap.cpp"
 
 vector<ll> dijkstra(const Graph& graph, int start) {
-  minheap<pair<ll, int>> q;
+  BinaryHeap<ll, greater<>> hp;
   vector<ll> dist(graph.size(), INF_LL);
   dist[start] = 0;
-  q.emplace(0, start);
+  hp.emplace(start, 0);
 
-  while (not q.empty()) {
-    ll d; int v;
-    tie(d, v) = q.top(); q.pop();
+  while (not hp.empty()) {
+    ll d = hp.top();
+    int v = hp.top_index();
+    hp.pop();
     if (dist[v] < d) continue;
     for (auto e : graph[v]) {
-      if (chmin(dist[e.to], dist[v] + e.cost)) q.emplace(dist[e.to], e.to);
+      if (chmin(dist[e.to], dist[v] + e.cost)) hp.prioritize(e.to, dist[e.to]);
     }
   }
   return dist;

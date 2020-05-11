@@ -27,7 +27,7 @@ class SegmentTree {
   SegmentTree(Iter first, Iter last, size_t n, T unit = {},
               Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build();
   }
 
@@ -37,7 +37,7 @@ class SegmentTree {
   [[deprecated]] SegmentTree(Iter first, Iter last, size_t n, T unit = {},
                              Combine combine = {}, Action action = {})
       : n(n), unit(unit), combine(combine), action(action), data(n << 1) {
-    move(first, last, data.begin() + n);
+    copy(first, last, data.begin() + n);
     build();
   }
 
