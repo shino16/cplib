@@ -11,7 +11,7 @@ int main() {
     graph[u].emplace_back(v);
   }
   Graph c_graph = StronglyConnectedComponents(graph).c_graph;
-  if (c_graph.size() == 1) EXIT(0);
+  if (c_graph.size() == 1) ({ OUT(0); exit(0); });
   VI source, dest;
   VI in(c_graph.size()), out(c_graph.size());
   rep(v, c_graph.size()) for (auto e : c_graph[v]) out[v]++, in[e.to]++;
