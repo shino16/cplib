@@ -2,7 +2,7 @@
 
 #include "template.cpp"
 #include "graph/bellman-ford.cpp"
-#include "graph/dijkstra-fib-heap.cpp"
+#include "graph/dijkstra.cpp"
 
 
 // no negative cycle please
