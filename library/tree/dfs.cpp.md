@@ -38,8 +38,8 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../template.cpp.html">template.cpp</a>
-* :x: <a href="../util/fix.cpp.html">util/fix.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../util/fix.cpp.html">util/fix.cpp</a>
 
 
 ## Required by

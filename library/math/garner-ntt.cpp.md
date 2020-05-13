@@ -40,7 +40,7 @@ layout: default
 
 * :warning: <a href="modint.cpp.html">math/modint.cpp</a>
 * :warning: <a href="ntt.cpp.html">math/ntt.cpp</a>
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Code

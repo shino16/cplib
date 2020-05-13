@@ -39,7 +39,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../data-structure/bit.cpp.html">data-structure/bit.cpp</a>
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Code

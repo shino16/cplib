@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: util/fix.cpp
+# :heavy_check_mark: util/fix.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,12 +38,12 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Required by
 
-* :x: <a href="../graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
+* :heavy_check_mark: <a href="../graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
 * :warning: <a href="../tree/dfs.cpp.html">tree/dfs.cpp</a>
 * :warning: <a href="../tree/diameter.cpp.html">tree/diameter.cpp</a>
 * :warning: <a href="../tree/lca.cpp.html">tree/lca.cpp</a>
@@ -51,7 +51,7 @@ layout: default
 
 ## Verified with
 
-* :x: <a href="../../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 
 
 ## Code

@@ -41,7 +41,7 @@ layout: default
 * :heavy_check_mark: <a href="../data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
 * :warning: <a href="bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
 * :heavy_check_mark: <a href="dijkstra.cpp.html">graph/dijkstra.cpp</a>
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Code

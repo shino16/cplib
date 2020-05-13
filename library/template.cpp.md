@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../assets/css/copy-button.css" />
 
 
-# :question: template.cpp
+# :heavy_check_mark: template.cpp
 
 <a href="../index.html">Back to top page</a>
 
@@ -55,7 +55,7 @@ layout: default
 * :heavy_check_mark: <a href="graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :warning: <a href="graph/kruskal.cpp.html">graph/kruskal.cpp</a>
 * :warning: <a href="graph/prim.cpp.html">graph/prim.cpp</a>
-* :x: <a href="graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
+* :heavy_check_mark: <a href="graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
 * :warning: <a href="graph/topological-sort.cpp.html">graph/topological-sort.cpp</a>
 * :warning: <a href="graph/two-edge-connected-components.cpp.html">graph/two-edge-connected-components.cpp</a>
 * :warning: <a href="math/approximate.cpp.html">math/approximate.cpp</a>
@@ -85,7 +85,7 @@ layout: default
 * :warning: <a href="util/acc-2d.cpp.html">util/acc-2d.cpp</a>
 * :heavy_check_mark: <a href="util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="util/doubling.cpp.html">util/doubling.cpp</a>
-* :x: <a href="util/fix.cpp.html">util/fix.cpp</a>
+* :heavy_check_mark: <a href="util/fix.cpp.html">util/fix.cpp</a>
 * :heavy_check_mark: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
 * :warning: <a href="util/hack-pque.cpp.html">util/hack-pque.cpp</a>
 * :warning: <a href="util/inversions.cpp.html">util/inversions.cpp</a>
@@ -98,7 +98,7 @@ layout: default
 
 * :heavy_check_mark: <a href="../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
-* :x: <a href="../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
+* :heavy_check_mark: <a href="../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>

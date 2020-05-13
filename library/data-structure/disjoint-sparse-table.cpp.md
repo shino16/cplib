@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 * :heavy_check_mark: <a href="../util/function-objects.cpp.html">util/function-objects.cpp</a>
 
 
