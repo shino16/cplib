@@ -41,6 +41,13 @@ layout: default
 * :question: <a href="../template.cpp.html">template.cpp</a>
 
 
+## Required by
+
+* :warning: <a href="garner-ntt.cpp.html">math/garner-ntt.cpp</a>
+* :warning: <a href="ntt.cpp.html">math/ntt.cpp</a>
+* :warning: <a href="prepare_inv.cpp.html">math/prepare_inv.cpp</a>
+
+
 ## Code
 
 <a id="unbundled"></a>

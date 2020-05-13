@@ -64,10 +64,13 @@ layout: default
 * :warning: <a href="math/factorize.cpp.html">math/factorize.cpp</a>
 * :warning: <a href="math/fft.cpp.html">math/fft.cpp</a>
 * :warning: <a href="math/formalpowerseries.cpp.html">math/formalpowerseries.cpp</a>
+* :warning: <a href="math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
 * :warning: <a href="math/mapping.cpp.html">math/mapping.cpp</a>
 * :warning: <a href="math/miller.cpp.html">math/miller.cpp</a>
 * :warning: <a href="math/modint.cpp.html">math/modint.cpp</a>
+* :warning: <a href="math/ntt.cpp.html">math/ntt.cpp</a>
 * :warning: <a href="math/polynomial.cpp.html">math/polynomial.cpp</a>
+* :warning: <a href="math/prepare_inv.cpp.html">math/prepare_inv.cpp</a>
 * :warning: <a href="math/squarematrix.cpp.html">math/squarematrix.cpp</a>
 * :warning: <a href="math/totient.cpp.html">math/totient.cpp</a>
 * :heavy_check_mark: <a href="string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
