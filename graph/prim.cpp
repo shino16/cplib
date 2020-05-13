@@ -15,7 +15,7 @@ pair<ll, vector<FEdge>> prim(const Graph& graph) {
   vector<FEdge> res;
   int n = graph.size();
   VB done(n, false);
-  minheap<FEdge> hp;
+  priority_queue<FEdge, vector<FEdge>, greater<>> hp;
   done[0] = true;
   for (auto e : graph[0]) hp.emplace(FEdge{0, e.to, e.cost});
   while (not hp.empty()) {

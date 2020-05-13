@@ -1,19 +1,29 @@
 #pragma once
 
 #include "template.cpp"
+#include "tree/dfs.cpp"
 
-struct lca {
-private:
+struct LCA {
+ private:
   const int n;
   const int log2_n;
-public:
+
+ public:
   vector<vector<int>> parent;
   vector<int> depth;
-  lca(const Graph &g, int root)
-      : n(g.size()), log2_n(32 - __builtin_clz(n) + 1),
-        parent(log2_n, vector<int>(n)), depth(n) {
-    dfs(g, root, -1, 0);
-    rep(k, log2_n) {
+  LCA(const Graph& g, int root = 0)
+      : n(g.size()),
+        log2_n(32 - __builtin_clz(n) + 1),
+        parent(log2_n, vector<int>(n)),
+        depth(n) {
+    fix([&](auto f, int v, int p, int d) -> void {
+      parent[0][v] = p;
+      depth[v] = d;
+      for (auto& e : g[v]) {
+        if (e.to != p) f(e.to, v, d + 1);
+      }
+    })(root, -1, 0);
+    rep(k, log2_n - 1) {
       rep(v, n) {
         if (parent[k][v] < 0)
           parent[k + 1][v] = -1;
@@ -22,15 +32,8 @@ public:
       }
     }
   }
-private:
-  void dfs(const Graph &g, int v, int p, int d) {
-    parent[0][v] = p;
-    depth[v] = d;
-    for (auto &e : g[v]) {
-      if (e != p) dfs(g, e, v, d + 1);
-    }
-  }
-public:
+
+ public:
   int operator()(int u, int v) {
     if (depth[u] > depth[v]) swap(u, v);
     for (int k = 0; k < log2_n; k++) {
@@ -46,5 +49,9 @@ public:
       }
     }
     return parent[0][u];
+  }
+
+  int dist(int u, int v) {
+    return depth[u] + depth[v] - depth[(*this)(u, v)] * 2;
   }
 };
