@@ -31,14 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/prim.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 16:02:38+09:00
+    - Last commit date: 2020-05-13 22:09:34+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
+* :question: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Code
@@ -63,7 +63,7 @@ pair<ll, vector<FEdge>> prim(const Graph& graph) {
   vector<FEdge> res;
   int n = graph.size();
   VB done(n, false);
-  minheap<FEdge> hp;
+  priority_queue<FEdge, vector<FEdge>, greater<>> hp;
   done[0] = true;
   for (auto e : graph[0]) hp.emplace(FEdge{0, e.to, e.cost});
   while (not hp.empty()) {
@@ -86,6 +86,8 @@ pair<ll, vector<FEdge>> prim(const Graph& graph) {
 #line 2 "graph/prim.cpp"
 
 #line 2 "template.cpp"
+
+// please jump to around L150 to see the actual code
 
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"
@@ -118,12 +120,8 @@ using VVLL = vector<vector<ll>>;
 using VB = vector<bool>;
 using PII = pair<int, int>;
 using PLL = pair<ll, ll>;
-template <typename T> using minheap = priority_queue<T, vector<T>, greater<T>>;
 constexpr int INF = 1000000007;
 constexpr ll INF_LL = 1'000'000'000'000'000'007;
-#define EXIT(out) ({ OUT(out); exit(0); })
-#define BREAK ({ break; })
-#define CONTINUE ({ continue; })
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl '\n'
@@ -144,27 +142,24 @@ template <typename T, typename U>
 bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return false; }
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
 ll power(ll e, ll t, ll mod = INF_LL) {
-  ll res = 1;
-  for (; t; t >>= 1, (e *= e) %= mod)
-    if (t & 1) (res *= e) %= mod;
-  return res;
+  ll res = 1; for (; t; t >>= 1, (e *= e) %= mod) if (t & 1) (res *= e) %= mod; return res;
 }
 ll choose(ll n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return 0;
-  ll res = 1;
-  rep(i, r) res *= n-i, res /= i+1;
-  return res;
+  chmin(r, n-r); if (r < 0) return 0; ll res = 1; rep(i, r) res *= n-i, res /= i+1; return res;
 }
 template <typename T> T divceil(T m, T d) { assert(m >= 0 and d > 0); return (m + d - 1) / d; }
 template <typename T> vector<T> make_v(size_t a, T b) { return vector<T>(a, b); }
-template <typename... Ts> auto make_v(size_t a, Ts... ts) { return vector<decltype(make_v(ts...))>(a, make_v(ts...)); }
-string operator*(const string& s, int times) { string res = ""; rep(times) res += s; return res; }
+template <typename... Ts> auto make_v(size_t a, Ts... ts) {
+  return vector<decltype(make_v(ts...))>(a, make_v(ts...));
+}
+string operator*(const string& s, int times) {
+  string res = ""; rep(times) res += s; return res;
+}
 struct Edge {
   int to; ll cost;
   Edge(int _to) : to(_to), cost(1) {}
   Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
-  operator int() { return to; }
+  operator int() const { return to; }
 };
 using Graph = vector<vector<Edge>>;
 // IO
@@ -237,6 +232,9 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
+
+
+// actual code below
 #line 4 "graph/prim.cpp"
 
 struct FEdge {
@@ -252,7 +250,7 @@ pair<ll, vector<FEdge>> prim(const Graph& graph) {
   vector<FEdge> res;
   int n = graph.size();
   VB done(n, false);
-  minheap<FEdge> hp;
+  priority_queue<FEdge, vector<FEdge>, greater<>> hp;
   done[0] = true;
   for (auto e : graph[0]) hp.emplace(FEdge{0, e.to, e.cost});
   while (not hp.empty()) {

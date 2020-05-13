@@ -39,7 +39,7 @@ layout: default
 ### .
 
 * :warning: <a href="library/formatted_template.cpp.html">formatted_template.cpp</a>
-* :heavy_check_mark: <a href="library/template.cpp.html">template.cpp</a>
+* :question: <a href="library/template.cpp.html">template.cpp</a>
 
 
 <div id="36397fe12f935090ad150c6ce0c258d4"></div>
@@ -78,7 +78,7 @@ layout: default
 * :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :warning: <a href="library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
 * :warning: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
-* :heavy_check_mark: <a href="library/graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
+* :x: <a href="library/graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
 * :warning: <a href="library/graph/topological-sort.cpp.html">graph/topological-sort.cpp</a>
 * :warning: <a href="library/graph/two-edge-connected-components.cpp.html">graph/two-edge-connected-components.cpp</a>
 
@@ -90,15 +90,17 @@ layout: default
 * :warning: <a href="library/math/approximate.cpp.html">math/approximate.cpp</a>
 * :warning: <a href="library/math/binomial.cpp.html">math/binomial.cpp</a>
 * :warning: <a href="library/math/constexpr-binomial.cpp.html">math/constexpr-binomial.cpp</a>
-* :warning: <a href="library/math/exponentation.cpp.html">math/exponentation.cpp</a>
+* :warning: <a href="library/math/extgcd.cpp.html">math/extgcd.cpp</a>
 * :warning: <a href="library/math/factorize.cpp.html">math/factorize.cpp</a>
 * :warning: <a href="library/math/fft.cpp.html">math/fft.cpp</a>
 * :warning: <a href="library/math/formalpowerseries.cpp.html">math/formalpowerseries.cpp</a>
 * :warning: <a href="library/math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
 * :warning: <a href="library/math/mapping.cpp.html">math/mapping.cpp</a>
 * :warning: <a href="library/math/miller.cpp.html">math/miller.cpp</a>
+* :warning: <a href="library/math/modint.cpp.html">math/modint.cpp</a>
 * :warning: <a href="library/math/ntt.cpp.html">math/ntt.cpp</a>
 * :warning: <a href="library/math/polynomial.cpp.html">math/polynomial.cpp</a>
+* :warning: <a href="library/math/prepare_inv.cpp.html">math/prepare_inv.cpp</a>
 * :warning: <a href="library/math/squarematrix.cpp.html">math/squarematrix.cpp</a>
 * :warning: <a href="library/math/totient.cpp.html">math/totient.cpp</a>
 
@@ -116,11 +118,11 @@ layout: default
 ### tree
 
 * :warning: <a href="library/tree/dfs.cpp.html">tree/dfs.cpp</a>
+* :warning: <a href="library/tree/diameter.cpp.html">tree/diameter.cpp</a>
 * :warning: <a href="library/tree/euler-tour.cpp.html">tree/euler-tour.cpp</a>
 * :heavy_check_mark: <a href="library/tree/hld.cpp.html">tree/hld.cpp</a>
 * :warning: <a href="library/tree/lca.cpp.html">tree/lca.cpp</a>
 * :warning: <a href="library/tree/rerooting.cpp.html">tree/rerooting.cpp</a>
-* :warning: <a href="library/tree/tree-diameter.cpp.html">tree/tree-diameter.cpp</a>
 
 
 <div id="05c7e24700502a079cdd88012b5a76d3"></div>
@@ -130,13 +132,11 @@ layout: default
 * :warning: <a href="library/util/acc-2d.cpp.html">util/acc-2d.cpp</a>
 * :heavy_check_mark: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="library/util/doubling.cpp.html">util/doubling.cpp</a>
-* :heavy_check_mark: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
+* :x: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
 * :heavy_check_mark: <a href="library/util/function-objects.cpp.html">util/function-objects.cpp</a>
 * :warning: <a href="library/util/hack-pque.cpp.html">util/hack-pque.cpp</a>
 * :warning: <a href="library/util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="library/util/mapping.cpp.html">util/mapping.cpp</a>
-* :warning: <a href="library/util/modint.cpp.html">util/modint.cpp</a>
-* :warning: <a href="library/util/prepare_inv.cpp.html">util/prepare_inv.cpp</a>
 * :warning: <a href="library/util/random-tree.cpp.html">util/random-tree.cpp</a>
 * :warning: <a href="library/util/triple.cpp.html">util/triple.cpp</a>
 
@@ -145,7 +145,7 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
-* :heavy_check_mark: <a href="verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
+* :x: <a href="verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>

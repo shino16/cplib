@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: math/garner-ntt.cpp
+# :warning: math/prepare_inv.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
-* <a href="{{ site.github.repository_url }}/blob/master/math/garner-ntt.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/math/prepare_inv.cpp">View this file on GitHub</a>
     - Last commit date: 1970-01-01 00:00:00+00:00
 
 
@@ -43,70 +43,17 @@ layout: default
 ```cpp
 #pragma once
 
-#include "math/ntt.cpp"
 #include "template.cpp"
 #include "util/modint.cpp"
 
-namespace Garner {
-
-static NTT<0> ntt0;
-static NTT<1> ntt1;
-static NTT<2> ntt2;
-
-static ll inv(ll x, ll md) { return power(x, md - 2, md); }
-
-ll garner(ll c0, ll c1, ll c2, ll m01, ll mod) {
-  static ll r01 = inv(ntt0.md, ntt1.md);
-  static ll r02 = inv(ntt0.md, ntt2.md);
-  static ll r12 = inv(ntt1.md, ntt2.md);
-
-  c1 = (ll)(c1 - c0) * r01 % ntt1.md;
-  if (c1 < 0) c1 += ntt1.md;
-
-  c2 = (ll)(c2 - c0) * r02 % ntt2.md;
-  c2 = (ll)(c2 - c1) * r12 % ntt2.md;
-  if (c2 < 0) c2 += ntt2.md;
-
-  c0 %= mod;
-  c0 += (ll)c1 * ntt0.md % mod;
-  if (c0 >= mod) c0 -= mod;
-  c0 += (ll)c2 * m01 % mod;
-  if (c0 >= mod) c0 -= mod;
-
-  return c0;
-}
-
-vector<ll> garner(vector<vector<ll>> &cs, ll mod) {
-  ll m01 = (ll)ntt0.md * ntt1.md % mod;
-  ll sz = cs[0].size();
-  vector<ll> res(sz);
-  for (ll i = 0; i < sz; i++)
-    res[i] = garner(cs[0][i], cs[1][i], cs[2][i], m01, mod);
+template <ll Mod>
+vector<modint<Mod>> prepare_inv(int n) {
+  n++;
+  vector<modint<Mod>> res(n);
+  res[1] = modint<Mod>(1);
+  rep(i, 2, n) res[i] = -res[Mod % i] * modint<Mod>(Mod / i);
   return res;
 }
-
-vector<ll> multiply(vector<ll> as, vector<ll> bs, ll mod) {
-  vector<vector<ll>> cs(3);
-  cs[0] = ntt0.multiply(as, bs);
-  cs[1] = ntt1.multiply(as, bs);
-  cs[2] = ntt2.multiply(as, bs);
-  size_t sz = as.size() + bs.size() - 1;
-  for (auto &v : cs) v.resize(sz);
-  return garner(cs, mod);
-}
-
-template <ll Mod = 1000000007>
-vector<modint<Mod>> multiply(vector<modint<Mod>> am, vector<modint<Mod>> bm) {
-  vector<ll> as(am.size()), bs(bm.size());
-  rep(i, am.size()) as[i] = am[i].v;
-  rep(i, bm.size()) bs[i] = bm[i].v;
-  vector<ll> cs = multiply(as, bs, Mod);
-  vector<modint<Mod>> cm(cs.size());
-  rep(i, cs.size()) cm[i] = modint<Mod>(cs[i]);
-  return cm;
-}
-
-};  // namespace Garner
 
 ```
 {% endraw %}
@@ -119,8 +66,6 @@ Traceback (most recent call last):
     bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
   File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 172, in bundle
     bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 282, in update
-    self.update(self._resolve(pathlib.Path(included), included_from=path))
   File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 282, in update
     self.update(self._resolve(pathlib.Path(included), included_from=path))
   File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 162, in _resolve

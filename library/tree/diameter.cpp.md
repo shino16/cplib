@@ -25,26 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: util/modint.cpp
+# :warning: tree/diameter.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
-* <a href="{{ site.github.repository_url }}/blob/master/util/modint.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 16:02:38+09:00
+* category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
+* <a href="{{ site.github.repository_url }}/blob/master/tree/diameter.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-05-13 22:09:34+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
-
-
-## Required by
-
-* :warning: <a href="../math/garner-ntt.cpp.html">math/garner-ntt.cpp</a>
-* :warning: <a href="../math/ntt.cpp.html">math/ntt.cpp</a>
+* :question: <a href="../template.cpp.html">template.cpp</a>
+* :x: <a href="../util/fix.cpp.html">util/fix.cpp</a>
 
 
 ## Code
@@ -55,114 +50,22 @@ layout: default
 #pragma once
 
 #include "template.cpp"
+#include "util/fix.cpp"
 
-template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
-
-template <ll MOD = 1000000007>
-class modint {
-public:
-  ll value;
-  static constexpr ll Mod = MOD;
-
-  constexpr modint(const ll x = 0) noexcept : value(x) {
-    value %= MOD;
-    if (value < 0) value += MOD;
-  }
-  constexpr bool operator==(const modint& rhs) {
-    return value == rhs.value;
-  }
-  constexpr bool operator!=(const modint& rhs) {
-    return value != rhs.value;
-  }
-  constexpr modint operator-() const {
-    return modint(0) - *this;
-  }
-  constexpr modint operator+(const modint& rhs) const {
-    return modint(*this) += rhs;
-  }
-  constexpr modint operator-(const modint& rhs) const {
-    return modint(*this) -= rhs;
-  }
-  constexpr modint operator*(const modint& rhs) const {
-    return modint(*this) *= rhs;
-  }
-  constexpr modint operator/(const modint& rhs) const {
-    return modint(*this) /= rhs;
-  }
-  constexpr modint& operator+=(const modint& rhs) {
-    value += rhs.value;
-    if (value >= MOD) value -= MOD;
-    return *this;
-  }
-  constexpr modint& operator-=(const modint& rhs) {
-    if (value < rhs.value) value += MOD;
-    value -= rhs.value;
-    return *this;
-  }
-  constexpr modint& operator*=(const modint& rhs) {
-    value = value * rhs.value % MOD;
-    return *this;
-  }
-  constexpr modint& operator/=(const modint& rhs) {
-    return *this *= pow(rhs, MOD - 2);
-  }
-  constexpr modint& operator++() {
-    return *this += 1;
-  }
-  constexpr modint operator++(int) {
-    modint tmp(*this);
-    ++(*this);
-    return tmp;
-  }
-  constexpr modint& operator--() {
-    return *this -= 1;
-  }
-  constexpr modint operator--(int) {
-    modint tmp(*this);
-    --(*this);
-    return tmp;
-  }
-  constexpr operator int() const {
-    return (int)value;
-  }
-  constexpr operator ll() const {
-    return value;
-  }
-};
-
-
-template <typename OutStream, ll MOD>
-OutStream& operator<<(OutStream& out, modint<MOD> n) {
-  out << n.value;
-  return out;
-}
-
-template <typename InStream, ll MOD>
-InStream& operator>>(InStream& in, modint<MOD>& n) {
-  ll var; in >> var; n = modint<MOD>(var);
-  return in;
-}
-
-template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
-  modint<MOD> res = 1;
-  while (exp) {
-    if (exp % 2) res *= base;
-    base *= base;
-    exp /= 2;
-  }
-  return res;
-}
-
-// O(r + log MOD)
-template <ll MOD>
-modint<MOD> choose(int n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return modint<MOD>(0);
-  modint<MOD> nu = 1, de = 1;
-  rep(i, r) nu *= n-i, de *= i+1;
-  return nu / de;
+ll tree_diameter(const Graph& g) {
+  auto dfs = fix([&](auto f, int v, int par)->PLL{
+    PLL ret(0, v);
+    for (auto& e : g[v]) {
+      if (e.to == par) continue;
+      auto ch = f(e.to, v);
+      ch.first += e.cost;
+      chmax(ret, ch);
+    }
+    return ret;
+  });
+  auto p = dfs(0, -1);
+  auto q = dfs(p.second, -1);
+  return q.first;
 }
 
 ```
@@ -171,9 +74,11 @@ modint<MOD> choose(int n, int r) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "util/modint.cpp"
+#line 2 "tree/diameter.cpp"
 
 #line 2 "template.cpp"
+
+// please jump to around L150 to see the actual code
 
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"
@@ -206,12 +111,8 @@ using VVLL = vector<vector<ll>>;
 using VB = vector<bool>;
 using PII = pair<int, int>;
 using PLL = pair<ll, ll>;
-template <typename T> using minheap = priority_queue<T, vector<T>, greater<T>>;
 constexpr int INF = 1000000007;
 constexpr ll INF_LL = 1'000'000'000'000'000'007;
-#define EXIT(out) ({ OUT(out); exit(0); })
-#define BREAK ({ break; })
-#define CONTINUE ({ continue; })
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl '\n'
@@ -232,27 +133,24 @@ template <typename T, typename U>
 bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return false; }
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
 ll power(ll e, ll t, ll mod = INF_LL) {
-  ll res = 1;
-  for (; t; t >>= 1, (e *= e) %= mod)
-    if (t & 1) (res *= e) %= mod;
-  return res;
+  ll res = 1; for (; t; t >>= 1, (e *= e) %= mod) if (t & 1) (res *= e) %= mod; return res;
 }
 ll choose(ll n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return 0;
-  ll res = 1;
-  rep(i, r) res *= n-i, res /= i+1;
-  return res;
+  chmin(r, n-r); if (r < 0) return 0; ll res = 1; rep(i, r) res *= n-i, res /= i+1; return res;
 }
 template <typename T> T divceil(T m, T d) { assert(m >= 0 and d > 0); return (m + d - 1) / d; }
 template <typename T> vector<T> make_v(size_t a, T b) { return vector<T>(a, b); }
-template <typename... Ts> auto make_v(size_t a, Ts... ts) { return vector<decltype(make_v(ts...))>(a, make_v(ts...)); }
-string operator*(const string& s, int times) { string res = ""; rep(times) res += s; return res; }
+template <typename... Ts> auto make_v(size_t a, Ts... ts) {
+  return vector<decltype(make_v(ts...))>(a, make_v(ts...));
+}
+string operator*(const string& s, int times) {
+  string res = ""; rep(times) res += s; return res;
+}
 struct Edge {
   int to; ll cost;
   Edge(int _to) : to(_to), cost(1) {}
   Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
-  operator int() { return to; }
+  operator int() const { return to; }
 };
 using Graph = vector<vector<Edge>>;
 // IO
@@ -325,115 +223,43 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
-#line 4 "util/modint.cpp"
 
-template <ll> class modint;
-template <ll MOD> constexpr modint<MOD> pow(modint<MOD>, ll);
 
-template <ll MOD = 1000000007>
-class modint {
-public:
-  ll value;
-  static constexpr ll Mod = MOD;
+// actual code below
+#line 2 "util/fix.cpp"
 
-  constexpr modint(const ll x = 0) noexcept : value(x) {
-    value %= MOD;
-    if (value < 0) value += MOD;
-  }
-  constexpr bool operator==(const modint& rhs) {
-    return value == rhs.value;
-  }
-  constexpr bool operator!=(const modint& rhs) {
-    return value != rhs.value;
-  }
-  constexpr modint operator-() const {
-    return modint(0) - *this;
-  }
-  constexpr modint operator+(const modint& rhs) const {
-    return modint(*this) += rhs;
-  }
-  constexpr modint operator-(const modint& rhs) const {
-    return modint(*this) -= rhs;
-  }
-  constexpr modint operator*(const modint& rhs) const {
-    return modint(*this) *= rhs;
-  }
-  constexpr modint operator/(const modint& rhs) const {
-    return modint(*this) /= rhs;
-  }
-  constexpr modint& operator+=(const modint& rhs) {
-    value += rhs.value;
-    if (value >= MOD) value -= MOD;
-    return *this;
-  }
-  constexpr modint& operator-=(const modint& rhs) {
-    if (value < rhs.value) value += MOD;
-    value -= rhs.value;
-    return *this;
-  }
-  constexpr modint& operator*=(const modint& rhs) {
-    value = value * rhs.value % MOD;
-    return *this;
-  }
-  constexpr modint& operator/=(const modint& rhs) {
-    return *this *= pow(rhs, MOD - 2);
-  }
-  constexpr modint& operator++() {
-    return *this += 1;
-  }
-  constexpr modint operator++(int) {
-    modint tmp(*this);
-    ++(*this);
-    return tmp;
-  }
-  constexpr modint& operator--() {
-    return *this -= 1;
-  }
-  constexpr modint operator--(int) {
-    modint tmp(*this);
-    --(*this);
-    return tmp;
-  }
-  constexpr operator int() const {
-    return (int)value;
-  }
-  constexpr operator ll() const {
-    return value;
+#line 4 "util/fix.cpp"
+
+template <typename F>
+class FixPoint : private F {
+ public:
+  explicit constexpr FixPoint(F&& f) : F(forward<F>(f)) {}
+
+  template <typename... Args>
+  constexpr decltype(auto) operator()(Args&&... args) const {
+    return F::operator()(*this, forward<Args>(args)...);
   }
 };
 
-
-template <typename OutStream, ll MOD>
-OutStream& operator<<(OutStream& out, modint<MOD> n) {
-  out << n.value;
-  return out;
+template <typename F> decltype(auto) fix(F&& f) noexcept {
+  return FixPoint<F>{forward<F>(f)};
 }
+#line 5 "tree/diameter.cpp"
 
-template <typename InStream, ll MOD>
-InStream& operator>>(InStream& in, modint<MOD>& n) {
-  ll var; in >> var; n = modint<MOD>(var);
-  return in;
-}
-
-template <ll MOD>
-constexpr modint<MOD> pow(modint<MOD> base, ll exp) {
-  modint<MOD> res = 1;
-  while (exp) {
-    if (exp % 2) res *= base;
-    base *= base;
-    exp /= 2;
-  }
-  return res;
-}
-
-// O(r + log MOD)
-template <ll MOD>
-modint<MOD> choose(int n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return modint<MOD>(0);
-  modint<MOD> nu = 1, de = 1;
-  rep(i, r) nu *= n-i, de *= i+1;
-  return nu / de;
+ll tree_diameter(const Graph& g) {
+  auto dfs = fix([&](auto f, int v, int par)->PLL{
+    PLL ret(0, v);
+    for (auto& e : g[v]) {
+      if (e.to == par) continue;
+      auto ch = f(e.to, v);
+      ch.first += e.cost;
+      chmax(ret, ch);
+    }
+    return ret;
+  });
+  auto p = dfs(0, -1);
+  auto q = dfs(p.second, -1);
+  return q.first;
 }
 
 ```

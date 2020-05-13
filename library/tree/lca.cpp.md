@@ -31,14 +31,16 @@ layout: default
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/lca.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 16:02:38+09:00
+    - Last commit date: 2020-05-13 22:09:34+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
+* :question: <a href="../template.cpp.html">template.cpp</a>
+* :warning: <a href="dfs.cpp.html">tree/dfs.cpp</a>
+* :x: <a href="../util/fix.cpp.html">util/fix.cpp</a>
 
 
 ## Code
@@ -49,19 +51,29 @@ layout: default
 #pragma once
 
 #include "template.cpp"
+#include "tree/dfs.cpp"
 
-struct lca {
-private:
+struct LCA {
+ private:
   const int n;
   const int log2_n;
-public:
+
+ public:
   vector<vector<int>> parent;
   vector<int> depth;
-  lca(const Graph &g, int root)
-      : n(g.size()), log2_n(32 - __builtin_clz(n) + 1),
-        parent(log2_n, vector<int>(n)), depth(n) {
-    dfs(g, root, -1, 0);
-    rep(k, log2_n) {
+  LCA(const Graph& g, int root = 0)
+      : n(g.size()),
+        log2_n(32 - __builtin_clz(n) + 1),
+        parent(log2_n, vector<int>(n)),
+        depth(n) {
+    fix([&](auto f, int v, int p, int d) -> void {
+      parent[0][v] = p;
+      depth[v] = d;
+      for (auto& e : g[v]) {
+        if (e.to != p) f(e.to, v, d + 1);
+      }
+    })(root, -1, 0);
+    rep(k, log2_n - 1) {
       rep(v, n) {
         if (parent[k][v] < 0)
           parent[k + 1][v] = -1;
@@ -70,15 +82,8 @@ public:
       }
     }
   }
-private:
-  void dfs(const Graph &g, int v, int p, int d) {
-    parent[0][v] = p;
-    depth[v] = d;
-    for (auto &e : g[v]) {
-      if (e != p) dfs(g, e, v, d + 1);
-    }
-  }
-public:
+
+ public:
   int operator()(int u, int v) {
     if (depth[u] > depth[v]) swap(u, v);
     for (int k = 0; k < log2_n; k++) {
@@ -95,6 +100,10 @@ public:
     }
     return parent[0][u];
   }
+
+  int dist(int u, int v) {
+    return depth[u] + depth[v] - depth[(*this)(u, v)] * 2;
+  }
 };
 ```
 {% endraw %}
@@ -105,6 +114,8 @@ public:
 #line 2 "tree/lca.cpp"
 
 #line 2 "template.cpp"
+
+// please jump to around L150 to see the actual code
 
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"
@@ -137,12 +148,8 @@ using VVLL = vector<vector<ll>>;
 using VB = vector<bool>;
 using PII = pair<int, int>;
 using PLL = pair<ll, ll>;
-template <typename T> using minheap = priority_queue<T, vector<T>, greater<T>>;
 constexpr int INF = 1000000007;
 constexpr ll INF_LL = 1'000'000'000'000'000'007;
-#define EXIT(out) ({ OUT(out); exit(0); })
-#define BREAK ({ break; })
-#define CONTINUE ({ continue; })
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl '\n'
@@ -163,27 +170,24 @@ template <typename T, typename U>
 bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return false; }
 template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
 ll power(ll e, ll t, ll mod = INF_LL) {
-  ll res = 1;
-  for (; t; t >>= 1, (e *= e) %= mod)
-    if (t & 1) (res *= e) %= mod;
-  return res;
+  ll res = 1; for (; t; t >>= 1, (e *= e) %= mod) if (t & 1) (res *= e) %= mod; return res;
 }
 ll choose(ll n, int r) {
-  chmin(r, n-r);
-  if (r < 0) return 0;
-  ll res = 1;
-  rep(i, r) res *= n-i, res /= i+1;
-  return res;
+  chmin(r, n-r); if (r < 0) return 0; ll res = 1; rep(i, r) res *= n-i, res /= i+1; return res;
 }
 template <typename T> T divceil(T m, T d) { assert(m >= 0 and d > 0); return (m + d - 1) / d; }
 template <typename T> vector<T> make_v(size_t a, T b) { return vector<T>(a, b); }
-template <typename... Ts> auto make_v(size_t a, Ts... ts) { return vector<decltype(make_v(ts...))>(a, make_v(ts...)); }
-string operator*(const string& s, int times) { string res = ""; rep(times) res += s; return res; }
+template <typename... Ts> auto make_v(size_t a, Ts... ts) {
+  return vector<decltype(make_v(ts...))>(a, make_v(ts...));
+}
+string operator*(const string& s, int times) {
+  string res = ""; rep(times) res += s; return res;
+}
 struct Edge {
   int to; ll cost;
   Edge(int _to) : to(_to), cost(1) {}
   Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
-  operator int() { return to; }
+  operator int() const { return to; }
 };
 using Graph = vector<vector<Edge>>;
 // IO
@@ -256,20 +260,77 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
-#line 4 "tree/lca.cpp"
 
-struct lca {
-private:
+
+// actual code below
+#line 2 "tree/dfs.cpp"
+
+#line 2 "util/fix.cpp"
+
+#line 4 "util/fix.cpp"
+
+template <typename F>
+class FixPoint : private F {
+ public:
+  explicit constexpr FixPoint(F&& f) : F(forward<F>(f)) {}
+
+  template <typename... Args>
+  constexpr decltype(auto) operator()(Args&&... args) const {
+    return F::operator()(*this, forward<Args>(args)...);
+  }
+};
+
+template <typename F> decltype(auto) fix(F&& f) noexcept {
+  return FixPoint<F>{forward<F>(f)};
+}
+#line 5 "tree/dfs.cpp"
+
+struct DFS {
+  VI subtree_sz, par;
+  VLL dist;
+};
+
+// tree
+DFS dfs(const Graph& graph, int root = 0) {
+  int n = graph.size();
+  DFS res;
+  res.subtree_sz = VI(n, 1);
+  res.par = VI(n, -1);
+  res.dist = VLL(n, INF_LL);
+  res.dist[root] = 0;
+  fix([&](auto f, auto v)->void{
+    for (auto e : graph[v])
+      if (e.to != res.par[v])
+        res.dist[e.to] = res.dist[v] + e.cost,
+        res.par[e.to] = v,
+        f(e.to),
+        res.subtree_sz[v] += res.subtree_sz[e.to];
+  })(root);
+  return res;
+}
+#line 5 "tree/lca.cpp"
+
+struct LCA {
+ private:
   const int n;
   const int log2_n;
-public:
+
+ public:
   vector<vector<int>> parent;
   vector<int> depth;
-  lca(const Graph &g, int root)
-      : n(g.size()), log2_n(32 - __builtin_clz(n) + 1),
-        parent(log2_n, vector<int>(n)), depth(n) {
-    dfs(g, root, -1, 0);
-    rep(k, log2_n) {
+  LCA(const Graph& g, int root = 0)
+      : n(g.size()),
+        log2_n(32 - __builtin_clz(n) + 1),
+        parent(log2_n, vector<int>(n)),
+        depth(n) {
+    fix([&](auto f, int v, int p, int d) -> void {
+      parent[0][v] = p;
+      depth[v] = d;
+      for (auto& e : g[v]) {
+        if (e.to != p) f(e.to, v, d + 1);
+      }
+    })(root, -1, 0);
+    rep(k, log2_n - 1) {
       rep(v, n) {
         if (parent[k][v] < 0)
           parent[k + 1][v] = -1;
@@ -278,15 +339,8 @@ public:
       }
     }
   }
-private:
-  void dfs(const Graph &g, int v, int p, int d) {
-    parent[0][v] = p;
-    depth[v] = d;
-    for (auto &e : g[v]) {
-      if (e != p) dfs(g, e, v, d + 1);
-    }
-  }
-public:
+
+ public:
   int operator()(int u, int v) {
     if (depth[u] > depth[v]) swap(u, v);
     for (int k = 0; k < log2_n; k++) {
@@ -302,6 +356,10 @@ public:
       }
     }
     return parent[0][u];
+  }
+
+  int dist(int u, int v) {
+    return depth[u] + depth[v] - depth[(*this)(u, v)] * 2;
   }
 };
 

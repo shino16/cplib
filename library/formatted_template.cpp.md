@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/formatted_template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-11 16:02:38+09:00
+    - Last commit date: 2020-05-13 22:09:34+09:00
 
 
 
@@ -161,7 +161,7 @@ struct Edge {
   ll cost;
   Edge(int _to) : to(_to), cost(1) {}
   Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
-  operator int() { return to; }
+  operator int() const { return to; }
 };
 using Graph = vector<vector<Edge>>;
 // IO
@@ -547,7 +547,7 @@ struct Edge {
   ll cost;
   Edge(int _to) : to(_to), cost(1) {}
   Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
-  operator int() { return to; }
+  operator int() const { return to; }
 };
 using Graph = vector<vector<Edge>>;
 // IO
