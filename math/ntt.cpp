@@ -1,7 +1,7 @@
 #pragma once
 
 #include "template.cpp"
-#include "util/modint.cpp"
+#include "math/modint.cpp"
 
 constexpr ll mods(int x) {
   const ll v[] = {1012924417, 924844033, 998244353, 897581057, 645922817};

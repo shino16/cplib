@@ -1,7 +1,7 @@
 #pragma once
 
 #include "template.cpp"
-#include "util/modint.cpp"
+#include "math/modint.cpp"
 
 template <ll Mod>
 vector<modint<Mod>> prepare_inv(int n) {

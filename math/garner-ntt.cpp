@@ -2,7 +2,7 @@
 
 #include "math/ntt.cpp"
 #include "template.cpp"
-#include "util/modint.cpp"
+#include "math/modint.cpp"
 
 namespace Garner {
 
