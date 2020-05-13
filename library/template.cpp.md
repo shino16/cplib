@@ -49,6 +49,7 @@ layout: default
 * :heavy_check_mark: <a href="data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :warning: <a href="data-structure/weighted-union-find.cpp.html">data-structure/weighted-union-find.cpp</a>
 * :warning: <a href="geometry/Pt.cpp.html">geometry/Pt.cpp</a>
+* :warning: <a href="graph/all-pairs-shortest-path.cpp.html">graph/all-pairs-shortest-path.cpp</a>
 * :warning: <a href="graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
 * :warning: <a href="graph/bfs.cpp.html">graph/bfs.cpp</a>
 * :heavy_check_mark: <a href="graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
