@@ -2,13 +2,13 @@
 
 #include "template.cpp"
 
-class union_find {
+class UnionFind {
  private:
   int n, cnt;
   vector<int> par, rank, sz;
 
  public:
-  union_find(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
+  UnionFind(int _n) : n(_n), cnt(_n), par(_n), rank(_n), sz(_n, 1) {
     iota(all(par), 0);
   }
   int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }

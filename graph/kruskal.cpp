@@ -20,7 +20,7 @@ pair<ll, vector<FEdge>> kruskal(const Graph& graph) {
 
   ll total = 0;
   vector<FEdge> res;
-  union_find uf(n);
+  UnionFind uf(n);
   for (auto e : edges) if (not uf.same(e.from, e.to))
     total += e.cost, uf.merge(e.from, e.to);
   return make_pair(total, move(res));

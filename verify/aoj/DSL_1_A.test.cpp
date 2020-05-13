@@ -5,7 +5,7 @@
 
 int main() {
   int n = IN, q = IN;
-  union_find uf(n);
+  UnionFind uf(n);
   rep(q) {
     int c = IN, x = IN, y = IN;
     if (c == 0) uf.merge(x, y);

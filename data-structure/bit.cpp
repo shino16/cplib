@@ -29,6 +29,7 @@ class BIT {
   }
   // sum over [l, r)
   ll sum(int l, int r) { return sum(r) - sum(l); }
+  void clear() { fill(all(data), 0); }
   void assign(int p, ll v) { add(p, v - sum(p, p + 1)); }
   bool chmax(int p, ll v) {
     if (sum(p, p + 1) < v) {
