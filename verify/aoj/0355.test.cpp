@@ -4,6 +4,7 @@
 #include "string/rolling-hash.cpp"
 #include "data-structure/lazy-segtree.cpp"
 #include "string/hash-monoid.cpp"
+#include "util/fast-io.cpp"
 
 int main() {
   int n = IN;

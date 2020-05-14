@@ -2,6 +2,7 @@
 
 #include "template.cpp"
 #include "graph/dijkstra.cpp"
+#include "util/fast-io.cpp"
 
 int main() {
   int n = IN, m = IN, r = IN;

@@ -5,6 +5,7 @@
 #include "data-structure/segtree.cpp"
 #include "tree/hld.cpp"
 #include "util/compress.cpp"
+#include "util/fast-io.cpp"
 
 struct Path {
   array<int, 2> to;

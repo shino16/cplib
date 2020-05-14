@@ -3,6 +3,7 @@
 #include "template.cpp"
 #include "util/compress.cpp"
 #include "data-structure/bit.cpp"
+#include "util/fast-io.cpp"
 
 int main() {
   int n = IN, c = IN;

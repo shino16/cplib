@@ -2,6 +2,7 @@
 
 #include "template.cpp"
 #include "data-structure/bit-2d.cpp"
+#include "util/fast-io.cpp"
 
 int main() {
   int h = IN, w = IN, T = IN, q = IN;

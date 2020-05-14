@@ -1,7 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
 #include "template.cpp"
 #include "data-structure/union-find.cpp"
-
+#include "util/fast-io.cpp"
 
 int main() {
   int n = IN, q = IN;

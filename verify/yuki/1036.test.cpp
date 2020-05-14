@@ -2,6 +2,7 @@
 
 #include "template.cpp"
 #include "data-structure/disjoint-sparse-table.cpp"
+#include "util/fast-io.cpp"
 
 int main() {
   int n = IN;
