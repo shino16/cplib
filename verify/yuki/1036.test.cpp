@@ -7,7 +7,7 @@
 int main() {
   int n = IN;
   auto a = IN.vll(n);
-  DisjointSparseTable dst(all(a), __gcd<ll>);
+  DisjointSparseTable dst(all(a), 0, __gcd<ll>);
   ll res = 0;
   int r = 0;
   rep(l, n) {

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "template.cpp"
+#include "graph/graph.cpp"
 #include "tree/dfs.cpp"
 
 struct LCA {

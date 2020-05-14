@@ -1,6 +1,7 @@
 #pragma once
 
 #include "template.cpp"
+#include "graph/graph.cpp"
 #include "util/fix.cpp"
 
 struct DFS {

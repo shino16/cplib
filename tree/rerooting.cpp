@@ -1,6 +1,7 @@
 #pragma once
 
 #include "template.cpp"
+#include "graph/graph.cpp"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"
