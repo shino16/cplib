@@ -31,15 +31,15 @@ layout: default
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/diameter.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-14 23:02:46+09:00
+    - Last commit date: 2020-05-14 23:32:59+09:00
 
 
 
 
 ## Depends on
 
-* :x: <a href="../template.cpp.html">template.cpp</a>
-* :x: <a href="../util/fix.cpp.html">util/fix.cpp</a>
+* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../util/fix.cpp.html">util/fix.cpp</a>
 
 
 ## Code
@@ -110,7 +110,19 @@ constexpr ll INF_LL = 1'000'000'000'000'000'007;
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl '\n'
-#define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
+
+// loops rep(until) / rep(var, until) / rep(var, from, until) / repr (reversed order)
+#define OVERLOAD3(_1, _2, _3, name, ...) name
+#define rep(...) OVERLOAD3(__VA_ARGS__, REPEAT_FROM_UNTIL, REPEAT_UNTIL, REPEAT)(__VA_ARGS__)
+#define REPEAT(times) REPEAT_CNT(_repeat, __COUNTER__, times)
+#define REPEAT_CNT(_repeat, cnt, times) REPEAT_CNT_CAT(_repeat, cnt, times)
+#define REPEAT_CNT_CAT(_repeat, cnt, times) REPEAT_FROM_UNTIL(_repeat ## cnt, 0, times)
+#define REPEAT_UNTIL(name, times) REPEAT_FROM_UNTIL(name, 0, times)
+#define REPEAT_FROM_UNTIL(name, from, until) for (int name = from, name ## __until = (until); name < name ## __until; name++)
+#define repr(...) OVERLOAD3(__VA_ARGS__, REPR_FROM_UNTIL, REPR_UNTIL, REPEAT)(__VA_ARGS__)
+#define REPR_UNTIL(name, times) REPR_FROM_UNTIL(name, 0, times)
+#define REPR_FROM_UNTIL(name, from, until) for (int name = (until)-1, name ## __from = (from); name >= name ## __from; name--)
+
 template <typename T, typename U>
 bool chmin(T& var, U x) { if (var > x) { var = x; return true; } else return false; }
 template <typename T, typename U>
@@ -128,6 +140,7 @@ template <typename... Ts> auto make_v(size_t a, Ts... ts) {
 }
 
 // debug stuff
+#define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
 class DebugPrint { public: template <typename T> DebugPrint& operator <<(const T& v) {
 #ifdef LOCAL
     cerr << v;
@@ -147,20 +160,6 @@ tail)...); }
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
 #pragma GCC diagnostic pop
-
-
-// loops rep(until) / rep(var, until) / rep(var, from, until) / repr (reversed order)
-#define OVERLOAD3(_1, _2, _3, name, ...) name
-#define rep(...) OVERLOAD3(__VA_ARGS__, REPEAT_FROM_UNTIL, REPEAT_UNTIL, REPEAT)(__VA_ARGS__)
-#define REPEAT(times) REPEAT_CNT(_repeat, __COUNTER__, times)
-#define REPEAT_CNT(_repeat, cnt, times) REPEAT_CNT_CAT(_repeat, cnt, times)
-#define REPEAT_CNT_CAT(_repeat, cnt, times) REPEAT_FROM_UNTIL(_repeat ## cnt, 0, times)
-#define REPEAT_UNTIL(name, times) REPEAT_FROM_UNTIL(name, 0, times)
-#define REPEAT_FROM_UNTIL(name, from, until) for (int name = from, name ## __until = (until); name < name ## __until; name++)
-#define repr(...) OVERLOAD3(__VA_ARGS__, REPR_FROM_UNTIL, REPR_UNTIL, REPEAT)(__VA_ARGS__)
-#define REPR_UNTIL(name, times) REPR_FROM_UNTIL(name, 0, times)
-#define REPR_FROM_UNTIL(name, from, until) for (int name = (until)-1, name ## __from = (from); name >= name ## __from; name--)
-
 
 
 #line 2 "util/fix.cpp"
