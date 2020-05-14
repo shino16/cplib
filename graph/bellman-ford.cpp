@@ -1,6 +1,7 @@
 #pragma once
 
 #include "template.cpp"
+#include "graph/graph.cpp"
 
 // empty if the given graph has a negative cycle
 VLL bellman_ford(const Graph& graph, int start) {

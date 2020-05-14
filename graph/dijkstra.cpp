@@ -1,6 +1,7 @@
 #pragma once
 
 #include "template.cpp"
+#include "graph/graph.cpp"
 #include "data-structure/binary-heap.cpp"
 
 vector<ll> dijkstra(const Graph& graph, int start) {

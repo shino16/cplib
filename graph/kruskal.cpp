@@ -1,7 +1,8 @@
 #pragma once
 
-#include "data-structure/union-find.cpp"
 #include "template.cpp"
+#include "graph/graph.cpp"
+#include "data-structure/union-find.cpp"
 
 struct FEdge {
   int from, to;

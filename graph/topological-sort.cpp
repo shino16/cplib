@@ -1,6 +1,7 @@
 #pragma once
 
 #include "template.cpp"
+#include "graph/graph.cpp"
 
 // O(V+E)
 // DAG <==> res.size() == graph.size()
