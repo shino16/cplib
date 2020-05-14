@@ -133,7 +133,7 @@ layout: default
 * :warning: <a href="library/util/acc-2d.cpp.html">util/acc-2d.cpp</a>
 * :x: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="library/util/doubling.cpp.html">util/doubling.cpp</a>
-* :warning: <a href="library/util/fast-io.cpp.html">util/fast-io.cpp</a>
+* :x: <a href="library/util/fast-io.cpp.html">util/fast-io.cpp</a>
 * :x: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
 * :x: <a href="library/util/function-objects.cpp.html">util/function-objects.cpp</a>
 * :warning: <a href="library/util/hack-pque.cpp.html">util/hack-pque.cpp</a>
