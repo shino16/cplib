@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: tree/lca.cpp
+# :x: graph/graph.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
-* <a href="{{ site.github.repository_url }}/blob/master/tree/lca.cpp">View this file on GitHub</a>
+* category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
+* <a href="{{ site.github.repository_url }}/blob/master/graph/graph.cpp">View this file on GitHub</a>
     - Last commit date: 2020-05-14 23:02:46+09:00
 
 
@@ -39,8 +39,25 @@ layout: default
 ## Depends on
 
 * :x: <a href="../template.cpp.html">template.cpp</a>
-* :warning: <a href="dfs.cpp.html">tree/dfs.cpp</a>
-* :x: <a href="../util/fix.cpp.html">util/fix.cpp</a>
+
+
+## Required by
+
+* :warning: <a href="all-pairs-shortest-path.cpp.html">graph/all-pairs-shortest-path.cpp</a>
+* :warning: <a href="bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
+* :warning: <a href="bfs.cpp.html">graph/bfs.cpp</a>
+* :x: <a href="dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :warning: <a href="kruskal.cpp.html">graph/kruskal.cpp</a>
+* :warning: <a href="prim.cpp.html">graph/prim.cpp</a>
+* :x: <a href="strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
+* :warning: <a href="topological-sort.cpp.html">graph/topological-sort.cpp</a>
+* :warning: <a href="two-edge-connected-components.cpp.html">graph/two-edge-connected-components.cpp</a>
+
+
+## Verified with
+
+* :x: <a href="../../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
+* :x: <a href="../../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
 
 
 ## Code
@@ -51,67 +68,23 @@ layout: default
 #pragma once
 
 #include "template.cpp"
-#include "tree/dfs.cpp"
 
-struct LCA {
- private:
-  const int n;
-  const int log2_n;
-
- public:
-  vector<vector<int>> parent;
-  vector<int> depth;
-  LCA(const Graph& g, int root = 0)
-      : n(g.size()),
-        log2_n(32 - __builtin_clz(n) + 1),
-        parent(log2_n, vector<int>(n)),
-        depth(n) {
-    fix([&](auto f, int v, int p, int d) -> void {
-      parent[0][v] = p;
-      depth[v] = d;
-      for (auto& e : g[v]) {
-        if (e.to != p) f(e.to, v, d + 1);
-      }
-    })(root, -1, 0);
-    rep(k, log2_n - 1) {
-      rep(v, n) {
-        if (parent[k][v] < 0)
-          parent[k + 1][v] = -1;
-        else
-          parent[k + 1][v] = parent[k][parent[k][v]];
-      }
-    }
-  }
-
- public:
-  int operator()(int u, int v) {
-    if (depth[u] > depth[v]) swap(u, v);
-    for (int k = 0; k < log2_n; k++) {
-      if ((depth[v] - depth[u]) >> k & 1) {
-        v = parent[k][v];
-      }
-    }
-    if (u == v) return u;
-    for (int k = log2_n - 1; k >= 0; k--) {
-      if (parent[k][u] != parent[k][v]) {
-        u = parent[k][u];
-        v = parent[k][v];
-      }
-    }
-    return parent[0][u];
-  }
-
-  int dist(int u, int v) {
-    return depth[u] + depth[v] - depth[(*this)(u, v)] * 2;
-  }
+struct Edge {
+  int to; ll cost;
+  Edge(int _to) : to(_to), cost(1) {}
+  Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
+  operator int() const { return to; }
 };
+
+using Graph = vector<vector<Edge>>;
+
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "tree/lca.cpp"
+#line 2 "graph/graph.cpp"
 
 #line 2 "template.cpp"
 
@@ -200,105 +173,16 @@ tail)...); }
 
 
 
-#line 2 "tree/dfs.cpp"
+#line 4 "graph/graph.cpp"
 
-#line 2 "util/fix.cpp"
-
-#line 4 "util/fix.cpp"
-
-template <typename F>
-class FixPoint : private F {
- public:
-  explicit constexpr FixPoint(F&& f) : F(forward<F>(f)) {}
-
-  template <typename... Args>
-  constexpr decltype(auto) operator()(Args&&... args) const {
-    return F::operator()(*this, forward<Args>(args)...);
-  }
+struct Edge {
+  int to; ll cost;
+  Edge(int _to) : to(_to), cost(1) {}
+  Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
+  operator int() const { return to; }
 };
 
-template <typename F> decltype(auto) fix(F&& f) noexcept {
-  return FixPoint<F>{forward<F>(f)};
-}
-#line 5 "tree/dfs.cpp"
-
-struct DFS {
-  VI subtree_sz, par;
-  VLL dist;
-};
-
-// tree
-DFS dfs(const Graph& graph, int root = 0) {
-  int n = graph.size();
-  DFS res;
-  res.subtree_sz = VI(n, 1);
-  res.par = VI(n, -1);
-  res.dist = VLL(n, INF_LL);
-  res.dist[root] = 0;
-  fix([&](auto f, auto v)->void{
-    for (auto e : graph[v])
-      if (e.to != res.par[v])
-        res.dist[e.to] = res.dist[v] + e.cost,
-        res.par[e.to] = v,
-        f(e.to),
-        res.subtree_sz[v] += res.subtree_sz[e.to];
-  })(root);
-  return res;
-}
-#line 5 "tree/lca.cpp"
-
-struct LCA {
- private:
-  const int n;
-  const int log2_n;
-
- public:
-  vector<vector<int>> parent;
-  vector<int> depth;
-  LCA(const Graph& g, int root = 0)
-      : n(g.size()),
-        log2_n(32 - __builtin_clz(n) + 1),
-        parent(log2_n, vector<int>(n)),
-        depth(n) {
-    fix([&](auto f, int v, int p, int d) -> void {
-      parent[0][v] = p;
-      depth[v] = d;
-      for (auto& e : g[v]) {
-        if (e.to != p) f(e.to, v, d + 1);
-      }
-    })(root, -1, 0);
-    rep(k, log2_n - 1) {
-      rep(v, n) {
-        if (parent[k][v] < 0)
-          parent[k + 1][v] = -1;
-        else
-          parent[k + 1][v] = parent[k][parent[k][v]];
-      }
-    }
-  }
-
- public:
-  int operator()(int u, int v) {
-    if (depth[u] > depth[v]) swap(u, v);
-    for (int k = 0; k < log2_n; k++) {
-      if ((depth[v] - depth[u]) >> k & 1) {
-        v = parent[k][v];
-      }
-    }
-    if (u == v) return u;
-    for (int k = log2_n - 1; k >= 0; k--) {
-      if (parent[k][u] != parent[k][v]) {
-        u = parent[k][u];
-        v = parent[k][v];
-      }
-    }
-    return parent[0][u];
-  }
-
-  int dist(int u, int v) {
-    return depth[u] + depth[v] - depth[(*this)(u, v)] * 2;
-  }
-};
+using Graph = vector<vector<Edge>>;
 
 ```
 {% endraw %}

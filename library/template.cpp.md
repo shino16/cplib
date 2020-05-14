@@ -25,37 +25,38 @@ layout: default
 <link rel="stylesheet" href="../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: template.cpp
+# :x: template.cpp
 
 <a href="../index.html">Back to top page</a>
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-13 22:09:34+09:00
+    - Last commit date: 2020-05-14 23:02:46+09:00
 
 
 
 
 ## Required by
 
-* :heavy_check_mark: <a href="data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
-* :heavy_check_mark: <a href="data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
-* :heavy_check_mark: <a href="data-structure/bit.cpp.html">data-structure/bit.cpp</a>
-* :heavy_check_mark: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
+* :x: <a href="data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
+* :x: <a href="data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
+* :x: <a href="data-structure/bit.cpp.html">data-structure/bit.cpp</a>
+* :x: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :warning: <a href="data-structure/hash-table.cpp.html">data-structure/hash-table.cpp</a>
-* :heavy_check_mark: <a href="data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
-* :heavy_check_mark: <a href="data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
+* :x: <a href="data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
+* :x: <a href="data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :warning: <a href="data-structure/swag.cpp.html">data-structure/swag.cpp</a>
-* :heavy_check_mark: <a href="data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
+* :x: <a href="data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :warning: <a href="data-structure/weighted-union-find.cpp.html">data-structure/weighted-union-find.cpp</a>
 * :warning: <a href="geometry/Pt.cpp.html">geometry/Pt.cpp</a>
 * :warning: <a href="graph/all-pairs-shortest-path.cpp.html">graph/all-pairs-shortest-path.cpp</a>
 * :warning: <a href="graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
 * :warning: <a href="graph/bfs.cpp.html">graph/bfs.cpp</a>
-* :heavy_check_mark: <a href="graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :x: <a href="graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :x: <a href="graph/graph.cpp.html">graph/graph.cpp</a>
 * :warning: <a href="graph/kruskal.cpp.html">graph/kruskal.cpp</a>
 * :warning: <a href="graph/prim.cpp.html">graph/prim.cpp</a>
-* :heavy_check_mark: <a href="graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
+* :x: <a href="graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
 * :warning: <a href="graph/topological-sort.cpp.html">graph/topological-sort.cpp</a>
 * :warning: <a href="graph/two-edge-connected-components.cpp.html">graph/two-edge-connected-components.cpp</a>
 * :warning: <a href="math/approximate.cpp.html">math/approximate.cpp</a>
@@ -74,19 +75,19 @@ layout: default
 * :warning: <a href="math/prepare_inv.cpp.html">math/prepare_inv.cpp</a>
 * :warning: <a href="math/squarematrix.cpp.html">math/squarematrix.cpp</a>
 * :warning: <a href="math/totient.cpp.html">math/totient.cpp</a>
-* :heavy_check_mark: <a href="string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
-* :heavy_check_mark: <a href="string/rolling-hash.cpp.html">string/rolling-hash.cpp</a>
+* :x: <a href="string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
+* :x: <a href="string/rolling-hash.cpp.html">string/rolling-hash.cpp</a>
 * :warning: <a href="tree/dfs.cpp.html">tree/dfs.cpp</a>
 * :warning: <a href="tree/diameter.cpp.html">tree/diameter.cpp</a>
 * :warning: <a href="tree/euler-tour.cpp.html">tree/euler-tour.cpp</a>
-* :heavy_check_mark: <a href="tree/hld.cpp.html">tree/hld.cpp</a>
+* :x: <a href="tree/hld.cpp.html">tree/hld.cpp</a>
 * :warning: <a href="tree/lca.cpp.html">tree/lca.cpp</a>
 * :warning: <a href="tree/rerooting.cpp.html">tree/rerooting.cpp</a>
 * :warning: <a href="util/acc-2d.cpp.html">util/acc-2d.cpp</a>
-* :heavy_check_mark: <a href="util/compress.cpp.html">util/compress.cpp</a>
+* :x: <a href="util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="util/doubling.cpp.html">util/doubling.cpp</a>
-* :heavy_check_mark: <a href="util/fix.cpp.html">util/fix.cpp</a>
-* :heavy_check_mark: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
+* :x: <a href="util/fix.cpp.html">util/fix.cpp</a>
+* :x: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
 * :warning: <a href="util/hack-pque.cpp.html">util/hack-pque.cpp</a>
 * :warning: <a href="util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="util/mapping.cpp.html">util/mapping.cpp</a>
@@ -96,14 +97,14 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
+* :x: <a href="../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
 
 
 ## Code
@@ -113,8 +114,6 @@ layout: default
 ```cpp
 #pragma once
 
-// please jump to around L150 to see the actual code
-
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"
 #pragma GCC optimize("O3")
@@ -125,7 +124,6 @@ layout: default
 #include <bitset>
 #include <cassert>
 #include <cmath>
-#include <cstring>
 #include <functional>
 #include <iostream>
 #include <map>
@@ -133,9 +131,6 @@ layout: default
 #include <queue>
 #include <set>
 #include <stack>
-#include <tuple>
-#include <utility>
-#include <vector>
 using namespace std;
 using ll = long long;
 using ull = unsigned long long;
@@ -151,92 +146,24 @@ constexpr ll INF_LL = 1'000'000'000'000'000'007;
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl '\n'
-#define OVERLOAD3(_1, _2, _3, name, ...) name
-#define rep(...) OVERLOAD3(__VA_ARGS__, REPEAT_FROM_UNTIL, REPEAT_UNTIL, REPEAT)(__VA_ARGS__)
-#define REPEAT(times) REPEAT_CNT(_repeat, __COUNTER__, times)
-#define REPEAT_CNT(_repeat, cnt, times) REPEAT_CNT_CAT(_repeat, cnt, times)
-#define REPEAT_CNT_CAT(_repeat, cnt, times) REPEAT_FROM_UNTIL(_repeat ## cnt, 0, times)
-#define REPEAT_UNTIL(name, times) REPEAT_FROM_UNTIL(name, 0, times)
-#define REPEAT_FROM_UNTIL(name, from, until) for (int name = from, name ## __until = (until); name < name ## __until; name++)
-#define repr(...) OVERLOAD3(__VA_ARGS__, REPR_FROM_UNTIL, REPR_UNTIL, REPEAT)(__VA_ARGS__)
-#define REPR_UNTIL(name, times) REPR_FROM_UNTIL(name, 0, times)
-#define REPR_FROM_UNTIL(name, from, until) for (int name = (until)-1, name ## __from = (from); name >= name ## __from; name--)
 #define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
 template <typename T, typename U>
 bool chmin(T& var, U x) { if (var > x) { var = x; return true; } else return false; }
 template <typename T, typename U>
 bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return false; }
-template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
 ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1; for (; t; t >>= 1, (e *= e) %= mod) if (t & 1) (res *= e) %= mod; return res;
 }
 ll choose(ll n, int r) {
   chmin(r, n-r); if (r < 0) return 0; ll res = 1; rep(i, r) res *= n-i, res /= i+1; return res;
 }
-template <typename T> T divceil(T m, T d) { assert(m >= 0 and d > 0); return (m + d - 1) / d; }
+template <typename T> T divceil(T m, T d) { return (m + d - 1) / d; }
 template <typename T> vector<T> make_v(size_t a, T b) { return vector<T>(a, b); }
 template <typename... Ts> auto make_v(size_t a, Ts... ts) {
   return vector<decltype(make_v(ts...))>(a, make_v(ts...));
 }
-string operator*(const string& s, int times) {
-  string res = ""; rep(times) res += s; return res;
-}
-struct Edge {
-  int to; ll cost;
-  Edge(int _to) : to(_to), cost(1) {}
-  Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
-  operator int() const { return to; }
-};
-using Graph = vector<vector<Edge>>;
-// IO
-// formatted version of following is at https://shino-sky.github.io/cp-lib/library/formatted_template.cpp.html
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmisleading-indentation"
-class MyScanner { public: int offset = 0; char nc(){ return getchar(); }
-template <typename T> void input_integer(T& var) { var = 0; T sign = 1; int cc = nc(); for (;
-cc < '0' || '9' < cc; cc = nc()) if (cc == '-') sign = -1; for (; '0' <= cc && cc <= '9'; cc =
-nc()) var = (var << 3) + (var << 1) + cc - '0'; var = var * sign; var += offset; } int c() {
-char c; while (c = nc(), c == ' ' or c == '\n'); return c; } MyScanner& operator>>(char& var)
-{ var = c(); return *this; } MyScanner& operator>>(int& var) { input_integer<int>(var); return
-*this; } MyScanner& operator>>(ll& var) { input_integer<ll>(var); return *this; } MyScanner&
-operator>>(string& var) { var = ""; int cc = nc(); for (; !isgraph(cc); cc = nc()); for
-(; isgraph(cc); cc = nc()) var.push_back(cc); return *this; } template <size_t N>
-MyScanner& operator>>(bitset<N>& var) { ll v; input_integer<ll>(v); var = bitset<N>(v); return
-*this; } template <typename T> operator T() { T x; *this >> x; return x; } template <typename
-T> void operator()(T &t) { *this >> t; } template <typename T, typename... Ts> void operator()
-(T &t, Ts &...ts) { *this >> t; this->operator()(ts...); } template <typename Iter> void iter
-(Iter first, Iter last) { while (first != last) *this >> *first, first++; } VI vi(int n) { VI
-res(n); iter(all(res)); return res; } VVI vvi(int n, int m) { VVI res(n); rep(i, n) res[i] =
-vi(m); return res; } VLL vll(int n) { VLL res(n); iter(all(res)); return res; } VVLL vvll(int
-n, int m) { VVLL res(n); rep(i, n) res[i] = vll(m); return res; } template <typename T> vector
-<T> v(int n) { vector<T> res(n); iter(all(res)); return res; } } IN, IN1{-1}; class MyPrinter
-{ public: int offset = 0; template <typename T> void output_integer(T var) { var += offset; if
-(var == 0) { putchar('0'); return; } if (var < 0) putchar('-'), var = -var; char stack[32];
-int stack_p = 0; while (var) stack[stack_p++] = '0' + (var % 10), var /= 10; while (stack_p)
-putchar(stack[--stack_p]); } MyPrinter& operator<<(char c) { putchar(c); return *this; }
-MyPrinter& operator<<(double x) { printf("%.10f", x); return *this; } template <typename T>
-MyPrinter& operator<<(T var) { output_integer<T>(var); return *this; } MyPrinter& operator<<(
-char* str_p) { while (*str_p) putchar(*(str_p++)); return *this; } MyPrinter& operator<<(const
-char* str_p) { while (*str_p) putchar(*(str_p++)); return *this; } MyPrinter& operator<<(const
-string& str) { const char* p = str.c_str(); const char* l = p + str.size(); while (p < l)
-putchar(*p++); return *this; } template <typename T> void operator()(T x) { *this << x << newl
-; } template <typename T, typename... Ts> void operator()(T x, Ts ...xs) { *this << x << " ";
-this->operator()(xs...); } template <typename Iter> void iter(Iter s, Iter t) { if (s == t) *
-this << "\n"; else for (; s != t; s++) *this << *s << " \n"[next(s, 1) == t]; } } OUT, OUT1{1}
-; template <typename T, typename U> MyPrinter& operator<<(MyPrinter& out, const pair<T, U>&
-var) { return out << var.first << " " << var.second; } template <typename Tuple, size_t I,
-size_t N, enable_if_t<I == N>* = nullptr> MyPrinter& tuple_impl(MyPrinter& out, const Tuple&
-var) { return out; } template <typename Tuple, size_t I, size_t N, enable_if_t<I != N>* =
-nullptr> MyPrinter& tuple_impl(MyPrinter& out, const Tuple& var) { out << get<I>(var) << " ";
-return tuple_impl<Tuple, I+1, N>(out, var); } template <typename... Ts> MyPrinter& operator<<(
-MyPrinter& out, const tuple<Ts...>& var) { return tuple_impl<tuple<Ts...>, 0, sizeof...(Ts)>(
-out, var); } template <typename T, typename U> MyScanner& operator>>(MyScanner& in, pair<T, U>
-& var) { return in >> var.first >> var.second; } template <typename Tuple, size_t I, size_t N,
-enable_if_t<I == N>* = nullptr> MyScanner& tuple_impl(MyScanner& in, Tuple& var) { return in;
-} template <typename Tuple, size_t I, size_t N, enable_if_t<I != N>* = nullptr> MyScanner&
-tuple_impl(MyScanner& in, Tuple& var) { in >> get<I>(var); return tuple_impl<Tuple, I+1, N>(in
-, var); } template <typename... Ts> MyScanner& operator>>(MyScanner& in, tuple<Ts...>& var) {
-return tuple_impl<tuple<Ts...>, 0, sizeof...(Ts)>(in, var); }
+
+// debug stuff
 class DebugPrint { public: template <typename T> DebugPrint& operator <<(const T& v) {
 #ifdef LOCAL
     cerr << v;
@@ -258,9 +185,20 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
+// loops rep(until) / rep(var, until) / rep(var, from, until) / repr (reversed order)
+#define OVERLOAD3(_1, _2, _3, name, ...) name
+#define rep(...) OVERLOAD3(__VA_ARGS__, REPEAT_FROM_UNTIL, REPEAT_UNTIL, REPEAT)(__VA_ARGS__)
+#define REPEAT(times) REPEAT_CNT(_repeat, __COUNTER__, times)
+#define REPEAT_CNT(_repeat, cnt, times) REPEAT_CNT_CAT(_repeat, cnt, times)
+#define REPEAT_CNT_CAT(_repeat, cnt, times) REPEAT_FROM_UNTIL(_repeat ## cnt, 0, times)
+#define REPEAT_UNTIL(name, times) REPEAT_FROM_UNTIL(name, 0, times)
+#define REPEAT_FROM_UNTIL(name, from, until) for (int name = from, name ## __until = (until); name < name ## __until; name++)
+#define repr(...) OVERLOAD3(__VA_ARGS__, REPR_FROM_UNTIL, REPR_UNTIL, REPEAT)(__VA_ARGS__)
+#define REPR_UNTIL(name, times) REPR_FROM_UNTIL(name, 0, times)
+#define REPR_FROM_UNTIL(name, from, until) for (int name = (until)-1, name ## __from = (from); name >= name ## __from; name--)
 
 
-// actual code below
+
 
 ```
 {% endraw %}
@@ -270,8 +208,6 @@ tail)...); }
 ```cpp
 #line 2 "template.cpp"
 
-// please jump to around L150 to see the actual code
-
 #ifndef LOCAL
 #pragma GCC diagnostic warning "-w"
 #pragma GCC optimize("O3")
@@ -282,7 +218,6 @@ tail)...); }
 #include <bitset>
 #include <cassert>
 #include <cmath>
-#include <cstring>
 #include <functional>
 #include <iostream>
 #include <map>
@@ -290,9 +225,6 @@ tail)...); }
 #include <queue>
 #include <set>
 #include <stack>
-#include <tuple>
-#include <utility>
-#include <vector>
 using namespace std;
 using ll = long long;
 using ull = unsigned long long;
@@ -308,92 +240,24 @@ constexpr ll INF_LL = 1'000'000'000'000'000'007;
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 #define newl '\n'
-#define OVERLOAD3(_1, _2, _3, name, ...) name
-#define rep(...) OVERLOAD3(__VA_ARGS__, REPEAT_FROM_UNTIL, REPEAT_UNTIL, REPEAT)(__VA_ARGS__)
-#define REPEAT(times) REPEAT_CNT(_repeat, __COUNTER__, times)
-#define REPEAT_CNT(_repeat, cnt, times) REPEAT_CNT_CAT(_repeat, cnt, times)
-#define REPEAT_CNT_CAT(_repeat, cnt, times) REPEAT_FROM_UNTIL(_repeat ## cnt, 0, times)
-#define REPEAT_UNTIL(name, times) REPEAT_FROM_UNTIL(name, 0, times)
-#define REPEAT_FROM_UNTIL(name, from, until) for (int name = from, name ## __until = (until); name < name ## __until; name++)
-#define repr(...) OVERLOAD3(__VA_ARGS__, REPR_FROM_UNTIL, REPR_UNTIL, REPEAT)(__VA_ARGS__)
-#define REPR_UNTIL(name, times) REPR_FROM_UNTIL(name, 0, times)
-#define REPR_FROM_UNTIL(name, from, until) for (int name = (until)-1, name ## __from = (from); name >= name ## __from; name--)
 #define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
 template <typename T, typename U>
 bool chmin(T& var, U x) { if (var > x) { var = x; return true; } else return false; }
 template <typename T, typename U>
 bool chmax(T& var, U x) { if (var < x) { var = x; return true; } else return false; }
-template <typename T> int sgn(T val) { return (T(0) < val) - (val < T(0)); }
 ll power(ll e, ll t, ll mod = INF_LL) {
   ll res = 1; for (; t; t >>= 1, (e *= e) %= mod) if (t & 1) (res *= e) %= mod; return res;
 }
 ll choose(ll n, int r) {
   chmin(r, n-r); if (r < 0) return 0; ll res = 1; rep(i, r) res *= n-i, res /= i+1; return res;
 }
-template <typename T> T divceil(T m, T d) { assert(m >= 0 and d > 0); return (m + d - 1) / d; }
+template <typename T> T divceil(T m, T d) { return (m + d - 1) / d; }
 template <typename T> vector<T> make_v(size_t a, T b) { return vector<T>(a, b); }
 template <typename... Ts> auto make_v(size_t a, Ts... ts) {
   return vector<decltype(make_v(ts...))>(a, make_v(ts...));
 }
-string operator*(const string& s, int times) {
-  string res = ""; rep(times) res += s; return res;
-}
-struct Edge {
-  int to; ll cost;
-  Edge(int _to) : to(_to), cost(1) {}
-  Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
-  operator int() const { return to; }
-};
-using Graph = vector<vector<Edge>>;
-// IO
-// formatted version of following is at https://shino-sky.github.io/cp-lib/library/formatted_template.cpp.html
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmisleading-indentation"
-class MyScanner { public: int offset = 0; char nc(){ return getchar(); }
-template <typename T> void input_integer(T& var) { var = 0; T sign = 1; int cc = nc(); for (;
-cc < '0' || '9' < cc; cc = nc()) if (cc == '-') sign = -1; for (; '0' <= cc && cc <= '9'; cc =
-nc()) var = (var << 3) + (var << 1) + cc - '0'; var = var * sign; var += offset; } int c() {
-char c; while (c = nc(), c == ' ' or c == '\n'); return c; } MyScanner& operator>>(char& var)
-{ var = c(); return *this; } MyScanner& operator>>(int& var) { input_integer<int>(var); return
-*this; } MyScanner& operator>>(ll& var) { input_integer<ll>(var); return *this; } MyScanner&
-operator>>(string& var) { var = ""; int cc = nc(); for (; !isgraph(cc); cc = nc()); for
-(; isgraph(cc); cc = nc()) var.push_back(cc); return *this; } template <size_t N>
-MyScanner& operator>>(bitset<N>& var) { ll v; input_integer<ll>(v); var = bitset<N>(v); return
-*this; } template <typename T> operator T() { T x; *this >> x; return x; } template <typename
-T> void operator()(T &t) { *this >> t; } template <typename T, typename... Ts> void operator()
-(T &t, Ts &...ts) { *this >> t; this->operator()(ts...); } template <typename Iter> void iter
-(Iter first, Iter last) { while (first != last) *this >> *first, first++; } VI vi(int n) { VI
-res(n); iter(all(res)); return res; } VVI vvi(int n, int m) { VVI res(n); rep(i, n) res[i] =
-vi(m); return res; } VLL vll(int n) { VLL res(n); iter(all(res)); return res; } VVLL vvll(int
-n, int m) { VVLL res(n); rep(i, n) res[i] = vll(m); return res; } template <typename T> vector
-<T> v(int n) { vector<T> res(n); iter(all(res)); return res; } } IN, IN1{-1}; class MyPrinter
-{ public: int offset = 0; template <typename T> void output_integer(T var) { var += offset; if
-(var == 0) { putchar('0'); return; } if (var < 0) putchar('-'), var = -var; char stack[32];
-int stack_p = 0; while (var) stack[stack_p++] = '0' + (var % 10), var /= 10; while (stack_p)
-putchar(stack[--stack_p]); } MyPrinter& operator<<(char c) { putchar(c); return *this; }
-MyPrinter& operator<<(double x) { printf("%.10f", x); return *this; } template <typename T>
-MyPrinter& operator<<(T var) { output_integer<T>(var); return *this; } MyPrinter& operator<<(
-char* str_p) { while (*str_p) putchar(*(str_p++)); return *this; } MyPrinter& operator<<(const
-char* str_p) { while (*str_p) putchar(*(str_p++)); return *this; } MyPrinter& operator<<(const
-string& str) { const char* p = str.c_str(); const char* l = p + str.size(); while (p < l)
-putchar(*p++); return *this; } template <typename T> void operator()(T x) { *this << x << newl
-; } template <typename T, typename... Ts> void operator()(T x, Ts ...xs) { *this << x << " ";
-this->operator()(xs...); } template <typename Iter> void iter(Iter s, Iter t) { if (s == t) *
-this << "\n"; else for (; s != t; s++) *this << *s << " \n"[next(s, 1) == t]; } } OUT, OUT1{1}
-; template <typename T, typename U> MyPrinter& operator<<(MyPrinter& out, const pair<T, U>&
-var) { return out << var.first << " " << var.second; } template <typename Tuple, size_t I,
-size_t N, enable_if_t<I == N>* = nullptr> MyPrinter& tuple_impl(MyPrinter& out, const Tuple&
-var) { return out; } template <typename Tuple, size_t I, size_t N, enable_if_t<I != N>* =
-nullptr> MyPrinter& tuple_impl(MyPrinter& out, const Tuple& var) { out << get<I>(var) << " ";
-return tuple_impl<Tuple, I+1, N>(out, var); } template <typename... Ts> MyPrinter& operator<<(
-MyPrinter& out, const tuple<Ts...>& var) { return tuple_impl<tuple<Ts...>, 0, sizeof...(Ts)>(
-out, var); } template <typename T, typename U> MyScanner& operator>>(MyScanner& in, pair<T, U>
-& var) { return in >> var.first >> var.second; } template <typename Tuple, size_t I, size_t N,
-enable_if_t<I == N>* = nullptr> MyScanner& tuple_impl(MyScanner& in, Tuple& var) { return in;
-} template <typename Tuple, size_t I, size_t N, enable_if_t<I != N>* = nullptr> MyScanner&
-tuple_impl(MyScanner& in, Tuple& var) { in >> get<I>(var); return tuple_impl<Tuple, I+1, N>(in
-, var); } template <typename... Ts> MyScanner& operator>>(MyScanner& in, tuple<Ts...>& var) {
-return tuple_impl<tuple<Ts...>, 0, sizeof...(Ts)>(in, var); }
+
+// debug stuff
 class DebugPrint { public: template <typename T> DebugPrint& operator <<(const T& v) {
 #ifdef LOCAL
     cerr << v;
@@ -415,9 +279,20 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
+// loops rep(until) / rep(var, until) / rep(var, from, until) / repr (reversed order)
+#define OVERLOAD3(_1, _2, _3, name, ...) name
+#define rep(...) OVERLOAD3(__VA_ARGS__, REPEAT_FROM_UNTIL, REPEAT_UNTIL, REPEAT)(__VA_ARGS__)
+#define REPEAT(times) REPEAT_CNT(_repeat, __COUNTER__, times)
+#define REPEAT_CNT(_repeat, cnt, times) REPEAT_CNT_CAT(_repeat, cnt, times)
+#define REPEAT_CNT_CAT(_repeat, cnt, times) REPEAT_FROM_UNTIL(_repeat ## cnt, 0, times)
+#define REPEAT_UNTIL(name, times) REPEAT_FROM_UNTIL(name, 0, times)
+#define REPEAT_FROM_UNTIL(name, from, until) for (int name = from, name ## __until = (until); name < name ## __until; name++)
+#define repr(...) OVERLOAD3(__VA_ARGS__, REPR_FROM_UNTIL, REPR_UNTIL, REPEAT)(__VA_ARGS__)
+#define REPR_UNTIL(name, times) REPR_FROM_UNTIL(name, 0, times)
+#define REPR_FROM_UNTIL(name, from, until) for (int name = (until)-1, name ## __from = (from); name >= name ## __from; name--)
 
 
-// actual code below
+
 
 ```
 {% endraw %}
