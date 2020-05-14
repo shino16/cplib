@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: data-structure/disjoint-sparse-table.cpp
+# :x: data-structure/disjoint-sparse-table.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/disjoint-sparse-table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-14 23:32:59+09:00
+    - Last commit date: 2020-05-15 00:53:55+09:00
 
 
 
@@ -44,7 +44,7 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
+* :x: <a href="../../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
 
 
 ## Code
@@ -62,16 +62,18 @@ class DisjointSparseTable {
  private:
   const int n, h;
   vector<vector<T>> table;
+  const T unit;
   const F f;
 
  public:
   DisjointSparseTable() {}
   template <typename Iter>
-  DisjointSparseTable(Iter first, Iter last, F _f = F())
+  DisjointSparseTable(Iter first, Iter last, T unit_, F f_ = F())
       : n(distance(first, last)),
         h(32 - __builtin_clz(n)),
         table(h, vector<T>(n)),
-        f(_f) {
+        unit(unit_),
+        f(f_) {
     move(first, last, table[0].begin());
     rep(s, 1, h) rep(k, (n + (1 << (s + 1)) - 1) >> (s + 1)) {
       int l = k << (s + 1);
@@ -89,16 +91,18 @@ class DisjointSparseTable {
  public:
   T fold(int l, int r) {
     r--;
+    if (l > r) return unit;
     if (l == r) return table[0][l];
     int s = 32 - __builtin_clz(l ^ r) - 1;
     return f(table[s][l], table[s][r]);
   }
 };
 
-#ifdef 	__cpp_deduction_guides
+#ifdef __cpp_deduction_guides
 template <typename Iter, typename F>
-DisjointSparseTable(Iter first, Iter last, F _f = F())
-    -> DisjointSparseTable<typename Iter::value_type, F>;
+DisjointSparseTable(Iter first, Iter last, typename Iter::value::type unit_,
+                    F f_ = F())
+    ->DisjointSparseTable<typename Iter::value_type, F>;
 #endif
 
 ```
@@ -232,16 +236,18 @@ class DisjointSparseTable {
  private:
   const int n, h;
   vector<vector<T>> table;
+  const T unit;
   const F f;
 
  public:
   DisjointSparseTable() {}
   template <typename Iter>
-  DisjointSparseTable(Iter first, Iter last, F _f = F())
+  DisjointSparseTable(Iter first, Iter last, T unit_, F f_ = F())
       : n(distance(first, last)),
         h(32 - __builtin_clz(n)),
         table(h, vector<T>(n)),
-        f(_f) {
+        unit(unit_),
+        f(f_) {
     move(first, last, table[0].begin());
     rep(s, 1, h) rep(k, (n + (1 << (s + 1)) - 1) >> (s + 1)) {
       int l = k << (s + 1);
@@ -259,16 +265,18 @@ class DisjointSparseTable {
  public:
   T fold(int l, int r) {
     r--;
+    if (l > r) return unit;
     if (l == r) return table[0][l];
     int s = 32 - __builtin_clz(l ^ r) - 1;
     return f(table[s][l], table[s][r]);
   }
 };
 
-#ifdef 	__cpp_deduction_guides
+#ifdef __cpp_deduction_guides
 template <typename Iter, typename F>
-DisjointSparseTable(Iter first, Iter last, F _f = F())
-    -> DisjointSparseTable<typename Iter::value_type, F>;
+DisjointSparseTable(Iter first, Iter last, typename Iter::value::type unit_,
+                    F f_ = F())
+    ->DisjointSparseTable<typename Iter::value_type, F>;
 #endif
 
 ```

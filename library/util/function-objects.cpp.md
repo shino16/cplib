@@ -43,7 +43,7 @@ layout: default
 
 ## Required by
 
-* :heavy_check_mark: <a href="../data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
+* :x: <a href="../data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :heavy_check_mark: <a href="../data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
 * :question: <a href="../data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :heavy_check_mark: <a href="../string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
@@ -53,7 +53,7 @@ layout: default
 
 * :heavy_check_mark: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 * :x: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
-* :heavy_check_mark: <a href="../../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
+* :x: <a href="../../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
 
 
 ## Code
