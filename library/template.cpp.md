@@ -44,7 +44,7 @@ layout: default
 * :x: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :warning: <a href="data-structure/hash-table.cpp.html">data-structure/hash-table.cpp</a>
 * :heavy_check_mark: <a href="data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
-* :question: <a href="data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
+* :heavy_check_mark: <a href="data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :warning: <a href="data-structure/swag.cpp.html">data-structure/swag.cpp</a>
 * :heavy_check_mark: <a href="data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :warning: <a href="data-structure/weighted-union-find.cpp.html">data-structure/weighted-union-find.cpp</a>
@@ -80,11 +80,11 @@ layout: default
 * :warning: <a href="tree/dfs.cpp.html">tree/dfs.cpp</a>
 * :warning: <a href="tree/diameter.cpp.html">tree/diameter.cpp</a>
 * :warning: <a href="tree/euler-tour.cpp.html">tree/euler-tour.cpp</a>
-* :x: <a href="tree/hld.cpp.html">tree/hld.cpp</a>
+* :heavy_check_mark: <a href="tree/hld.cpp.html">tree/hld.cpp</a>
 * :warning: <a href="tree/lca.cpp.html">tree/lca.cpp</a>
 * :warning: <a href="tree/rerooting.cpp.html">tree/rerooting.cpp</a>
 * :warning: <a href="util/acc-2d.cpp.html">util/acc-2d.cpp</a>
-* :question: <a href="util/compress.cpp.html">util/compress.cpp</a>
+* :heavy_check_mark: <a href="util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="util/doubling.cpp.html">util/doubling.cpp</a>
 * :heavy_check_mark: <a href="util/fix.cpp.html">util/fix.cpp</a>
 * :question: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
@@ -100,7 +100,7 @@ layout: default
 * :heavy_check_mark: <a href="../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
-* :x: <a href="../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
+* :heavy_check_mark: <a href="../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>

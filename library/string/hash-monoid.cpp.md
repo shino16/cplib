@@ -39,7 +39,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
-* :question: <a href="../data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
+* :heavy_check_mark: <a href="../data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :heavy_check_mark: <a href="rolling-hash.cpp.html">string/rolling-hash.cpp</a>
 * :question: <a href="../template.cpp.html">template.cpp</a>
 * :question: <a href="../util/function-objects.cpp.html">util/function-objects.cpp</a>

@@ -52,11 +52,18 @@ layout: default
 * :heavy_check_mark: <a href="strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
 * :warning: <a href="topological-sort.cpp.html">graph/topological-sort.cpp</a>
 * :warning: <a href="two-edge-connected-components.cpp.html">graph/two-edge-connected-components.cpp</a>
+* :warning: <a href="../tree/dfs.cpp.html">tree/dfs.cpp</a>
+* :warning: <a href="../tree/diameter.cpp.html">tree/diameter.cpp</a>
+* :warning: <a href="../tree/euler-tour.cpp.html">tree/euler-tour.cpp</a>
+* :heavy_check_mark: <a href="../tree/hld.cpp.html">tree/hld.cpp</a>
+* :warning: <a href="../tree/lca.cpp.html">tree/lca.cpp</a>
+* :warning: <a href="../tree/rerooting.cpp.html">tree/rerooting.cpp</a>
 
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
 
 

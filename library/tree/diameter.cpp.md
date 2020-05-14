@@ -31,13 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/diameter.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-14 23:32:59+09:00
+    - Last commit date: 2020-05-15 00:55:25+09:00
 
 
 
 
 ## Depends on
 
+* :heavy_check_mark: <a href="../graph/graph.cpp.html">graph/graph.cpp</a>
 * :question: <a href="../template.cpp.html">template.cpp</a>
 * :heavy_check_mark: <a href="../util/fix.cpp.html">util/fix.cpp</a>
 
@@ -50,6 +51,7 @@ layout: default
 #pragma once
 
 #include "template.cpp"
+#include "graph/graph.cpp"
 #include "util/fix.cpp"
 
 ll tree_diameter(const Graph& g) {
@@ -162,6 +164,18 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
+#line 2 "graph/graph.cpp"
+
+#line 4 "graph/graph.cpp"
+
+struct Edge {
+  int to; ll cost;
+  Edge(int _to) : to(_to), cost(1) {}
+  Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
+  operator int() const { return to; }
+};
+
+using Graph = vector<vector<Edge>>;
 #line 2 "util/fix.cpp"
 
 #line 4 "util/fix.cpp"
@@ -180,7 +194,7 @@ class FixPoint : private F {
 template <typename F> decltype(auto) fix(F&& f) noexcept {
   return FixPoint<F>{forward<F>(f)};
 }
-#line 5 "tree/diameter.cpp"
+#line 6 "tree/diameter.cpp"
 
 ll tree_diameter(const Graph& g) {
   auto dfs = fix([&](auto f, int v, int par)->PLL{

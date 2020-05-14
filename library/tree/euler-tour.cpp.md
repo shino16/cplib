@@ -31,13 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/tree/euler-tour.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-14 23:32:59+09:00
+    - Last commit date: 2020-05-15 00:55:25+09:00
 
 
 
 
 ## Depends on
 
+* :heavy_check_mark: <a href="../graph/graph.cpp.html">graph/graph.cpp</a>
 * :question: <a href="../template.cpp.html">template.cpp</a>
 
 
@@ -49,6 +50,7 @@ layout: default
 #pragma once
 
 #include "template.cpp"
+#include "graph/graph.cpp"
 
 void euler_tour(const VVI& graph, VI& tour, VI& left, VI& right,
                 int v = 0, int par = -1) {
@@ -154,7 +156,19 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
-#line 4 "tree/euler-tour.cpp"
+#line 2 "graph/graph.cpp"
+
+#line 4 "graph/graph.cpp"
+
+struct Edge {
+  int to; ll cost;
+  Edge(int _to) : to(_to), cost(1) {}
+  Edge(int _to, ll _cost) : to(_to), cost(_cost) {}
+  operator int() const { return to; }
+};
+
+using Graph = vector<vector<Edge>>;
+#line 5 "tree/euler-tour.cpp"
 
 void euler_tour(const VVI& graph, VI& tour, VI& left, VI& right,
                 int v = 0, int par = -1) {
