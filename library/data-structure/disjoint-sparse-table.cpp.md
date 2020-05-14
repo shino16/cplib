@@ -25,26 +25,26 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: data-structure/disjoint-sparse-table.cpp
+# :heavy_check_mark: data-structure/disjoint-sparse-table.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/disjoint-sparse-table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-15 00:53:55+09:00
+    - Last commit date: 2020-05-15 01:20:06+09:00
 
 
 
 
 ## Depends on
 
-* :question: <a href="../template.cpp.html">template.cpp</a>
-* :question: <a href="../util/function-objects.cpp.html">util/function-objects.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../util/function-objects.cpp.html">util/function-objects.cpp</a>
 
 
 ## Verified with
 
-* :x: <a href="../../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
 
 
 ## Code
@@ -67,7 +67,9 @@ class DisjointSparseTable {
 
  public:
   DisjointSparseTable() {}
-  template <typename Iter>
+
+  template <typename Iter,
+            enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
   DisjointSparseTable(Iter first, Iter last, T unit_, F f_ = F())
       : n(distance(first, last)),
         h(32 - __builtin_clz(n)),
@@ -75,6 +77,23 @@ class DisjointSparseTable {
         unit(unit_),
         f(f_) {
     move(first, last, table[0].begin());
+    build();
+  }
+
+  template <typename Iter,
+            enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
+  [[deprecated]] DisjointSparseTable(Iter first, Iter last, T unit_, F f_ = F())
+      : n(distance(first, last)),
+        h(32 - __builtin_clz(n)),
+        table(h, vector<T>(n)),
+        unit(unit_),
+        f(f_) {
+    move(first, last, table[0].begin());
+    build();
+  }
+
+ private:
+  void build() {
     rep(s, 1, h) rep(k, (n + (1 << (s + 1)) - 1) >> (s + 1)) {
       int l = k << (s + 1);
       int m = min(n, l + (1 << s));
@@ -241,7 +260,9 @@ class DisjointSparseTable {
 
  public:
   DisjointSparseTable() {}
-  template <typename Iter>
+
+  template <typename Iter,
+            enable_if_t<is_same<typename Iter::value_type, T>::value>* = nullptr>
   DisjointSparseTable(Iter first, Iter last, T unit_, F f_ = F())
       : n(distance(first, last)),
         h(32 - __builtin_clz(n)),
@@ -249,6 +270,23 @@ class DisjointSparseTable {
         unit(unit_),
         f(f_) {
     move(first, last, table[0].begin());
+    build();
+  }
+
+  template <typename Iter,
+            enable_if_t<!is_same<typename Iter::value_type, T>::value>* = nullptr>
+  [[deprecated]] DisjointSparseTable(Iter first, Iter last, T unit_, F f_ = F())
+      : n(distance(first, last)),
+        h(32 - __builtin_clz(n)),
+        table(h, vector<T>(n)),
+        unit(unit_),
+        f(f_) {
+    move(first, last, table[0].begin());
+    build();
+  }
+
+ private:
+  void build() {
     rep(s, 1, h) rep(k, (n + (1 << (s + 1)) - 1) >> (s + 1)) {
       int l = k << (s + 1);
       int m = min(n, l + (1 << s));

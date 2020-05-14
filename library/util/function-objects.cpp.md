@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: util/function-objects.cpp
+# :heavy_check_mark: util/function-objects.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,12 +38,12 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Required by
 
-* :x: <a href="../data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
+* :heavy_check_mark: <a href="../data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :heavy_check_mark: <a href="../data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
 * :heavy_check_mark: <a href="../data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :heavy_check_mark: <a href="../string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
@@ -53,7 +53,7 @@ layout: default
 
 * :heavy_check_mark: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
-* :x: <a href="../../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
 
 
 ## Code

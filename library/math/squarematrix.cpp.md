@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 * :warning: <a href="../util/doubling.cpp.html">util/doubling.cpp</a>
 * :warning: <a href="../util/mapping.cpp.html">util/mapping.cpp</a>
 

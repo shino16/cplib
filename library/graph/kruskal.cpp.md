@@ -40,7 +40,7 @@ layout: default
 
 * :heavy_check_mark: <a href="../data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :heavy_check_mark: <a href="graph.cpp.html">graph/graph.cpp</a>
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Code

@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: util/fast-io.cpp
+# :heavy_check_mark: util/fast-io.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -45,7 +45,7 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
-* :x: <a href="../../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
 
 
 ## Code

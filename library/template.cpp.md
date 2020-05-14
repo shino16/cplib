@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../assets/css/copy-button.css" />
 
 
-# :question: template.cpp
+# :heavy_check_mark: template.cpp
 
 <a href="../index.html">Back to top page</a>
 
@@ -41,7 +41,7 @@ layout: default
 * :heavy_check_mark: <a href="data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
 * :heavy_check_mark: <a href="data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
 * :heavy_check_mark: <a href="data-structure/bit.cpp.html">data-structure/bit.cpp</a>
-* :x: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
+* :heavy_check_mark: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :warning: <a href="data-structure/hash-table.cpp.html">data-structure/hash-table.cpp</a>
 * :heavy_check_mark: <a href="data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
 * :heavy_check_mark: <a href="data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
@@ -87,7 +87,7 @@ layout: default
 * :heavy_check_mark: <a href="util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="util/doubling.cpp.html">util/doubling.cpp</a>
 * :heavy_check_mark: <a href="util/fix.cpp.html">util/fix.cpp</a>
-* :question: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
+* :heavy_check_mark: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
 * :warning: <a href="util/hack-pque.cpp.html">util/hack-pque.cpp</a>
 * :warning: <a href="util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="util/mapping.cpp.html">util/mapping.cpp</a>
@@ -104,7 +104,7 @@ layout: default
 * :heavy_check_mark: <a href="../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
-* :x: <a href="../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
+* :heavy_check_mark: <a href="../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
 
 
 ## Code
