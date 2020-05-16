@@ -39,7 +39,7 @@ int main() {
       return res % k ? res : 0;
     };
     rep(i, 2) rep(j, 2)
-      if (edges.count(Path(a.to[i], b.to[j])))
+      if (count(all(edges), Path(a.to[i], b.to[j])))
         return Path(a.to[i ^ 1], b.to[j ^ 1],
                     a.cost + b.cost + edge_cost(a.to[i], b.to[j]));
     return Path();
