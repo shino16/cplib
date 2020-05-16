@@ -25,26 +25,26 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: util/compress.cpp
+# :x: util/compress.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/compress.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-14 23:32:59+09:00
+    - Last commit date: 2020-05-16 16:05:01+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
+* :question: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
-* :heavy_check_mark: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
+* :x: <a href="../../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
+* :x: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 
 
 ## Code
@@ -92,7 +92,7 @@ class Compress {
     build();
     return data.size();
   }
-  int operator[](T v) {
+  int operator()(T v) {
     build();
     assert(binary_search(all(data), v));
     return std::lower_bound(all(data), v) - data.begin();
@@ -101,18 +101,8 @@ class Compress {
     build();
     return data[i];
   }
-  int lower_bound(T v) {
-    build();
-    return std::lower_bound(all(data), v) - data.begin();
-  }
-  int upper_bound(T v) {
-    build();
-    return std::upper_bound(all(data), v) - data.begin();
-  }
-  bool count(T v) {
-    build();
-    return std::binary_search(all(data), v);
-  }
+  auto begin() { build(); return data.begin(); }
+  auto end() { build(); return data.end(); }
 };
 
 ```
@@ -180,13 +170,15 @@ ll power(ll e, ll t, ll mod = INF_LL) {
 ll choose(ll n, int r) {
   chmin(r, n-r); if (r < 0) return 0; ll res = 1; rep(i, r) res *= n-i, res /= i+1; return res;
 }
-template <typename T> T divceil(T m, T d) { return (m + d - 1) / d; }
+template <typename T, typename U> T divceil(T m, U d) { return (m + d - 1) / d; }
 template <typename T> vector<T> make_v(size_t a, T b) { return vector<T>(a, b); }
 template <typename... Ts> auto make_v(size_t a, Ts... ts) {
   return vector<decltype(make_v(ts...))>(a, make_v(ts...));
 }
 
-// debug stuff
+// debugging stuff
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmisleading-indentation"
 #define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
 class DebugPrint { public: template <typename T> DebugPrint& operator <<(const T& v) {
 #ifdef LOCAL
@@ -204,8 +196,12 @@ os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, c
 debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail &&...
 tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(std::move(
 tail)...); }
+#ifdef LOCAL
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
+#else
+#define dump(...)
+#endif
 #pragma GCC diagnostic pop
 
 
@@ -247,7 +243,7 @@ class Compress {
     build();
     return data.size();
   }
-  int operator[](T v) {
+  int operator()(T v) {
     build();
     assert(binary_search(all(data), v));
     return std::lower_bound(all(data), v) - data.begin();
@@ -256,18 +252,8 @@ class Compress {
     build();
     return data[i];
   }
-  int lower_bound(T v) {
-    build();
-    return std::lower_bound(all(data), v) - data.begin();
-  }
-  int upper_bound(T v) {
-    build();
-    return std::upper_bound(all(data), v) - data.begin();
-  }
-  bool count(T v) {
-    build();
-    return std::binary_search(all(data), v);
-  }
+  auto begin() { build(); return data.begin(); }
+  auto end() { build(); return data.end(); }
 };
 
 ```

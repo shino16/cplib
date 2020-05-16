@@ -31,14 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#ed7daeb157cd9b31e53896ad3c771a26">geometry</a>
 * <a href="{{ site.github.repository_url }}/blob/master/geometry/Pt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-14 23:32:59+09:00
+    - Last commit date: 2020-05-16 16:05:01+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
+* :question: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Required by
@@ -180,13 +180,15 @@ ll power(ll e, ll t, ll mod = INF_LL) {
 ll choose(ll n, int r) {
   chmin(r, n-r); if (r < 0) return 0; ll res = 1; rep(i, r) res *= n-i, res /= i+1; return res;
 }
-template <typename T> T divceil(T m, T d) { return (m + d - 1) / d; }
+template <typename T, typename U> T divceil(T m, U d) { return (m + d - 1) / d; }
 template <typename T> vector<T> make_v(size_t a, T b) { return vector<T>(a, b); }
 template <typename... Ts> auto make_v(size_t a, Ts... ts) {
   return vector<decltype(make_v(ts...))>(a, make_v(ts...));
 }
 
-// debug stuff
+// debugging stuff
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmisleading-indentation"
 #define repi(it, ds) for (auto it = ds.begin(); it != ds.end(); it++)
 class DebugPrint { public: template <typename T> DebugPrint& operator <<(const T& v) {
 #ifdef LOCAL
@@ -204,8 +206,12 @@ os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, c
 debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail &&...
 tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(std::move(
 tail)...); }
+#ifdef LOCAL
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
+#else
+#define dump(...)
+#endif
 #pragma GCC diagnostic pop
 
 

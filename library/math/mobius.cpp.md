@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: data-structure/bit.cpp
+# :warning: math/mobius.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
-* <a href="{{ site.github.repository_url }}/blob/master/data-structure/bit.cpp">View this file on GitHub</a>
+* category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
+* <a href="{{ site.github.repository_url }}/blob/master/math/mobius.cpp">View this file on GitHub</a>
     - Last commit date: 2020-05-16 16:05:01+09:00
 
 
@@ -38,17 +38,8 @@ layout: default
 
 ## Depends on
 
+* :warning: <a href="prime.cpp.html">math/prime.cpp</a>
 * :question: <a href="../template.cpp.html">template.cpp</a>
-
-
-## Required by
-
-* :warning: <a href="../util/inversions.cpp.html">util/inversions.cpp</a>
-
-
-## Verified with
-
-* :x: <a href="../../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
 
 
 ## Code
@@ -59,56 +50,38 @@ layout: default
 #pragma once
 
 #include "template.cpp"
+#include "math/prime.cpp"
 
-class BIT {
- public:
-  const int n;
-
+class Mobeus {
  private:
-  vector<ll> data;
+  static vector<int> mobeus;
+  static Prime prime;
 
  public:
-  BIT(int _n = 0) : n(_n), data(_n + 1) {}
-  void add(int p, ll v = 1) {
-    p++;
-    while (p <= n) {
-      data[p] += v;
-      p += p & -p;
+  Mobeus(int n = 0) { build(n); }
+
+  void build(int n) {
+    if (mobeus.size() > n) return;
+    chmax(n, 1);
+    prime.build(n);
+    mobeus.resize(n+1);
+    fill(all(mobeus), 1);
+    for (int p = 2; p < n+1; p++) if (prime(p)) {
+      int val = 1;
+      for (int i = p; i < n+1; i += p) mobeus[i] = -mobeus[i];
+      if (p < sqrt(n+1)+1)
+        for (int i = p*p; i < n+1; i += p*p) mobeus[i] = 0;
     }
   }
-  // sum over [0, p)
-  ll sum(int p) {
-    ll res = 0;
-    while (p) {
-      res += data[p];
-      p -= p & -p;
-    }
-    return res;
+
+  int operator()(int n) {
+    build(n);
+    return mobeus[n];
   }
-  // sum over [l, r)
-  ll sum(int l, int r) { return sum(r) - sum(l); }
-  void clear() { fill(all(data), 0); }
-  void assign(int p, ll v) { add(p, v - sum(p, p + 1)); }
-  bool chmax(int p, ll v) {
-    if (sum(p, p + 1) < v) {
-      assign(p, v);
-      return true;
-    } else
-      return false;
-  }
-  // min i s.t. sum over [0, i] >= v
-  // requires data[i] >= 0 for any i
-  int lower_bound(ll v) {
-    if (v <= 0) return 0;
-    int l = 0;
-    for (int k = 1 << (32 - __builtin_clz(n) - 1); k; k >>= 1)
-      if (l + k <= n and data[l + k] < v) v -= data[l += k];
-    return l;
-  }
-  // min i s.t. sum over [0, i] > v
-  // requires data[i] >= 0 for any i
-  int upper_bound(ll v) { return lower_bound(v + 1); }
 };
+
+vector<int> Mobeus::mobeus;
+Prime Mobeus::prime;
 
 ```
 {% endraw %}
@@ -116,7 +89,7 @@ class BIT {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "data-structure/bit.cpp"
+#line 2 "math/mobius.cpp"
 
 #line 2 "template.cpp"
 
@@ -210,57 +183,82 @@ tail)...); }
 #pragma GCC diagnostic pop
 
 
-#line 4 "data-structure/bit.cpp"
+#line 2 "math/prime.cpp"
 
-class BIT {
- public:
-  const int n;
+#line 4 "math/prime.cpp"
 
+class Prime {
  private:
-  vector<ll> data;
+  static vector<bool> prime;
 
  public:
-  BIT(int _n = 0) : n(_n), data(_n + 1) {}
-  void add(int p, ll v = 1) {
-    p++;
-    while (p <= n) {
-      data[p] += v;
-      p += p & -p;
+  Prime(int n = 0) { build(n); }
+
+  void build(int n) {
+    if (prime.size() > n) return;
+    n *= 2;
+    chmax(n, 1);
+    prime.resize(n+1);
+    fill(all(prime), true);
+    prime[0] = prime[1] = false;
+    rep(i, 2, n+1) if (prime[i]) {
+      for (int j = i*2; j < n+1; j += i) prime[j] = false;
     }
   }
-  // sum over [0, p)
-  ll sum(int p) {
-    ll res = 0;
-    while (p) {
-      res += data[p];
-      p -= p & -p;
-    }
+
+  bool operator()(int n) {
+    build(n);
+    return prime[n];
+  }
+
+  static vector<int> primes(int mx) {
+    Prime prime(mx);
+    vector<int> res;
+    rep(n, 2, mx+1) if (prime(n)) res.push_back(n);
     return res;
   }
-  // sum over [l, r)
-  ll sum(int l, int r) { return sum(r) - sum(l); }
-  void clear() { fill(all(data), 0); }
-  void assign(int p, ll v) { add(p, v - sum(p, p + 1)); }
-  bool chmax(int p, ll v) {
-    if (sum(p, p + 1) < v) {
-      assign(p, v);
-      return true;
-    } else
-      return false;
+
+  static bool is_prime(int n) {
+    if (n == 1) return false;
+    if (n == 2) return true;
+    rep(d, 2, sqrt(n)+1) if (n % d == 0) return false;
+    return true;
   }
-  // min i s.t. sum over [0, i] >= v
-  // requires data[i] >= 0 for any i
-  int lower_bound(ll v) {
-    if (v <= 0) return 0;
-    int l = 0;
-    for (int k = 1 << (32 - __builtin_clz(n) - 1); k; k >>= 1)
-      if (l + k <= n and data[l + k] < v) v -= data[l += k];
-    return l;
-  }
-  // min i s.t. sum over [0, i] > v
-  // requires data[i] >= 0 for any i
-  int upper_bound(ll v) { return lower_bound(v + 1); }
 };
+
+vector<bool> Prime::prime;
+#line 5 "math/mobius.cpp"
+
+class Mobeus {
+ private:
+  static vector<int> mobeus;
+  static Prime prime;
+
+ public:
+  Mobeus(int n = 0) { build(n); }
+
+  void build(int n) {
+    if (mobeus.size() > n) return;
+    chmax(n, 1);
+    prime.build(n);
+    mobeus.resize(n+1);
+    fill(all(mobeus), 1);
+    for (int p = 2; p < n+1; p++) if (prime(p)) {
+      int val = 1;
+      for (int i = p; i < n+1; i += p) mobeus[i] = -mobeus[i];
+      if (p < sqrt(n+1)+1)
+        for (int i = p*p; i < n+1; i += p*p) mobeus[i] = 0;
+    }
+  }
+
+  int operator()(int n) {
+    build(n);
+    return mobeus[n];
+  }
+};
+
+vector<int> Mobeus::mobeus;
+Prime Mobeus::prime;
 
 ```
 {% endraw %}
