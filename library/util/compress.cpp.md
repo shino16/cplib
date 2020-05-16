@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: util/compress.cpp
+# :question: util/compress.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/compress.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-16 16:05:01+09:00
+    - Last commit date: 2020-05-16 16:14:30+09:00
 
 
 
@@ -43,7 +43,7 @@ layout: default
 
 ## Verified with
 
-* :x: <a href="../../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
 * :x: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 
 
@@ -72,8 +72,8 @@ class Compress {
  private:
   void build() {
     if (not built) {
-      sort(all(data));
-      data.erase(unique(all(data)), data.end());
+      sort(data.begin(), data.end());
+      data.erase(unique(data.begin(), data.end()), data.end());
       built = true;
     }
   }
@@ -94,13 +94,14 @@ class Compress {
   }
   int operator()(T v) {
     build();
-    assert(binary_search(all(data), v));
-    return std::lower_bound(all(data), v) - data.begin();
+    assert(binary_search(data.begin(), data.end(), v));
+    return std::lower_bound(data.begin(), data.end(), v) - data.begin();
   }
   T restore(int i) {
     build();
     return data[i];
   }
+  T operator[](int i) { return restore(i); }
   auto begin() { build(); return data.begin(); }
   auto end() { build(); return data.end(); }
 };
@@ -223,8 +224,8 @@ class Compress {
  private:
   void build() {
     if (not built) {
-      sort(all(data));
-      data.erase(unique(all(data)), data.end());
+      sort(data.begin(), data.end());
+      data.erase(unique(data.begin(), data.end()), data.end());
       built = true;
     }
   }
@@ -245,13 +246,14 @@ class Compress {
   }
   int operator()(T v) {
     build();
-    assert(binary_search(all(data), v));
-    return std::lower_bound(all(data), v) - data.begin();
+    assert(binary_search(data.begin(), data.end(), v));
+    return std::lower_bound(data.begin(), data.end(), v) - data.begin();
   }
   T restore(int i) {
     build();
     return data[i];
   }
+  T operator[](int i) { return restore(i); }
   auto begin() { build(); return data.begin(); }
   auto end() { build(); return data.end(); }
 };

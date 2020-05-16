@@ -47,7 +47,7 @@ layout: default
 
 * :heavy_check_mark: <a href="library/data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
-* :x: <a href="library/data-structure/bit.cpp.html">data-structure/bit.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/bit.cpp.html">data-structure/bit.cpp</a>
 * :heavy_check_mark: <a href="library/data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :warning: <a href="library/data-structure/dynamic-segtree.cpp.html">data-structure/dynamic-segtree.cpp</a>
 * :warning: <a href="library/data-structure/hash-table.cpp.html">data-structure/hash-table.cpp</a>
@@ -132,7 +132,7 @@ layout: default
 ### util
 
 * :warning: <a href="library/util/acc-2d.cpp.html">util/acc-2d.cpp</a>
-* :x: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
+* :question: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="library/util/doubling.cpp.html">util/doubling.cpp</a>
 * :question: <a href="library/util/fast-io.cpp.html">util/fast-io.cpp</a>
 * :heavy_check_mark: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
@@ -146,7 +146,7 @@ layout: default
 
 ## Verify Files
 
-* :x: <a href="verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 * :x: <a href="verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>

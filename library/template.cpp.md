@@ -40,7 +40,7 @@ layout: default
 
 * :heavy_check_mark: <a href="data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
 * :heavy_check_mark: <a href="data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
-* :x: <a href="data-structure/bit.cpp.html">data-structure/bit.cpp</a>
+* :heavy_check_mark: <a href="data-structure/bit.cpp.html">data-structure/bit.cpp</a>
 * :heavy_check_mark: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :warning: <a href="data-structure/hash-table.cpp.html">data-structure/hash-table.cpp</a>
 * :heavy_check_mark: <a href="data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
@@ -86,7 +86,7 @@ layout: default
 * :warning: <a href="tree/lca.cpp.html">tree/lca.cpp</a>
 * :warning: <a href="tree/rerooting.cpp.html">tree/rerooting.cpp</a>
 * :warning: <a href="util/acc-2d.cpp.html">util/acc-2d.cpp</a>
-* :x: <a href="util/compress.cpp.html">util/compress.cpp</a>
+* :question: <a href="util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="util/doubling.cpp.html">util/doubling.cpp</a>
 * :heavy_check_mark: <a href="util/fix.cpp.html">util/fix.cpp</a>
 * :question: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
@@ -99,7 +99,7 @@ layout: default
 
 ## Verified with
 
-* :x: <a href="../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
+* :heavy_check_mark: <a href="../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 * :x: <a href="../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
