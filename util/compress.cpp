@@ -18,8 +18,8 @@ class Compress {
  private:
   void build() {
     if (not built) {
-      sort(all(data));
-      data.erase(unique(all(data)), data.end());
+      sort(data.begin(), data.end());
+      data.erase(unique(data.begin(), data.end()), data.end());
       built = true;
     }
   }
@@ -40,13 +40,14 @@ class Compress {
   }
   int operator()(T v) {
     build();
-    assert(binary_search(all(data), v));
-    return std::lower_bound(all(data), v) - data.begin();
+    assert(binary_search(data.begin(), data.end(), v));
+    return std::lower_bound(data.begin(), data.end(), v) - data.begin();
   }
   T restore(int i) {
     build();
     return data[i];
   }
+  T operator[](int i) { return restore(i); }
   auto begin() { build(); return data.begin(); }
   auto end() { build(); return data.end(); }
 };
