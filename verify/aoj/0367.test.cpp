@@ -35,7 +35,7 @@ int main() {
     if (a.cost == -1) return b; else if (b.cost == -1) return a;
     auto edge_cost = [&](int u, int v) {
       ll res = weight[u] + weight[v]
-               + edges.restore(edges[Path(u, v)]).cost;
+               + edges.restore(edges(Path(u, v))).cost;
       return res % k ? res : 0;
     };
     rep(i, 2) rep(j, 2)

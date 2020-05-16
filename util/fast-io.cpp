@@ -47,4 +47,4 @@ enable_if_t<I == N>* = nullptr> MyScanner& tuple_impl(MyScanner& in, Tuple& var)
 tuple_impl(MyScanner& in, Tuple& var) { in >> get<I>(var); return tuple_impl<Tuple, I+1, N>(in
 , var); } template <typename... Ts> MyScanner& operator>>(MyScanner& in, tuple<Ts...>& var) {
 return tuple_impl<tuple<Ts...>, 0, sizeof...(Ts)>(in, var); }
-
+#pragma GCC diagnostic pop

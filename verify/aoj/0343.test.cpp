@@ -24,12 +24,12 @@ int main() {
   fill(all(scores), 0);
 
   BIT bit(comp.size());
-  rep(i, n) bit.add(comp[make_pair(0, -i)], 1);
+  rep(i, n) bit.add(comp(make_pair(0, -i)), 1);
 
   rep(i, c) {
     if (cs[i] == 0) {
-      bit.add(comp[make_pair(scores[ts[i]], -ts[i])], -1);
-      bit.add(comp[make_pair(scores[ts[i]] += ps[i], -ts[i])], 1);
+      bit.add(comp(make_pair(scores[ts[i]], -ts[i])), -1);
+      bit.add(comp(make_pair(scores[ts[i]] += ps[i], -ts[i])), 1);
     } else {
       int s = bit.upper_bound(n - ts[i]);
       OUT(-comp.restore(s).second+1, comp.restore(s).first);

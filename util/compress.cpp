@@ -38,7 +38,7 @@ class Compress {
     build();
     return data.size();
   }
-  int operator[](T v) {
+  int operator()(T v) {
     build();
     assert(binary_search(all(data), v));
     return std::lower_bound(all(data), v) - data.begin();
@@ -47,16 +47,6 @@ class Compress {
     build();
     return data[i];
   }
-  int lower_bound(T v) {
-    build();
-    return std::lower_bound(all(data), v) - data.begin();
-  }
-  int upper_bound(T v) {
-    build();
-    return std::upper_bound(all(data), v) - data.begin();
-  }
-  bool count(T v) {
-    build();
-    return std::binary_search(all(data), v);
-  }
+  auto begin() { build(); return data.begin(); }
+  auto end() { build(); return data.end(); }
 };
