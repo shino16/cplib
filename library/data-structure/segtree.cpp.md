@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: data-structure/segtree.cpp
+# :heavy_check_mark: data-structure/segtree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,18 +38,18 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../template.cpp.html">template.cpp</a>
-* :question: <a href="../util/function-objects.cpp.html">util/function-objects.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../util/function-objects.cpp.html">util/function-objects.cpp</a>
 
 
 ## Required by
 
-* :x: <a href="../string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
+* :heavy_check_mark: <a href="../string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
 
 
 ## Verified with
 
-* :x: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 
 

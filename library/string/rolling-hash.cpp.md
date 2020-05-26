@@ -25,30 +25,30 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: string/rolling-hash.cpp
+# :heavy_check_mark: string/rolling-hash.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#b45cffe084dd3d20d928bee85e7b0f21">string</a>
 * <a href="{{ site.github.repository_url }}/blob/master/string/rolling-hash.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-27 03:08:41+09:00
+    - Last commit date: 2020-05-27 03:32:16+09:00
 
 
 
 
 ## Depends on
 
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Required by
 
-* :x: <a href="hash-monoid.cpp.html">string/hash-monoid.cpp</a>
+* :heavy_check_mark: <a href="hash-monoid.cpp.html">string/hash-monoid.cpp</a>
 
 
 ## Verified with
 
-* :x: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 
 
 ## Code
@@ -67,7 +67,7 @@ constexpr ull mask30 = (1ULL << 30) - 1;
 constexpr ull mask31 = (1ULL << 31) - 1;
 constexpr ull MOD = (1ULL << 61) - 1;
 random_device rd;
-int base = uniform_int_distribution<ull>(0)(rd);
+int base = uniform_int_distribution<int>(0)(rd);
 vector<ull> pows{1};
 vector<ull> sum_pows{1};
 
@@ -270,7 +270,7 @@ constexpr ull mask30 = (1ULL << 30) - 1;
 constexpr ull mask31 = (1ULL << 31) - 1;
 constexpr ull MOD = (1ULL << 61) - 1;
 random_device rd;
-int base = uniform_int_distribution<ull>(0)(rd);
+int base = uniform_int_distribution<int>(0)(rd);
 vector<ull> pows{1};
 vector<ull> sum_pows{1};
 

@@ -42,8 +42,8 @@ layout: default
 * :heavy_check_mark: <a href="../../../library/data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
 * :heavy_check_mark: <a href="../../../library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="../../../library/graph/graph.cpp.html">graph/graph.cpp</a>
-* :question: <a href="../../../library/template.cpp.html">template.cpp</a>
-* :question: <a href="../../../library/util/fast-io.cpp.html">util/fast-io.cpp</a>
+* :heavy_check_mark: <a href="../../../library/template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../../../library/util/fast-io.cpp.html">util/fast-io.cpp</a>
 
 
 ## Code

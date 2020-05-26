@@ -39,7 +39,7 @@ layout: default
 ## Depends on
 
 * :warning: <a href="../geometry/Pt.cpp.html">geometry/Pt.cpp</a>
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Code

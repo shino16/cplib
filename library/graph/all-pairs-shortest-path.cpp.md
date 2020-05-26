@@ -42,7 +42,7 @@ layout: default
 * :warning: <a href="bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
 * :heavy_check_mark: <a href="dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="graph.cpp.html">graph/graph.cpp</a>
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 
 
 ## Code

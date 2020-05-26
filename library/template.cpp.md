@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../assets/css/copy-button.css" />
 
 
-# :question: template.cpp
+# :heavy_check_mark: template.cpp
 
 <a href="../index.html">Back to top page</a>
 
@@ -43,8 +43,8 @@ layout: default
 * :heavy_check_mark: <a href="data-structure/bit.cpp.html">data-structure/bit.cpp</a>
 * :heavy_check_mark: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :warning: <a href="data-structure/hash-table.cpp.html">data-structure/hash-table.cpp</a>
-* :x: <a href="data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
-* :question: <a href="data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
+* :heavy_check_mark: <a href="data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
+* :heavy_check_mark: <a href="data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :warning: <a href="data-structure/swag.cpp.html">data-structure/swag.cpp</a>
 * :heavy_check_mark: <a href="data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :warning: <a href="data-structure/weighted-union-find.cpp.html">data-structure/weighted-union-find.cpp</a>
@@ -78,8 +78,8 @@ layout: default
 * :warning: <a href="math/squarematrix.cpp.html">math/squarematrix.cpp</a>
 * :warning: <a href="math/static-prime.cpp.html">math/static-prime.cpp</a>
 * :warning: <a href="math/totient.cpp.html">math/totient.cpp</a>
-* :x: <a href="string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
-* :x: <a href="string/rolling-hash.cpp.html">string/rolling-hash.cpp</a>
+* :heavy_check_mark: <a href="string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
+* :heavy_check_mark: <a href="string/rolling-hash.cpp.html">string/rolling-hash.cpp</a>
 * :warning: <a href="tree/dfs.cpp.html">tree/dfs.cpp</a>
 * :warning: <a href="tree/diameter.cpp.html">tree/diameter.cpp</a>
 * :warning: <a href="tree/euler-tour.cpp.html">tree/euler-tour.cpp</a>
@@ -90,7 +90,7 @@ layout: default
 * :heavy_check_mark: <a href="util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="util/doubling.cpp.html">util/doubling.cpp</a>
 * :heavy_check_mark: <a href="util/fix.cpp.html">util/fix.cpp</a>
-* :question: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
+* :heavy_check_mark: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
 * :warning: <a href="util/hack-pque.cpp.html">util/hack-pque.cpp</a>
 * :warning: <a href="util/inversions.cpp.html">util/inversions.cpp</a>
 * :warning: <a href="util/mapping.cpp.html">util/mapping.cpp</a>
@@ -101,7 +101,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
-* :x: <a href="../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
+* :heavy_check_mark: <a href="../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>

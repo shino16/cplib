@@ -39,7 +39,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../graph/graph.cpp.html">graph/graph.cpp</a>
-* :question: <a href="../template.cpp.html">template.cpp</a>
+* :heavy_check_mark: <a href="../template.cpp.html">template.cpp</a>
 * :warning: <a href="dfs.cpp.html">tree/dfs.cpp</a>
 * :heavy_check_mark: <a href="../util/fix.cpp.html">util/fix.cpp</a>
 
