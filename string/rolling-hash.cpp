@@ -9,7 +9,7 @@ constexpr ull mask30 = (1ULL << 30) - 1;
 constexpr ull mask31 = (1ULL << 31) - 1;
 constexpr ull MOD = (1ULL << 61) - 1;
 random_device rd;
-int base = uniform_int_distribution<ull>(0)(rd);
+int base = uniform_int_distribution<int>(0)(rd);
 vector<ull> pows{1};
 vector<ull> sum_pows{1};
 
