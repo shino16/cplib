@@ -31,7 +31,7 @@ int main() {
       bit.add(comp(make_pair(scores[ts[i]], -ts[i])), -1);
       bit.add(comp(make_pair(scores[ts[i]] += ps[i], -ts[i])), 1);
     } else {
-      int s = bit.upper_bound(n - ts[i]);
+      int s = bit.upper_bound(n - ts[i]) - 1;
       OUT(-comp.restore(s).second+1, comp.restore(s).first);
     }
   }

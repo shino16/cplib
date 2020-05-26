@@ -1,5 +1,6 @@
 #pragma once
 
+#include <random>
 #include "template.cpp"
 
 namespace rolling_hash {
@@ -7,7 +8,7 @@ namespace rolling_hash {
 constexpr ull mask30 = (1ULL << 30) - 1;
 constexpr ull mask31 = (1ULL << 31) - 1;
 constexpr ull MOD = (1ULL << 61) - 1;
-int base = rand();
+int base = uniform_int_distribution<ull>(0)(random_device());
 vector<ull> pows{1};
 vector<ull> sum_pows{1};
 

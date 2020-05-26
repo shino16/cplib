@@ -38,7 +38,7 @@ class Compress {
     build();
     return data.size();
   }
-  int operator()(T v) {
+  int operator()(const T& v) {
     build();
     assert(binary_search(data.begin(), data.end(), v));
     return std::lower_bound(data.begin(), data.end(), v) - data.begin();
