@@ -1,7 +1,6 @@
 #pragma once
 
 #ifndef LOCAL
-#pragma GCC diagnostic warning "-w"
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("avx")
@@ -72,20 +71,20 @@ class DebugPrint { public: template <typename T> DebugPrint& operator <<(const T
 return *this; } } debugos; template <typename T> DebugPrint& operator<<(DebugPrint& os, const
 vector<T>& vec) { os << "{"; for (int i = 0; i < vec.size(); i++) os << vec[i] << (i + 1 ==
 vec.size() ? "" : ", "); os << "}"; return os; } template <typename T, typename U> DebugPrint&
-operator<<(DebugPrint& os, map<T, U>& map_var) { os << "{"; repi(itr, map_var) { os << *itr;
-itr++; if (itr != map_var.end()) os << ", "; itr--; } os << "}"; return os; } template <
-typename T> DebugPrint& operator<<(DebugPrint& os, set<T>& set_var) { os << "{"; repi(itr,
-set_var) { os << *itr; itr++; if (itr != set_var.end()) os << ", "; itr--; } os << "}"; return
-os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, const pair<T, U
->& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } void dump_func() {
-debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail &&...
-tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(std::move(
-tail)...); }
+operator<<(DebugPrint& os, const map<T, U>& map_var) { os << "{"; repi(itr, map_var) { os << *
+itr; itr++; if (itr != map_var.end()) os << ", "; itr--; } os << "}"; return os; } template <
+typename T> DebugPrint& operator<<(DebugPrint& os, const set<T>& set_var) { os << "{"; repi(
+itr, set_var) { os << *itr; itr++; if (itr != set_var.end()) os << ", "; itr--; } os << "}";
+return os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, const
+pair<T, U>& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } void dump_func(
+) { debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail
+&&... tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(forward
+<Tail>(tail)...); }
 #ifdef LOCAL
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
 #else
-#define dump(...)
+#define dump(...) ({})
 #endif
 #pragma GCC diagnostic pop
 

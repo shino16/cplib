@@ -23,16 +23,16 @@ struct Pt {
   Pt operator *(const T rhs) const {
     return Pt(x*rhs, y*rhs);
   }
-  Pt& operator +=(const Pt<T>& rhs) const {
+  Pt& operator +=(const Pt<T>& rhs) {
     return *this = *this + rhs;
   }
-  Pt& operator -=(const Pt<T>& rhs) const {
+  Pt& operator -=(const Pt<T>& rhs) {
     return *this = *this - rhs;
   }
   Pt& operator *=(const Pt<T>& rhs) {
     return *this = *this * rhs;
   }
-  Pt& operator *=(const T rhs) const {
+  Pt& operator *=(const T rhs) {
     return *this = *this * rhs;
   }
   bool operator ==(const Pt<T>& rhs) const {

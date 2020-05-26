@@ -10,7 +10,17 @@ class BIT {
   vector<ll> data;
 
  public:
-  BIT(int _n = 0) : n(_n), data(_n + 1) {}
+  BIT(int n_ = 0) : n(n_), data(n_ + 1) {}
+  template <typename Iter>
+  BIT(Iter first, Iter last) : n(distance(first, last)) {
+    data = vector<ll>(n + 1);
+    copy(first, last, data.begin() + 1);
+    auto zeroix = data.begin() + 1;
+    rep(i, n) {
+      int j = i | (i+1);
+      if (j < n) zeroix[j] += zeroix[i];
+    }
+  }
   void add(int p, ll v = 1) {
     p++;
     while (p <= n) {
@@ -38,16 +48,16 @@ class BIT {
     } else
       return false;
   }
-  // min i s.t. sum over [0, i] >= v
+  // min i s.t. sum over [0, i) >= v -- or n+1 if failed
   // requires data[i] >= 0 for any i
   int lower_bound(ll v) {
     if (v <= 0) return 0;
     int l = 0;
     for (int k = 1 << (32 - __builtin_clz(n) - 1); k; k >>= 1)
       if (l + k <= n and data[l + k] < v) v -= data[l += k];
-    return l;
+    return l + 1;
   }
-  // min i s.t. sum over [0, i] > v
+  // min i s.t. sum over [0, i) > v -- or n+1 if failed
   // requires data[i] >= 0 for any i
   int upper_bound(ll v) { return lower_bound(v + 1); }
 };

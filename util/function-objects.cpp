@@ -26,5 +26,5 @@ struct assignT {
 
 struct plusT {
   template <typename T>
-  T operator()(T a, T b, int k) const { return a + b * k; }
+  T operator()(T a, T b, int k = 1) const { return a + b * k; }
 };

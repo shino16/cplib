@@ -21,7 +21,7 @@ BFS bfs(const Graph& graph, int root = 0) {
     int v = togo.front(); togo.pop();
     for (auto e : graph[v])
       if (chmin(res.dist[e.to], res.dist[v]+e.cost))
-        res.[e.to] = v, togo.push(e.to);
+        res.par[e.to] = v, togo.push(e.to);
   }
   return res;
 }

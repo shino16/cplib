@@ -7,12 +7,13 @@ template <typename T = Mapping, typename Combine = typename T::Combine>
 class Doubling {
  private:
   vector<T> data;
+  const T base;
   const T unit;
   const Combine combine;
 
  public:
-  Doubling(T unit_ = {}, Combine combine_ = {})
-      : data({unit_}), unit(unit_), combine(combine_) {}
+  Doubling(T base_ = {}, T unit_ = {}, Combine combine_ = {})
+      : data({base_}), base(base_), unit(unit_), combine(combine_) {}
 
  private:
   void prepare(ll n) {

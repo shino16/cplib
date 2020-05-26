@@ -33,7 +33,7 @@ class Prime {
     return res;
   }
 
-  static bool is_prime(int n) {
+  static bool is_prime(ll n) {
     if (n == 1) return false;
     if (n == 2) return true;
     rep(d, 2, sqrt(n)+1) if (n % d == 0) return false;
