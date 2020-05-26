@@ -8,7 +8,8 @@
 using namespace __gnu_pbds;
 
 struct chash {
-  const ull RANDOM = uniform_int_distribution<ull>(0)(random_device());
+  random_device rd;
+  const ull RANDOM = uniform_int_distribution<ull>(0)(rd);
   template <typename T>
   ull operator()(T x) const {
     return x ^ RANDOM;

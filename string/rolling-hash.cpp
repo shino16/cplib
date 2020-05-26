@@ -8,7 +8,8 @@ namespace rolling_hash {
 constexpr ull mask30 = (1ULL << 30) - 1;
 constexpr ull mask31 = (1ULL << 31) - 1;
 constexpr ull MOD = (1ULL << 61) - 1;
-int base = uniform_int_distribution<ull>(0)(random_device());
+random_device rd;
+int base = uniform_int_distribution<ull>(0)(rd);
 vector<ull> pows{1};
 vector<ull> sum_pows{1};
 
