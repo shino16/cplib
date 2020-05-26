@@ -44,13 +44,13 @@ layout: default
 
 ## Required by
 
-* :heavy_check_mark: <a href="../string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
+* :x: <a href="../string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
-* :x: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
+* :x: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 
 
 ## Code

@@ -45,18 +45,18 @@ layout: default
 
 ### data-structure
 
-* :x: <a href="library/data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
-* :x: <a href="library/data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
-* :x: <a href="library/data-structure/bit.cpp.html">data-structure/bit.cpp</a>
-* :x: <a href="library/data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/bit.cpp.html">data-structure/bit.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :warning: <a href="library/data-structure/dynamic-segtree.cpp.html">data-structure/dynamic-segtree.cpp</a>
 * :warning: <a href="library/data-structure/hash-table.cpp.html">data-structure/hash-table.cpp</a>
 * :warning: <a href="library/data-structure/indexed-map.cpp.html">data-structure/indexed-map.cpp</a>
 * :warning: <a href="library/data-structure/indexed-set.cpp.html">data-structure/indexed-set.cpp</a>
-* :heavy_check_mark: <a href="library/data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
+* :x: <a href="library/data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
 * :question: <a href="library/data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :warning: <a href="library/data-structure/swag.cpp.html">data-structure/swag.cpp</a>
-* :x: <a href="library/data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
+* :heavy_check_mark: <a href="library/data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :warning: <a href="library/data-structure/weighted-union-find.cpp.html">data-structure/weighted-union-find.cpp</a>
 
 
@@ -74,8 +74,8 @@ layout: default
 * :warning: <a href="library/graph/all-pairs-shortest-path.cpp.html">graph/all-pairs-shortest-path.cpp</a>
 * :warning: <a href="library/graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
 * :warning: <a href="library/graph/bfs.cpp.html">graph/bfs.cpp</a>
-* :x: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
-* :question: <a href="library/graph/graph.cpp.html">graph/graph.cpp</a>
+* :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="library/graph/graph.cpp.html">graph/graph.cpp</a>
 * :warning: <a href="library/graph/kruskal.cpp.html">graph/kruskal.cpp</a>
 * :warning: <a href="library/graph/prim.cpp.html">graph/prim.cpp</a>
 * :heavy_check_mark: <a href="library/graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
@@ -112,8 +112,8 @@ layout: default
 
 ### string
 
-* :heavy_check_mark: <a href="library/string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
-* :heavy_check_mark: <a href="library/string/rolling-hash.cpp.html">string/rolling-hash.cpp</a>
+* :x: <a href="library/string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
+* :x: <a href="library/string/rolling-hash.cpp.html">string/rolling-hash.cpp</a>
 
 
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
@@ -123,7 +123,7 @@ layout: default
 * :warning: <a href="library/tree/dfs.cpp.html">tree/dfs.cpp</a>
 * :warning: <a href="library/tree/diameter.cpp.html">tree/diameter.cpp</a>
 * :warning: <a href="library/tree/euler-tour.cpp.html">tree/euler-tour.cpp</a>
-* :x: <a href="library/tree/hld.cpp.html">tree/hld.cpp</a>
+* :heavy_check_mark: <a href="library/tree/hld.cpp.html">tree/hld.cpp</a>
 * :warning: <a href="library/tree/lca.cpp.html">tree/lca.cpp</a>
 * :warning: <a href="library/tree/rerooting.cpp.html">tree/rerooting.cpp</a>
 
@@ -133,7 +133,7 @@ layout: default
 ### util
 
 * :warning: <a href="library/util/acc-2d.cpp.html">util/acc-2d.cpp</a>
-* :x: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
+* :heavy_check_mark: <a href="library/util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="library/util/doubling.cpp.html">util/doubling.cpp</a>
 * :question: <a href="library/util/fast-io.cpp.html">util/fast-io.cpp</a>
 * :heavy_check_mark: <a href="library/util/fix.cpp.html">util/fix.cpp</a>
@@ -147,13 +147,13 @@ layout: default
 
 ## Verify Files
 
-* :x: <a href="verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
-* :heavy_check_mark: <a href="verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
+* :x: <a href="verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 * :heavy_check_mark: <a href="verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
-* :x: <a href="verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
-* :x: <a href="verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
-* :x: <a href="verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
-* :x: <a href="verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
-* :x: <a href="verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
 
 

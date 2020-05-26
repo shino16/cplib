@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: graph/graph.cpp
+# :heavy_check_mark: graph/graph.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -46,7 +46,7 @@ layout: default
 * :warning: <a href="all-pairs-shortest-path.cpp.html">graph/all-pairs-shortest-path.cpp</a>
 * :warning: <a href="bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
 * :warning: <a href="bfs.cpp.html">graph/bfs.cpp</a>
-* :x: <a href="dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :warning: <a href="kruskal.cpp.html">graph/kruskal.cpp</a>
 * :warning: <a href="prim.cpp.html">graph/prim.cpp</a>
 * :heavy_check_mark: <a href="strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
@@ -55,7 +55,7 @@ layout: default
 * :warning: <a href="../tree/dfs.cpp.html">tree/dfs.cpp</a>
 * :warning: <a href="../tree/diameter.cpp.html">tree/diameter.cpp</a>
 * :warning: <a href="../tree/euler-tour.cpp.html">tree/euler-tour.cpp</a>
-* :x: <a href="../tree/hld.cpp.html">tree/hld.cpp</a>
+* :heavy_check_mark: <a href="../tree/hld.cpp.html">tree/hld.cpp</a>
 * :warning: <a href="../tree/lca.cpp.html">tree/lca.cpp</a>
 * :warning: <a href="../tree/rerooting.cpp.html">tree/rerooting.cpp</a>
 
@@ -63,8 +63,8 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
-* :x: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
-* :x: <a href="../../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
 
 
 ## Code

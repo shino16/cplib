@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: graph/dijkstra.cpp
+# :heavy_check_mark: graph/dijkstra.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,8 +38,8 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
-* :question: <a href="graph.cpp.html">graph/graph.cpp</a>
+* :heavy_check_mark: <a href="../data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
+* :heavy_check_mark: <a href="graph.cpp.html">graph/graph.cpp</a>
 * :question: <a href="../template.cpp.html">template.cpp</a>
 
 
@@ -50,7 +50,7 @@ layout: default
 
 ## Verified with
 
-* :x: <a href="../../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
 
 
 ## Code

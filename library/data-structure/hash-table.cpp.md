@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#36397fe12f935090ad150c6ce0c258d4">data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data-structure/hash-table.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-26 19:55:50+09:00
+    - Last commit date: 2020-05-27 03:08:41+09:00
 
 
 
@@ -48,16 +48,16 @@ layout: default
 ```cpp
 #pragma once
 
-#include <chrono>
+#include "template.cpp"
+
+#include <random>
 #include <ext/pb_ds/assoc_container.hpp>
 
-#include "template.cpp"
 using namespace __gnu_pbds;
 
 struct chash {
-  const ull RANDOM =
-      (ull)std::make_unique<char>().get() ^
-      chrono::high_resolution_clock::now().time_since_epoch().count();
+  random_device rd;
+  const ull RANDOM = uniform_int_distribution<ull>(0)(rd);
   template <typename T>
   ull operator()(T x) const {
     return x ^ RANDOM;
@@ -78,9 +78,6 @@ using hash_table = gp_hash_table<K, V, chash>;
 {% raw %}
 ```cpp
 #line 2 "data-structure/hash-table.cpp"
-
-#include <chrono>
-#include <ext/pb_ds/assoc_container.hpp>
 
 #line 2 "template.cpp"
 
@@ -173,13 +170,16 @@ pair<T, U>& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } v
 #pragma GCC diagnostic pop
 
 
-#line 7 "data-structure/hash-table.cpp"
+#line 4 "data-structure/hash-table.cpp"
+
+#include <random>
+#include <ext/pb_ds/assoc_container.hpp>
+
 using namespace __gnu_pbds;
 
 struct chash {
-  const ull RANDOM =
-      (ull)std::make_unique<char>().get() ^
-      chrono::high_resolution_clock::now().time_since_epoch().count();
+  random_device rd;
+  const ull RANDOM = uniform_int_distribution<ull>(0)(rd);
   template <typename T>
   ull operator()(T x) const {
     return x ^ RANDOM;

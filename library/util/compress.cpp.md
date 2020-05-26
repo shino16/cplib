@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: util/compress.cpp
+# :heavy_check_mark: util/compress.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/compress.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-26 19:55:50+09:00
+    - Last commit date: 2020-05-27 02:57:30+09:00
 
 
 
@@ -43,8 +43,8 @@ layout: default
 
 ## Verified with
 
-* :x: <a href="../../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
-* :x: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
 
 
 ## Code
@@ -92,7 +92,7 @@ class Compress {
     build();
     return data.size();
   }
-  int operator()(T v) {
+  int operator()(const T& v) {
     build();
     assert(binary_search(data.begin(), data.end(), v));
     return std::lower_bound(data.begin(), data.end(), v) - data.begin();
@@ -243,7 +243,7 @@ class Compress {
     build();
     return data.size();
   }
-  int operator()(T v) {
+  int operator()(const T& v) {
     build();
     assert(binary_search(data.begin(), data.end(), v));
     return std::lower_bound(data.begin(), data.end(), v) - data.begin();

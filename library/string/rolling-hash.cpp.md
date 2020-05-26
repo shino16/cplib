@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: string/rolling-hash.cpp
+# :x: string/rolling-hash.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#b45cffe084dd3d20d928bee85e7b0f21">string</a>
 * <a href="{{ site.github.repository_url }}/blob/master/string/rolling-hash.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-26 19:55:50+09:00
+    - Last commit date: 2020-05-27 03:08:41+09:00
 
 
 
@@ -43,12 +43,12 @@ layout: default
 
 ## Required by
 
-* :heavy_check_mark: <a href="hash-monoid.cpp.html">string/hash-monoid.cpp</a>
+* :x: <a href="hash-monoid.cpp.html">string/hash-monoid.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
+* :x: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 
 
 ## Code
@@ -58,6 +58,7 @@ layout: default
 ```cpp
 #pragma once
 
+#include <random>
 #include "template.cpp"
 
 namespace rolling_hash {
@@ -65,7 +66,8 @@ namespace rolling_hash {
 constexpr ull mask30 = (1ULL << 30) - 1;
 constexpr ull mask31 = (1ULL << 31) - 1;
 constexpr ull MOD = (1ULL << 61) - 1;
-int base = rand();
+random_device rd;
+int base = uniform_int_distribution<ull>(0)(rd);
 vector<ull> pows{1};
 vector<ull> sum_pows{1};
 
@@ -168,6 +170,7 @@ class Calculator {
 ```cpp
 #line 2 "string/rolling-hash.cpp"
 
+#include <random>
 #line 2 "template.cpp"
 
 #ifndef LOCAL
@@ -259,14 +262,15 @@ pair<T, U>& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } v
 #pragma GCC diagnostic pop
 
 
-#line 4 "string/rolling-hash.cpp"
+#line 5 "string/rolling-hash.cpp"
 
 namespace rolling_hash {
 
 constexpr ull mask30 = (1ULL << 30) - 1;
 constexpr ull mask31 = (1ULL << 31) - 1;
 constexpr ull MOD = (1ULL << 61) - 1;
-int base = rand();
+random_device rd;
+int base = uniform_int_distribution<ull>(0)(rd);
 vector<ull> pows{1};
 vector<ull> sum_pows{1};
 

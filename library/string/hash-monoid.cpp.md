@@ -25,29 +25,29 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: string/hash-monoid.cpp
+# :x: string/hash-monoid.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#b45cffe084dd3d20d928bee85e7b0f21">string</a>
 * <a href="{{ site.github.repository_url }}/blob/master/string/hash-monoid.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-26 19:55:50+09:00
+    - Last commit date: 2020-05-27 03:08:41+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
+* :x: <a href="../data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
 * :question: <a href="../data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
-* :heavy_check_mark: <a href="rolling-hash.cpp.html">string/rolling-hash.cpp</a>
+* :x: <a href="rolling-hash.cpp.html">string/rolling-hash.cpp</a>
 * :question: <a href="../template.cpp.html">template.cpp</a>
 * :question: <a href="../util/function-objects.cpp.html">util/function-objects.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
+* :x: <a href="../../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 
 
 ## Code
@@ -100,6 +100,7 @@ using LazyHashSegTree =
 
 #line 2 "string/rolling-hash.cpp"
 
+#include <random>
 #line 2 "template.cpp"
 
 #ifndef LOCAL
@@ -191,14 +192,15 @@ pair<T, U>& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } v
 #pragma GCC diagnostic pop
 
 
-#line 4 "string/rolling-hash.cpp"
+#line 5 "string/rolling-hash.cpp"
 
 namespace rolling_hash {
 
 constexpr ull mask30 = (1ULL << 30) - 1;
 constexpr ull mask31 = (1ULL << 31) - 1;
 constexpr ull MOD = (1ULL << 61) - 1;
-int base = rand();
+random_device rd;
+int base = uniform_int_distribution<ull>(0)(rd);
 vector<ull> pows{1};
 vector<ull> sum_pows{1};
 
