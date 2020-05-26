@@ -31,28 +31,28 @@ layout: default
 
 * category: <a href="../index.html#5058f1af8388633f609cadb75a75dc9d">.</a>
 * <a href="{{ site.github.repository_url }}/blob/master/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-16 16:05:01+09:00
+    - Last commit date: 2020-05-26 19:55:50+09:00
 
 
 
 
 ## Required by
 
-* :heavy_check_mark: <a href="data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
-* :heavy_check_mark: <a href="data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
-* :heavy_check_mark: <a href="data-structure/bit.cpp.html">data-structure/bit.cpp</a>
-* :heavy_check_mark: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
+* :x: <a href="data-structure/binary-heap.cpp.html">data-structure/binary-heap.cpp</a>
+* :x: <a href="data-structure/bit-2d.cpp.html">data-structure/bit-2d.cpp</a>
+* :x: <a href="data-structure/bit.cpp.html">data-structure/bit.cpp</a>
+* :x: <a href="data-structure/disjoint-sparse-table.cpp.html">data-structure/disjoint-sparse-table.cpp</a>
 * :warning: <a href="data-structure/hash-table.cpp.html">data-structure/hash-table.cpp</a>
 * :heavy_check_mark: <a href="data-structure/lazy-segtree.cpp.html">data-structure/lazy-segtree.cpp</a>
 * :question: <a href="data-structure/segtree.cpp.html">data-structure/segtree.cpp</a>
 * :warning: <a href="data-structure/swag.cpp.html">data-structure/swag.cpp</a>
-* :heavy_check_mark: <a href="data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
+* :x: <a href="data-structure/union-find.cpp.html">data-structure/union-find.cpp</a>
 * :warning: <a href="data-structure/weighted-union-find.cpp.html">data-structure/weighted-union-find.cpp</a>
 * :warning: <a href="geometry/Pt.cpp.html">geometry/Pt.cpp</a>
 * :warning: <a href="graph/all-pairs-shortest-path.cpp.html">graph/all-pairs-shortest-path.cpp</a>
 * :warning: <a href="graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
 * :warning: <a href="graph/bfs.cpp.html">graph/bfs.cpp</a>
-* :heavy_check_mark: <a href="graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :x: <a href="graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :question: <a href="graph/graph.cpp.html">graph/graph.cpp</a>
 * :warning: <a href="graph/kruskal.cpp.html">graph/kruskal.cpp</a>
 * :warning: <a href="graph/prim.cpp.html">graph/prim.cpp</a>
@@ -76,6 +76,7 @@ layout: default
 * :warning: <a href="math/prepare_inv.cpp.html">math/prepare_inv.cpp</a>
 * :warning: <a href="math/prime.cpp.html">math/prime.cpp</a>
 * :warning: <a href="math/squarematrix.cpp.html">math/squarematrix.cpp</a>
+* :warning: <a href="math/static-prime.cpp.html">math/static-prime.cpp</a>
 * :warning: <a href="math/totient.cpp.html">math/totient.cpp</a>
 * :heavy_check_mark: <a href="string/hash-monoid.cpp.html">string/hash-monoid.cpp</a>
 * :heavy_check_mark: <a href="string/rolling-hash.cpp.html">string/rolling-hash.cpp</a>
@@ -86,7 +87,7 @@ layout: default
 * :warning: <a href="tree/lca.cpp.html">tree/lca.cpp</a>
 * :warning: <a href="tree/rerooting.cpp.html">tree/rerooting.cpp</a>
 * :warning: <a href="util/acc-2d.cpp.html">util/acc-2d.cpp</a>
-* :question: <a href="util/compress.cpp.html">util/compress.cpp</a>
+* :x: <a href="util/compress.cpp.html">util/compress.cpp</a>
 * :warning: <a href="util/doubling.cpp.html">util/doubling.cpp</a>
 * :heavy_check_mark: <a href="util/fix.cpp.html">util/fix.cpp</a>
 * :question: <a href="util/function-objects.cpp.html">util/function-objects.cpp</a>
@@ -99,14 +100,14 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/0343.test.cpp.html">verify/aoj/0343.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/0355.test.cpp.html">verify/aoj/0355.test.cpp</a>
 * :heavy_check_mark: <a href="../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 * :x: <a href="../verify/verify/aoj/0367.test.cpp.html">verify/aoj/0367.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
-* :heavy_check_mark: <a href="../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/2842.test.cpp.html">verify/aoj/2842.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/DSL_1_A.test.cpp.html">verify/aoj/DSL_1_A.test.cpp</a>
+* :x: <a href="../verify/verify/aoj/GRL_1_A.test.cpp.html">verify/aoj/GRL_1_A.test.cpp</a>
+* :x: <a href="../verify/verify/yuki/1036.test.cpp.html">verify/yuki/1036.test.cpp</a>
 
 
 ## Code
@@ -117,7 +118,6 @@ layout: default
 #pragma once
 
 #ifndef LOCAL
-#pragma GCC diagnostic warning "-w"
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("avx")
@@ -188,20 +188,20 @@ class DebugPrint { public: template <typename T> DebugPrint& operator <<(const T
 return *this; } } debugos; template <typename T> DebugPrint& operator<<(DebugPrint& os, const
 vector<T>& vec) { os << "{"; for (int i = 0; i < vec.size(); i++) os << vec[i] << (i + 1 ==
 vec.size() ? "" : ", "); os << "}"; return os; } template <typename T, typename U> DebugPrint&
-operator<<(DebugPrint& os, map<T, U>& map_var) { os << "{"; repi(itr, map_var) { os << *itr;
-itr++; if (itr != map_var.end()) os << ", "; itr--; } os << "}"; return os; } template <
-typename T> DebugPrint& operator<<(DebugPrint& os, set<T>& set_var) { os << "{"; repi(itr,
-set_var) { os << *itr; itr++; if (itr != set_var.end()) os << ", "; itr--; } os << "}"; return
-os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, const pair<T, U
->& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } void dump_func() {
-debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail &&...
-tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(std::move(
-tail)...); }
+operator<<(DebugPrint& os, const map<T, U>& map_var) { os << "{"; repi(itr, map_var) { os << *
+itr; itr++; if (itr != map_var.end()) os << ", "; itr--; } os << "}"; return os; } template <
+typename T> DebugPrint& operator<<(DebugPrint& os, const set<T>& set_var) { os << "{"; repi(
+itr, set_var) { os << *itr; itr++; if (itr != set_var.end()) os << ", "; itr--; } os << "}";
+return os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, const
+pair<T, U>& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } void dump_func(
+) { debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail
+&&... tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(forward
+<Tail>(tail)...); }
 #ifdef LOCAL
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
 #else
-#define dump(...)
+#define dump(...) ({})
 #endif
 #pragma GCC diagnostic pop
 
@@ -216,7 +216,6 @@ tail)...); }
 #line 2 "template.cpp"
 
 #ifndef LOCAL
-#pragma GCC diagnostic warning "-w"
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("avx")
@@ -287,20 +286,20 @@ class DebugPrint { public: template <typename T> DebugPrint& operator <<(const T
 return *this; } } debugos; template <typename T> DebugPrint& operator<<(DebugPrint& os, const
 vector<T>& vec) { os << "{"; for (int i = 0; i < vec.size(); i++) os << vec[i] << (i + 1 ==
 vec.size() ? "" : ", "); os << "}"; return os; } template <typename T, typename U> DebugPrint&
-operator<<(DebugPrint& os, map<T, U>& map_var) { os << "{"; repi(itr, map_var) { os << *itr;
-itr++; if (itr != map_var.end()) os << ", "; itr--; } os << "}"; return os; } template <
-typename T> DebugPrint& operator<<(DebugPrint& os, set<T>& set_var) { os << "{"; repi(itr,
-set_var) { os << *itr; itr++; if (itr != set_var.end()) os << ", "; itr--; } os << "}"; return
-os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, const pair<T, U
->& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } void dump_func() {
-debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail &&...
-tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(std::move(
-tail)...); }
+operator<<(DebugPrint& os, const map<T, U>& map_var) { os << "{"; repi(itr, map_var) { os << *
+itr; itr++; if (itr != map_var.end()) os << ", "; itr--; } os << "}"; return os; } template <
+typename T> DebugPrint& operator<<(DebugPrint& os, const set<T>& set_var) { os << "{"; repi(
+itr, set_var) { os << *itr; itr++; if (itr != set_var.end()) os << ", "; itr--; } os << "}";
+return os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, const
+pair<T, U>& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } void dump_func(
+) { debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail
+&&... tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(forward
+<Tail>(tail)...); }
 #ifdef LOCAL
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
 #else
-#define dump(...)
+#define dump(...) ({})
 #endif
 #pragma GCC diagnostic pop
 

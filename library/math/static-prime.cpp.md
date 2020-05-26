@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: util/fix.cpp
+# :warning: math/static-prime.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
-* <a href="{{ site.github.repository_url }}/blob/master/util/fix.cpp">View this file on GitHub</a>
+* category: <a href="../../index.html#7e676e9e663beb40fd133f5ee24487c2">math</a>
+* <a href="{{ site.github.repository_url }}/blob/master/math/static-prime.cpp">View this file on GitHub</a>
     - Last commit date: 2020-05-26 19:55:50+09:00
 
 
@@ -39,19 +39,6 @@ layout: default
 ## Depends on
 
 * :question: <a href="../template.cpp.html">template.cpp</a>
-
-
-## Required by
-
-* :heavy_check_mark: <a href="../graph/strongly-connected-components.cpp.html">graph/strongly-connected-components.cpp</a>
-* :warning: <a href="../tree/dfs.cpp.html">tree/dfs.cpp</a>
-* :warning: <a href="../tree/diameter.cpp.html">tree/diameter.cpp</a>
-* :warning: <a href="../tree/lca.cpp.html">tree/lca.cpp</a>
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../verify/verify/aoj/0366.test.cpp.html">verify/aoj/0366.test.cpp</a>
 
 
 ## Code
@@ -63,20 +50,27 @@ layout: default
 
 #include "template.cpp"
 
-template <typename F>
-class FixPoint : private F {
- public:
-  explicit constexpr FixPoint(F&& f) : F(forward<F>(f)) {}
+template <size_t N>
+class StaticPrime {
+ private:
+  bitset<N+1> prime = move(bitset<N+1>().set());
 
-  template <typename... Args>
-  constexpr decltype(auto) operator()(Args&&... args) const {
-    return F::operator()(*this, forward<Args>(args)...);
+ public:
+  StaticPrime() { build(); }
+
+ private:
+  void build() {
+    prime[0] = prime[1] = false;
+    rep(i, 2, n+1) if (prime[i]) {
+      for (int j = i*2; j < n+1; j += i) prime[j] = false;
+    }
+  }
+
+ public:
+  bool operator()(int n) {
+    return prime[n];
   }
 };
-
-template <typename F> decltype(auto) fix(F&& f) noexcept {
-  return FixPoint<F>{forward<F>(f)};
-}
 
 ```
 {% endraw %}
@@ -84,7 +78,7 @@ template <typename F> decltype(auto) fix(F&& f) noexcept {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "util/fix.cpp"
+#line 2 "math/static-prime.cpp"
 
 #line 2 "template.cpp"
 
@@ -177,22 +171,29 @@ pair<T, U>& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } v
 #pragma GCC diagnostic pop
 
 
-#line 4 "util/fix.cpp"
+#line 4 "math/static-prime.cpp"
 
-template <typename F>
-class FixPoint : private F {
+template <size_t N>
+class StaticPrime {
+ private:
+  bitset<N+1> prime = move(bitset<N+1>().set());
+
  public:
-  explicit constexpr FixPoint(F&& f) : F(forward<F>(f)) {}
+  StaticPrime() { build(); }
 
-  template <typename... Args>
-  constexpr decltype(auto) operator()(Args&&... args) const {
-    return F::operator()(*this, forward<Args>(args)...);
+ private:
+  void build() {
+    prime[0] = prime[1] = false;
+    rep(i, 2, n+1) if (prime[i]) {
+      for (int j = i*2; j < n+1; j += i) prime[j] = false;
+    }
+  }
+
+ public:
+  bool operator()(int n) {
+    return prime[n];
   }
 };
-
-template <typename F> decltype(auto) fix(F&& f) noexcept {
-  return FixPoint<F>{forward<F>(f)};
-}
 
 ```
 {% endraw %}

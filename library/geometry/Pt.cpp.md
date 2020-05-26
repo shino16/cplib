@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#ed7daeb157cd9b31e53896ad3c771a26">geometry</a>
 * <a href="{{ site.github.repository_url }}/blob/master/geometry/Pt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-16 16:05:01+09:00
+    - Last commit date: 2020-05-26 19:55:50+09:00
 
 
 
@@ -76,16 +76,16 @@ struct Pt {
   Pt operator *(const T rhs) const {
     return Pt(x*rhs, y*rhs);
   }
-  Pt& operator +=(const Pt<T>& rhs) const {
+  Pt& operator +=(const Pt<T>& rhs) {
     return *this = *this + rhs;
   }
-  Pt& operator -=(const Pt<T>& rhs) const {
+  Pt& operator -=(const Pt<T>& rhs) {
     return *this = *this - rhs;
   }
   Pt& operator *=(const Pt<T>& rhs) {
     return *this = *this * rhs;
   }
-  Pt& operator *=(const T rhs) const {
+  Pt& operator *=(const T rhs) {
     return *this = *this * rhs;
   }
   bool operator ==(const Pt<T>& rhs) const {
@@ -126,7 +126,6 @@ InStream& operator>>(InStream& in, Pt<T>& var) {
 #line 2 "template.cpp"
 
 #ifndef LOCAL
-#pragma GCC diagnostic warning "-w"
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("avx")
@@ -197,20 +196,20 @@ class DebugPrint { public: template <typename T> DebugPrint& operator <<(const T
 return *this; } } debugos; template <typename T> DebugPrint& operator<<(DebugPrint& os, const
 vector<T>& vec) { os << "{"; for (int i = 0; i < vec.size(); i++) os << vec[i] << (i + 1 ==
 vec.size() ? "" : ", "); os << "}"; return os; } template <typename T, typename U> DebugPrint&
-operator<<(DebugPrint& os, map<T, U>& map_var) { os << "{"; repi(itr, map_var) { os << *itr;
-itr++; if (itr != map_var.end()) os << ", "; itr--; } os << "}"; return os; } template <
-typename T> DebugPrint& operator<<(DebugPrint& os, set<T>& set_var) { os << "{"; repi(itr,
-set_var) { os << *itr; itr++; if (itr != set_var.end()) os << ", "; itr--; } os << "}"; return
-os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, const pair<T, U
->& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } void dump_func() {
-debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail &&...
-tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(std::move(
-tail)...); }
+operator<<(DebugPrint& os, const map<T, U>& map_var) { os << "{"; repi(itr, map_var) { os << *
+itr; itr++; if (itr != map_var.end()) os << ", "; itr--; } os << "}"; return os; } template <
+typename T> DebugPrint& operator<<(DebugPrint& os, const set<T>& set_var) { os << "{"; repi(
+itr, set_var) { os << *itr; itr++; if (itr != set_var.end()) os << ", "; itr--; } os << "}";
+return os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, const
+pair<T, U>& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } void dump_func(
+) { debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail
+&&... tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(forward
+<Tail>(tail)...); }
 #ifdef LOCAL
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
 #else
-#define dump(...)
+#define dump(...) ({})
 #endif
 #pragma GCC diagnostic pop
 
@@ -238,16 +237,16 @@ struct Pt {
   Pt operator *(const T rhs) const {
     return Pt(x*rhs, y*rhs);
   }
-  Pt& operator +=(const Pt<T>& rhs) const {
+  Pt& operator +=(const Pt<T>& rhs) {
     return *this = *this + rhs;
   }
-  Pt& operator -=(const Pt<T>& rhs) const {
+  Pt& operator -=(const Pt<T>& rhs) {
     return *this = *this - rhs;
   }
   Pt& operator *=(const Pt<T>& rhs) {
     return *this = *this * rhs;
   }
-  Pt& operator *=(const T rhs) const {
+  Pt& operator *=(const T rhs) {
     return *this = *this * rhs;
   }
   bool operator ==(const Pt<T>& rhs) const {

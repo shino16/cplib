@@ -31,14 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/inversions.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-16 16:05:01+09:00
+    - Last commit date: 2020-05-26 19:55:50+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../data-structure/bit.cpp.html">data-structure/bit.cpp</a>
+* :x: <a href="../data-structure/bit.cpp.html">data-structure/bit.cpp</a>
 * :question: <a href="../template.cpp.html">template.cpp</a>
 
 
@@ -76,7 +76,6 @@ ll inversions(Iter first, Iter last) {
 #line 2 "template.cpp"
 
 #ifndef LOCAL
-#pragma GCC diagnostic warning "-w"
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("avx")
@@ -147,20 +146,20 @@ class DebugPrint { public: template <typename T> DebugPrint& operator <<(const T
 return *this; } } debugos; template <typename T> DebugPrint& operator<<(DebugPrint& os, const
 vector<T>& vec) { os << "{"; for (int i = 0; i < vec.size(); i++) os << vec[i] << (i + 1 ==
 vec.size() ? "" : ", "); os << "}"; return os; } template <typename T, typename U> DebugPrint&
-operator<<(DebugPrint& os, map<T, U>& map_var) { os << "{"; repi(itr, map_var) { os << *itr;
-itr++; if (itr != map_var.end()) os << ", "; itr--; } os << "}"; return os; } template <
-typename T> DebugPrint& operator<<(DebugPrint& os, set<T>& set_var) { os << "{"; repi(itr,
-set_var) { os << *itr; itr++; if (itr != set_var.end()) os << ", "; itr--; } os << "}"; return
-os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, const pair<T, U
->& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } void dump_func() {
-debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail &&...
-tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(std::move(
-tail)...); }
+operator<<(DebugPrint& os, const map<T, U>& map_var) { os << "{"; repi(itr, map_var) { os << *
+itr; itr++; if (itr != map_var.end()) os << ", "; itr--; } os << "}"; return os; } template <
+typename T> DebugPrint& operator<<(DebugPrint& os, const set<T>& set_var) { os << "{"; repi(
+itr, set_var) { os << *itr; itr++; if (itr != set_var.end()) os << ", "; itr--; } os << "}";
+return os; } template <typename T, typename U> DebugPrint& operator<<(DebugPrint& os, const
+pair<T, U>& p) { os << "(" << p.first << ", " << p.second << ")"; return os; } void dump_func(
+) { debugos << newl; } template <class Head, class... Tail> void dump_func(Head &&head, Tail
+&&... tail) { debugos << head; if (sizeof...(Tail) > 0) { debugos << ", "; } dump_func(forward
+<Tail>(tail)...); }
 #ifdef LOCAL
 #define dump(...) debugos << "  " << string(#__VA_ARGS__) << ": " << "[" << to_string(__LINE__) \
 << ":" << __FUNCTION__ << "]" << newl << "    ", dump_func(__VA_ARGS__)
 #else
-#define dump(...)
+#define dump(...) ({})
 #endif
 #pragma GCC diagnostic pop
 
@@ -177,7 +176,17 @@ class BIT {
   vector<ll> data;
 
  public:
-  BIT(int _n = 0) : n(_n), data(_n + 1) {}
+  BIT(int n_ = 0) : n(n_), data(n_ + 1) {}
+  template <typename Iter>
+  BIT(Iter first, Iter last) : n(distance(first, last)) {
+    data = vector<ll>(n + 1);
+    copy(first, last, data.begin() + 1);
+    auto zeroix = data.begin() + 1;
+    rep(i, n) {
+      int j = i | (i+1);
+      if (j < n) zeroix[j] += zeroix[i];
+    }
+  }
   void add(int p, ll v = 1) {
     p++;
     while (p <= n) {
@@ -205,16 +214,16 @@ class BIT {
     } else
       return false;
   }
-  // min i s.t. sum over [0, i] >= v
+  // min i s.t. sum over [0, i) >= v -- or n+1 if failed
   // requires data[i] >= 0 for any i
   int lower_bound(ll v) {
     if (v <= 0) return 0;
     int l = 0;
     for (int k = 1 << (32 - __builtin_clz(n) - 1); k; k >>= 1)
       if (l + k <= n and data[l + k] < v) v -= data[l += k];
-    return l;
+    return l + 1;
   }
-  // min i s.t. sum over [0, i] > v
+  // min i s.t. sum over [0, i) > v -- or n+1 if failed
   // requires data[i] >= 0 for any i
   int upper_bound(ll v) { return lower_bound(v + 1); }
 };
