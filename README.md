@@ -2,6 +2,4 @@
 
 正当性は保証しません。
 
-# ライセンス
-
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png "CC0")](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
